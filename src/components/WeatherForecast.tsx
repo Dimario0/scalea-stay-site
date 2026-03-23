@@ -86,7 +86,7 @@ const WeatherForecast: React.FC = () => {
   }, []);
 
   return (
-    <section id="weather" className="py-10 px-4 bg-slate-50/50 scroll-mt-40 min-h-[100px]">
+    <section id="weather" className="py-10 px-4 bg-white scroll-mt-40 min-h-[100px]">
       <div className="max-w-6xl mx-auto">
         {loading ? (
           <div className="flex justify-center items-center py-8">
@@ -120,7 +120,7 @@ const WeatherForecast: React.FC = () => {
                 <div key={idx} className={`relative p-2 sm:p-4 rounded-2xl sm:rounded-3xl flex flex-col items-center transition-all duration-500 ${
                   idx === 0 
                   ? 'bg-white border-2 border-indigo-100 shadow-lg shadow-indigo-50 z-10' 
-                  : 'bg-white/50 border border-slate-100 shadow-sm opacity-80 hover:opacity-100'
+                  : 'bg-white border border-slate-100 shadow-sm opacity-80 hover:opacity-100'
                 }`}>
                   <span className={`text-[9px] font-black uppercase tracking-widest mb-2 ${idx === 0 ? 'text-indigo-600' : 'text-slate-400'}`}>
                     {idx === 0 ? t('weatherToday') : new Date(day.date).toLocaleDateString(language === 'ru' ? 'ru-RU' : 'en-US', { weekday: 'short' })}

@@ -57,6 +57,8 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (!parsed.version || parsed.version < SITE_DATA_VERSION) {
           // Force sync critical data if version changes
           parsed.siteImages.aboutImages = SITE_IMAGES.aboutImages;
+          parsed.siteImages.guideImages = SITE_IMAGES.guideImages;
+          parsed.siteImages.heroBackground = SITE_IMAGES.heroBackground;
           parsed.contactInfo = CONTACT_INFO;
           
           // Sync apartments if they were using old defaults

@@ -2,7 +2,7 @@
 import { Apartment, Review } from './types';
 
 // --- ВЕРСИЯ ДАННЫХ ---
-export const SITE_DATA_VERSION = 6;
+export const SITE_DATA_VERSION = 9;
 
 // Центральный номер для связи (замените на ваш реальный номер)
 export const CONTACT_INFO = {
@@ -25,7 +25,7 @@ export const SITE_IMAGES = {
   logo: '', // Если понадобится логотип
   aboutSection: 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
   guideImages: [
-    'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80',
+    'https://i.postimg.cc/XY3vV4DY/IMG-0056.png',
     'https://i.postimg.cc/rsKbh0p3/Scalea_Torre_Talao_am_Morgen.jpg',
     'https://i.postimg.cc/XNFty39Z/IMG_2859.jpg'
   ]
@@ -161,7 +161,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqA6: 'Скалея предлагает уникальное сочетание чистого моря, исторических достопримечательностей и доступных цен на аренду жилья в Италии.',
     guideTitle: 'Гид по Скалее',
     guideSubtitle: 'Лучшие места по версии владельца',
-    guidePlace1: 'Ресторан "La Playa"',
+    guidePlace1: 'Ресторан "La Perla del Tirreno"',
     guideDesc1: 'Свежайшие морепродукты и паста с видом на море.',
     guidePlace2: 'Башня Торре Талао',
     guideDesc2: 'Символ города. Отсюда открывается лучший вид на побережье.',
@@ -266,7 +266,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqA6: 'Scalea offers a unique combination of clean sea, historical sights, and affordable rental prices in Italy.',
     guideTitle: 'Scalea Guide',
     guideSubtitle: 'Best places by the owner',
-    guidePlace1: 'Restaurant "La Playa"',
+    guidePlace1: 'Restaurant "La Perla del Tirreno"',
     guideDesc1: 'Freshest seafood and pasta with a sea view.',
     guidePlace2: 'Torre Talao',
     guideDesc2: 'The symbol of the city. Best view of the coast from here.',
@@ -371,7 +371,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqA6: 'Scalea offre una combinazione unica di mare pulito, attrazioni storiche e prezzi di affitto convenienti in Italia.',
     guideTitle: 'Guida di Scalea',
     guideSubtitle: 'I migliori posti secondo il proprietario',
-    guidePlace1: 'Ristorante "La Playa"',
+    guidePlace1: 'Ristorante "La Perla del Tirreno"',
     guideDesc1: 'Frutti di mare freschissimi e pasta con vista mare.',
     guidePlace2: 'Torre Talao',
     guideDesc2: 'Il simbolo della città. La migliore vista della costa da qui.',
@@ -476,7 +476,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqA6: 'Scalea bietet eine einzigartige Kombination aus sauberem Meer, historischen Sehenswürdigkeiten und erschwinglichen Mietpreisen in Italien.',
     guideTitle: 'Scalea Reiseführer',
     guideSubtitle: 'Die besten Orte laut dem Besitzer',
-    guidePlace1: 'Restaurant "La Playa"',
+    guidePlace1: 'Restaurant "La Perla del Tirreno"',
     guideDesc1: 'Frischeste Meeresfrüchte und Pasta mit Meerblick.',
     guidePlace2: 'Torre Talao',
     guideDesc2: 'Das Wahrzeichen der Stadt. Bester Blick auf die Küste von hier.',
@@ -581,7 +581,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqA6: 'Scalea nabízí jedinečnou kombinaci čistého moře, historických památek a cenově dostupného pronájmu v Itálii.',
     guideTitle: 'Průvodce po Scalea',
     guideSubtitle: 'Nejlepší místa podle majitele',
-    guidePlace1: 'Restaurace "La Playa"',
+    guidePlace1: 'Restaurace "La Perla del Tirreno"',
     guideDesc1: 'Nejčerstvější mořské plody a těstoviny s výhledem na moře.',
     guidePlace2: 'Torre Talao',
     guideDesc2: 'Symbol města. Odtud je nejlepší výhled na pobřeží.',

@@ -14,7 +14,9 @@ const AdminPanel: React.FC = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('admin') === 'true') {
+    const isDevDomain = window.location.hostname.includes('ais-dev');
+    
+    if (params.get('admin') === 'true' || isDevDomain) {
       setHasAccess(true);
     }
   }, []);
@@ -29,6 +31,16 @@ const AdminPanel: React.FC = () => {
 
   return (
     <>
+      <div className="fixed top-0 left-0 right-0 z-[60] pointer-events-none flex justify-center">
+        <motion.div 
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className="bg-indigo-600 text-white px-6 py-2 rounded-b-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl border-x border-b border-white/20 pointer-events-auto"
+        >
+          Режим редактирования (Демо)
+        </motion.div>
+      </div>
+
       <button 
         onClick={() => setIsOpen(true)}
         className="fixed bottom-24 right-6 z-[100] bg-slate-900 text-white p-4 rounded-full shadow-2xl border border-white/10 hover:scale-110 transition-transform flex items-center space-x-2 group"
