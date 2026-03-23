@@ -1,0 +1,8 @@
+{
+  "name": "ScaleaStay - Luxury Apartments",
+  "description": "Элегантный сайт-визитка для аренды апартаментов в Скалее, Италия. Включает галерею, информацию о локации и AI-консьержа для ответов на вопросы гостей.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
