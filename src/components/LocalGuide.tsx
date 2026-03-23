@@ -35,7 +35,7 @@ const LocalGuide: React.FC = () => {
     <section className="py-12 px-4 bg-slate-50">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-auto">
             {t('guideTitle')}
           </h2>
           <p className="text-slate-400 text-sm font-medium uppercase tracking-widest">{t('guideSubtitle')}</p>

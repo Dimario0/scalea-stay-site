@@ -43,7 +43,7 @@ const AdminPanel: React.FC = () => {
             initial={{ opacity: 0, x: 300 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 300 }}
-            className="fixed inset-y-0 right-0 w-full max-w-md bg-slate-950 z-[101] shadow-[-20px_0_50px_rgba(0,0,0,0.5)] border-l border-white/10 overflow-y-auto p-8"
+            className="fixed inset-y-0 right-0 w-full max-w-md bg-slate-950 z-[101] shadow-[-20px_0_50px_rgba(0,0,0,0.5)] border-l border-white/10 overflow-y-auto p-8 max-w-[100vw]"
           >
             <div className="flex justify-between items-center mb-10">
               <h2 className="text-2xl font-black text-white uppercase tracking-tighter">Настройки сайта</h2>

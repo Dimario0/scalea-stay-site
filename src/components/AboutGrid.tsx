@@ -23,8 +23,8 @@ const AboutGrid: React.FC<Props> = ({ images = [] }) => {
       ))}
       
       {/* Decorative Elements */}
-      <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-600/20 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-600/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-600/20 rounded-full blur-3xl -z-10 overflow-hidden max-w-full"></div>
+      <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-600/20 rounded-full blur-3xl -z-10 overflow-hidden max-w-full"></div>
     </div>
   );
 };

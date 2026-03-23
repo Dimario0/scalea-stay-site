@@ -21,7 +21,7 @@ const FAQ: React.FC = () => {
     <section id="faq" className="py-12 px-4 bg-white scroll-mt-40">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-auto">
             {t('faqTitle')}
           </h2>
           <div className="w-12 h-1.5 bg-indigo-600 mx-auto rounded-full"></div>

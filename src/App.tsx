@@ -23,7 +23,7 @@ const App: React.FC = () => {
   const [isRouteModalOpen, setIsRouteModalOpen] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-white selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
+    <div className="min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
       <Navbar />
       
       <main>
@@ -34,7 +34,7 @@ const App: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-indigo-600 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Selection 2026</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase animate-fade-in">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase animate-fade-in break-words hyphens-auto">
                 {t('ourApartments')}
               </h2>
             </div>
@@ -57,17 +57,17 @@ const App: React.FC = () => {
         <LocalGuide />
 
         {/* Testimonials (Trust Block) */}
-        <section className="py-8 px-4 bg-white border-y border-slate-50">
+        <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="text-2xl font-black uppercase tracking-tighter">{t('reviews')}</h2>
+              <h2 className="text-2xl font-black uppercase tracking-tighter break-words hyphens-auto">{t('reviews')}</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {REVIEWS.map((rev, i) => (
-                <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-500 group">
+                <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-500 group max-w-full">
                   <div className="text-amber-400 text-sm mb-3 transition-transform group-hover:scale-110">★★★★★</div>
-                  <p className="text-slate-600 text-xs font-medium leading-relaxed mb-4 italic">"{t(rev.textKey)}"</p>
-                  <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest">— {t(rev.nameKey)}</p>
+                  <p className="text-slate-600 text-xs font-medium leading-relaxed mb-4 italic break-words hyphens-auto">"{t(rev.textKey)}"</p>
+                  <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest break-words hyphens-auto">— {t(rev.nameKey)}</p>
                 </div>
               ))}
             </div>
@@ -79,10 +79,10 @@ const App: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none break-words hyphens-auto">
                   {t('aboutScalea')}
                 </h2>
-                <p className="text-slate-400 text-lg mb-12 leading-relaxed">
+                <p className="text-slate-400 text-lg mb-12 leading-relaxed break-words hyphens-auto">
                   {t('aboutScaleaDesc')}
                 </p>
                 
@@ -109,7 +109,9 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <AboutGrid images={data.siteImages.aboutImages} />
+              <div className="relative overflow-hidden rounded-[30px]">
+                <AboutGrid images={data.siteImages.aboutImages} />
+              </div>
             </div>
           </div>
         </section>
@@ -123,8 +125,8 @@ const App: React.FC = () => {
              <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
                {t('directBooking')}
              </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tighter leading-none uppercase">
-              Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl">{t('waitsForYou')}</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tighter leading-none uppercase break-words hyphens-auto">
+              Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-auto">{t('waitsForYou')}</span>
             </h2>
             
             {/* How to get here block */}
@@ -175,10 +177,10 @@ const App: React.FC = () => {
                 </svg>
               </a>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 border-t border-white/5 opacity-50 text-[9px] font-black uppercase tracking-widest">
-              <div className="flex items-center justify-center space-x-2"><span>🏖️</span><span>{t('beachDistance')}</span></div>
-              <div className="flex items-center justify-center space-x-2"><span>❄️</span><span>{t('acReady')}</span></div>
-              <div className="flex items-center justify-center space-x-2"><span>🚗</span><span>{t('parkingInc')}</span></div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-12 border-t border-white/5 opacity-50 text-[9px] font-black uppercase tracking-widest">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>🏖️</span><span>{t('beachDistance')}</span></div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>❄️</span><span>{t('acReady')}</span></div>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>🚗</span><span>{t('parkingInc')}</span></div>
             </div>
             <p className="mt-12 text-slate-600 font-bold uppercase tracking-[0.5em] text-[9px]">{t('footerCopyright')}</p>
           </div>

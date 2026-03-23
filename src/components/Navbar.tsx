@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 pt-6 transition-all duration-700 pointer-events-none ${scrolled ? 'translate-y-0' : 'translate-y-2'}`}>
-        <div className={`pointer-events-auto flex items-center justify-between px-6 md:px-10 py-4 rounded-[32px] md:rounded-[40px] transition-all duration-500 border ${
+        <div className={`pointer-events-auto flex flex-wrap items-center justify-between gap-2 sm:gap-4 px-2 sm:px-6 md:px-10 py-3 sm:py-4 rounded-[32px] md:rounded-[40px] transition-all duration-500 border ${
           scrolled 
           ? "bg-white/95 backdrop-blur-2xl border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.18)]" 
           : "bg-black/30 backdrop-blur-md border-white/10"

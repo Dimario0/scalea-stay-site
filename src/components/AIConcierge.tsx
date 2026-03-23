@@ -48,7 +48,7 @@ const AIConcierge: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-[100] font-sans">
       {/* Chat Window */}
       {isOpen && (
-        <div className="bg-white w-[350px] sm:w-[400px] h-[550px] rounded-[40px] shadow-[0_40px_80px_rgba(0,0,0,0.2)] flex flex-col border border-slate-100 overflow-hidden mb-4 transition-all duration-500 ease-out transform origin-bottom-right">
+        <div className="bg-white w-[calc(100vw-2rem)] sm:w-[400px] h-[500px] sm:h-[550px] max-h-[80vh] rounded-[40px] shadow-[0_40px_80px_rgba(0,0,0,0.2)] flex flex-col border border-slate-100 overflow-hidden mb-4 transition-all duration-500 ease-out transform origin-bottom-right max-w-full">
           <div className="p-6 bg-white border-b border-slate-50 flex justify-between items-center shrink-0">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">

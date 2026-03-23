@@ -6,8 +6,14 @@
 
 @layer base {
   html, body {
-    @apply bg-white text-slate-900 font-sans overflow-x-hidden;
+    @apply bg-slate-950 text-slate-900 font-sans overflow-x-hidden break-words hyphens-auto;
     scroll-behavior: smooth;
+    max-width: 100vw;
+    min-height: 100vh;
+  }
+  
+  #root {
+    @apply overflow-x-hidden w-full flex flex-col min-h-screen bg-slate-950;
   }
 }
 

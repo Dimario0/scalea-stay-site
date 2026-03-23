@@ -45,7 +45,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
   return (
     <div className="group bg-white rounded-[40px] overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_40px_80px_rgba(0,0,0,0.12)] transition-all duration-700 flex flex-col lg:flex-row border border-slate-100 mb-12">
       <div 
-        className="relative lg:w-3/5 aspect-video lg:aspect-auto overflow-hidden bg-slate-100"
+        className="relative lg:w-3/5 aspect-video lg:aspect-auto overflow-hidden bg-slate-100 max-w-full"
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
@@ -102,18 +102,18 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         </div>
       </div>
 
-      <div className="p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
-        <div className="mb-6">
+      <div className="p-5 sm:p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
+        <div className="mb-4 sm:mb-6">
           {/* Rating removed as per user request */}
         </div>
         
-        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-8 whitespace-pre-line">
+        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 whitespace-pre-line break-words hyphens-auto">
           {t(apartment.descriptionKey)}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-10">
           {apartment.featuresKeys.map(fk => (
-            <span key={fk} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-400 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors">
+            <span key={fk} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-400 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-auto max-w-full">
               {t(fk)}
             </span>
           ))}

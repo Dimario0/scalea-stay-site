@@ -42,7 +42,7 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute right-0 mt-2 w-48 rounded-2xl bg-white shadow-xl border border-slate-100 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-48 max-w-[calc(100vw-2rem)] rounded-2xl bg-white shadow-xl border border-slate-100 overflow-hidden z-50 origin-top-right"
           >
             <div className="py-1">
               {LANGUAGES.map((lang) => (

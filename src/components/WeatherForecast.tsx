@@ -109,13 +109,13 @@ const WeatherForecast: React.FC = () => {
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
                 <span>LIVE: SCALEA</span>
               </div>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase break-words hyphens-auto">
                 {t('weather')}
               </h2>
               <p className="text-slate-400 text-sm font-medium mt-6 uppercase tracking-widest">{t('weatherSubtitle') || 'Актуальный прогноз для вашего отдыха'}</p>
             </div>
 
-            <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            <div className="max-w-5xl mx-auto grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
               {forecast.map((day, idx) => (
                 <div key={idx} className={`relative p-2 sm:p-4 rounded-2xl sm:rounded-3xl flex flex-col items-center transition-all duration-500 ${
                   idx === 0 
