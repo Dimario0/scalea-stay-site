@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSiteData } from '../context/SiteContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { Settings, X, RefreshCw, Copy, Check } from 'lucide-react';
@@ -9,8 +9,15 @@ const AdminPanel: React.FC = () => {
   const { data, updateImage, updateAboutImages, updateGuideImages, updateApartmentImages, resetData, exportConfig } = useSiteData();
   const [copied, setCopied] = useState(false);
 
-  // Admin panel is now always visible for the user
-  const [hasAccess] = useState(true);
+  // Admin panel is only visible if ?admin=true is in the URL
+  const [hasAccess, setHasAccess] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('admin') === 'true') {
+      setHasAccess(true);
+    }
+  }, []);
 
   if (!hasAccess) return null;
 
