@@ -16,10 +16,10 @@ const Advantages: React.FC = () => {
   ];
 
   return (
-    <section className="py-6 px-4 bg-slate-50">
+    <section className="py-12 px-4 bg-slate-50">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-slate-900 mb-3">
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4">
             {t('advantagesTitle')}
           </h2>
           <div className="w-12 h-1 bg-indigo-600 mx-auto rounded-full"></div>
@@ -35,13 +35,13 @@ const Advantages: React.FC = () => {
               transition={{ delay: idx * 0.05 }}
               className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-500 group text-center"
             >
-              <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 mx-auto group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
-                <div className="scale-75">{adv.icon}</div>
+              <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 mx-auto group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
+                <div className="scale-90">{adv.icon}</div>
               </div>
-              <h3 className="text-[11px] font-black uppercase tracking-tight text-slate-900 mb-2 leading-tight">
+              <h3 className="text-sm font-black uppercase tracking-tight text-slate-900 mb-2 leading-tight">
                 {adv.title}
               </h3>
-              <p className="text-slate-400 text-[10px] leading-tight font-medium">
+              <p className="text-slate-500 text-xs leading-relaxed font-medium">
                 {adv.desc}
               </p>
             </motion.div>
