@@ -107,13 +107,13 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           {/* Rating removed as per user request */}
         </div>
         
-        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 whitespace-pre-line break-words hyphens-auto">
+        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 whitespace-pre-line break-words hyphens-none">
           {t(apartment.descriptionKey)}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-10">
           {apartment.featuresKeys.map(fk => (
-            <span key={fk} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-400 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-auto max-w-full">
+            <span key={fk} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-400 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-none max-w-full">
               {t(fk)}
             </span>
           ))}

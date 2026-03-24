@@ -34,7 +34,7 @@ const App: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-indigo-600 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Selection 2026</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase animate-fade-in break-words hyphens-auto">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase animate-fade-in break-words hyphens-none">
                 {t('ourApartments')}
               </h2>
             </div>
@@ -60,14 +60,14 @@ const App: React.FC = () => {
         <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="text-2xl font-black uppercase tracking-tighter break-words hyphens-auto">{t('reviews')}</h2>
+              <h2 className="text-2xl font-black uppercase tracking-tighter break-words hyphens-none">{t('reviews')}</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {REVIEWS.map((rev, i) => (
                 <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-500 group max-w-full">
                   <div className="text-amber-400 text-sm mb-3 transition-transform group-hover:scale-110">★★★★★</div>
-                  <p className="text-slate-600 text-xs font-medium leading-relaxed mb-4 italic break-words hyphens-auto">"{t(rev.textKey)}"</p>
-                  <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest break-words hyphens-auto">— {t(rev.nameKey)}</p>
+                  <p className="text-slate-600 text-xs font-medium leading-relaxed mb-4 italic break-words hyphens-none">"{t(rev.textKey)}"</p>
+                  <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest break-words hyphens-none">— {t(rev.nameKey)}</p>
                 </div>
               ))}
             </div>
@@ -79,10 +79,10 @@ const App: React.FC = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none break-words hyphens-auto">
+                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none break-words hyphens-none">
                   {t('aboutScalea')}
                 </h2>
-                <p className="text-slate-400 text-lg mb-12 leading-relaxed break-words hyphens-auto">
+                <p className="text-slate-400 text-lg mb-12 leading-relaxed break-words hyphens-none">
                   {t('aboutScaleaDesc')}
                 </p>
                 
@@ -125,13 +125,13 @@ const App: React.FC = () => {
              <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
                {t('directBooking')}
              </div>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tighter leading-none uppercase break-words hyphens-auto">
-              Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-auto">{t('waitsForYou')}</span>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tighter leading-none uppercase break-words hyphens-none">
+              Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-none">{t('waitsForYou')}</span>
             </h2>
             
             {/* How to get here block */}
             <div className="mb-16 text-left max-w-2xl mx-auto bg-white/5 p-8 rounded-[32px] border border-white/10">
-              <h3 className="text-xl font-black uppercase tracking-widest mb-8 text-center text-indigo-400">{t('howToGet')}</h3>
+              <h3 className="text-xl font-black uppercase tracking-widest mb-8 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <span className="text-2xl">🚂</span>

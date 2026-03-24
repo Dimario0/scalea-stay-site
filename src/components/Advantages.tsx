@@ -19,7 +19,7 @@ const Advantages: React.FC = () => {
     <section className="py-12 px-4 bg-white">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-auto">
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-none">
             {t('advantagesTitle')}
           </h2>
           <div className="w-12 h-1 bg-indigo-600 mx-auto rounded-full"></div>
@@ -38,10 +38,10 @@ const Advantages: React.FC = () => {
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3 sm:mb-4 mx-auto group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
                 <div className="scale-75 sm:scale-90">{adv.icon}</div>
               </div>
-              <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-slate-900 mb-1 sm:mb-2 leading-tight break-words hyphens-auto">
+              <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-slate-900 mb-1 sm:mb-2 leading-tight break-words hyphens-none">
                 {adv.title}
               </h3>
-              <p className="text-slate-500 text-[10px] sm:text-xs leading-relaxed font-medium break-words hyphens-auto">
+              <p className="text-slate-500 text-[10px] sm:text-xs leading-relaxed font-medium break-words hyphens-none">
                 {adv.desc}
               </p>
             </motion.div>

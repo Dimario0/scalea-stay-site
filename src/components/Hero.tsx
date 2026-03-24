@@ -67,11 +67,11 @@ const Hero: React.FC = () => {
           <span className="text-white text-[11px] font-black uppercase tracking-[0.3em]">{t('heroBadge')}</span>
         </div>
         
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[120px] font-[900] text-white leading-[0.9] sm:leading-[0.8] tracking-tighter mb-10 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase break-words hyphens-auto">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[120px] font-[900] text-white leading-[0.9] sm:leading-[0.8] tracking-tighter mb-10 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase break-words hyphens-none">
           {t('heroTitle')}
         </h1>
         
-        <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-14 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in drop-shadow-lg break-words hyphens-auto" style={{ animationDelay: '0.2s' }}>
+        <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-14 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in drop-shadow-lg break-words hyphens-none" style={{ animationDelay: '0.2s' }}>
           {t('heroSubtitle')}
         </p>
         

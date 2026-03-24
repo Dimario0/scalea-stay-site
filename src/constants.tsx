@@ -2,7 +2,7 @@
 import { Apartment, Review } from './types';
 
 // --- ВЕРСИЯ ДАННЫХ ---
-export const SITE_DATA_VERSION = 9;
+export const SITE_DATA_VERSION = 10;
 
 // Центральный номер для связи (замените на ваш реальный номер)
 export const CONTACT_INFO = {
