@@ -33,8 +33,8 @@ const App: React.FC = () => {
         <section id="apartments" className="pt-16 pb-6 px-4 scroll-mt-40">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-indigo-600 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Selection 2026</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 uppercase animate-fade-in break-words hyphens-none">
+              <span className="text-indigo-400 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Selection 2026</span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase animate-fade-in break-words hyphens-none">
                 {t('ourApartments')}
               </h2>
             </div>
@@ -182,7 +182,7 @@ const App: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>❄️</span><span>{t('acReady')}</span></div>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>🚗</span><span>{t('parkingInc')}</span></div>
             </div>
-            <p className="mt-12 text-slate-600 font-bold uppercase tracking-[0.5em] text-[9px]">{t('footerCopyright')}</p>
+            <p className="mt-12 text-slate-500 font-bold uppercase tracking-[0.5em] text-[9px]">{t('footerCopyright')}</p>
           </div>
         </section>
       </main>
