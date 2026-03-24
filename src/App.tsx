@@ -23,10 +23,10 @@ const App: React.FC = () => {
   const [isRouteModalOpen, setIsRouteModalOpen] = React.useState(false);
 
   return (
-    <div className="min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
+    <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
       <Navbar />
       
-      <main>
+      <main className="flex-1 flex flex-col">
         <Hero />
 
         {/* Apartments Grid */}
@@ -120,7 +120,7 @@ const App: React.FC = () => {
         <FAQ />
 
         {/* CTA Footer / Contact */}
-        <section id="contact" className="pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
+        <section id="contact" className="mt-auto pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
           <div className="max-w-4xl mx-auto px-6">
              <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
                {t('directBooking')}
