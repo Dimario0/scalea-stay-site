@@ -43,7 +43,7 @@ const WeatherForecast: React.FC = () => {
         console.warn("Marine data fetch failed", e);
       }
 
-      const combinedForecast = weatherData.daily.time.slice(0, 5).map((t: string, i: number) => {
+      const combinedForecast = weatherData.daily.time.slice(0, 5).map((dateStr: string, i: number) => {
         let avgSeaTemp = null;
         if (marineData?.hourly?.sea_surface_temperature) {
           const hourlyTemps = marineData.hourly.sea_surface_temperature;
@@ -64,7 +64,7 @@ const WeatherForecast: React.FC = () => {
           : ((weatherData.daily.weathercode && weatherData.daily.weathercode[i] !== undefined) ? weatherData.daily.weathercode[i] : 0);
 
         return {
-          date: t,
+          date: dateStr,
           maxTemp: Math.round(weatherData.daily.temperature_2m_max?.[i] ?? 0),
           minTemp: Math.round(weatherData.daily.temperature_2m_min?.[i] ?? 0),
           weatherCode: wCode,

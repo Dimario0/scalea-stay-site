@@ -4,6 +4,8 @@ import { getGeminiResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
+import { motion, AnimatePresence } from 'motion/react';
+
 const AIConcierge: React.FC = () => {
   const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -47,8 +49,14 @@ const AIConcierge: React.FC = () => {
   return (
     <div className="fixed bottom-6 right-6 z-[100] font-sans">
       {/* Chat Window */}
-      {isOpen && (
-        <div className="bg-white w-[calc(100vw-2rem)] sm:w-[400px] h-[500px] sm:h-[550px] max-h-[80vh] rounded-[40px] shadow-[0_40px_80px_rgba(0,0,0,0.2)] flex flex-col border border-slate-100 overflow-hidden mb-4 transition-all duration-500 ease-out transform origin-bottom-right max-w-full">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            className="bg-white w-[calc(100vw-2rem)] sm:w-[400px] h-[500px] sm:h-[550px] max-h-[80vh] rounded-[40px] shadow-[0_40px_80px_rgba(0,0,0,0.2)] flex flex-col border border-slate-100 overflow-hidden mb-4 transform origin-bottom-right max-w-full"
+          >
           <div className="p-6 bg-white border-b border-slate-50 flex justify-between items-center shrink-0">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
@@ -119,8 +127,9 @@ const AIConcierge: React.FC = () => {
               </svg>
             </button>
           </div>
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Floating Action Button */}
       <button 

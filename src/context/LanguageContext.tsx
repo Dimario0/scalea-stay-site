@@ -41,7 +41,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     // Update document title based on language
     const titles: Record<string, string> = {
-      ru: 'Scalea Apartments | Аренда в Италии | Отдых в Калабрии',
+      ru: 'Аренда апартаментов в Скалее, Италия | ScaleaStay',
       en: 'Scalea Apartments | Rent in Italy | Holidays in Calabria',
       it: 'Appartamenti Scalea | Affitto in Italia | Vacanze in Calabria',
       de: 'Scalea Apartments | Mieten in Italien | Urlaub in Kalabrien',
@@ -51,7 +51,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     // Update meta description
     const descriptions: Record<string, string> = {
-      ru: 'ScaleaStay - Аренда апартаментов в Скалее, Италия. Уютное жилье у моря в центре города. Идеально для отдыха в Калабрии. Забронируйте свой отпуск на Riviera dei Cedri.',
+      ru: 'Снимите современные апартаменты у моря в Скалее (Калабрия). Идеально для семейного отдыха. Свежий ремонт, парковка, кондиционер. Бронируйте без посредников!',
       en: 'ScaleaStay - Apartment rentals in Scalea, Italy. Cozy accommodation by the sea in the city center. Perfect for holidays in Calabria. Book your vacation on the Riviera dei Cedri.',
       it: 'ScaleaStay - Affitto appartamenti a Scalea, Italia. Alloggi accoglienti sul mare nel centro della città. Perfetto per le vacanze in Calabria. Prenota la tua vacanza sulla Riviera dei Cedri.',
       de: 'ScaleaStay - Ferienwohnungen in Scalea, Italien. Gemütliche Unterkunft am Meer im Stadtzentrum. Perfekt für den Urlaub in Kalabrien. Buchen Sie Ihren Urlaub an der Riviera dei Cedri.',
