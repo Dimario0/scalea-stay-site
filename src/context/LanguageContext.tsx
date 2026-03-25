@@ -42,25 +42,41 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Update document title based on language
     const titles: Record<string, string> = {
       ru: 'Аренда апартаментов в Скалее, Италия | ScaleaStay',
-      en: 'Scalea Apartments | Rent in Italy | Holidays in Calabria',
-      it: 'Appartamenti Scalea | Affitto in Italia | Vacanze in Calabria',
-      de: 'Scalea Apartments | Mieten in Italien | Urlaub in Kalabrien',
-      cs: 'Scalea Apartments | Pronájem v Itálii | Dovolená v Kalábrii'
+      en: 'Apartment Rentals in Scalea, Italy | ScaleaStay',
+      it: 'Affitto Appartamenti a Scalea, Italia | ScaleaStay',
+      de: 'Ferienwohnungen mieten in Scalea, Italien | ScaleaStay',
+      cs: 'Pronájem apartmánů ve Scalee, Itálie | ScaleaStay'
     };
-    document.title = titles[language] || titles['ru'];
+    const currentTitle = titles[language] || titles['ru'];
+    document.title = currentTitle;
 
     // Update meta description
     const descriptions: Record<string, string> = {
       ru: 'Снимите современные апартаменты у моря в Скалее (Калабрия). Идеально для семейного отдыха. Свежий ремонт, парковка, кондиционер. Бронируйте без посредников!',
-      en: 'ScaleaStay - Apartment rentals in Scalea, Italy. Cozy accommodation by the sea in the city center. Perfect for holidays in Calabria. Book your vacation on the Riviera dei Cedri.',
-      it: 'ScaleaStay - Affitto appartamenti a Scalea, Italia. Alloggi accoglienti sul mare nel centro della città. Perfetto per le vacanze in Calabria. Prenota la tua vacanza sulla Riviera dei Cedri.',
-      de: 'ScaleaStay - Ferienwohnungen in Scalea, Italien. Gemütliche Unterkunft am Meer im Stadtzentrum. Perfekt für den Urlaub in Kalabrien. Buchen Sie Ihren Urlaub an der Riviera dei Cedri.',
-      cs: 'ScaleaStay - Pronájem apartmánů ve Scalee, Itálie. Útulné ubytování u moře v centru města. Ideální pro dovolenou v Kalábrii. Rezervujte si dovolenou na Riviera dei Cedri.'
+      en: 'Rent modern apartments by the sea in Scalea (Calabria). Perfect for family holidays. Freshly renovated, parking, air conditioning. Book directly without intermediaries!',
+      it: 'Affitta appartamenti moderni sul mare a Scalea (Calabria). Perfetto per vacanze in famiglia. Appena ristrutturati, parcheggio, aria condizionata. Prenota direttamente senza intermediari!',
+      de: 'Mieten Sie moderne Ferienwohnungen am Meer in Scalea (Kalabrien). Perfekt für den Familienurlaub. Frisch renoviert, Parkplatz, Klimaanlage. Direkt buchen ohne Vermittler!',
+      cs: 'Pronajměte si moderní apartmány u moře ve Scalee (Kalábrie). Ideální pro rodinnou dovolenou. Čerstvě zrekonstruované, parkování, klimatizace. Rezervujte přímo bez prostředníků!'
     };
+    const currentDesc = descriptions[language] || descriptions['ru'];
+    
+    // Standard meta description
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', descriptions[language] || descriptions['ru']);
-    }
+    if (metaDesc) metaDesc.setAttribute('content', currentDesc);
+
+    // Open Graph tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', currentTitle);
+    
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', currentDesc);
+
+    // Twitter tags
+    const twTitle = document.querySelector('meta[property="twitter:title"]');
+    if (twTitle) twTitle.setAttribute('content', currentTitle);
+    
+    const twDesc = document.querySelector('meta[property="twitter:description"]');
+    if (twDesc) twDesc.setAttribute('content', currentDesc);
   }, [language]);
 
   return (
