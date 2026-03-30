@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/"/>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/"/>
-    <lastmod>2026-03-22</lastmod>
+    <loc>https://scaleastay.com/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/"/>
+    <lastmod>2026-03-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://i.postimg.cc/Dz0dHGzW/Scalea.webp</image:loc>
-      <image:title>Scalea Stay Apartments - Hero Image</image:title>
-      <image:caption>Elegant apartments in Scalea, Italy</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://i.postimg.cc/FF6dNq9z/Obr%C3%A1zek_PNG.png</image:loc>
-      <image:title>Casa Marittima - Interior</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://i.postimg.cc/rsKbh0p3/Scalea_Torre_Talao_am_Morgen.jpg</image:loc>
-      <image:title>Torre Talao - Scalea Landmark</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://i.postimg.cc/XNFty39Z/IMG_2859.jpg</image:loc>
-      <image:title>Scalea Old Town - Centro Storico</image:title>
-    </image:image>
   </url>
 </urlset>

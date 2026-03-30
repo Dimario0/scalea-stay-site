@@ -4,7 +4,7 @@ Allow: /src/
 Allow: /assets/
 
 # Sitemaps
-Sitemap: https://ais-pre-goys7shwnbef42v7uhep7d-51570586261.europe-west3.run.app/sitemap.xml
+Sitemap: https://scaleastay.com/sitemap.xml
 
 # Crawl-delay for aggressive bots
 Crawl-delay: 10
