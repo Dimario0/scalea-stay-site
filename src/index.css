@@ -1,10 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 }
 
 @layer base {
+  h1, h2, h3 {
+    font-family: var(--font-serif) !important;
+    font-weight: 700 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+
+  h3 {
+    font-weight: 600 !important;
+  }
+
+  body, p, a, span, div {
+    font-family: var(--font-sans);
+  }
+
+  button, a {
+    font-weight: 500 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+  }
+
   html {
     background-color: #020617 !important; /* slate-950 */
     margin: 0 !important;
