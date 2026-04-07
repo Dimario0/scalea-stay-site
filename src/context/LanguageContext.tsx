@@ -1,5 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { TRANSLATIONS, LANGUAGES } from '../constants';
 
 interface LanguageContextType {
@@ -12,26 +13,56 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState(() => {
-    const saved = localStorage.getItem('scalea_language');
-    if (saved && TRANSLATIONS[saved]) return saved;
-    
-    // Try to detect browser language
-    const browserLang = navigator.language.split('-')[0];
-    if (TRANSLATIONS[browserLang]) return browserLang;
-    
-    return 'ru'; // Default
-  });
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Extract language from URL path (e.g., /en/ or /en)
+  const pathLang = location.pathname.split('/')[1];
+  
+  // Determine the effective language
+  const language = TRANSLATIONS[pathLang] ? pathLang : 'ru';
+
+  useEffect(() => {
+    // If the path doesn't have a valid language, redirect to the default or saved language
+    if (!TRANSLATIONS[pathLang]) {
+      const saved = localStorage.getItem('scalea_language');
+      const browserLang = navigator.language.split('-')[0];
+      
+      let targetLang = 'ru';
+      if (saved && TRANSLATIONS[saved]) {
+        targetLang = saved;
+      } else if (TRANSLATIONS[browserLang]) {
+        targetLang = browserLang;
+      }
+      
+      // Preserve the rest of the path and hash
+      const restOfPath = location.pathname === '/' ? '' : location.pathname;
+      navigate(`/${targetLang}${restOfPath}${location.search}${location.hash}`, { replace: true });
+    } else {
+      // Save the valid language to localStorage
+      localStorage.setItem('scalea_language', pathLang);
+    }
+  }, [pathLang, location.pathname, location.search, location.hash, navigate]);
 
   const setLanguage = (lang: string) => {
-    if (TRANSLATIONS[lang]) {
-      setLanguageState(lang);
+    if (TRANSLATIONS[lang] && lang !== language) {
       localStorage.setItem('scalea_language', lang);
+      
+      // Replace the language part in the URL
+      const pathParts = location.pathname.split('/');
+      if (TRANSLATIONS[pathParts[1]]) {
+        pathParts[1] = lang;
+      } else {
+        pathParts.splice(1, 0, lang);
+      }
+      
+      const newPath = pathParts.join('/') || '/';
+      navigate(`${newPath}${location.search}${location.hash}`);
     }
   };
 
   const t = (key: string) => {
-    return TRANSLATIONS[language][key] || key;
+    return TRANSLATIONS[language]?.[key] || key;
   };
 
   const currentLanguage = LANGUAGES.find(l => l.code === language) || LANGUAGES[0];
@@ -77,6 +108,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     const twDesc = document.querySelector('meta[property="twitter:description"]');
     if (twDesc) twDesc.setAttribute('content', currentDesc);
+
+    // Update canonical link
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', `https://scaleastay.com/${language}/`);
+    }
   }, [language]);
 
   return (

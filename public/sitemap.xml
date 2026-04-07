@@ -2,13 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://scaleastay.com/</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/"/>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/"/>
-    <lastmod>2026-03-30</lastmod>
+    <loc>https://scaleastay.com/ru/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scaleastay.com/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://scaleastay.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scaleastay.com/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://scaleastay.com/it/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scaleastay.com/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://scaleastay.com/de/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scaleastay.com/ru/"/>
+    <lastmod>2026-04-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://scaleastay.com/cs/</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://scaleastay.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scaleastay.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://scaleastay.com/it/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scaleastay.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://scaleastay.com/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scaleastay.com/ru/"/>
+    <lastmod>2026-04-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

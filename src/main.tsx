@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { SiteProvider } from './context/SiteContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -14,10 +15,12 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <LanguageProvider>
-      <SiteProvider>
-        <App />
-      </SiteProvider>
-    </LanguageProvider>
+    <BrowserRouter>
+      <LanguageProvider>
+        <SiteProvider>
+          <App />
+        </SiteProvider>
+      </LanguageProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
