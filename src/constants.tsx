@@ -78,7 +78,7 @@ export const LANGUAGES = [
 
 export const TRANSLATIONS: Record<string, any> = {
   ru: {
-    heroTitle: 'Отдых в Скалее',
+    heroTitle: 'Уютные апартаменты у моря в Скалее (Калабрия)',
     navHome: 'Главная',
     navApartments: 'Жилье',
     navWeather: 'Погода',
@@ -183,7 +183,7 @@ export const TRANSLATIONS: Record<string, any> = {
     rev3Text: 'Лучшее расположение в Скалее. Старый город в пяти минутах ходьбы.',
   },
   en: {
-    heroTitle: 'Vacation in Scalea',
+    heroTitle: 'Welcome to Your Perfect Vacation Apartment in Scalea',
     navHome: 'Home',
     navApartments: 'Apartments',
     navWeather: 'Weather',
@@ -288,7 +288,7 @@ export const TRANSLATIONS: Record<string, any> = {
     rev3Text: 'Best location in Scalea. Old town is a five-minute walk away.',
   },
   it: {
-    heroTitle: 'Vacanze a Scalea',
+    heroTitle: 'Il Tuo Appartamento Ideale per le Vacanze a Scalea',
     navHome: 'Home',
     navApartments: 'Alloggi',
     navWeather: 'Meteo',
@@ -393,7 +393,7 @@ export const TRANSLATIONS: Record<string, any> = {
     rev3Text: 'La migliore posizione a Scalea. Il centro storico è a cinque minuti a piedi.',
   },
   de: {
-    heroTitle: 'Urlaub in Scalea',
+    heroTitle: 'Ihr perfektes Ferienapartment in Scalea',
     navHome: 'Startseite',
     navApartments: 'Wohnungen',
     navWeather: 'Wetter',
@@ -498,7 +498,7 @@ export const TRANSLATIONS: Record<string, any> = {
     rev3Text: 'Beste Lage in Scalea. Die Altstadt ist in fünf Minuten zu Fuß erreichbar.',
   },
   cs: {
-    heroTitle: 'Dovolená v Scalea',
+    heroTitle: 'Váš ideální prázdninový apartmán ve Scalea',
     navHome: 'Domů',
     navApartments: 'Ubytování',
     navWeather: 'Počasí',

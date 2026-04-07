@@ -72,22 +72,22 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     // Update document title based on language
     const titles: Record<string, string> = {
-      ru: 'Аренда апартаментов в Скалее, Италия | ScaleaStay',
-      en: 'Apartment Rentals in Scalea, Italy | ScaleaStay',
-      it: 'Affitto Appartamenti a Scalea, Italia | ScaleaStay',
-      de: 'Ferienwohnungen mieten in Scalea, Italien | ScaleaStay',
-      cs: 'Pronájem apartmánů ve Scalee, Itálie | ScaleaStay'
+      ru: 'Аренда апартаментов в Скалее | Отдых на море в Италии',
+      en: 'Cozy Apartment for Rent in Scalea, Italy | Sea View',
+      it: 'Affitto Appartamento a Scalea | Case Vacanze Calabria',
+      de: 'Ferienwohnung in Scalea mieten | Urlaub am Meer in Italien',
+      cs: 'Pronájem apartmánu ve Scalea | Dovolená u moře Itálie'
     };
     const currentTitle = titles[language] || titles['ru'];
     document.title = currentTitle;
 
     // Update meta description
     const descriptions: Record<string, string> = {
-      ru: 'Снимите современные апартаменты у моря в Скалее (Калабрия). Идеально для семейного отдыха. Свежий ремонт, парковка, кондиционер. Бронируйте без посредников!',
-      en: 'Rent modern apartments by the sea in Scalea (Calabria). Perfect for family holidays. Freshly renovated, parking, air conditioning. Book directly without intermediaries!',
-      it: 'Affitta appartamenti moderni sul mare a Scalea (Calabria). Perfetto per vacanze in famiglia. Appena ristrutturati, parcheggio, aria condizionata. Prenota direttamente senza intermediari!',
-      de: 'Mieten Sie moderne Ferienwohnungen am Meer in Scalea (Kalabrien). Perfekt für den Familienurlaub. Frisch renoviert, Parkplatz, Klimaanlage. Direkt buchen ohne Vermittler!',
-      cs: 'Pronajměte si moderní apartmány u moře ve Scalee (Kalábrie). Ideální pro rodinnou dovolenou. Čerstvě zrekonstruované, parkování, klimatizace. Rezervujte přímo bez prostředníků!'
+      ru: 'Снять квартиру в Скалее недорого. Уютные апартаменты у моря в Калабрии с кондиционером. Бронируйте жилье без посредников!',
+      en: 'Affordable short-term vacation rental in Scalea, Calabria. Modern apartment near the beach with A/C. Book your holiday today!',
+      it: 'Affitti estivi a Scalea. Bellissimo appartamento vicino al mare con aria condizionata. Prenota la tua casa vacanze al Sud!',
+      de: 'Günstige Ferienwohnung in Scalea, Kalabrien. Modernes Apartment in Strandnähe mit Klimaanlage. Buchen Sie Ihren Urlaub!',
+      cs: 'Cenově dostupný pronájem apartmánu ve Scalea, Kalábrie. Útulné ubytování kousek od pláže s klimatizací. Rezervujte si svou dovolenou!'
     };
     const currentDesc = descriptions[language] || descriptions['ru'];
     
