@@ -42,12 +42,13 @@ export const APARTMENTS: Apartment[] = [
     beds: 4,
     distanceToSea: '400m',
     images: [
-      'https://i.postimg.cc/FF6dNq9z/Obr%C3%A1zek_PNG.png',
-      'https://i.postimg.cc/cLSQGjmY/Obr%C3%A1zek_JPEG_2.jpg',
-      'https://i.postimg.cc/FR8LWnz3/Obr%C3%A1zek_JPEG.jpg',
-      'https://i.postimg.cc/DZ9WTCcp/Obr%C3%A1zek_JPEG_4.jpg',
-      'https://i.postimg.cc/FstS0q2d/Obr%C3%A1zek_PNG_2.png',
-      'https://picsum.photos/seed/scalea2/1200/800'
+      'https://i.postimg.cc/rmgf10N5/IMG_0338.jpg',
+      'https://i.postimg.cc/vBX0rgth/IMG_0349.jpg',
+      'https://i.postimg.cc/fL58ctvn/IMG_0329.jpg',
+      'https://i.postimg.cc/tTDB3ZNM/IMG_0355.jpg',
+      'https://i.postimg.cc/DZ5xrJPr/IMG_0348.jpg',
+      'https://i.postimg.cc/j5vMHw4P/IMG_0357.jpg',
+      'https://i.postimg.cc/ZRjw8Bx7/IMG_0358.jpg'
     ],
     features: [
       'Кондиционер',
