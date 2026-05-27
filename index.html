@@ -66,6 +66,10 @@
       "@context": "https://schema.org",
       "@type": "VacationRental",
       "name": "Scalea Stay Apartments",
+      "identifier": {
+        "@type": "PropertyValue",
+        "value": "scaleastay-01"
+      },
       "description": "Элегантные апартаменты в центре Скалеи, Италия. 400 метров до моря. Современный ремонт, кондиционер, парковка.",
       "url": "https://scaleastay.com/",
       "image": "https://i.postimg.cc/Dz0dHGzW/Scalea.webp",
@@ -95,7 +99,27 @@
       "bed": {
         "@type": "BedDetails",
         "numberOfBeds": 4 
-      }
+      },
+      "containsPlace": [
+        {
+          "@type": "Bedroom",
+          "name": "Спальня",
+          "bed": {
+            "@type": "BedDetails",
+            "typeOfBed": "Двуспальная кровать",
+            "numberOfBeds": 1
+          }
+        },
+        {
+          "@type": "Room",
+          "name": "Гостиная, совмещенная с кухней",
+          "bed": {
+            "@type": "BedDetails",
+            "typeOfBed": "Раскладной двуспальный диван",
+            "numberOfBeds": 1
+          }
+        }
+      ]
     }
     </script>
 
