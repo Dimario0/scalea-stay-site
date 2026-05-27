@@ -60,19 +60,21 @@
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     </noscript>
     
-    <!-- Structured Data: LodgingBusiness -->
+    <!-- Structured Data: VacationRental -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
+      "@type": "VacationRental",
       "name": "Scalea Stay Apartments",
       "description": "Элегантные апартаменты в центре Скалеи, Италия. 400 метров до моря. Современный ремонт, кондиционер, парковка.",
+      "url": "https://scaleastay.com/",
       "image": "https://i.postimg.cc/Dz0dHGzW/Scalea.webp",
+      "telephone": "+420774620060",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Via Lungomare",
+        "streetAddress": "Via Giuseppe Saragat 11",
         "addressLocality": "Scalea",
-        "addressRegion": "Cosenza",
+        "addressRegion": "Calabria",
         "postalCode": "87029",
         "addressCountry": "IT"
       },
@@ -81,14 +83,19 @@
         "latitude": 39.8122,
         "longitude": 15.7853
       },
-      "url": "https://scaleastay.com/",
-      "telephone": "+420774620060",
-      "priceRange": "€50 - €150",
+      "checkinTime": "14:00",
+      "checkoutTime": "10:00",
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Free Parking", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Terrace", "value": true }
       ],
+      "numberOfBedrooms": 1, 
+      "numberOfRooms": 2, 
+      "bed": {
+        "@type": "BedDetails",
+        "numberOfBeds": 4 
+      },
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5.0",
