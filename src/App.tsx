@@ -183,6 +183,7 @@ const App: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"><span>🚗</span><span>{t('parkingInc')}</span></div>
             </div>
             <p className="mt-12 text-slate-500 font-bold uppercase tracking-[0.5em] text-[9px]">{t('footerCopyright')}</p>
+            <p className="mt-2 text-slate-500 font-bold uppercase tracking-[0.2em] text-[10px]">CIN: IT078138C2VN4E3MCD</p>
           </div>
         </section>
       </main>
