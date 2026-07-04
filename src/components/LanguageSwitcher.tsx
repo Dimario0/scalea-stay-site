@@ -51,7 +51,7 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
                   key={lang.code}
                   onClick={() => {
                     trackEvent('language_switch', {
-                      from_language: language,
+                      from_language: currentLanguage.code || language,
                       to_language: lang.code,
                       page_path: window.location.pathname
                     });
