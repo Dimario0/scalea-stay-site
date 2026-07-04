@@ -164,6 +164,68 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       </style>
     </div>
+    
+    <!-- GA4 Events Tracking -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // 1. Click Events Delegation
+        document.body.addEventListener('click', function(e) {
+          var target = e.target.closest('a, button');
+          if (!target) {
+            // Check if user clicked inside a language switch button that didn't trigger
+            var langBtn = e.target.closest('div');
+            if (langBtn && langBtn.innerHTML && langBtn.innerHTML.match(/🇷🇺|🇬🇧|🇮🇹|🇩🇪|🇨🇿/) && e.target.closest('.language-switcher, [class*="lang"]')) {
+               if (typeof gtag === 'function') gtag('event', 'language_switch');
+            }
+            return;
+          }
+
+          var href = (target.getAttribute('href') || '').toLowerCase();
+          var text = (target.textContent || '').toLowerCase();
+          var isLanguageButton = target.innerHTML && target.innerHTML.match(/🇷🇺|🇬🇧|🇮🇹|🇩🇪|🇨🇿/);
+
+          // whatsapp_click
+          if (href.includes('whatsapp.com') || href.includes('wa.me') || text.includes('whatsapp')) {
+            if (typeof gtag === 'function') gtag('event', 'whatsapp_click');
+          }
+          
+          // booking_button_click
+          if (href.includes('booking.com') || href.includes('airbnb') || text.includes('book now') || text.includes('забронировать') || text.includes('prenota') || text.includes('buchen') || text.includes('rezervovat')) {
+            if (typeof gtag === 'function') gtag('event', 'booking_button_click');
+          }
+          
+          // contact_click
+          if (href.startsWith('mailto:') || href.startsWith('tel:')) {
+            if (typeof gtag === 'function') gtag('event', 'contact_click');
+          }
+          
+          // language_switch
+          if (isLanguageButton) {
+            if (typeof gtag === 'function') gtag('event', 'language_switch');
+          }
+        });
+
+        // 2. Price Section View Tracking
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              if (typeof gtag === 'function') gtag('event', 'price_section_view');
+              observer.disconnect(); // Fire only once
+            }
+          });
+        }, { threshold: 0.1 });
+
+        // Wait for React to render the element
+        var checkExist = setInterval(function() {
+          var apartmentsSection = document.getElementById('apartments');
+          if (apartmentsSection) {
+            observer.observe(apartmentsSection);
+            clearInterval(checkExist);
+          }
+        }, 500);
+      });
+    </script>
+
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
