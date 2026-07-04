@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { LANGUAGES } from '../constants';
+import { trackEvent } from '../analytics';
 
 export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled }) => {
   const { language, setLanguage, currentLanguage } = useLanguage();
@@ -49,6 +50,11 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
                 <button
                   key={lang.code}
                   onClick={() => {
+                    trackEvent('language_switch', {
+                      from_language: language,
+                      to_language: lang.code,
+                      page_path: window.location.pathname
+                    });
                     setLanguage(lang.code);
                     setIsOpen(false);
                   }}

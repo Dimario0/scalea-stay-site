@@ -3,6 +3,7 @@ import React from 'react';
 import { Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../analytics';
 
 const FloatingCallButton: React.FC = () => {
   const { t } = useLanguage();
@@ -10,6 +11,7 @@ const FloatingCallButton: React.FC = () => {
   return (
     <a 
       href={`tel:${CONTACT_INFO.phone}`}
+      onClick={() => trackEvent('contact_click')}
       className="fixed bottom-6 right-6 z-[100] sm:hidden bg-indigo-600 text-white p-4 rounded-full shadow-2xl border border-white/10 flex items-center space-x-2 animate-bounce-slow"
     >
       <Phone className="w-5 h-5" />

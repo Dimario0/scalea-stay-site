@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Apartment } from '../types';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../analytics';
 
 interface Props {
   apartment: Apartment;
@@ -123,6 +124,10 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           href={CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', t(apartment.nameKey)))}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => {
+            trackEvent('booking_button_click');
+            trackEvent('whatsapp_click');
+          }}
           className="w-full py-5 bg-slate-900 text-white rounded-[24px] font-black text-center transition-all hover:bg-indigo-600 shadow-xl hover:-translate-y-1 active:scale-95"
         >
           {t('bookNow')}

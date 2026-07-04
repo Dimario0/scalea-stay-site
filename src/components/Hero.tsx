@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
 import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../analytics';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -87,6 +88,7 @@ const Hero: React.FC = () => {
             href={CONTACT_INFO.whatsappLink(t('heroWhatsappMsg'))}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('whatsapp_click')}
             className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 rounded-[28px] font-black text-white border-2 border-white/40 backdrop-blur-md hover:bg-white/10 transition-all flex items-center justify-center space-x-4 group text-lg sm:text-xl"
           >
              <svg className="w-7 h-7 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

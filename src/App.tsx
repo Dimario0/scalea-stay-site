@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ApartmentCard from './components/ApartmentCard';
@@ -16,11 +16,33 @@ import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
 import FAQ from './components/FAQ';
 import FloatingCallButton from './components/FloatingCallButton';
+import { trackEvent } from './analytics';
 
 const App: React.FC = () => {
   const { data } = useSiteData();
   const { t } = useLanguage();
   const [isRouteModalOpen, setIsRouteModalOpen] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            trackEvent('price_section_view', { section_hint: 'prices' });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const priceSection = document.getElementById('prices');
+    if (priceSection) {
+      observer.observe(priceSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
@@ -169,6 +191,7 @@ const App: React.FC = () => {
                 href={CONTACT_INFO.whatsappLink(t('whatsappBookingMsg'))}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent('whatsapp_click')}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-[24px] font-black text-lg transition-all shadow-[0_20px_50px_rgba(79,70,229,0.3)] hover:-translate-y-2 active:scale-95 flex items-center space-x-4 group"
               >
                 <span>WhatsApp</span>
