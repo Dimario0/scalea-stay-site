@@ -126,7 +126,10 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           rel="noopener noreferrer"
           onClick={() => {
             trackEvent('booking_button_click');
-            trackEvent('whatsapp_click');
+            const hrefStr = CONTACT_INFO.whatsappLink('');
+            if (hrefStr.includes('wa.me') || hrefStr.includes('whatsapp')) {
+              trackEvent('whatsapp_click');
+            }
           }}
           className="w-full py-5 bg-slate-900 text-white rounded-[24px] font-black text-center transition-all hover:bg-indigo-600 shadow-xl hover:-translate-y-1 active:scale-95"
         >
