@@ -165,65 +165,309 @@
       </style>
     </div>
     
-    <!-- GA4 Events Tracking -->
+    <!-- ScaleaStay GA4 event tracking V2 - analytics only / no visual changes -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // 1. Click Events Delegation
-        document.body.addEventListener('click', function(e) {
-          var target = e.target.closest('a, button');
-          if (!target) {
-            // Check if user clicked inside a language switch button that didn't trigger
-            var langBtn = e.target.closest('div');
-            if (langBtn && langBtn.innerHTML && langBtn.innerHTML.match(/🇷🇺|🇬🇧|🇮🇹|🇩🇪|🇨🇿/) && e.target.closest('.language-switcher, [class*="lang"]')) {
-               if (typeof gtag === 'function') gtag('event', 'language_switch');
-            }
-            return;
-          }
-
-          var href = (target.getAttribute('href') || '').toLowerCase();
-          var text = (target.textContent || '').toLowerCase();
-          var isLanguageButton = target.innerHTML && target.innerHTML.match(/🇷🇺|🇬🇧|🇮🇹|🇩🇪|🇨🇿/);
-
-          // whatsapp_click
-          if (href.includes('whatsapp.com') || href.includes('wa.me') || text.includes('whatsapp')) {
-            if (typeof gtag === 'function') gtag('event', 'whatsapp_click');
-          }
-          
-          // booking_button_click
-          if (href.includes('booking.com') || href.includes('airbnb') || text.includes('book now') || text.includes('забронировать') || text.includes('prenota') || text.includes('buchen') || text.includes('rezervovat')) {
-            if (typeof gtag === 'function') gtag('event', 'booking_button_click');
-          }
-          
-          // contact_click
-          if (href.startsWith('mailto:') || href.startsWith('tel:')) {
-            if (typeof gtag === 'function') gtag('event', 'contact_click');
-          }
-          
-          // language_switch
-          if (isLanguageButton) {
-            if (typeof gtag === 'function') gtag('event', 'language_switch');
-          }
+    (function () {
+      function sendEvent(name, params) {
+        params = params || {};
+        params.page_path = window.location.pathname;
+        params.page_location = window.location.href;
+        params.transport_type = "beacon";
+    
+        if (typeof window.gtag === "function") {
+          window.gtag("event", name, params);
+        }
+    
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(Object.assign({
+          event: name
+        }, params));
+      }
+    
+      window.scaleaTrackTest = function (name) {
+        sendEvent(name || "scaleastay_test_event", {
+          source: "manual_test"
         });
-
-        // 2. Price Section View Tracking
-        var observer = new IntersectionObserver(function(entries) {
-          entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              if (typeof gtag === 'function') gtag('event', 'price_section_view');
-              observer.disconnect(); // Fire only once
+      };
+    
+      function normalize(value) {
+        return String(value || "").toLowerCase();
+      }
+    
+      function getText(element) {
+        if (!element) return "";
+        return (
+          element.innerText ||
+          element.textContent ||
+          element.getAttribute("aria-label") ||
+          element.getAttribute("title") ||
+          ""
+        ).trim().slice(0, 180);
+      }
+    
+      function getClickable(start) {
+        var element = start;
+        while (element && element !== document) {
+          if (!element.matches) {
+            element = element.parentNode;
+            continue;
+          }
+    
+          if (
+            element.matches("a") ||
+            element.matches("button") ||
+            element.matches("[role='button']") ||
+            element.matches("[onclick]") ||
+            element.matches("[data-testid]") ||
+            element.matches("[class*='button']") ||
+            element.matches("[class*='btn']")
+          ) {
+            return element;
+          }
+    
+          element = element.parentNode;
+        }
+        return null;
+      }
+    
+      function getHref(element) {
+        if (!element) return "";
+        if (element.getAttribute && element.getAttribute("href")) {
+          return element.getAttribute("href");
+        }
+        var link = element.closest ? element.closest("a[href]") : null;
+        return link ? link.getAttribute("href") : "";
+      }
+    
+      function getSignal(element) {
+        if (!element) return "";
+    
+        var parts = [
+          element.getAttribute("href"),
+          element.getAttribute("aria-label"),
+          element.getAttribute("title"),
+          element.getAttribute("id"),
+          element.getAttribute("class"),
+          element.getAttribute("data-testid"),
+          getText(element)
+        ];
+    
+        return normalize(parts.filter(Boolean).join(" "));
+      }
+    
+      function isWhatsApp(signal) {
+        return (
+          signal.indexOf("whatsapp") !== -1 ||
+          signal.indexOf("wa.me") !== -1 ||
+          signal.indexOf("api.whatsapp.com") !== -1 ||
+          signal.indexOf("ватсап") !== -1 ||
+          signal.indexOf("вацап") !== -1
+        );
+      }
+    
+      function isBooking(signal) {
+        return (
+          signal.indexOf("booking.com") !== -1 ||
+          signal.indexOf("airbnb") !== -1 ||
+          signal.indexOf("book") !== -1 ||
+          signal.indexOf("booking") !== -1 ||
+          signal.indexOf("reserve") !== -1 ||
+          signal.indexOf("reservation") !== -1 ||
+          signal.indexOf("availability") !== -1 ||
+          signal.indexOf("rezerv") !== -1 ||
+          signal.indexOf("rezervace") !== -1 ||
+          signal.indexOf("prenota") !== -1 ||
+          signal.indexOf("disponibil") !== -1 ||
+          signal.indexOf("заброн") !== -1 ||
+          signal.indexOf("бронь") !== -1 ||
+          signal.indexOf("бронир") !== -1
+        );
+      }
+    
+      function isContact(signal) {
+        return (
+          signal.indexOf("mailto:") !== -1 ||
+          signal.indexOf("tel:") !== -1 ||
+          signal.indexOf("contact") !== -1 ||
+          signal.indexOf("email") !== -1 ||
+          signal.indexOf("phone") !== -1 ||
+          signal.indexOf("call") !== -1 ||
+          signal.indexOf("контакт") !== -1 ||
+          signal.indexOf("телефон") !== -1 ||
+          signal.indexOf("почта") !== -1
+        );
+      }
+    
+      function isLanguageSwitch(signal, href) {
+        var current = window.location.pathname;
+        var target = href || "";
+    
+        return (
+          (
+            /\/(en|cs|it|ru)(\/|$)/.test(target) ||
+            /\/(en|cs|it|ru)(\/|$)/.test(signal) ||
+            /\b(en|cs|it|ru)\b/.test(signal)
+          ) &&
+          target.indexOf(current) === -1
+        );
+      }
+    
+      document.addEventListener("click", function (event) {
+        var clickable = getClickable(event.target);
+        if (!clickable) return;
+    
+        var href = getHref(clickable);
+        var text = getText(clickable);
+        var signal = getSignal(clickable) + " " + normalize(href);
+    
+        if (isWhatsApp(signal)) {
+          sendEvent("whatsapp_click", {
+            link_url: href,
+            link_text: text
+          });
+          return;
+        }
+    
+        if (isBooking(signal)) {
+          sendEvent("booking_button_click", {
+            link_url: href,
+            link_text: text
+          });
+          return;
+        }
+    
+        if (isContact(signal)) {
+          sendEvent("contact_click", {
+            link_url: href,
+            link_text: text
+          });
+          return;
+        }
+    
+        if (isLanguageSwitch(signal, href)) {
+          sendEvent("language_switch", {
+            link_url: href,
+            link_text: text,
+            current_path: window.location.pathname
+          });
+        }
+      }, true);
+    
+      var priceSeen = false;
+    
+      function textLooksLikePriceBlock(text) {
+        text = normalize(text);
+    
+        return (
+          text.indexOf("price") !== -1 ||
+          text.indexOf("prices") !== -1 ||
+          text.indexOf("cena") !== -1 ||
+          text.indexOf("prezzo") !== -1 ||
+          text.indexOf("tariff") !== -1 ||
+          text.indexOf("rate") !== -1 ||
+          text.indexOf("стоимость") !== -1 ||
+          text.indexOf("цена") !== -1 ||
+          text.indexOf("€") !== -1 ||
+          text.indexOf("eur") !== -1
+        );
+      }
+    
+      function candidatePriceSections() {
+        var selectors = [
+          "[id*='price']",
+          "[class*='price']",
+          "[id*='cena']",
+          "[class*='cena']",
+          "[id*='prezzo']",
+          "[class*='prezzo']",
+          "[id*='tariff']",
+          "[class*='tariff']",
+          "[id*='rate']",
+          "[class*='rate']",
+          "section",
+          "article"
+        ];
+    
+        var nodes = [];
+    
+        selectors.forEach(function (selector) {
+          document.querySelectorAll(selector).forEach(function (node) {
+            if (nodes.indexOf(node) === -1) {
+              nodes.push(node);
             }
           });
-        }, { threshold: 0.1 });
-
-        // Wait for React to render the element
-        var checkExist = setInterval(function() {
-          var apartmentsSection = document.getElementById('apartments');
-          if (apartmentsSection) {
-            observer.observe(apartmentsSection);
-            clearInterval(checkExist);
+        });
+    
+        return nodes;
+      }
+    
+      function sendPriceView(node) {
+        if (priceSeen) return;
+    
+        priceSeen = true;
+    
+        sendEvent("price_section_view", {
+          section_hint: node && (node.id || node.className || getText(node).slice(0, 80)) || "price"
+        });
+      }
+    
+      function checkPriceSection() {
+        if (priceSeen) return;
+    
+        var nodes = candidatePriceSections();
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    
+        for (var i = 0; i < nodes.length; i++) {
+          var rect = nodes[i].getBoundingClientRect();
+    
+          if (
+            rect.top < viewportHeight &&
+            rect.bottom > 0 &&
+            textLooksLikePriceBlock(getText(nodes[i]))
+          ) {
+            sendPriceView(nodes[i]);
+            break;
           }
-        }, 500);
+        }
+      }
+    
+      function setupPriceObserver() {
+        var nodes = candidatePriceSections();
+        if (!nodes.length) return;
+    
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (priceSeen) return;
+    
+              if (
+                entry.isIntersecting &&
+                textLooksLikePriceBlock(getText(entry.target))
+              ) {
+                sendPriceView(entry.target);
+                observer.disconnect();
+              }
+            });
+          }, {
+            threshold: 0.25
+          });
+    
+          nodes.forEach(function (node) {
+            observer.observe(node);
+          });
+        } else {
+          checkPriceSection();
+          window.addEventListener("scroll", checkPriceSection, { passive: true });
+        }
+      }
+    
+      window.addEventListener("load", function () {
+        setupPriceObserver();
+        setTimeout(checkPriceSection, 1500);
       });
+    
+      setTimeout(checkPriceSection, 3000);
+    })();
     </script>
 
 <script type="module" src="/src/main.tsx"></script>
