@@ -51,12 +51,14 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
                   key={lang.code}
                   onClick={() => {
                     trackEvent('language_switch', {
-                      from_language: currentLanguage.code || language,
+                      from_language: language,
                       to_language: lang.code,
                       page_path: window.location.pathname
                     });
-                    setLanguage(lang.code);
-                    setIsOpen(false);
+                    setTimeout(() => {
+                      setLanguage(lang.code);
+                      setIsOpen(false);
+                    }, 150);
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 transition-colors ${
                     language === lang.code ? 'text-indigo-600 font-semibold bg-indigo-50/50' : 'text-slate-700'
