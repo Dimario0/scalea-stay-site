@@ -613,7 +613,7 @@ export const TRANSLATIONS: Record<string, any> = {
     faqQ4: 'Jak probíhá příjezd a předání klíčů?',
     faqA4: 'Standardní čas příjezdu je od 14:00, odjezd do 10:00. Při příjezdu vás osobně přivítáme, předáme vám klíče a zodpovíme veškeré dotazy. Pokud potřebujete jiný čas, dejte nám vědět předem!',
     faqQ5: 'Jak si mohu zarezervovat apartmán ve Scalee přímo?',
-    faqA5: 'Apartmány si můžete zarezervovat přímo přes naše webové stránky nebo WhatsApp. Získáte tak přímý kontakt s majitelem, můžete rychle ověřit volné termíny a vyhnete se tak poplatkům platformám při přímé rezervaci.',
+    faqA5: 'Apartmány si můžete zarezervovat přímo přes naše webové stránky nebo WhatsApp. Získáte tak přímý kontakt s majitelem, můžete rychle ověřit volné termíny a vyhnete se poplatkům platforem při přímé rezervaci.',
     faqQ6: 'Как проверить свободные даты?',
     faqA6: 'Вы можете просто написать нам в WhatsApp — мы быстро ответим, свободны ли апартаменты на ваши даты.',
     faqQ7: 'Je apartmán vhodný pro rodinnou dovolenou?',
