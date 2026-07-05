@@ -15,6 +15,8 @@ import RouteModal from './components/RouteModal';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
 import FAQ from './components/FAQ';
+import DirectBookingBenefits from './components/DirectBookingBenefits';
+import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
 import { trackEvent } from './analytics';
 
@@ -138,8 +140,13 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        {/* Direct Booking Benefits */}
+        <DirectBookingBenefits />
+
         {/* FAQ Section */}
         <FAQ />
+
+        <JSONLD />
 
         {/* CTA Footer / Contact */}
         <section id="contact" className="mt-auto pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
