@@ -16,6 +16,7 @@ const FAQ: React.FC = () => {
     { q: t('faqQ5'), a: t('faqA5') },
     { q: t('faqQ6'), a: t('faqA6') },
     { q: t('faqQ7'), a: t('faqA7') },
+    { q: t('faqQ8'), a: t('faqA8') },
   ];
 
   return (

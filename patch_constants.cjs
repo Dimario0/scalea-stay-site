@@ -1,96 +1,60 @@
 const fs = require('fs');
 let content = fs.readFileSync('src/constants.tsx', 'utf8');
 
-const additions = {
-  ru: {
-    directBookTitle: 'Почему стоит бронировать напрямую',
-    directBookItem1: 'Прямая связь с владельцем',
-    directBookItem2: 'Без лишней комиссии платформы (Booking/Airbnb)',
-    directBookItem3: 'Быстрое уточнение свободных дат в WhatsApp',
-    directBookItem4: 'Проверенный объект (мы есть на Booking и Airbnb)',
-    directBookItem5: 'Мгновенное подтверждение бронирования',
-    heroCtaHint: 'Напишите в WhatsApp — проверим свободные даты'
-  },
-  en: {
-    directBookTitle: 'Why book directly with us',
-    directBookItem1: 'Direct contact with the owner',
-    directBookItem2: 'No extra platform fees (Booking/Airbnb)',
-    directBookItem3: 'Quickly check availability via WhatsApp',
-    directBookItem4: 'Verified property (listed on Booking & Airbnb)',
-    directBookItem5: 'Instant booking confirmation',
-    heroCtaHint: 'Message us on WhatsApp to check availability'
-  },
-  it: {
-    directBookTitle: 'Perché prenotare direttamente',
-    directBookItem1: 'Contatto diretto con il proprietario',
-    directBookItem2: 'Nessuna commissione extra (Booking/Airbnb)',
-    directBookItem3: 'Verifica rapida della disponibilità su WhatsApp',
-    directBookItem4: 'Struttura verificata (presente su Booking e Airbnb)',
-    directBookItem5: 'Conferma immediata della prenotazione',
-    heroCtaHint: 'Scrivici su WhatsApp per verificare la disponibilità'
-  },
-  de: {
-    directBookTitle: 'Warum direkt buchen',
-    directBookItem1: 'Direkter Kontakt mit dem Eigentümer',
-    directBookItem2: 'Keine zusätzlichen Plattformgebühren (Booking/Airbnb)',
-    directBookItem3: 'Schnelle Verfügbarkeitsprüfung über WhatsApp',
-    directBookItem4: 'Verifizierte Unterkunft (gelistet auf Booking & Airbnb)',
-    directBookItem5: 'Sofortige Buchungsbestätigung',
-    heroCtaHint: 'Schreiben Sie uns auf WhatsApp, um die Verfügbarkeit zu prüfen'
-  },
-  cs: {
-    directBookTitle: 'Proč rezervovat přímo',
-    directBookItem1: 'Přímý kontakt s majitelem',
-    directBookItem2: 'Bez dalších poplatků platformě (Booking/Airbnb)',
-    directBookItem3: 'Rychlé ověření dostupnosti přes WhatsApp',
-    directBookItem4: 'Ověřené ubytování (jsme na Booking a Airbnb)',
-    directBookItem5: 'Okamžité potvrzení rezervace',
-    heroCtaHint: 'Napište nám na WhatsApp a ověřte dostupnost'
-  }
-};
+const ruInsertion = `    advParkingDesc: 'Ваш автомобиль будет в безопасности на нашей частной парковке.',
+    advSupermarket: 'Супермаркет Interspar',
+    advSupermarketDesc: 'Крупный супермаркет Interspar рядом — удобно для ежедневных покупок во время отдыха.',`;
+content = content.replace("    advParkingDesc: 'Ваш автомобиль будет в безопасности на нашей частной парковке.',", ruInsertion);
 
-for (const [lang, strings] of Object.entries(additions)) {
-  const regex = new RegExp(`(${lang}:\\s*{[\\s\\S]*?)(?=,\\n\\s*[a-z]{2}:\\s*{|\\n\\s*};)`, 'g');
-  content = content.replace(regex, (match, p1) => {
-    let newProps = '';
-    for (const [key, value] of Object.entries(strings)) {
-      newProps += `\n    ${key}: '${value}',`;
-    }
-    return p1 + newProps;
-  });
-}
+const ruFaqInsertion = `    faqQ7: 'Подходит ли квартира для семейного отдыха?',
+    faqA7: 'Да, апартаменты отлично подходят для семей. Мы позаботились о том, чтобы у вас было всё необходимое для комфортного проживания с детьми.',
+    faqQ8: 'Есть ли рядом магазины?',
+    faqA8: 'Да, рядом с апартаментами находится крупный супермаркет Interspar, удобно для ежедневных покупок во время отдыха.',`;
+content = content.replace("    faqA7: 'Да, апартаменты отлично подходят для семей. Мы позаботились о том, чтобы у вас было всё необходимое для комфортного проживания с детьми.',", ruFaqInsertion.replace("    faqQ7: 'Подходит ли квартира для семейного отдыха?',\n", ""));
 
-// Modify FAQ 6 and 7
-content = content.replace(/faqQ6:\s*'.*?',/g, "faqQ6: 'Как проверить свободные даты?',");
-content = content.replace(/faqA6:\s*'.*?',/g, "faqA6: 'Вы можете просто написать нам в WhatsApp — мы быстро ответим, свободны ли апартаменты на ваши даты.',");
 
-// Add faq 7 to all languages
-const faq7 = {
-  ru: { faqQ7: 'Подходит ли квартира для семейного отдыха?', faqA7: 'Да, апартаменты отлично подходят для семей. Мы позаботились о том, чтобы у вас было всё необходимое для комфортного проживания с детьми.' },
-  en: { faqQ7: 'Is the apartment suitable for a family vacation?', faqA7: 'Yes, the apartments are perfect for families. We made sure you have everything you need for a comfortable stay with children.' },
-  it: { faqQ7: 'L\'appartamento è adatto per una vacanza in famiglia?', faqA7: 'Sì, gli appartamenti sono perfetti per le famiglie. Ci siamo assicurati che abbiate tutto il necessario per un soggiorno confortevole con i bambini.' },
-  de: { faqQ7: 'Ist die Wohnung für einen Familienurlaub geeignet?', faqA7: 'Ja, die Wohnungen sind perfekt für Familien. Wir haben dafür gesorgt, dass Sie alles haben, was Sie für einen angenehmen Aufenthalt mit Kindern benötigen.' },
-  cs: { faqQ7: 'Je apartmán vhodný pro rodinnou dovolenou?', faqA7: 'Ano, apartmány jsou ideální pro rodiny. Postarali jsme se o to, abyste měli vše, co potřebujete pro pohodlný pobyt s dětmi.' }
-};
+const enInsertion = `    advParkingDesc: 'Your car will be safe in our private parking lot.',
+    advSupermarket: 'Interspar Supermarket',
+    advSupermarketDesc: 'A large Interspar supermarket is nearby — convenient for daily groceries during your stay.',`;
+content = content.replace("    advParkingDesc: 'Your car will be safe in our private parking lot.',", enInsertion);
 
-for (const [lang, strings] of Object.entries(faq7)) {
-  const regex = new RegExp(`(${lang}:\\s*{[\\s\\S]*?faqA6:\\s*'.*?',)`, 'g');
-  content = content.replace(regex, (match, p1) => {
-    return p1 + `\n    faqQ7: '${strings.faqQ7}',\n    faqA7: '${strings.faqA7}',`;
-  });
-}
+const enFaqInsertion = `    faqQ7: 'Is the apartment suitable for family vacations?',
+    faqA7: 'Yes, the apartments are perfect for families. We have made sure you have everything you need for a comfortable stay with children.',
+    faqQ8: 'Are there shops nearby?',
+    faqA8: 'Yes, a large Interspar supermarket is nearby, convenient for daily groceries during your stay.',`;
+content = content.replace("    faqA7: 'Yes, the apartments are perfect for families. We have made sure you have everything you need for a comfortable stay with children.',", enFaqInsertion.replace("    faqQ7: 'Is the apartment suitable for family vacations?',\n", ""));
 
-// Update other languages for faqQ6
-content = content.replace(/'Why choose a vacation in Scalea on the Riviera dei Cedri\?'/g, "'How to check available dates?'");
-content = content.replace(/'Scalea offers a unique combination of clean sea, historical sights, and affordable rental prices in Italy\.'/g, "'You can simply message us on WhatsApp – we will quickly reply if the apartments are available for your dates.'");
+const itInsertion = `    advParkingDesc: 'La tua auto sarà al sicuro nel nostro parcheggio privato.',
+    advSupermarket: 'Supermercato Interspar',
+    advSupermarketDesc: 'Un grande supermercato Interspar si trova nelle vicinanze — comodo per la spesa quotidiana durante il soggiorno.',`;
+content = content.replace("    advParkingDesc: 'La tua auto sarà al sicuro nel nostro parcheggio privato.',", itInsertion);
 
-content = content.replace(/'Perché scegliere una vacanza a Scalea sulla Riviera dei Cedri\?'/g, "'Come verificare le date disponibili?'");
-content = content.replace(/'Scalea offre una combinazione unica di mare pulito, attrazioni storiche e prezzi di affitto convenienti in Italia\.'/g, "'Puoi semplicemente scriverci su WhatsApp: ti risponderemo rapidamente se gli appartamenti sono disponibili per le tue date.'");
+const itFaqInsertion = `    faqQ7: 'L\\'appartamento è adatto per vacanze in famiglia?',
+    faqA7: 'Sì, gli appartamenti sono perfetti per le famiglie. Ci siamo assicurati che tu abbia tutto il necessario per un soggiorno confortevole con i bambini.',
+    faqQ8: 'Ci sono negozi nelle vicinanze?',
+    faqA8: 'Sì, nelle vicinanze si trova un grande supermercato Interspar, comodo per la spesa quotidiana durante il soggiorno.',`;
+content = content.replace("    faqA7: 'Sì, gli appartamenti sono perfetti per le famiglie. Ci siamo assicurati che tu abbia tutto il necessario per un soggiorno confortevole con i bambini.',", itFaqInsertion.replace("    faqQ7: 'L\\'appartamento è adatto per vacanze in famiglia?',\n", ""));
 
-content = content.replace(/'Warum einen Urlaub in Scalea an der Riviera dei Cedri wählen\?'/g, "'Wie kann man verfügbare Daten prüfen?'");
-content = content.replace(/'Scalea bietet eine einzigartige Kombination aus sauberem Meer, historischen Sehenswürdigkeiten und erschwinglichen Mietpreisen in Italien\.'/g, "'Schreiben Sie uns einfach auf WhatsApp – wir antworten schnell, ob die Apartments für Ihre Daten verfügbar sind.'");
+const deInsertion = `    advParkingDesc: 'Ihr Auto steht sicher auf unserem Privatparkplatz.',
+    advSupermarket: 'Interspar Supermarkt',
+    advSupermarketDesc: 'Ein großer Interspar-Supermarkt befindet sich in der Nähe — praktisch für tägliche Einkäufe während des Aufenthalts.',`;
+content = content.replace("    advParkingDesc: 'Ihr Auto steht sicher auf unserem Privatparkplatz.',", deInsertion);
 
-content = content.replace(/'Proč si vybrat dovolenou ve Scalee na Riviera dei Cedri\?'/g, "'Jak ověřit volné termíny?'");
-content = content.replace(/'Scalea nabízí jedinečnou kombinaci čistého moře, historických památek a cenově dostupného pronájmu v Itálii\.'/g, "'Můžete nám jednoduše napsat na WhatsApp – rychle vám odpovíme, zda jsou apartmány pro vaše termíny volné.'");
+const deFaqInsertion = `    faqQ7: 'Ist die Wohnung für einen Familienurlaub geeignet?',
+    faqA7: 'Ja, die Apartments sind ideal für Familien. Wir haben dafür gesorgt, dass Sie alles haben, was Sie für einen komfortablen Aufenthalt mit Kindern benötigen.',
+    faqQ8: 'Gibt es Geschäfte in der Nähe?',
+    faqA8: 'Ja, ein großer Interspar-Supermarkt befindet sich in der Nähe, praktisch für tägliche Einkäufe während des Aufenthalts.',`;
+content = content.replace("    faqA7: 'Ja, die Apartments sind ideal für Familien. Wir haben dafür gesorgt, dass Sie alles haben, was Sie für einen komfortablen Aufenthalt mit Kindern benötigen.',", deFaqInsertion.replace("    faqQ7: 'Ist die Wohnung für einen Familienurlaub geeignet?',\n", ""));
+
+const csInsertion = `    advParkingDesc: 'Vaše auto bude v bezpečí na našem soukromém parkovišti.',
+    advSupermarket: 'Supermarket Interspar',
+    advSupermarketDesc: 'Velký supermarket Interspar je nedaleko — pohodlné pro každodenní nákupy během pobytu.',`;
+content = content.replace("    advParkingDesc: 'Vaše auto bude v bezpečí na našem soukromém parkovišti.',", csInsertion);
+
+const csFaqInsertion = `    faqQ7: 'Je apartmán vhodný pro rodinnou dovolenou?',
+    faqA7: 'Ano, apartmány jsou skvělé pro rodiny. Postarali jsme se o to, abyste měli vše potřebné pro pohodlný pobyt s dětmi.',
+    faqQ8: 'Jsou v okolí obchody?',
+    faqA8: 'Ano, nedaleko apartmánů je velký supermarket Interspar, pohodlný pro každodenní nákupy během pobytu.',`;
+content = content.replace("    faqA7: 'Ano, apartmány jsou skvělé pro rodiny. Postarali jsme se o to, abyste měli vše potřebné pro pohodlný pobyt s dětmi.',", csFaqInsertion.replace("    faqQ7: 'Je apartmán vhodný pro rodinnou dovolenou?',\n", ""));
 
 fs.writeFileSync('src/constants.tsx', content);

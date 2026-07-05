@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MapPin, Waves, Sparkles, Users, Car } from 'lucide-react';
+import { MapPin, Waves, Sparkles, Users, Car, ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'motion/react';
 
@@ -10,6 +10,7 @@ const Advantages: React.FC = () => {
   const advantages = [
     { icon: <MapPin className="w-6 h-6" />, title: t('advLocation'), desc: t('advLocationDesc') },
     { icon: <Waves className="w-6 h-6" />, title: t('advSea'), desc: t('advSeaDesc') },
+    { icon: <ShoppingCart className="w-6 h-6" />, title: t('advSupermarket'), desc: t('advSupermarketDesc') },
     { icon: <Sparkles className="w-6 h-6" />, title: t('advRenovation'), desc: t('advRenovationDesc') },
     { icon: <Users className="w-6 h-6" />, title: t('advFamily'), desc: t('advFamilyDesc') },
     { icon: <Car className="w-6 h-6" />, title: t('advParking'), desc: t('advParkingDesc') },
@@ -24,8 +25,7 @@ const Advantages: React.FC = () => {
           </h2>
           <div className="w-12 h-1 bg-indigo-600 mx-auto rounded-full"></div>
         </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {advantages.map((adv, idx) => (
             <motion.div
               key={idx}

@@ -94,6 +94,14 @@ const JSONLD: React.FC = () => {
           "@type": "Answer",
           "text": t('faqA7')
         }
+      },
+      {
+        "@type": "Question",
+        "name": t('faqQ8'),
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": t('faqA8')
+        }
       }
     ]
   };
