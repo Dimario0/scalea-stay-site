@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { getGeminiResponse } from '../services/geminiService';
 import { ChatMessage } from '../types';
 import { useLanguage } from '../context/LanguageContext';
-
+import { trackEvent } from '../analytics';
 import { motion, AnimatePresence } from 'motion/react';
 
 const AIConcierge: React.FC = () => {
@@ -31,10 +31,25 @@ const AIConcierge: React.FC = () => {
     }
   }, [messages, isOpen, isTyping]);
 
+  const toggleChat = () => {
+    const newState = !isOpen;
+    setIsOpen(newState);
+    if (newState) {
+      trackEvent('ai_concierge_open', { page_path: window.location.pathname });
+    }
+  };
+
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
 
     const currentInput = input;
+    
+    trackEvent('ai_concierge_message', { 
+      page_path: window.location.pathname, 
+      language: language, 
+      message_length: currentInput.length 
+    });
+
     const userMsg: ChatMessage = { role: 'user', content: currentInput };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
@@ -44,6 +59,33 @@ const AIConcierge: React.FC = () => {
     
     setIsTyping(false);
     setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+  };
+
+  const renderMessageContent = (content: string, isUser: boolean) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const parts = content.split(urlRegex);
+    
+    return parts.map((part, i) => {
+      if (part.match(urlRegex)) {
+        return (
+          <a 
+            key={i} 
+            href={part} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={`underline font-medium break-all ${isUser ? 'text-white hover:text-indigo-100' : 'text-indigo-600 hover:text-indigo-800'}`}
+            onClick={() => {
+              if (part.includes('wa.me') || part.includes('whatsapp')) {
+                trackEvent('ai_concierge_to_whatsapp', { page_path: window.location.pathname });
+              }
+            }}
+          >
+            {part}
+          </a>
+        );
+      }
+      return <span key={i}>{part}</span>;
+    });
   };
 
   return (
@@ -71,7 +113,7 @@ const AIConcierge: React.FC = () => {
               </div>
             </div>
             <button 
-              onClick={() => setIsOpen(false)} 
+              onClick={toggleChat} 
               className="p-2 rounded-xl hover:bg-slate-50 transition-colors group"
               aria-label="Close chat"
             >
@@ -89,7 +131,7 @@ const AIConcierge: React.FC = () => {
                     ? 'bg-indigo-600 text-white rounded-tr-none shadow-md' 
                     : 'bg-white text-slate-700 shadow-sm border border-slate-100 rounded-tl-none'
                 }`}>
-                  {m.content}
+                  {renderMessageContent(m.content, m.role === 'user')}
                 </div>
               </div>
             ))}
@@ -133,7 +175,7 @@ const AIConcierge: React.FC = () => {
 
       {/* Floating Action Button */}
       <button 
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         aria-label={isOpen ? "Close chat" : "Open chat with assistant"}
         className="bg-indigo-600 text-white w-16 h-16 rounded-[24px] shadow-2xl flex items-center justify-center hover:scale-110 transition-all active:scale-95 group relative overflow-hidden"
       >
