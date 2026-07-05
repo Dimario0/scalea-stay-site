@@ -12,6 +12,7 @@ import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
 import AboutGrid from './components/AboutGrid';
 import RouteModal from './components/RouteModal';
+import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
 import FAQ from './components/FAQ';
@@ -139,6 +140,9 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Target Audience Section */}
+        <TargetAudience />
 
         {/* Direct Booking Benefits */}
         <DirectBookingBenefits />

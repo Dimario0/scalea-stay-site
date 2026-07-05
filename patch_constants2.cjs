@@ -10,9 +10,8 @@ const translations = {
 };
 
 Object.keys(translations).forEach(lang => {
-  const insertMarker = new RegExp("(\\\\b" + lang + ": \\{)");
-  content = content.replace(insertMarker, "$1\\n" + translations[lang]);
+  content = content.replace(new RegExp(`  ${lang}: \\{`), `  ${lang}: {\n${translations[lang]}`);
 });
 
 fs.writeFileSync('src/constants.tsx', content);
-console.log('Constants updated');
+console.log('Constants fixed');
