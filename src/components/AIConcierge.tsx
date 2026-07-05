@@ -102,6 +102,25 @@ const AIConcierge: React.FC = () => {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
+  const whatsappClickTrackedRef = useRef(false);
+
+  const handleConciergeWhatsAppClick = (url: string) => {
+    if (!whatsappClickTrackedRef.current) {
+      trackEvent('ai_concierge_to_whatsapp', {
+        page_path: window.location.pathname,
+        language: language,
+        destination: 'whatsapp'
+      });
+      whatsappClickTrackedRef.current = true;
+      setTimeout(() => {
+        whatsappClickTrackedRef.current = false;
+      }, 1000);
+    }
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  };
 
   useEffect(() => {
     setMessages([
@@ -177,14 +196,10 @@ const AIConcierge: React.FC = () => {
               className={`mt-3 flex items-center justify-center space-x-2 w-full text-center py-2.5 px-4 rounded-xl font-bold transition-all shadow-sm ${isUser ? 'bg-white text-indigo-600 hover:bg-indigo-50' : 'bg-emerald-500 text-white hover:bg-emerald-600'}`}
               onClick={(e) => {
                 e.preventDefault();
-                trackEvent('ai_concierge_to_whatsapp', { 
-                  page_path: window.location.pathname,
-                  language: language,
-                  destination: 'whatsapp'
-                });
-                setTimeout(() => {
-                  window.location.href = part;
-                }, 150);
+                handleConciergeWhatsAppClick(part);
+              }}
+              onTouchStart={(e) => {
+                handleConciergeWhatsAppClick(part);
               }}
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
