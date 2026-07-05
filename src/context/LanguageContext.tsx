@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TRANSLATIONS, LANGUAGES } from '../constants';
@@ -72,22 +71,22 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     // Update document title based on language
     const titles: Record<string, string> = {
-      ru: 'Аренда апартаментов в Скалее | Отдых на море в Италии',
-      en: 'Cozy Apartment for Rent in Scalea, Italy | Sea View',
-      it: 'Affitto Appartamento a Scalea | Case Vacanze Calabria',
-      de: 'Ferienwohnung in Scalea mieten | Urlaub am Meer in Italien',
-      cs: 'Pronájem apartmánu ve Scalea | Dovolená u moře Itálie'
+      ru: 'Апартаменты в Скалее у моря | Калабрия',
+      en: 'Holiday Apartment in Scalea near the Sea',
+      it: 'Appartamento Vacanze a Scalea vicino al Mare',
+      de: 'Ferienapartment in Scalea nahe am Meer',
+      cs: 'Apartmán ve Scalee u moře | Kalábrie'
     };
     const currentTitle = titles[language] || titles['ru'];
     document.title = currentTitle;
 
     // Update meta description
     const descriptions: Record<string, string> = {
-      ru: 'Снять квартиру в Скалее недорого. Уютные апартаменты у моря в Калабрии с кондиционером. Бронируйте жилье без посредников!',
-      en: 'Affordable short-term vacation rental in Scalea, Calabria. Modern apartment near the beach with A/C. Book your holiday today!',
-      it: 'Affitti estivi a Scalea. Bellissimo appartamento vicino al mare con aria condizionata. Prenota la tua casa vacanze al Sud!',
-      de: 'Günstige Ferienwohnung in Scalea, Kalabrien. Modernes Apartment in Strandnähe mit Klimaanlage. Buchen Sie Ihren Urlaub!',
-      cs: 'Cenově dostupný pronájem apartmánu ve Scalea, Kalábrie. Útulné ubytování kousek od pláže s klimatizací. Rezervujte si svou dovolenou!'
+      ru: 'Апартаменты в центре Скалеи, примерно 400 м до моря. Парковка, кондиционер и Interspar рядом. Уточните свободные даты напрямую через WhatsApp.',
+      en: 'A holiday apartment in the centre of Scalea, about 400 m from the sea. Parking, air conditioning and Interspar nearby. Check availability directly via WhatsApp.',
+      it: 'Appartamento vacanze nel centro di Scalea, a circa 400 m dal mare. Parcheggio, aria condizionata e Interspar nelle vicinanze. Verifica la disponibilità su WhatsApp.',
+      de: 'Ferienapartment im Zentrum von Scalea, etwa 400 m vom Meer entfernt. Parkplatz, Klimaanlage und Interspar in der Nähe. Verfügbarkeit direkt über WhatsApp prüfen.',
+      cs: 'Apartmán v centru Scalei, přibližně 400 m od moře. Parkování, klimatizace a Interspar nedaleko. Ověřte dostupnost přímo přes WhatsApp.'
     };
     const currentDesc = descriptions[language] || descriptions['ru'];
     
