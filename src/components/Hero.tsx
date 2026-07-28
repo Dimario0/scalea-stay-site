@@ -49,8 +49,8 @@ const Hero: React.FC = () => {
 
   const trustItems = [
     { icon: '🏖️', label: t('beachDistance') },
-    { icon: '❄️', label: t('acReady') },
-    { icon: '🚗', label: t('parkingInc') }
+    { icon: '💬', label: t('directBooking') },
+    { icon: '🧭', label: t('localExperience') }
   ];
 
   return (
