@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
 import { useSiteData } from '../context/SiteContext';
@@ -47,6 +46,12 @@ const Hero: React.FC = () => {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+
+  const trustItems = [
+    { icon: '🏖️', label: t('beachDistance') },
+    { icon: '❄️', label: t('acReady') },
+    { icon: '🚗', label: t('parkingInc') }
+  ];
 
   return (
     <section id="home" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-slate-950 scroll-mt-40">
@@ -103,6 +108,20 @@ const Hero: React.FC = () => {
               {t('heroCtaHint')}
             </p>
           )}
+
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-3xl">
+            {trustItems.map((item) => (
+              <div
+                key={item.label}
+                className="flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-slate-950/35 px-4 py-3 text-white/90 backdrop-blur-lg shadow-lg"
+              >
+                <span className="text-lg" aria-hidden="true">{item.icon}</span>
+                <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.16em] leading-tight">
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
