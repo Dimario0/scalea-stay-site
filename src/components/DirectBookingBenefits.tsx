@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2, Zap } from 'lucide-react';
+import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 const DirectBookingBenefits: React.FC = () => {
@@ -9,8 +9,7 @@ const DirectBookingBenefits: React.FC = () => {
   const benefits = [
     { icon: <MessageCircle className="w-5 h-5" />, text: t('directBookItem1') },
     { icon: <CreditCard className="w-5 h-5" />, text: t('directBookItem2') },
-    { icon: <Zap className="w-5 h-5" />, text: t('directBookItem3') },
-    { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem4') },
+    { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem3') },
     { icon: <CheckCircle2 className="w-5 h-5" />, text: t('directBookItem5') },
   ];
 
@@ -31,9 +30,7 @@ const DirectBookingBenefits: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-start space-x-4 ${
-                idx === benefits.length - 1 && benefits.length % 2 !== 0 ? 'sm:col-span-2 sm:max-w-md sm:mx-auto w-full' : ''
-              }`}
+              className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-start space-x-4"
             >
               <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
                 {item.icon}
