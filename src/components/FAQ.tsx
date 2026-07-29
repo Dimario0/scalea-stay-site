@@ -190,10 +190,10 @@ const FAQ: React.FC = () => {
         </div>
       </section>
 
-      <section id="routes" className="py-9 px-4 bg-slate-50 border-y border-slate-100 scroll-mt-40">
+      <section id="routes" className="py-9 px-4 bg-[linear-gradient(180deg,#f8fafc_0%,#eefbff_48%,#fffaf0_100%)] border-y border-cyan-100/70 scroll-mt-40">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-5">
-            <div className="inline-flex items-center gap-1.5 text-indigo-600 font-black text-[10px] uppercase tracking-[0.2em] mb-2">
+            <div className="inline-flex items-center gap-1.5 text-cyan-700 font-black text-[10px] uppercase tracking-[0.2em] mb-2">
               <MapPin className="w-3.5 h-3.5" /> Scalea
             </div>
             <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-slate-900 mb-2">{copy.routesTitle}</h2>
@@ -206,7 +206,7 @@ const FAQ: React.FC = () => {
               role="tab"
               aria-selected={isBeach}
               onClick={() => setActiveRoute('beach')}
-              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${isBeach ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-700 border border-slate-200'}`}
+              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${isBeach ? 'bg-cyan-700 text-white shadow-md shadow-cyan-900/15' : 'bg-white/90 text-slate-700 border border-cyan-100'}`}
             >
               <Waves className="w-4 h-4" /> {copy.beachTab}
             </button>
@@ -215,36 +215,68 @@ const FAQ: React.FC = () => {
               role="tab"
               aria-selected={!isBeach}
               onClick={() => setActiveRoute('station')}
-              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${!isBeach ? 'bg-indigo-600 text-white shadow-md' : 'bg-white text-slate-700 border border-slate-200'}`}
+              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${!isBeach ? 'bg-cyan-700 text-white shadow-md shadow-cyan-900/15' : 'bg-white/90 text-slate-700 border border-cyan-100'}`}
             >
               <Train className="w-4 h-4" /> {copy.stationTab}
             </button>
           </div>
 
-          <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <div className="bg-white/95 rounded-2xl border border-cyan-100 overflow-hidden shadow-[0_20px_55px_rgba(14,116,144,0.12)]">
             <div className="grid md:grid-cols-[1.25fr_0.75fr]">
-              <div className="relative min-h-[220px] p-4 sm:p-6 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.10),transparent_35%),linear-gradient(135deg,#f8fafc,#eef2ff)] overflow-hidden">
-                <div className="absolute inset-0 opacity-40" aria-hidden="true" style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.18) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-                <svg className="relative w-full h-[170px]" viewBox="0 0 700 210" role="img" aria-label={isBeach ? copy.beachTab : copy.stationTab}>
-                  <path d={routePath} fill="none" stroke="rgb(199 210 254)" strokeWidth="16" strokeLinecap="round" />
+              <div className="relative min-h-[220px] p-4 sm:p-6 bg-[linear-gradient(135deg,#fff6df_0%,#fffdf7_30%,#e7f9fb_68%,#dff6ff_100%)] overflow-hidden">
+                <div
+                  className="absolute inset-0"
+                  aria-hidden="true"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle at 12% 20%, rgba(251,191,36,0.18), transparent 30%), radial-gradient(circle at 86% 18%, rgba(6,182,212,0.18), transparent 32%), radial-gradient(circle at 60% 90%, rgba(255,255,255,0.82), transparent 38%)',
+                  }}
+                />
+
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 700 240" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M520 -20 C545 35 520 74 555 112 S635 174 700 160 L700 -20 Z" fill="rgba(165,243,252,0.36)" />
+                  <path d="M526 -10 C551 36 526 75 561 113 S640 172 704 157" fill="none" stroke="rgba(6,182,212,0.36)" strokeWidth="4" />
+                  <path d="M-20 50 C130 14 205 82 335 54 S540 10 730 72" fill="none" stroke="rgba(255,255,255,0.86)" strokeWidth="16" strokeLinecap="round" />
+                  <path d="M-20 50 C130 14 205 82 335 54 S540 10 730 72" fill="none" stroke="rgba(180,157,116,0.36)" strokeWidth="2" strokeDasharray="10 10" strokeLinecap="round" />
+                  <path d="M35 214 C145 168 228 226 330 190 S505 130 670 194" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="12" strokeLinecap="round" />
+                  <path d="M35 214 C145 168 228 226 330 190 S505 130 670 194" fill="none" stroke="rgba(14,116,144,0.18)" strokeWidth="2" strokeDasharray="7 11" strokeLinecap="round" />
+                  <g fill="rgba(255,255,255,0.5)" stroke="rgba(14,116,144,0.12)">
+                    <rect x="70" y="82" width="62" height="34" rx="8" />
+                    <rect x="160" y="112" width="78" height="42" rx="9" />
+                    <rect x="410" y="128" width="66" height="36" rx="8" />
+                    <rect x="280" y="16" width="58" height="31" rx="8" />
+                  </g>
+                  <path d="M562 98 C590 88 620 98 649 88" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="5" strokeLinecap="round" />
+                  <path d="M574 117 C601 107 631 116 660 106" fill="none" stroke="rgba(255,255,255,0.72)" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+
+                <div className="absolute left-5 top-4 w-9 h-9 rounded-full bg-amber-100/80 border border-white/80 shadow-sm flex items-center justify-center text-amber-700/70" aria-hidden="true">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div className="absolute right-5 bottom-5 w-10 h-10 rounded-full bg-cyan-100/80 border border-white/80 shadow-sm flex items-center justify-center text-cyan-700/70" aria-hidden="true">
+                  <Waves className="w-5 h-5" />
+                </div>
+
+                <svg className="relative z-10 w-full h-[170px]" viewBox="0 0 700 210" role="img" aria-label={isBeach ? copy.beachTab : copy.stationTab}>
+                  <path d={routePath} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="19" strokeLinecap="round" />
+                  <path d={routePath} fill="none" stroke="rgb(165 243 252)" strokeWidth="15" strokeLinecap="round" />
                   <path d={routePath} fill="none" stroke="rgb(79 70 229)" strokeWidth="5" strokeLinecap="round" strokeDasharray="11 11" />
                   <circle r="8" fill="rgb(79 70 229)">
                     <animateMotion dur={isBeach ? '7s' : '9s'} repeatCount="indefinite" path={routePath} />
                   </circle>
                 </svg>
 
-                <div className="absolute left-4 sm:left-6 bottom-4 flex items-center gap-2 bg-white/95 border border-slate-200 rounded-xl px-3 py-2 shadow-sm max-w-[190px]">
+                <div className="absolute z-20 left-4 sm:left-6 bottom-4 flex items-center gap-2 bg-white/92 backdrop-blur-sm border border-white rounded-xl px-3 py-2 shadow-sm max-w-[190px]">
                   {isBeach ? <Home className="w-4 h-4 text-indigo-600 shrink-0" /> : <Train className="w-4 h-4 text-indigo-600 shrink-0" />}
                   <span className="text-[11px] font-black text-slate-800 leading-tight">{isBeach ? copy.homeLabel : copy.stationLabel}</span>
                 </div>
-                <div className="absolute right-4 sm:right-6 top-4 flex items-center gap-2 bg-white/95 border border-slate-200 rounded-xl px-3 py-2 shadow-sm max-w-[180px]">
-                  {isBeach ? <Waves className="w-4 h-4 text-indigo-600 shrink-0" /> : <Home className="w-4 h-4 text-indigo-600 shrink-0" />}
+                <div className="absolute z-20 right-4 sm:right-6 top-4 flex items-center gap-2 bg-white/92 backdrop-blur-sm border border-white rounded-xl px-3 py-2 shadow-sm max-w-[180px]">
+                  {isBeach ? <Waves className="w-4 h-4 text-cyan-700 shrink-0" /> : <Home className="w-4 h-4 text-indigo-600 shrink-0" />}
                   <span className="text-[11px] font-black text-slate-800 leading-tight">{isBeach ? copy.beachLabel : copy.homeLabel}</span>
                 </div>
               </div>
 
-              <div className="p-5 sm:p-6 flex flex-col justify-center">
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600 mb-2">{isBeach ? copy.beachTab : copy.stationTab}</div>
+              <div className="p-5 sm:p-6 flex flex-col justify-center bg-[linear-gradient(145deg,#ffffff_0%,#ffffff_65%,#ecfeff_100%)]">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700 mb-2">{isBeach ? copy.beachTab : copy.stationTab}</div>
                 <div className="text-xl font-black text-slate-900 mb-2">{isBeach ? copy.beachMetric : copy.stationMetric}</div>
                 <p className="text-xs text-slate-500 leading-relaxed mb-4">{copy.schematicNote}</p>
                 <a
