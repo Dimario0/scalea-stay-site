@@ -5,8 +5,16 @@ import { useLanguage } from '../context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { trackEvent } from '../analytics';
 
+const ROUTE_LABELS: Record<string, string> = {
+  ru: 'Маршруты',
+  en: 'Routes',
+  it: 'Percorsi',
+  de: 'Wege',
+  cs: 'Trasy',
+};
+
 const Navbar: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,10 +23,10 @@ const Navbar: React.FC = () => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
 
-    const sections = ['home', 'apartments', 'weather', 'about', 'faq', 'contact'];
+    const sections = ['home', 'apartments', 'weather', 'about', 'faq', 'routes', 'contact'];
     
     const handleActiveSection = () => {
-      const scrollPosition = window.scrollY + 200; // Increased offset to match scroll-mt-40 (160px)
+      const scrollPosition = window.scrollY + 200;
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -45,8 +53,11 @@ const Navbar: React.FC = () => {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      setActiveSection(id); // Set immediately for instant feedback
+      setActiveSection(id);
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (id === 'routes') {
+        trackEvent('route_section_open', { source: 'navigation' });
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -57,6 +68,7 @@ const Navbar: React.FC = () => {
     { name: t('navWeather'), id: 'weather' },
     { name: t('navAbout'), id: 'about' },
     { name: t('navFaq'), id: 'faq' },
+    { name: ROUTE_LABELS[language] || ROUTE_LABELS.ru, id: 'routes' },
     { name: t('navContact'), id: 'contact' },
   ];
 
@@ -68,7 +80,6 @@ const Navbar: React.FC = () => {
           ? "bg-white/95 backdrop-blur-2xl border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.18)]" 
           : "bg-black/30 backdrop-blur-md border-white/10"
         }`}>
-          {/* Logo */}
           <div 
             className="flex items-center space-x-4 cursor-pointer group shrink-0" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -83,15 +94,14 @@ const Navbar: React.FC = () => {
             </span>
           </div>
           
-          {/* Desktop Nav */}
           <div className={`hidden lg:flex items-center p-1 rounded-2xl ${scrolled ? 'bg-slate-100/80' : 'bg-white/10'}`}>
             {navLinks.map((link, idx) => (
               <a 
                 key={link.id}
                 href={`#${link.id}`} 
                 onClick={(e) => scrollToSection(e, link.id)}
-                className={`px-5 py-2.5 rounded-xl text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 flex items-center justify-center leading-none ${
-                  idx > 0 ? 'ml-1' : ''
+                className={`px-3 xl:px-4 py-2.5 rounded-xl text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 flex items-center justify-center leading-none ${
+                  idx > 0 ? 'ml-0.5' : ''
                 } ${
                   activeSection === link.id
                     ? scrolled 
@@ -107,13 +117,14 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Language Switcher & Mobile Menu Toggle */}
           <div className="flex items-center gap-4">
             <LanguageSwitcher scrolled={scrolled} />
             
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`lg:hidden p-3 rounded-xl transition-all ${scrolled ? 'text-slate-900 bg-slate-100' : 'text-white bg-white/10'}`}
+              aria-label="Menu"
+              aria-expanded={isMobileMenuOpen}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -124,7 +135,6 @@ const Navbar: React.FC = () => {
               </svg>
             </button>
 
-            {/* CTA */}
             <a 
               href={CONTACT_INFO.whatsappLink(t('navWhatsappMsg'))}
               target="_blank"
@@ -150,9 +160,8 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Overlay */}
         <div className={`lg:hidden mt-4 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
-          <div className="bg-white/95 backdrop-blur-2xl rounded-[32px] p-6 shadow-2xl border border-white/20 space-y-2">
+          <div className="bg-white/95 backdrop-blur-2xl rounded-[32px] p-6 shadow-2xl border border-white/20 space-y-2 max-h-[70vh] overflow-y-auto">
             {navLinks.map((link) => (
               <a 
                 key={link.id}
