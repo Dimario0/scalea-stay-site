@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ApartmentCard from './components/ApartmentCard';
@@ -11,7 +11,6 @@ import { useSiteData } from './context/SiteContext';
 import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
 import AboutGrid from './components/AboutGrid';
-import RouteModal from './components/RouteModal';
 import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
@@ -24,7 +23,6 @@ import { trackEvent } from './analytics';
 const App: React.FC = () => {
   const { data } = useSiteData();
   const { t } = useLanguage();
-  const [isRouteModalOpen, setIsRouteModalOpen] = React.useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,6 +44,42 @@ const App: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const routeSection = document.getElementById('routes');
+    if (!routeSection) return;
+
+    const handleRouteInteraction = (event: Event) => {
+      const origin = event.target as HTMLElement | null;
+      const interactive = origin?.closest<HTMLElement>('[role="tab"], a[href*="google.com/maps"]');
+      if (!interactive || !routeSection.contains(interactive)) return;
+
+      const tabs = Array.from(routeSection.querySelectorAll<HTMLElement>('[role="tab"]'));
+      const activeIndex = tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
+
+      if (interactive.getAttribute('role') === 'tab') {
+        const selectedIndex = tabs.indexOf(interactive);
+        trackEvent('route_tab_click', {
+          route: selectedIndex === 0 ? 'beach' : 'station',
+          source: 'routes_section',
+        });
+        return;
+      }
+
+      trackEvent('route_map_open', {
+        route: activeIndex === 1 ? 'station' : 'beach',
+        source: 'routes_section',
+      });
+    };
+
+    routeSection.addEventListener('click', handleRouteInteraction);
+    return () => routeSection.removeEventListener('click', handleRouteInteraction);
+  }, []);
+
+  const scrollToRoutes = () => {
+    trackEvent('route_section_open', { source: 'footer' });
+    document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
@@ -162,17 +196,10 @@ const App: React.FC = () => {
               Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-none">{t('waitsForYou')}</span>
             </h2>
             
-            {/* How to get here block */}
-            <div className="mb-16 text-left max-w-2xl mx-auto bg-white/5 p-8 rounded-[32px] border border-white/10">
-              <h3 className="text-xl font-black uppercase tracking-widest mb-8 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <span className="text-2xl">🚂</span>
-                  <div>
-                    <h4 className="font-black uppercase text-xs tracking-widest mb-1">{t('byTrain')}</h4>
-                    <p className="text-slate-400 text-xs leading-relaxed">{t('byTrainDesc')}</p>
-                  </div>
-                </div>
+            {/* Compact arrival block: train route lives in the interactive routes section */}
+            <div className="mb-10 text-left max-w-2xl mx-auto bg-white/5 p-6 rounded-[28px] border border-white/10">
+              <h3 className="text-lg font-black uppercase tracking-widest mb-6 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
+              <div className="grid sm:grid-cols-2 gap-5">
                 <div className="flex items-start space-x-4">
                   <span className="text-2xl">🚗</span>
                   <div>
@@ -190,8 +217,9 @@ const App: React.FC = () => {
               </div>
               
               <button 
-                onClick={() => setIsRouteModalOpen(true)}
-                className="mt-10 w-full py-4 border-2 border-indigo-400/30 text-indigo-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-400 hover:text-white transition-all active:scale-95"
+                type="button"
+                onClick={scrollToRoutes}
+                className="mt-7 w-full py-3.5 border-2 border-indigo-400/30 text-indigo-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-400 hover:text-white transition-all active:scale-95"
               >
                 {t('detailedRoute')}
               </button>
@@ -226,7 +254,6 @@ const App: React.FC = () => {
       <AIConcierge />
       <AdminPanel />
       <FloatingCallButton />
-      <RouteModal isOpen={isRouteModalOpen} onClose={() => setIsRouteModalOpen(false)} />
       
       {/* Design Credit Banner */}
       <div className="bg-slate-900 text-white/60 py-4 px-4 text-center border-t border-white/5">
