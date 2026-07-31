@@ -9,36 +9,80 @@ interface LanguageContextType {
   currentLanguage: typeof LANGUAGES[0];
 }
 
+type SeoEntry = {
+  title: string;
+  description: string;
+  locale: string;
+};
+
+const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
+  ru: {
+    title: 'Апартаменты в Скалее у моря | ScaleaStay',
+    description: 'Casa Marittima в Скалее, Калабрия: кондиционер, частная парковка, оборудованная кухня и понятные маршруты от пляжа, станции и аэропорта Ламеция-Терме. Проверяйте даты напрямую.',
+    locale: 'ru_RU',
+  },
+  en: {
+    title: 'Holiday Apartment in Scalea, Calabria | ScaleaStay',
+    description: 'Casa Marittima in Scalea, Calabria, with air conditioning, private parking, an equipped kitchen and clear routes from the beach, station and Lamezia Terme Airport. Check dates directly.',
+    locale: 'en_GB',
+  },
+  it: {
+    title: 'Appartamento Vacanze a Scalea, Calabria | ScaleaStay',
+    description: 'Casa Marittima a Scalea, Calabria: aria condizionata, parcheggio privato, cucina attrezzata e indicazioni chiare dalla spiaggia, dalla stazione e dall’aeroporto di Lamezia Terme. Verifica le date direttamente.',
+    locale: 'it_IT',
+  },
+  de: {
+    title: 'Ferienwohnung in Scalea, Kalabrien | ScaleaStay',
+    description: 'Casa Marittima in Scalea, Kalabrien, mit Klimaanlage, Privatparkplatz, ausgestatteter Küche und klaren Wegen vom Strand, Bahnhof und Flughafen Lamezia Terme. Verfügbarkeit direkt prüfen.',
+    locale: 'de_DE',
+  },
+  cs: {
+    title: 'Apartmán ve Scalee, Kalábrie | ScaleaStay',
+    description: 'Casa Marittima ve Scalee v Kalábrii nabízí klimatizaci, soukromé parkování, vybavenou kuchyň a jasné trasy od pláže, nádraží i letiště Lamezia Terme. Ověřte termíny přímo.',
+    locale: 'cs_CZ',
+  },
+};
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+const setMetaContent = (selector: string, value: string) => {
+  const element = document.querySelector<HTMLMetaElement>(selector);
+  if (element) {
+    element.setAttribute('content', value);
+  }
+};
+
+const ensureMetaProperty = (property: string, value: string) => {
+  let element = document.querySelector<HTMLMetaElement>(`meta[property="${property}"]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute('property', property);
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', value);
+};
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  // Extract language from URL path (e.g., /en/ or /en)
   const pathLang = location.pathname.split('/')[1];
-  
-  // Determine the effective language
   const language = TRANSLATIONS[pathLang] ? pathLang : 'ru';
 
   useEffect(() => {
-    // If the path doesn't have a valid language, redirect to the default or saved language
     if (!TRANSLATIONS[pathLang]) {
       const saved = localStorage.getItem('scalea_language');
       const browserLang = navigator.language.split('-')[0];
-      
+
       let targetLang = 'ru';
       if (saved && TRANSLATIONS[saved]) {
         targetLang = saved;
       } else if (TRANSLATIONS[browserLang]) {
         targetLang = browserLang;
       }
-      
-      // Preserve the rest of the path and hash
+
       const restOfPath = location.pathname === '/' ? '' : location.pathname;
       navigate(`/${targetLang}${restOfPath}${location.search}${location.hash}`, { replace: true });
     } else {
-      // Save the valid language to localStorage
       localStorage.setItem('scalea_language', pathLang);
     }
   }, [pathLang, location.pathname, location.search, location.hash, navigate]);
@@ -46,72 +90,55 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const setLanguage = (lang: string) => {
     if (TRANSLATIONS[lang] && lang !== language) {
       localStorage.setItem('scalea_language', lang);
-      
-      // Replace the language part in the URL
+
       const pathParts = location.pathname.split('/');
       if (TRANSLATIONS[pathParts[1]]) {
         pathParts[1] = lang;
       } else {
         pathParts.splice(1, 0, lang);
       }
-      
+
       const newPath = pathParts.join('/') || '/';
       navigate(`${newPath}${location.search}${location.hash}`);
     }
   };
 
-  const t = (key: string) => {
-    return TRANSLATIONS[language]?.[key] || key;
-  };
-
-  const currentLanguage = LANGUAGES.find(l => l.code === language) || LANGUAGES[0];
+  const t = (key: string) => TRANSLATIONS[language]?.[key] || key;
+  const currentLanguage = LANGUAGES.find((item) => item.code === language) || LANGUAGES[0];
 
   useEffect(() => {
+    const seo = SEO_BY_LANGUAGE[language] || SEO_BY_LANGUAGE.ru;
+    const pageUrl = `https://scaleastay.com/${language}/`;
+
     document.documentElement.lang = language;
-    
-    // Update document title based on language
-    const titles: Record<string, string> = {
-      ru: 'Апартаменты в Скалее у моря | Калабрия',
-      en: 'Holiday Apartment in Scalea near the Sea',
-      it: 'Appartamento Vacanze a Scalea vicino al Mare',
-      de: 'Ferienapartment in Scalea nahe am Meer',
-      cs: 'Apartmán ve Scalee u moře | Kalábrie'
-    };
-    const currentTitle = titles[language] || titles['ru'];
-    document.title = currentTitle;
+    document.title = seo.title;
 
-    // Update meta description
-    const descriptions: Record<string, string> = {
-      ru: 'Апартаменты в центре Скалеи, примерно 400 м до моря. Парковка, кондиционер и Interspar рядом. Уточните свободные даты напрямую через WhatsApp.',
-      en: 'A holiday apartment in the centre of Scalea, about 400 m from the sea. Parking, air conditioning and Interspar nearby. Check availability directly via WhatsApp.',
-      it: 'Appartamento vacanze nel centro di Scalea, a circa 400 m dal mare. Parcheggio, aria condizionata e Interspar nelle vicinanze. Verifica la disponibilità su WhatsApp.',
-      de: 'Ferienapartment im Zentrum von Scalea, etwa 400 m vom Meer entfernt. Parkplatz, Klimaanlage und Interspar in der Nähe. Verfügbarkeit direkt über WhatsApp prüfen.',
-      cs: 'Apartmán v centru Scalei, přibližně 400 m od moře. Parkování, klimatizace a Interspar nedaleko. Ověřte dostupnost přímo přes WhatsApp.'
-    };
-    const currentDesc = descriptions[language] || descriptions['ru'];
-    
-    // Standard meta description
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', currentDesc);
+    setMetaContent('meta[name="description"]', seo.description);
+    setMetaContent('meta[property="og:title"]', seo.title);
+    setMetaContent('meta[property="og:description"]', seo.description);
+    setMetaContent('meta[property="og:url"]', pageUrl);
+    setMetaContent('meta[property="twitter:title"]', seo.title);
+    setMetaContent('meta[property="twitter:description"]', seo.description);
+    setMetaContent('meta[property="twitter:url"]', pageUrl);
 
-    // Open Graph tags
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', currentTitle);
-    
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute('content', currentDesc);
+    ensureMetaProperty('og:site_name', 'ScaleaStay');
+    ensureMetaProperty('og:locale', seo.locale);
 
-    // Twitter tags
-    const twTitle = document.querySelector('meta[property="twitter:title"]');
-    if (twTitle) twTitle.setAttribute('content', currentTitle);
-    
-    const twDesc = document.querySelector('meta[property="twitter:description"]');
-    if (twDesc) twDesc.setAttribute('content', currentDesc);
+    document.querySelectorAll('meta[property="og:locale:alternate"]').forEach((element) => element.remove());
+    LANGUAGES
+      .filter((item) => item.code !== language)
+      .forEach((item) => {
+        const alternateSeo = SEO_BY_LANGUAGE[item.code];
+        if (!alternateSeo) return;
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', 'og:locale:alternate');
+        meta.setAttribute('content', alternateSeo.locale);
+        document.head.appendChild(meta);
+      });
 
-    // Update canonical link
-    const canonical = document.querySelector('link[rel="canonical"]');
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', `https://scaleastay.com/${language}/`);
+      canonical.setAttribute('href', pageUrl);
     }
   }, [language]);
 
