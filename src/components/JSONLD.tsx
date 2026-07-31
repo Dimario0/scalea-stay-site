@@ -69,10 +69,21 @@ const JSONLD: React.FC = () => {
   const { t, language } = useLanguage();
   const copy = SEO_COPY[language] || SEO_COPY.ru;
   const pageUrl = `https://scaleastay.com/${language}/`;
+
+  const websiteId = 'https://scaleastay.com/#website';
+  const webPageId = `${pageUrl}#webpage`;
   const propertyId = 'https://scaleastay.com/#property';
+  const accommodationId = 'https://scaleastay.com/#casa-marittima';
+  const beachId = 'https://scaleastay.com/#nearest-beach';
+  const stationId = 'https://scaleastay.com/#scalea-station';
+  const airportId = 'https://scaleastay.com/#lamezia-airport';
   const faqId = `${pageUrl}#faq`;
   const airportRouteId = `${pageUrl}#airport-route`;
+
   const homeMapUrl = 'https://www.google.com/maps/search/?api=1&query=39.8074152%2C15.7949133';
+  const beachMapUrl = 'https://www.google.com/maps/search/?api=1&query=39.8064465%2C15.7889826';
+  const stationMapUrl = 'https://www.google.com/maps/search/?api=1&query=Scalea-Santa%20Domenica%20Talao%20railway%20station';
+  const airportMapUrl = 'https://www.google.com/maps/search/?api=1&query=Lamezia%20Terme%20International%20Airport';
 
   const faqItems = [
     { question: t('faqQ1'), answer: t('faqA1') },
@@ -87,10 +98,43 @@ const JSONLD: React.FC = () => {
   ];
 
   const airportSteps = [copy.airportStep1, copy.airportStep2, copy.airportStep3];
+  const amenityFeature = [
+    { '@type': 'LocationFeatureSpecification', name: 'Air conditioning', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Private parking', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Terrace', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Hair dryer', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Microwave', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Kitchen utensils', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Beach umbrella', value: true },
+  ];
 
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': webPageId,
+        url: pageUrl,
+        name: 'ScaleaStay — Casa Marittima',
+        description: t('heroSubtitle'),
+        inLanguage: language,
+        isPartOf: { '@id': websiteId },
+        mainEntity: { '@id': propertyId },
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
+        },
+        about: [
+          { '@id': propertyId },
+          { '@id': accommodationId },
+        ],
+        mentions: [
+          { '@id': beachId },
+          { '@id': stationId },
+          { '@id': airportId },
+          { '@id': airportRouteId },
+        ],
+      },
       {
         '@type': 'LodgingBusiness',
         '@id': propertyId,
@@ -99,7 +143,7 @@ const JSONLD: React.FC = () => {
         identifier: 'IT078138C2VN4E3MCD',
         description: t('heroSubtitle'),
         url: pageUrl,
-        mainEntityOfPage: pageUrl,
+        mainEntityOfPage: { '@id': webPageId },
         hasMap: homeMapUrl,
         telephone: '+420774620060',
         image: [
@@ -126,23 +170,8 @@ const JSONLD: React.FC = () => {
           telephone: '+420774620060',
           availableLanguage: ['ru', 'en', 'it', 'de', 'cs'],
         },
-        containsPlace: {
-          '@type': 'Accommodation',
-          name: 'Casa Marittima',
-          occupancy: {
-            '@type': 'QuantitativeValue',
-            value: 4,
-          },
-        },
-        amenityFeature: [
-          { '@type': 'LocationFeatureSpecification', name: 'Air conditioning', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Private parking', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Terrace', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Hair dryer', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Microwave', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Kitchen utensils', value: true },
-          { '@type': 'LocationFeatureSpecification', name: 'Beach umbrella', value: true },
-        ],
+        containsPlace: { '@id': accommodationId },
+        amenityFeature,
         additionalProperty: [
           {
             '@type': 'PropertyValue',
@@ -165,13 +194,80 @@ const JSONLD: React.FC = () => {
             value: 'Lamezia Airlink to Lamezia Terme Centrale, Trenitalia train to Scalea–Santa Domenica Talao, then local transfer to Casa Marittima',
           },
         ],
-        subjectOf: { '@id': airportRouteId },
+        subjectOf: [
+          { '@id': faqId },
+          { '@id': airportRouteId },
+        ],
+      },
+      {
+        '@type': 'Accommodation',
+        '@id': accommodationId,
+        name: 'Casa Marittima',
+        containedInPlace: { '@id': propertyId },
+        mainEntityOfPage: { '@id': webPageId },
+        occupancy: {
+          '@type': 'QuantitativeValue',
+          value: 4,
+        },
+        amenityFeature,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 39.8074152,
+          longitude: 15.7949133,
+        },
+      },
+      {
+        '@type': 'TouristAttraction',
+        '@id': beachId,
+        name: 'Nearest beach access to Casa Marittima',
+        description: 'Nearest confirmed beach access point used by the route section on ScaleaStay.',
+        hasMap: beachMapUrl,
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 39.8064465,
+          longitude: 15.7889826,
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Scalea',
+          addressRegion: 'Calabria',
+          postalCode: '87029',
+          addressCountry: 'IT',
+        },
+      },
+      {
+        '@type': 'TrainStation',
+        '@id': stationId,
+        name: 'Scalea–Santa Domenica Talao',
+        hasMap: stationMapUrl,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Scalea',
+          addressRegion: 'Calabria',
+          postalCode: '87029',
+          addressCountry: 'IT',
+        },
+      },
+      {
+        '@type': 'Airport',
+        '@id': airportId,
+        name: 'Lamezia Terme International Airport',
+        alternateName: 'Aeroporto Internazionale di Lamezia Terme',
+        iataCode: 'SUF',
+        hasMap: airportMapUrl,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Lamezia Terme',
+          addressRegion: 'Calabria',
+          addressCountry: 'IT',
+        },
       },
       {
         '@type': 'FAQPage',
         '@id': faqId,
         url: `${pageUrl}#faq`,
         inLanguage: language,
+        isPartOf: { '@id': webPageId },
         about: { '@id': propertyId },
         mainEntity: faqItems.map((item) => ({
           '@type': 'Question',
@@ -189,7 +285,13 @@ const JSONLD: React.FC = () => {
         description: copy.airportRouteDescription,
         url: `${pageUrl}#routes`,
         inLanguage: language,
+        isPartOf: { '@id': webPageId },
         about: { '@id': propertyId },
+        mentions: [
+          { '@id': airportId },
+          { '@id': stationId },
+          { '@id': accommodationId },
+        ],
         step: airportSteps.map((text, index) => ({
           '@type': 'HowToStep',
           position: index + 1,
