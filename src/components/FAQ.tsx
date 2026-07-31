@@ -1,17 +1,22 @@
 import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { trackEvent } from '../analytics';
 import {
+  Bus,
+  Car,
   ChevronDown,
   ChevronUp,
   ExternalLink,
   Home,
   MapPin,
+  Plane,
   Train,
   Waves,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-type RouteKey = 'beach' | 'station';
+type RouteKey = 'beach' | 'station' | 'airport';
+type TravelMode = 'walking' | 'transit' | 'driving';
 
 type LocalCopy = {
   amenitiesSuffix: string;
@@ -21,13 +26,24 @@ type LocalCopy = {
   routesSubtitle: string;
   beachTab: string;
   stationTab: string;
+  airportTab: string;
   beachMetric: string;
   stationMetric: string;
+  airportMetric: string;
   homeLabel: string;
   beachLabel: string;
   stationLabel: string;
+  airportLabel: string;
   openRoute: string;
+  publicTransport: string;
+  byCar: string;
+  airlinkInfo: string;
   schematicNote: string;
+  airportNote: string;
+  airportStepsTitle: string;
+  airportStep1: string;
+  airportStep2: string;
+  airportStep3: string;
 };
 
 const LOCAL_COPY: Record<string, LocalCopy> = {
@@ -36,89 +52,146 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     beachQuestion: 'Что предусмотрено для отдыха на пляже?',
     beachAnswer: 'Для гостей предусмотрен пляжный зонт, который можно взять с собой к морю.',
     routesTitle: 'Расположение и маршруты',
-    routesSubtitle: 'Маршрут к ближайшему выходу на пляж и дорога от станции Scalea.',
+    routesSubtitle: 'Точные маршруты к пляжу, от станции Scalea и из ближайшего международного аэропорта.',
     beachTab: 'До пляжа',
     stationTab: 'От станции',
+    airportTab: 'Из аэропорта',
     beachMetric: 'Маршрут к ближайшему пляжу',
     stationMetric: 'Маршрут от ж/д станции',
+    airportMetric: 'Lamezia Terme (SUF) — ближайший аэропорт',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Выход к пляжу',
     stationLabel: 'Scalea–S. Domenica Talao',
+    airportLabel: 'Lamezia Terme · SUF',
     openRoute: 'Открыть в Google Maps',
+    publicTransport: 'Общественный транспорт',
+    byCar: 'На автомобиле',
+    airlinkInfo: 'Официальная информация Airlink',
     schematicNote: 'Точный пешеходный маршрут откроется в Google Maps.',
+    airportNote: 'Аэропорт находится примерно в 120 км от Скалее. Расписание проверяйте на дату поездки.',
+    airportStepsTitle: 'Как добраться без автомобиля',
+    airportStep1: 'Автобус Lamezia Airlink до станции Lamezia Terme Centrale.',
+    airportStep2: 'Поезд Trenitalia до Scalea–Santa Domenica Talao.',
+    airportStep3: 'От станции — такси, трансфер или маршрут до апартаментов.',
   },
   en: {
     amenitiesSuffix: 'The apartment also includes a hair dryer, microwave and essential kitchen utensils.',
     beachQuestion: 'What is provided for a day at the beach?',
     beachAnswer: 'Guests can use a beach umbrella and take it with them to the sea.',
     routesTitle: 'Location and routes',
-    routesSubtitle: 'Route to the nearest beach access and directions from Scalea station.',
+    routesSubtitle: 'Exact routes to the beach, from Scalea station and from the nearest international airport.',
     beachTab: 'To the beach',
     stationTab: 'From station',
+    airportTab: 'From airport',
     beachMetric: 'Route to the nearest beach',
     stationMetric: 'Route from the railway station',
+    airportMetric: 'Lamezia Terme (SUF) — nearest airport',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Beach access',
     stationLabel: 'Scalea–S. Domenica Talao',
+    airportLabel: 'Lamezia Terme · SUF',
     openRoute: 'Open in Google Maps',
+    publicTransport: 'Public transport',
+    byCar: 'By car',
+    airlinkInfo: 'Official Airlink information',
     schematicNote: 'The exact walking route opens in Google Maps.',
+    airportNote: 'The airport is approximately 120 km from Scalea. Check the timetable for your travel date.',
+    airportStepsTitle: 'How to arrive without a car',
+    airportStep1: 'Take the Lamezia Airlink bus to Lamezia Terme Centrale station.',
+    airportStep2: 'Take a Trenitalia train to Scalea–Santa Domenica Talao.',
+    airportStep3: 'From the station, continue by taxi, transfer or the local route to the apartment.',
   },
   it: {
     amenitiesSuffix: 'L’appartamento dispone inoltre di asciugacapelli, forno a microonde e utensili da cucina essenziali.',
     beachQuestion: 'Cosa è disponibile per una giornata in spiaggia?',
     beachAnswer: 'Gli ospiti possono utilizzare un ombrellone da portare con sé al mare.',
     routesTitle: 'Posizione e percorsi',
-    routesSubtitle: 'Percorso verso l’accesso alla spiaggia più vicino e indicazioni dalla stazione di Scalea.',
+    routesSubtitle: 'Percorsi precisi verso la spiaggia, dalla stazione di Scalea e dall’aeroporto internazionale più vicino.',
     beachTab: 'Alla spiaggia',
     stationTab: 'Dalla stazione',
+    airportTab: 'Dall’aeroporto',
     beachMetric: 'Percorso verso la spiaggia più vicina',
     stationMetric: 'Percorso dalla stazione',
+    airportMetric: 'Lamezia Terme (SUF) — aeroporto più vicino',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Accesso alla spiaggia',
     stationLabel: 'Scalea–S. Domenica Talao',
+    airportLabel: 'Lamezia Terme · SUF',
     openRoute: 'Apri in Google Maps',
+    publicTransport: 'Trasporto pubblico',
+    byCar: 'In auto',
+    airlinkInfo: 'Informazioni ufficiali Airlink',
     schematicNote: 'Il percorso pedonale esatto si apre in Google Maps.',
+    airportNote: 'L’aeroporto si trova a circa 120 km da Scalea. Verifica gli orari per la data del viaggio.',
+    airportStepsTitle: 'Come arrivare senza auto',
+    airportStep1: 'Navetta Lamezia Airlink fino alla stazione Lamezia Terme Centrale.',
+    airportStep2: 'Treno Trenitalia fino a Scalea–Santa Domenica Talao.',
+    airportStep3: 'Dalla stazione, proseguire in taxi, con transfer o con il percorso locale verso l’appartamento.',
   },
   de: {
     amenitiesSuffix: 'Außerdem gibt es einen Haartrockner, eine Mikrowelle und die wichtigsten Küchenutensilien.',
     beachQuestion: 'Was steht für einen Strandtag zur Verfügung?',
     beachAnswer: 'Für Gäste steht ein Sonnenschirm zur Verfügung, der mit zum Meer genommen werden kann.',
     routesTitle: 'Lage und Wege',
-    routesSubtitle: 'Weg zum nächsten Strandzugang und Anreise vom Bahnhof Scalea.',
+    routesSubtitle: 'Genaue Wege zum Strand, vom Bahnhof Scalea und vom nächstgelegenen internationalen Flughafen.',
     beachTab: 'Zum Strand',
     stationTab: 'Vom Bahnhof',
+    airportTab: 'Vom Flughafen',
     beachMetric: 'Weg zum nächsten Strand',
     stationMetric: 'Route vom Bahnhof',
+    airportMetric: 'Lamezia Terme (SUF) — nächster Flughafen',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Strandzugang',
     stationLabel: 'Scalea–S. Domenica Talao',
+    airportLabel: 'Lamezia Terme · SUF',
     openRoute: 'In Google Maps öffnen',
+    publicTransport: 'Öffentliche Verkehrsmittel',
+    byCar: 'Mit dem Auto',
+    airlinkInfo: 'Offizielle Airlink-Informationen',
     schematicNote: 'Die genaue Fußroute wird in Google Maps geöffnet.',
+    airportNote: 'Der Flughafen liegt etwa 120 km von Scalea entfernt. Prüfen Sie den Fahrplan für Ihr Reisedatum.',
+    airportStepsTitle: 'Anreise ohne Auto',
+    airportStep1: 'Mit dem Lamezia Airlink Bus zum Bahnhof Lamezia Terme Centrale.',
+    airportStep2: 'Mit dem Trenitalia-Zug nach Scalea–Santa Domenica Talao.',
+    airportStep3: 'Vom Bahnhof weiter per Taxi, Transfer oder über die lokale Route zum Apartment.',
   },
   cs: {
     amenitiesSuffix: 'V apartmánu je také fén, mikrovlnná trouba a základní kuchyňské vybavení.',
     beachQuestion: 'Co je k dispozici pro pobyt na pláži?',
     beachAnswer: 'Hosté mají k dispozici plážový slunečník, který si mohou vzít k moři.',
     routesTitle: 'Poloha a trasy',
-    routesSubtitle: 'Trasa k nejbližšímu vstupu na pláž a cesta z nádraží Scalea.',
+    routesSubtitle: 'Přesné trasy na pláž, z nádraží Scalea a z nejbližšího mezinárodního letiště.',
     beachTab: 'Na pláž',
     stationTab: 'Z nádraží',
+    airportTab: 'Z letiště',
     beachMetric: 'Trasa k nejbližší pláži',
     stationMetric: 'Trasa z vlakového nádraží',
+    airportMetric: 'Lamezia Terme (SUF) — nejbližší letiště',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Vstup na pláž',
     stationLabel: 'Scalea–S. Domenica Talao',
+    airportLabel: 'Lamezia Terme · SUF',
     openRoute: 'Otevřít v Google Maps',
+    publicTransport: 'Veřejná doprava',
+    byCar: 'Autem',
+    airlinkInfo: 'Oficiální informace Airlink',
     schematicNote: 'Přesná pěší trasa se otevře v Google Maps.',
+    airportNote: 'Letiště je přibližně 120 km od města Scalea. Jízdní řád ověřte pro datum své cesty.',
+    airportStepsTitle: 'Jak se dostat bez auta',
+    airportStep1: 'Autobusem Lamezia Airlink na nádraží Lamezia Terme Centrale.',
+    airportStep2: 'Vlakem Trenitalia do stanice Scalea–Santa Domenica Talao.',
+    airportStep3: 'Z nádraží pokračujte taxíkem, transferem nebo místní trasou k apartmánu.',
   },
 };
 
-const HOME_ADDRESS = '39.8074152,15.7949133';
-const BEACH_DESTINATION = '39.8064465,15.7889826';
-const STATION_ADDRESS = 'Scalea-Santa Domenica Talao railway station, Scalea CS, Italy';
+const HOME_LOCATION = '39.8074152,15.7949133';
+const BEACH_LOCATION = '39.8064465,15.7889826';
+const STATION_LOCATION = 'Scalea-Santa Domenica Talao railway station, Scalea CS, Italy';
+const AIRPORT_LOCATION = 'Lamezia Terme International Airport (SUF), 88046 Lamezia Terme CZ, Italy';
+const AIRLINK_URL = 'https://www.trenitalia.com/en/connections/lamezia-airlink.html';
 
-const directionsUrl = (origin: string, destination: string) =>
-  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=walking`;
+const directionsUrl = (origin: string, destination: string, travelMode: TravelMode) =>
+  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${travelMode}`;
 
 const FAQ: React.FC = () => {
   const { t, language } = useLanguage();
@@ -139,12 +212,35 @@ const FAQ: React.FC = () => {
   ], [copy, t]);
 
   const isBeach = activeRoute === 'beach';
-  const routeUrl = isBeach
-    ? directionsUrl(HOME_ADDRESS, BEACH_DESTINATION)
-    : directionsUrl(STATION_ADDRESS, HOME_ADDRESS);
+  const isStation = activeRoute === 'station';
+  const isAirport = activeRoute === 'airport';
+
   const routePath = isBeach
     ? 'M105 165 C210 145 255 55 355 78 S485 168 595 62'
-    : 'M90 60 C205 42 245 145 355 135 S485 48 610 162';
+    : isStation
+      ? 'M90 60 C205 42 245 145 355 135 S485 48 610 162'
+      : 'M82 165 C170 65 260 58 338 120 S500 176 620 64';
+
+  const routeLabel = isBeach ? copy.beachTab : isStation ? copy.stationTab : copy.airportTab;
+  const routeMetric = isBeach ? copy.beachMetric : isStation ? copy.stationMetric : copy.airportMetric;
+  const routeUrl = isBeach
+    ? directionsUrl(HOME_LOCATION, BEACH_LOCATION, 'walking')
+    : isStation
+      ? directionsUrl(STATION_LOCATION, HOME_LOCATION, 'walking')
+      : directionsUrl(AIRPORT_LOCATION, HOME_LOCATION, 'transit');
+  const airportDrivingUrl = directionsUrl(AIRPORT_LOCATION, HOME_LOCATION, 'driving');
+
+  const setRoute = (route: RouteKey) => {
+    setActiveRoute(route);
+    trackEvent('route_tab_select', { route });
+  };
+
+  const tabClass = (route: RouteKey) =>
+    `inline-flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-xl font-black text-[11px] sm:text-xs transition-all ${
+      activeRoute === route
+        ? 'bg-cyan-700 text-white shadow-md shadow-cyan-900/15'
+        : 'bg-white/90 text-slate-700 border border-cyan-100'
+    }`;
 
   return (
     <>
@@ -200,30 +296,21 @@ const FAQ: React.FC = () => {
             <p className="max-w-2xl mx-auto text-sm text-slate-500">{copy.routesSubtitle}</p>
           </div>
 
-          <div className="flex flex-row justify-center gap-2 mb-5" role="tablist" aria-label={copy.routesTitle}>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={isBeach}
-              onClick={() => setActiveRoute('beach')}
-              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${isBeach ? 'bg-cyan-700 text-white shadow-md shadow-cyan-900/15' : 'bg-white/90 text-slate-700 border border-cyan-100'}`}
-            >
+          <div className="flex flex-wrap justify-center gap-2 mb-5" role="tablist" aria-label={copy.routesTitle}>
+            <button type="button" role="tab" aria-selected={isBeach} onClick={() => setRoute('beach')} className={tabClass('beach')}>
               <Waves className="w-4 h-4" /> {copy.beachTab}
             </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={!isBeach}
-              onClick={() => setActiveRoute('station')}
-              className={`inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl font-black text-xs transition-all ${!isBeach ? 'bg-cyan-700 text-white shadow-md shadow-cyan-900/15' : 'bg-white/90 text-slate-700 border border-cyan-100'}`}
-            >
+            <button type="button" role="tab" aria-selected={isStation} onClick={() => setRoute('station')} className={tabClass('station')}>
               <Train className="w-4 h-4" /> {copy.stationTab}
+            </button>
+            <button type="button" role="tab" aria-selected={isAirport} onClick={() => setRoute('airport')} className={tabClass('airport')}>
+              <Plane className="w-4 h-4" /> {copy.airportTab}
             </button>
           </div>
 
           <div className="bg-white/95 rounded-2xl border border-cyan-100 overflow-hidden shadow-[0_20px_55px_rgba(14,116,144,0.12)]">
-            <div className="grid md:grid-cols-[1.25fr_0.75fr]">
-              <div className="relative min-h-[220px] p-4 sm:p-6 bg-[linear-gradient(135deg,#fff6df_0%,#fffdf7_30%,#e7f9fb_68%,#dff6ff_100%)] overflow-hidden">
+            <div className="grid md:grid-cols-[1.15fr_0.85fr]">
+              <div className="relative min-h-[230px] p-4 sm:p-6 bg-[linear-gradient(135deg,#fff6df_0%,#fffdf7_30%,#e7f9fb_68%,#dff6ff_100%)] overflow-hidden">
                 <div
                   className="absolute inset-0"
                   aria-hidden="true"
@@ -250,24 +337,24 @@ const FAQ: React.FC = () => {
                 </svg>
 
                 <div className="absolute left-5 top-4 w-9 h-9 rounded-full bg-amber-100/80 border border-white/80 shadow-sm flex items-center justify-center text-amber-700/70" aria-hidden="true">
-                  <MapPin className="w-4 h-4" />
+                  {isAirport ? <Plane className="w-4 h-4" /> : <MapPin className="w-4 h-4" />}
                 </div>
                 <div className="absolute right-5 bottom-5 w-10 h-10 rounded-full bg-cyan-100/80 border border-white/80 shadow-sm flex items-center justify-center text-cyan-700/70" aria-hidden="true">
-                  <Waves className="w-5 h-5" />
+                  {isAirport ? <Home className="w-5 h-5" /> : <Waves className="w-5 h-5" />}
                 </div>
 
-                <svg className="relative z-10 w-full h-[170px]" viewBox="0 0 700 210" role="img" aria-label={isBeach ? copy.beachTab : copy.stationTab}>
+                <svg className="relative z-10 w-full h-[180px]" viewBox="0 0 700 210" role="img" aria-label={routeLabel}>
                   <path d={routePath} fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="19" strokeLinecap="round" />
                   <path d={routePath} fill="none" stroke="rgb(165 243 252)" strokeWidth="15" strokeLinecap="round" />
                   <path d={routePath} fill="none" stroke="rgb(79 70 229)" strokeWidth="5" strokeLinecap="round" strokeDasharray="11 11" />
                   <circle r="8" fill="rgb(79 70 229)">
-                    <animateMotion dur={isBeach ? '7s' : '9s'} repeatCount="indefinite" path={routePath} />
+                    <animateMotion dur={isBeach ? '7s' : isStation ? '9s' : '11s'} repeatCount="indefinite" path={routePath} />
                   </circle>
                 </svg>
 
-                <div className="absolute z-20 left-4 sm:left-6 bottom-4 flex items-center gap-2 bg-white/92 backdrop-blur-sm border border-white rounded-xl px-3 py-2 shadow-sm max-w-[190px]">
-                  {isBeach ? <Home className="w-4 h-4 text-indigo-600 shrink-0" /> : <Train className="w-4 h-4 text-indigo-600 shrink-0" />}
-                  <span className="text-[11px] font-black text-slate-800 leading-tight">{isBeach ? copy.homeLabel : copy.stationLabel}</span>
+                <div className="absolute z-20 left-4 sm:left-6 bottom-4 flex items-center gap-2 bg-white/92 backdrop-blur-sm border border-white rounded-xl px-3 py-2 shadow-sm max-w-[210px]">
+                  {isBeach ? <Home className="w-4 h-4 text-indigo-600 shrink-0" /> : isStation ? <Train className="w-4 h-4 text-indigo-600 shrink-0" /> : <Plane className="w-4 h-4 text-indigo-600 shrink-0" />}
+                  <span className="text-[11px] font-black text-slate-800 leading-tight">{isBeach ? copy.homeLabel : isStation ? copy.stationLabel : copy.airportLabel}</span>
                 </div>
                 <div className="absolute z-20 right-4 sm:right-6 top-4 flex items-center gap-2 bg-white/92 backdrop-blur-sm border border-white rounded-xl px-3 py-2 shadow-sm max-w-[180px]">
                   {isBeach ? <Waves className="w-4 h-4 text-cyan-700 shrink-0" /> : <Home className="w-4 h-4 text-indigo-600 shrink-0" />}
@@ -276,17 +363,62 @@ const FAQ: React.FC = () => {
               </div>
 
               <div className="p-5 sm:p-6 flex flex-col justify-center bg-[linear-gradient(145deg,#ffffff_0%,#ffffff_65%,#ecfeff_100%)]">
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700 mb-2">{isBeach ? copy.beachTab : copy.stationTab}</div>
-                <div className="text-xl font-black text-slate-900 mb-2">{isBeach ? copy.beachMetric : copy.stationMetric}</div>
-                <p className="text-xs text-slate-500 leading-relaxed mb-4">{copy.schematicNote}</p>
-                <a
-                  href={routeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 font-black text-xs transition-colors active:scale-[0.98]"
-                >
-                  {copy.openRoute}<ExternalLink className="w-4 h-4" />
-                </a>
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-700 mb-2">{routeLabel}</div>
+                <div className="text-lg sm:text-xl font-black text-slate-900 mb-2">{routeMetric}</div>
+
+                {isAirport ? (
+                  <>
+                    <p className="text-xs text-slate-500 leading-relaxed mb-4">{copy.airportNote}</p>
+                    <div className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-700 mb-2">{copy.airportStepsTitle}</div>
+                    <ol className="space-y-2 text-xs text-slate-600 mb-4">
+                      <li className="flex gap-2"><Bus className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" /><span>{copy.airportStep1}</span></li>
+                      <li className="flex gap-2"><Train className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" /><span>{copy.airportStep2}</span></li>
+                      <li className="flex gap-2"><MapPin className="w-4 h-4 text-cyan-700 shrink-0 mt-0.5" /><span>{copy.airportStep3}</span></li>
+                    </ol>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-2">
+                      <a
+                        href={routeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackEvent('route_map_open', { route: 'airport', travel_mode: 'transit' })}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-3 font-black text-[11px] transition-colors active:scale-[0.98]"
+                      >
+                        <Bus className="w-4 h-4" /> {copy.publicTransport}
+                      </a>
+                      <a
+                        href={airportDrivingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackEvent('route_map_open', { route: 'airport', travel_mode: 'driving' })}
+                        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white px-3 py-3 font-black text-[11px] transition-colors active:scale-[0.98]"
+                      >
+                        <Car className="w-4 h-4" /> {copy.byCar}
+                      </a>
+                    </div>
+                    <a
+                      href={AIRLINK_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackEvent('airport_airlink_open')}
+                      className="inline-flex items-center justify-center gap-1.5 mt-3 text-[11px] font-black text-cyan-800 hover:text-indigo-700"
+                    >
+                      {copy.airlinkInfo}<ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-xs text-slate-500 leading-relaxed mb-4">{copy.schematicNote}</p>
+                    <a
+                      href={routeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => trackEvent('route_map_open', { route: activeRoute, travel_mode: 'walking' })}
+                      className="inline-flex items-center justify-center gap-2 w-full rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 font-black text-xs transition-colors active:scale-[0.98]"
+                    >
+                      {copy.openRoute}<ExternalLink className="w-4 h-4" />
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           </div>
