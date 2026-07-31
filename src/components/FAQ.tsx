@@ -39,7 +39,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     routesSubtitle: 'Маршрут к ближайшему выходу на пляж и дорога от станции Scalea.',
     beachTab: 'До пляжа',
     stationTab: 'От станции',
-    beachMetric: 'Около 400 м пешком',
+    beachMetric: 'Маршрут к ближайшему пляжу',
     stationMetric: 'Маршрут от ж/д станции',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Выход к пляжу',
@@ -55,7 +55,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     routesSubtitle: 'Route to the nearest beach access and directions from Scalea station.',
     beachTab: 'To the beach',
     stationTab: 'From station',
-    beachMetric: 'About 400 m on foot',
+    beachMetric: 'Route to the nearest beach',
     stationMetric: 'Route from the railway station',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Beach access',
@@ -71,7 +71,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     routesSubtitle: 'Percorso verso l’accesso alla spiaggia più vicino e indicazioni dalla stazione di Scalea.',
     beachTab: 'Alla spiaggia',
     stationTab: 'Dalla stazione',
-    beachMetric: 'Circa 400 m a piedi',
+    beachMetric: 'Percorso verso la spiaggia più vicina',
     stationMetric: 'Percorso dalla stazione',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Accesso alla spiaggia',
@@ -87,7 +87,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     routesSubtitle: 'Weg zum nächsten Strandzugang und Anreise vom Bahnhof Scalea.',
     beachTab: 'Zum Strand',
     stationTab: 'Vom Bahnhof',
-    beachMetric: 'Etwa 400 m zu Fuß',
+    beachMetric: 'Weg zum nächsten Strand',
     stationMetric: 'Route vom Bahnhof',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Strandzugang',
@@ -103,7 +103,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     routesSubtitle: 'Trasa k nejbližšímu vstupu na pláž a cesta z nádraží Scalea.',
     beachTab: 'Na pláž',
     stationTab: 'Z nádraží',
-    beachMetric: 'Přibližně 400 m pěšky',
+    beachMetric: 'Trasa k nejbližší pláži',
     stationMetric: 'Trasa z vlakového nádraží',
     homeLabel: 'Casa Marittima',
     beachLabel: 'Vstup na pláž',
@@ -113,8 +113,8 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
   },
 };
 
-const HOME_ADDRESS = 'Via Giuseppe Saragat 11, 87029 Scalea CS, Italy';
-const BEACH_DESTINATION = 'Corso Mediterraneo, Snc, 87029 Scalea CS, Italy';
+const HOME_ADDRESS = '39.8074152,15.7949133';
+const BEACH_DESTINATION = '39.8064465,15.7889826';
 const STATION_ADDRESS = 'Scalea-Santa Domenica Talao railway station, Scalea CS, Italy';
 
 const directionsUrl = (origin: string, destination: string) =>
