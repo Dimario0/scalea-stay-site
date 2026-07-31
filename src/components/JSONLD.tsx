@@ -82,8 +82,8 @@ const JSONLD: React.FC = () => {
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: 39.8122,
-          longitude: 15.7853,
+          latitude: 39.8074152,
+          longitude: 15.7949133,
         },
         contactPoint: {
           '@type': 'ContactPoint',
@@ -111,13 +111,8 @@ const JSONLD: React.FC = () => {
         additionalProperty: [
           {
             '@type': 'PropertyValue',
-            name: 'Approximate distance to the nearest beach access',
-            value: '400 m',
-          },
-          {
-            '@type': 'PropertyValue',
-            name: 'Nearest beach access',
-            value: 'Corso Mediterraneo, Snc, 87029 Scalea CS, Italy',
+            name: 'Nearest beach access coordinates',
+            value: '39.8064465, 15.7889826',
           },
           {
             '@type': 'PropertyValue',
