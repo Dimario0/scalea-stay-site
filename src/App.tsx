@@ -14,11 +14,14 @@ import AboutGrid from './components/AboutGrid';
 import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
+import LocalFacts from './components/LocalFacts';
 import FAQ from './components/FAQ';
 import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
 import { trackEvent } from './analytics';
+
+const ROUTE_NAMES = ['beach', 'station', 'airport'] as const;
 
 const App: React.FC = () => {
   const { data } = useSiteData();
@@ -60,14 +63,14 @@ const App: React.FC = () => {
       if (interactive.getAttribute('role') === 'tab') {
         const selectedIndex = tabs.indexOf(interactive);
         trackEvent('route_tab_click', {
-          route: selectedIndex === 0 ? 'beach' : 'station',
+          route: ROUTE_NAMES[selectedIndex] || 'unknown',
           source: 'routes_section',
         });
         return;
       }
 
       trackEvent('route_map_open', {
-        route: activeIndex === 1 ? 'station' : 'beach',
+        route: ROUTE_NAMES[activeIndex] || 'beach',
         source: 'routes_section',
       });
     };
@@ -88,7 +91,6 @@ const App: React.FC = () => {
       <main className="flex-1 flex flex-col">
         <Hero />
 
-        {/* Apartments Grid */}
         <section id="apartments" data-analytics="apartments-section" className="pt-16 pb-6 px-4 scroll-mt-40">
           <div id="apartments-grid" className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -106,16 +108,14 @@ const App: React.FC = () => {
           </div>
         </section>
         
-        {/* Advantages Section */}
         <Advantages />
 
-        {/* Weather Forecast Section */}
         <WeatherForecast />
 
-        {/* Local Guide Section */}
         <LocalGuide />
 
-        {/* Testimonials (Trust Block) */}
+        <LocalFacts />
+
         <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
@@ -133,7 +133,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Experience Section / About */}
         <section id="about" className="pt-16 pb-12 px-4 overflow-hidden bg-slate-950 text-white rounded-t-[60px] scroll-mt-40">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -175,18 +174,14 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Target Audience Section */}
         <TargetAudience />
 
-        {/* Direct Booking Benefits */}
         <DirectBookingBenefits />
 
-        {/* FAQ Section */}
         <FAQ />
 
         <JSONLD />
 
-        {/* CTA Footer / Contact */}
         <section id="contact" className="mt-auto pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
           <div className="max-w-4xl mx-auto px-6">
              <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
@@ -196,7 +191,6 @@ const App: React.FC = () => {
               Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-none">{t('waitsForYou')}</span>
             </h2>
             
-            {/* Compact arrival block: train route lives in the interactive routes section */}
             <div className="mb-10 text-left max-w-2xl mx-auto bg-white/5 p-6 rounded-[28px] border border-white/10">
               <h3 className="text-lg font-black uppercase tracking-widest mb-6 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
               <div className="grid sm:grid-cols-2 gap-5">
@@ -255,7 +249,6 @@ const App: React.FC = () => {
       <AdminPanel />
       <FloatingCallButton />
       
-      {/* Design Credit Banner */}
       <div className="bg-slate-900 text-white/60 py-4 px-4 text-center border-t border-white/5">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
           <p className="text-[10px] font-bold uppercase tracking-widest">
