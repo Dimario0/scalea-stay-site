@@ -21,7 +21,6 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
   const nextImg = () => setCurrentImg(p => (p < displayImages.length - 1 ? p + 1 : 0));
   const prevImg = () => setCurrentImg(p => (p > 0 ? p - 1 : displayImages.length - 1));
 
-  // Touch handlers for swipe
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -41,6 +40,14 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
     
     if (isLeftSwipe) nextImg();
     if (isRightSwipe) prevImg();
+  };
+
+  const openBeachRoute = () => {
+    trackEvent('route_section_open', {
+      source: 'apartment_card',
+      route: 'beach',
+    });
+    document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -68,16 +75,19 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         </div>
 
         <div className="absolute top-6 left-6 right-6 flex justify-between items-start pointer-events-none">
-          <div className="bg-indigo-600/90 backdrop-blur-md px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg pointer-events-auto">
-            {apartment.distanceToSea} {t('distance')}
-          </div>
+          <button
+            type="button"
+            onClick={openBeachRoute}
+            className="pointer-events-auto bg-indigo-600/90 backdrop-blur-md px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg hover:bg-indigo-500 transition-colors active:scale-95"
+          >
+            {t('beachRouteLabel')} <span aria-hidden="true">→</span>
+          </button>
         </div>
 
-        {/* Image Indicators */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">
           {displayImages.map((_, idx) => (
             <div 
-              key={idx} 
+              key={idx}
               className={`h-1 rounded-full transition-all duration-500 ${
                 currentImg === idx ? 'w-8 bg-white' : 'w-2 bg-white/40'
               }`}
