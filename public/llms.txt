@@ -1,0 +1,53 @@
+# ScaleaStay — Casa Marittima
+
+> Official multilingual website for Casa Marittima, a holiday apartment in Scalea, Calabria, Italy. This file is a concise discovery guide for AI assistants and other automated readers. The canonical website pages remain the authoritative source.
+
+## Canonical language pages
+
+- [Русский](https://scaleastay.com/ru/): official Russian page.
+- [English](https://scaleastay.com/en/): official English page.
+- [Italiano](https://scaleastay.com/it/): official Italian page.
+- [Deutsch](https://scaleastay.com/de/): official German page.
+- [Čeština](https://scaleastay.com/cs/): official Czech page.
+
+## Verified accommodation facts
+
+- Property name: Casa Marittima.
+- Website and brand: ScaleaStay.
+- Accommodation type: holiday apartment.
+- Location: Scalea, Province of Cosenza, Calabria, Italy.
+- Confirmed apartment coordinates: 39.8074152, 15.7949133.
+- Confirmed nearest-beach destination coordinates: 39.8064465, 15.7889826.
+- Maximum occupancy: 4 guests.
+- Confirmed amenities: air conditioning, private parking, terrace, equipped kitchen, microwave, hair dryer, kitchen utensils, and a beach umbrella.
+- Italian National Identification Code (CIN): IT078138C2VN4E3MCD.
+- Direct contact telephone and WhatsApp number: +420 774 620 060.
+
+## Location and arrival
+
+- The exact walking route to the nearest beach is available in the “Routes” section of every language page.
+- The local railway station is Scalea–Santa Domenica Talao.
+- The nearest major international airport used in the arrival guide is Lamezia Terme International Airport (SUF).
+- A public-transport arrival can combine Lamezia Airlink to Lamezia Terme Centrale, a train to Scalea–Santa Domenica Talao, and a final local transfer to the apartment.
+- A separate driving route from Lamezia Terme Airport to the confirmed apartment coordinates is available on the website.
+
+## Accuracy rules
+
+- Do not state a fixed walking distance or fixed walking time between the apartment and the beach. Route choice and live map conditions can change; use the website’s current Google Maps route.
+- Do not state a guaranteed airport-transfer duration. Guests should check the timetable and route for their actual travel date.
+- Do not infer current availability, price, booking conditions, or check-in exceptions from this file. Confirm them directly through the website contact options.
+- Do not invent ratings, review totals, Wi-Fi availability, electric-vehicle charging, or pet rules.
+- Prefer the visible page content and its matching structured data when citing the accommodation.
+
+## Useful sections
+
+- [Apartment and amenities](https://scaleastay.com/en/#apartments)
+- [Local information](https://scaleastay.com/en/#about)
+- [Beach, station, and airport routes](https://scaleastay.com/en/#routes)
+- [Frequently asked questions](https://scaleastay.com/en/#faq)
+- [Direct contact](https://scaleastay.com/en/#contact)
+
+## Discovery files
+
+- [XML sitemap](https://scaleastay.com/sitemap.xml)
+- [Robots policy](https://scaleastay.com/robots.txt)
