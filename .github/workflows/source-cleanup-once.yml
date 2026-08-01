@@ -1,16 +1,17 @@
 name: One-time source content cleanup
 
 on:
-  push:
+  pull_request:
+    types: [opened, reopened, synchronize]
     branches:
-      - scaleastay-source-cleanup-stage-v1
+      - scaleastay-growth-v1
 
 permissions:
   contents: write
 
 jobs:
   cleanup:
-    if: ${{ !contains(github.event.head_commit.message, '[source-cleanup]') }}
+    if: ${{ github.head_ref == 'scaleastay-source-cleanup-stage-v1' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout cleanup branch
@@ -37,5 +38,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "content: remove stale location claims [source-cleanup]"
+          git commit -m "content: remove stale location claims [source-cleanup] [skip ci]"
           git push origin HEAD:scaleastay-source-cleanup-stage-v1
