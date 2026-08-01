@@ -1,3 +1,4 @@
+// Synchronize the temporary PR so the validated one-time cleanup workflow runs.
 import fs from 'node:fs';
 
 const file = 'src/constants.tsx';
