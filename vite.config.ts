@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const SITE_ORIGIN = 'https://scaleastay.com';
-const SEO_LASTMOD = '2026-07-31';
+const SEO_LASTMOD = '2026-08-01';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 
@@ -17,6 +17,13 @@ type LocalizedSeo = {
   title: string;
   description: string;
   locale: string;
+};
+
+type PrerenderContent = {
+  heroTitle: string;
+  heroSubtitle: string;
+  apartmentsLabel: string;
+  routesLabel: string;
 };
 
 const LOCALIZED_SEO: Record<LanguageCode, LocalizedSeo> = {
@@ -44,6 +51,39 @@ const LOCALIZED_SEO: Record<LanguageCode, LocalizedSeo> = {
     title: 'Apartmán ve Scalee, Kalábrie | ScaleaStay',
     description: 'Casa Marittima ve Scalee v Kalábrii nabízí klimatizaci, soukromé parkování, vybavenou kuchyň a jasné trasy od pláže, nádraží i letiště Lamezia Terme. Ověřte termíny přímo.',
     locale: 'cs_CZ',
+  },
+};
+
+const PRERENDER_CONTENT: Record<LanguageCode, PrerenderContent> = {
+  ru: {
+    heroTitle: 'Уютные апартаменты у моря в Скалее «Калабрия»',
+    heroSubtitle: 'Аренда апартаментов в Скалее, Италия. Уютное жилье у моря с современным ремонтом в центре города. Идеально для отдыха в Калабрии всей семьей.',
+    apartmentsLabel: 'Наши апартаменты',
+    routesLabel: 'Подробный маршрут',
+  },
+  en: {
+    heroTitle: 'Welcome to Your Perfect Vacation Apartment in Scalea',
+    heroSubtitle: 'Scalea apartments for rent in Italy. Elegant vacation rental near the beach and city center. Perfect for your Calabria holiday with family.',
+    apartmentsLabel: 'Our Apartments',
+    routesLabel: 'Detailed Route',
+  },
+  it: {
+    heroTitle: 'Il Tuo Appartamento Ideale per le Vacanze a Scalea',
+    heroSubtitle: 'Affitto appartamenti a Scalea, Italia. Elegante casa vacanze vicino al mare e in centro città. Ideale per il tuo soggiorno in Calabria con la famiglia.',
+    apartmentsLabel: 'I nostri appartamenti',
+    routesLabel: 'Percorso dettagliato',
+  },
+  de: {
+    heroTitle: 'Ihr perfektes Ferienapartment in Scalea',
+    heroSubtitle: 'Elegante, modern renovierte Wohnungen in Meeresnähe und im Stadtzentrum. Ideal für Familienurlaub im Sommer und Winter.',
+    apartmentsLabel: 'Unsere Apartments',
+    routesLabel: 'Detaillierte Route',
+  },
+  cs: {
+    heroTitle: 'Váš ideální prázdninový apartmán ve Scalee',
+    heroSubtitle: 'Elegantní, moderně zrekonstruované apartmány v blízkosti moře a v centru města. Ideální pro rodinnou dovolenou v létě i v zimě.',
+    apartmentsLabel: 'Naše apartmány',
+    routesLabel: 'Podrobná trasa',
   },
 };
 
@@ -87,6 +127,13 @@ const replaceOrInsertHeadTag = (html: string, pattern: RegExp, replacement: stri
   return html.replace('</head>', `    ${replacement}\n</head>`);
 };
 
+const escapeHtml = (value: string) => value
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+
 const buildWebsiteSchema = (language: LanguageCode) => JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -96,6 +143,56 @@ const buildWebsiteSchema = (language: LanguageCode) => JSON.stringify({
   alternateName: 'Casa Marittima',
   inLanguage: language,
 });
+
+const buildPrerenderShell = (language: LanguageCode) => {
+  const content = PRERENDER_CONTENT[language];
+
+  return `    <div id="root" data-prerender-language="${language}">
+      <main aria-label="ScaleaStay" style="min-height:100vh;background:#020617;color:#fff;">
+        <section id="home" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 24px 48px;text-align:center;background:linear-gradient(180deg,rgba(2,6,23,.78),rgba(2,6,23,.38) 48%,rgba(2,6,23,.94)),url('https://i.postimg.cc/Dz0dHGzW/Scalea.webp') center/cover no-repeat;">
+          <div style="width:100%;max-width:1040px;margin:0 auto;">
+            <p style="display:inline-block;margin:0 0 28px;padding:10px 18px;border:1px solid rgba(255,255,255,.22);border-radius:16px;background:rgba(255,255,255,.1);font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;">Casa Marittima · Scalea, Calabria</p>
+            <h1 style="margin:0 auto 32px;max-width:1000px;color:#fff;font:900 clamp(2.5rem,8vw,7.5rem)/.92 system-ui,sans-serif;letter-spacing:-.055em;text-transform:uppercase;text-wrap:balance;">${escapeHtml(content.heroTitle)}</h1>
+            <p style="max-width:760px;margin:0 auto 40px;color:rgba(255,255,255,.9);font:500 clamp(1rem,2.2vw,1.4rem)/1.55 system-ui,sans-serif;">${escapeHtml(content.heroSubtitle)}</p>
+            <nav aria-label="Primary" style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
+              <a href="#apartments" style="display:inline-block;padding:16px 28px;border-radius:22px;background:#fff;color:#0f172a;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(content.apartmentsLabel)}</a>
+              <a href="#routes" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(content.routesLabel)}</a>
+            </nav>
+          </div>
+        </section>
+      </main>
+    </div>`;
+};
+
+const injectPrerenderShell = (html: string, language: LanguageCode) => {
+  const rootStart = html.indexOf('<div id="root">');
+  const firstScriptAfterRoot = html.indexOf('<script', rootStart);
+
+  if (rootStart === -1 || firstScriptAfterRoot === -1) {
+    throw new Error(`Could not locate the React root boundary for ${language}`);
+  }
+
+  const precedingComment = html.lastIndexOf('<!--', firstScriptAfterRoot);
+  const suffixStart = precedingComment > rootStart ? precedingComment : firstScriptAfterRoot;
+
+  return `${html.slice(0, rootStart)}${buildPrerenderShell(language)}\n    ${html.slice(suffixStart)}`;
+};
+
+const validateLocalizedHtml = (html: string, language: LanguageCode) => {
+  const h1Count = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
+
+  if (h1Count !== 1) {
+    throw new Error(`Expected exactly one H1 in ${language} HTML, found ${h1Count}`);
+  }
+
+  if (!html.includes(`data-prerender-language="${language}"`)) {
+    throw new Error(`Missing prerender marker for ${language}`);
+  }
+
+  if (!html.includes(escapeHtml(PRERENDER_CONTENT[language].heroTitle))) {
+    throw new Error(`Missing localized prerender H1 text for ${language}`);
+  }
+};
 
 const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boolean) => {
   const seo = LOCALIZED_SEO[language];
@@ -132,7 +229,11 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
     websiteSchema,
   ].filter(Boolean).join('\n');
 
-  return html.replace('</head>', `${socialMetadata}\n</head>`);
+  html = html.replace('</head>', `${socialMetadata}\n</head>`);
+  html = injectPrerenderShell(html, language);
+  validateLocalizedHtml(html, language);
+
+  return html;
 };
 
 const seoBuildCleanup = (): Plugin => ({
@@ -150,14 +251,16 @@ const seoBuildCleanup = (): Plugin => ({
     mkdirSync(outputDirectory, { recursive: true });
 
     const builtHtml = readFileSync(rootIndexPath, 'utf8');
-    writeFileSync(rootIndexPath, localizeHtml(builtHtml, 'ru', false), 'utf8');
+    const rootHtml = localizeHtml(builtHtml, 'ru', false);
+    writeFileSync(rootIndexPath, rootHtml, 'utf8');
 
     LANGUAGES.forEach((language) => {
       const languageDirectory = path.join(outputDirectory, language);
+      const localizedHtml = localizeHtml(builtHtml, language, true);
       mkdirSync(languageDirectory, { recursive: true });
       writeFileSync(
         path.join(languageDirectory, 'index.html'),
-        localizeHtml(builtHtml, language, true),
+        localizedHtml,
         'utf8',
       );
     });
