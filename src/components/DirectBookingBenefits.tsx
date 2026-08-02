@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2, Zap } from 'lucide-react';
+import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
 const DirectBookingBenefits: React.FC = () => {
@@ -9,7 +9,7 @@ const DirectBookingBenefits: React.FC = () => {
   const benefits = [
     { icon: <MessageCircle className="w-5 h-5" />, text: t('directBookItem1') },
     { icon: <CreditCard className="w-5 h-5" />, text: t('directBookItem2') },
-    { icon: <Zap className="w-5 h-5" />, text: t('directBookItem3') },
+    { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem3') },
     { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem4') },
     { icon: <CheckCircle2 className="w-5 h-5" />, text: t('directBookItem5') },
   ];

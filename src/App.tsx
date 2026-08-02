@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ApartmentCard from './components/ApartmentCard';
@@ -11,20 +11,21 @@ import { useSiteData } from './context/SiteContext';
 import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
 import AboutGrid from './components/AboutGrid';
-import RouteModal from './components/RouteModal';
 import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
+import LocalFacts from './components/LocalFacts';
 import FAQ from './components/FAQ';
 import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
 import { trackEvent } from './analytics';
 
+const ROUTE_NAMES = ['beach', 'station', 'airport'] as const;
+
 const App: React.FC = () => {
   const { data } = useSiteData();
   const { t } = useLanguage();
-  const [isRouteModalOpen, setIsRouteModalOpen] = React.useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,6 +48,42 @@ const App: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const routeSection = document.getElementById('routes');
+    if (!routeSection) return;
+
+    const handleRouteInteraction = (event: Event) => {
+      const origin = event.target as HTMLElement | null;
+      const interactive = origin?.closest<HTMLElement>('[role="tab"], a[href*="google.com/maps"]');
+      if (!interactive || !routeSection.contains(interactive)) return;
+
+      const tabs = Array.from(routeSection.querySelectorAll<HTMLElement>('[role="tab"]'));
+      const activeIndex = tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
+
+      if (interactive.getAttribute('role') === 'tab') {
+        const selectedIndex = tabs.indexOf(interactive);
+        trackEvent('route_tab_click', {
+          route: ROUTE_NAMES[selectedIndex] || 'unknown',
+          source: 'routes_section',
+        });
+        return;
+      }
+
+      trackEvent('route_map_open', {
+        route: ROUTE_NAMES[activeIndex] || 'beach',
+        source: 'routes_section',
+      });
+    };
+
+    routeSection.addEventListener('click', handleRouteInteraction);
+    return () => routeSection.removeEventListener('click', handleRouteInteraction);
+  }, []);
+
+  const scrollToRoutes = () => {
+    trackEvent('route_section_open', { source: 'footer' });
+    document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
       <Navbar />
@@ -54,7 +91,6 @@ const App: React.FC = () => {
       <main className="flex-1 flex flex-col">
         <Hero />
 
-        {/* Apartments Grid */}
         <section id="apartments" data-analytics="apartments-section" className="pt-16 pb-6 px-4 scroll-mt-40">
           <div id="apartments-grid" className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -72,16 +108,14 @@ const App: React.FC = () => {
           </div>
         </section>
         
-        {/* Advantages Section */}
         <Advantages />
 
-        {/* Weather Forecast Section */}
         <WeatherForecast />
 
-        {/* Local Guide Section */}
         <LocalGuide />
 
-        {/* Testimonials (Trust Block) */}
+        <LocalFacts />
+
         <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
@@ -99,7 +133,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Experience Section / About */}
         <section id="about" className="pt-16 pb-12 px-4 overflow-hidden bg-slate-950 text-white rounded-t-[60px] scroll-mt-40">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -141,18 +174,14 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Target Audience Section */}
         <TargetAudience />
 
-        {/* Direct Booking Benefits */}
         <DirectBookingBenefits />
 
-        {/* FAQ Section */}
         <FAQ />
 
         <JSONLD />
 
-        {/* CTA Footer / Contact */}
         <section id="contact" className="mt-auto pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
           <div className="max-w-4xl mx-auto px-6">
              <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
@@ -162,17 +191,9 @@ const App: React.FC = () => {
               Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-none">{t('waitsForYou')}</span>
             </h2>
             
-            {/* How to get here block */}
-            <div className="mb-16 text-left max-w-2xl mx-auto bg-white/5 p-8 rounded-[32px] border border-white/10">
-              <h3 className="text-xl font-black uppercase tracking-widest mb-8 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <span className="text-2xl">🚂</span>
-                  <div>
-                    <h4 className="font-black uppercase text-xs tracking-widest mb-1">{t('byTrain')}</h4>
-                    <p className="text-slate-400 text-xs leading-relaxed">{t('byTrainDesc')}</p>
-                  </div>
-                </div>
+            <div className="mb-10 text-left max-w-2xl mx-auto bg-white/5 p-6 rounded-[28px] border border-white/10">
+              <h3 className="text-lg font-black uppercase tracking-widest mb-6 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
+              <div className="grid sm:grid-cols-2 gap-5">
                 <div className="flex items-start space-x-4">
                   <span className="text-2xl">🚗</span>
                   <div>
@@ -190,8 +211,9 @@ const App: React.FC = () => {
               </div>
               
               <button 
-                onClick={() => setIsRouteModalOpen(true)}
-                className="mt-10 w-full py-4 border-2 border-indigo-400/30 text-indigo-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-400 hover:text-white transition-all active:scale-95"
+                type="button"
+                onClick={scrollToRoutes}
+                className="mt-7 w-full py-3.5 border-2 border-indigo-400/30 text-indigo-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-400 hover:text-white transition-all active:scale-95"
               >
                 {t('detailedRoute')}
               </button>
@@ -226,9 +248,7 @@ const App: React.FC = () => {
       <AIConcierge />
       <AdminPanel />
       <FloatingCallButton />
-      <RouteModal isOpen={isRouteModalOpen} onClose={() => setIsRouteModalOpen(false)} />
       
-      {/* Design Credit Banner */}
       <div className="bg-slate-900 text-white/60 py-4 px-4 text-center border-t border-white/5">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
           <p className="text-[10px] font-bold uppercase tracking-widest">
