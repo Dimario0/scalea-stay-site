@@ -17,6 +17,7 @@ on:
     paths:
       - scripts/seo-audit.mjs
       - scripts/seo-audit-v2.1.mjs
+      - scripts/seo-audit-sheet-sync.mjs
       - .github/workflows/seo-audit.yml
   push:
     branches:
@@ -24,6 +25,7 @@ on:
     paths:
       - scripts/seo-audit.mjs
       - scripts/seo-audit-v2.1.mjs
+      - scripts/seo-audit-sheet-sync.mjs
       - .github/workflows/seo-audit.yml
   schedule:
     - cron: '17 5 * * 1'
@@ -43,7 +45,8 @@ jobs:
     env:
       BASE_URL: ${{ inputs.base_url || 'https://scaleastay.com' }}
       CANONICAL_ORIGIN: https://scaleastay.com
-      PREVIEW_URL: https://deploy-preview-${{ github.event.pull_request.number }}--scaleastay.netlify.app
+      PREVIEW_URL: ${{ github.event_name == 'pull_request' && format('https://deploy-preview-{0}--scaleastay.netlify.app', github.event.pull_request.number) || 'https://deploy-preview-2--scaleastay.netlify.app' }}
+      SCALEASTAY_SEO_SHEET_ID: 10_VRSzVtYjipud-1c4bbOTdysGz-SuqqWhggpMwvu_M
 
     steps:
       - name: Checkout repository
@@ -67,15 +70,50 @@ jobs:
         run: node scripts/seo-audit-v2.1.mjs --base-url "$BASE_URL" --canonical-origin "$CANONICAL_ORIGIN" --output-dir artifacts/primary
 
       - name: Wait for Deploy Preview
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/scaleastay-growth-v1'
         run: |
           curl --fail --silent --show-error \
             --retry 10 --retry-all-errors --retry-delay 12 \
             "$PREVIEW_URL/" > /dev/null
 
       - name: Run Deploy Preview read-only SEO audit
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/scaleastay-growth-v1'
         run: node scripts/seo-audit-v2.1.mjs --base-url "$PREVIEW_URL" --canonical-origin "$CANONICAL_ORIGIN" --output-dir artifacts/preview
+
+      - name: Check Google Sheets credential
+        id: sheets
+        if: github.event_name != 'pull_request'
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        shell: bash
+        run: |
+          if [ -n "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "Google Sheets credential: PRESENT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::GOOGLE_SERVICE_ACCOUNT_JSON is missing; audit reports were generated but not written to Google Sheets."
+          fi
+
+      - name: Record primary audit in Google Sheets
+        if: github.event_name != 'pull_request' && steps.sheets.outputs.available == 'true'
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node scripts/seo-audit-sheet-sync.mjs \
+            --report artifacts/primary/seo-audit.json \
+            --environment production \
+            --spreadsheet-id "$SCALEASTAY_SEO_SHEET_ID"
+
+      - name: Record Deploy Preview audit in Google Sheets
+        if: github.event_name != 'pull_request' && steps.sheets.outputs.available == 'true' && github.ref == 'refs/heads/scaleastay-growth-v1'
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node scripts/seo-audit-sheet-sync.mjs \
+            --report artifacts/preview/seo-audit.json \
+            --environment preview \
+            --spreadsheet-id "$SCALEASTAY_SEO_SHEET_ID"
 
       - name: Add reports to job summary
         if: always()
