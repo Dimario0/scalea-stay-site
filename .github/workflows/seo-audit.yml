@@ -42,6 +42,7 @@ jobs:
     timeout-minutes: 30
     env:
       BASE_URL: ${{ inputs.base_url || 'https://scaleastay.com' }}
+      CANONICAL_ORIGIN: https://scaleastay.com
       PREVIEW_URL: https://deploy-preview-${{ github.event.pull_request.number }}--scaleastay.netlify.app
 
     steps:
@@ -63,7 +64,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Run primary read-only SEO audit
-        run: node scripts/seo-audit-v2.1.mjs --base-url "$BASE_URL" --output-dir artifacts/primary
+        run: node scripts/seo-audit-v2.1.mjs --base-url "$BASE_URL" --canonical-origin "$CANONICAL_ORIGIN" --output-dir artifacts/primary
 
       - name: Wait for Deploy Preview
         if: github.event_name == 'pull_request'
@@ -74,7 +75,7 @@ jobs:
 
       - name: Run Deploy Preview read-only SEO audit
         if: github.event_name == 'pull_request'
-        run: node scripts/seo-audit-v2.1.mjs --base-url "$PREVIEW_URL" --output-dir artifacts/preview
+        run: node scripts/seo-audit-v2.1.mjs --base-url "$PREVIEW_URL" --canonical-origin "$CANONICAL_ORIGIN" --output-dir artifacts/preview
 
       - name: Add reports to job summary
         if: always()
