@@ -1,0 +1,71 @@
+name: ScaleaStay SEO Audit V2
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Public site URL to audit
+        required: false
+        default: https://scaleastay.com
+  push:
+    branches:
+      - scaleastay-growth-v1
+    paths:
+      - scripts/seo-audit.mjs
+      - .github/workflows/seo-audit.yml
+  schedule:
+    - cron: '17 5 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scaleastay-seo-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    name: Rendered DOM audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      BASE_URL: ${{ inputs.base_url || 'https://scaleastay.com' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright@1.62.0
+          npx playwright install --with-deps chromium
+
+      - name: Run read-only SEO audit
+        run: node scripts/seo-audit.mjs --base-url "$BASE_URL" --output-dir artifacts
+
+      - name: Add report to job summary
+        if: always()
+        run: |
+          if [ -f artifacts/seo-audit.md ]; then
+            cat artifacts/seo-audit.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "SEO audit report was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload audit reports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: scaleastay-seo-audit-${{ github.run_id }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 30
