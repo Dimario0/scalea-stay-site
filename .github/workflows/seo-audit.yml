@@ -7,6 +7,16 @@ on:
         description: Public site URL to audit
         required: false
         default: https://scaleastay.com
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - scripts/seo-audit.mjs
+      - .github/workflows/seo-audit.yml
   push:
     branches:
       - scaleastay-growth-v1
