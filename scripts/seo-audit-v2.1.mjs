@@ -5,7 +5,7 @@ import process from 'node:process';
 import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
-const AUDIT_VERSION = '2.1.0';
+const AUDIT_VERSION = '2.1.1';
 
 const getArgument = (name, fallback) => {
   const index = process.argv.indexOf(name);
@@ -27,12 +27,17 @@ const normalizeComparableUrl = (value) => {
   }
 };
 
+const expectedCanonicalForRoute = (canonicalOrigin, route) => (
+  route === '/' ? `${canonicalOrigin}/` : `${canonicalOrigin}${route}`
+);
+
 const buildMarkdown = (report) => {
   const lines = [
     `# ScaleaStay SEO Audit V${report.auditVersion}`,
     '',
     `- Generated: ${report.generatedAt}`,
     `- Base URL: ${report.baseUrl}`,
+    `- Canonical origin: ${report.canonicalOrigin}`,
     '- Mode: READ-ONLY',
     `- Checked URLs: ${report.summary.checkedPages}`,
     `- Unique real tasks: ${report.summary.uniqueTasks}`,
@@ -80,6 +85,7 @@ const buildMarkdown = (report) => {
 
 const main = async () => {
   const baseUrl = normalizeBaseUrl(getArgument('--base-url', process.env.BASE_URL || 'https://scaleastay.com'));
+  const canonicalOrigin = normalizeBaseUrl(getArgument('--canonical-origin', process.env.CANONICAL_ORIGIN || baseUrl));
   const outputDirectory = getArgument('--output-dir', process.env.AUDIT_OUTPUT_DIR || 'artifacts');
 
   const { stdout, stderr } = await execFileAsync(
@@ -93,26 +99,48 @@ const main = async () => {
   const jsonPath = path.join(outputDirectory, 'seo-audit.json');
   const markdownPath = path.join(outputDirectory, 'seo-audit.md');
   const report = JSON.parse(await readFile(jsonPath, 'utf8'));
-  const rootPage = report.pages.find((page) => page.route === '/');
-  const allowedRootCanonicals = [`${baseUrl}/`, `${baseUrl}/ru/`].map(normalizeComparableUrl);
+  const pagesByRoute = new Map(report.pages.map((page) => [page.route, page]));
+
+  report.tasks = report.tasks
+    .map((task) => {
+      if (task.type !== 'CANONICAL_MISMATCH') return task;
+
+      const unresolvedPages = task.pages.filter((route) => {
+        const page = pagesByRoute.get(route);
+        if (!page?.rendered?.canonical) return true;
+
+        const actual = normalizeComparableUrl(page.rendered.canonical);
+        if (route === '/') {
+          const allowed = [`${canonicalOrigin}/`, `${canonicalOrigin}/ru/`]
+            .map(normalizeComparableUrl);
+          page.allowedCanonicals = [`${canonicalOrigin}/`, `${canonicalOrigin}/ru/`];
+          return !allowed.includes(actual);
+        }
+
+        page.expectedCanonical = expectedCanonicalForRoute(canonicalOrigin, route);
+        return actual !== normalizeComparableUrl(page.expectedCanonical);
+      });
+
+      return { ...task, pages: unresolvedPages };
+    })
+    .filter((task) => task.pages.length > 0);
+
+  const rootPage = pagesByRoute.get('/');
+  const allowedRootCanonicals = [`${canonicalOrigin}/`, `${canonicalOrigin}/ru/`]
+    .map(normalizeComparableUrl);
   const rootCanonicalIsAllowed = rootPage
     ? allowedRootCanonicals.includes(normalizeComparableUrl(rootPage.rendered?.canonical))
     : false;
 
   if (rootPage) {
-    rootPage.allowedCanonicals = [`${baseUrl}/`, `${baseUrl}/ru/`];
+    rootPage.allowedCanonicals = [`${canonicalOrigin}/`, `${canonicalOrigin}/ru/`];
   }
 
-  report.tasks = report.tasks
-    .map((task) => {
-      if (task.type !== 'CANONICAL_MISMATCH' || !rootCanonicalIsAllowed) return task;
-      return { ...task, pages: task.pages.filter((page) => page !== '/') };
-    })
-    .filter((task) => task.pages.length > 0);
-
   report.auditVersion = AUDIT_VERSION;
+  report.canonicalOrigin = canonicalOrigin;
   report.summary.uniqueTasks = report.tasks.length;
   report.summary.rootCanonicalPolicy = rootCanonicalIsAllowed ? 'PASS' : 'FAIL';
+  report.summary.canonicalOrigin = canonicalOrigin;
 
   await writeFile(jsonPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
   await writeFile(markdownPath, buildMarkdown(report), 'utf8');
