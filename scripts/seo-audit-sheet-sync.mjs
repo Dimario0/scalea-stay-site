@@ -2,6 +2,7 @@ import { createSign } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import process from 'node:process';
 
+// No-op trigger: verify restored Google Sheets credential and append-only sync.
 const RUNS_SHEET = 'seo_audit_runs';
 const PAGES_SHEET = 'seo_audit_pages';
 const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
@@ -117,7 +118,7 @@ const getAccessToken = async (credentials) => {
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+      grant_type: 'urn:ietf:params:oauth-grant-type:jwt-bearer',
       assertion,
     }),
   });
