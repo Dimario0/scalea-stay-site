@@ -2,9 +2,9 @@ import { createSign } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import process from 'node:process';
 
-// No-op trigger: verify restored Google Sheets credential and append-only sync.
 const RUNS_SHEET = 'seo_audit_runs';
 const PAGES_SHEET = 'seo_audit_pages';
+const AGENT_REPORTS_SHEET = 'seo_agent_reports';
 const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 const DEFAULT_TOKEN_URI = 'https://oauth2.googleapis.com/token';
 
@@ -47,6 +47,26 @@ const PAGE_HEADERS = [
   'github_run_id',
   'commit_sha',
   'repository',
+];
+
+const AGENT_REPORT_HEADERS = [
+  'recorded_at_utc',
+  'report_generated_at',
+  'status',
+  'headline',
+  'recommended_action',
+  'production_tasks',
+  'preview_tasks',
+  'resolved_in_preview',
+  'h1_status',
+  'production_checked_pages',
+  'preview_checked_pages',
+  'audit_version',
+  'github_run_id',
+  'commit_sha',
+  'workflow_event',
+  'repository',
+  'report_json',
 ];
 
 const getArgument = (name, fallback = '') => {
@@ -183,18 +203,20 @@ const appendValues = async (accessToken, spreadsheetId, range, values) => {
   );
 };
 
+const sheetDefinitions = [
+  { title: RUNS_SHEET, headers: RUN_HEADERS, rowCount: 2000 },
+  { title: PAGES_SHEET, headers: PAGE_HEADERS, rowCount: 5000 },
+  { title: AGENT_REPORTS_SHEET, headers: AGENT_REPORT_HEADERS, rowCount: 2000 },
+];
+
 const ensureSheets = async (accessToken, spreadsheetId) => {
   const metadata = await sheetsRequest(
     accessToken,
     `https://sheets.googleapis.com/v4/spreadsheets/${encodeURIComponent(spreadsheetId)}?fields=sheets.properties`,
   );
   const titles = new Set((metadata.sheets || []).map((sheet) => sheet.properties?.title));
-  const definitions = [
-    { title: RUNS_SHEET, headers: RUN_HEADERS, rowCount: 2000 },
-    { title: PAGES_SHEET, headers: PAGE_HEADERS, rowCount: 5000 },
-  ];
+  const missing = sheetDefinitions.filter(({ title }) => !titles.has(title));
 
-  const missing = definitions.filter(({ title }) => !titles.has(title));
   if (missing.length > 0) {
     await sheetsRequest(
       accessToken,
@@ -219,7 +241,7 @@ const ensureSheets = async (accessToken, spreadsheetId) => {
     );
   }
 
-  for (const { title, headers } of definitions) {
+  for (const { title, headers } of sheetDefinitions) {
     const headerRange = `${title}!A1:${columnName(headers.length)}1`;
     const current = await getValues(accessToken, spreadsheetId, headerRange);
     const currentHeaders = current[0] || [];
@@ -292,6 +314,26 @@ const buildRows = (report, context) => {
   return { runRow, pageRows };
 };
 
+const buildAgentReportRow = (report, context) => [
+  new Date().toISOString(),
+  report.generatedAt || '',
+  report.status || '',
+  report.headline || '',
+  report.recommendedAction || '',
+  Number(report.environments?.production?.taskCount ?? 0),
+  Number(report.environments?.preview?.taskCount ?? 0),
+  Number(report.deploymentDelta?.resolvedInPreview?.length ?? 0),
+  report.h1?.status || '',
+  Number(report.environments?.production?.checkedPages ?? 0),
+  Number(report.environments?.preview?.checkedPages ?? 0),
+  report.sourceAuditVersion || '',
+  context.runId,
+  context.commitSha,
+  context.workflowEvent,
+  context.repository,
+  JSON.stringify(report),
+];
+
 const syncReport = async ({ accessToken, spreadsheetId, report, context, dryRun }) => {
   const { runRow, pageRows } = buildRows(report, context);
 
@@ -327,14 +369,33 @@ const syncReport = async ({ accessToken, spreadsheetId, report, context, dryRun 
   };
 };
 
+const syncAgentReport = async ({ accessToken, spreadsheetId, report, context, dryRun }) => {
+  const reportRow = buildAgentReportRow(report, context);
+
+  if (dryRun) {
+    console.log(JSON.stringify({ agentReportRow: reportRow }, null, 2));
+    return { status: 'DRY_RUN', appendedReport: false };
+  }
+
+  await ensureSheets(accessToken, spreadsheetId);
+  const reportValues = await getValues(accessToken, spreadsheetId, `${AGENT_REPORTS_SHEET}!A2:Q`);
+  const reportExists = reportValues.some((row) => String(row[12] || '') === context.runId);
+
+  if (!reportExists) {
+    await appendValues(accessToken, spreadsheetId, `${AGENT_REPORTS_SHEET}!A:Q`, [reportRow]);
+  }
+
+  return {
+    status: reportExists ? 'ALREADY_RECORDED' : 'RECORDED',
+    appendedReport: !reportExists,
+  };
+};
+
 const main = async () => {
-  const reportPath = requiredArgument('--report');
-  const environment = requiredArgument('--environment');
   const spreadsheetId = requiredArgument('--spreadsheet-id', process.env.SCALEASTAY_SEO_SHEET_ID || '');
   const dryRun = hasFlag('--dry-run');
-  const report = JSON.parse(await readFile(reportPath, 'utf8'));
+  const agentReportPath = getArgument('--agent-report');
   const context = {
-    environment,
     runId: getArgument('--run-id', process.env.GITHUB_RUN_ID || 'local'),
     commitSha: getArgument('--commit-sha', process.env.GITHUB_SHA || 'local'),
     workflowEvent: getArgument('--workflow-event', process.env.GITHUB_EVENT_NAME || 'local'),
@@ -347,7 +408,27 @@ const main = async () => {
     accessToken = await getAccessToken(credentials);
   }
 
-  const result = await syncReport({ accessToken, spreadsheetId, report, context, dryRun });
+  if (agentReportPath) {
+    const agentReport = JSON.parse(await readFile(agentReportPath, 'utf8'));
+    const result = await syncAgentReport({ accessToken, spreadsheetId, report: agentReport, context, dryRun });
+    console.log(JSON.stringify({
+      agentReportSheetSync: result.status,
+      runId: context.runId,
+      appendedReport: result.appendedReport,
+    }));
+    return;
+  }
+
+  const reportPath = requiredArgument('--report');
+  const environment = requiredArgument('--environment');
+  const report = JSON.parse(await readFile(reportPath, 'utf8'));
+  const result = await syncReport({
+    accessToken,
+    spreadsheetId,
+    report,
+    context: { ...context, environment },
+    dryRun,
+  });
   console.log(JSON.stringify({
     sheetSync: result.status,
     environment,
