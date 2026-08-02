@@ -16,12 +16,14 @@ on:
       - reopened
     paths:
       - scripts/seo-audit.mjs
+      - scripts/seo-audit-v2.1.mjs
       - .github/workflows/seo-audit.yml
   push:
     branches:
       - scaleastay-growth-v1
     paths:
       - scripts/seo-audit.mjs
+      - scripts/seo-audit-v2.1.mjs
       - .github/workflows/seo-audit.yml
   schedule:
     - cron: '17 5 * * 1'
@@ -37,9 +39,10 @@ jobs:
   audit:
     name: Rendered DOM audit
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
     env:
       BASE_URL: ${{ inputs.base_url || 'https://scaleastay.com' }}
+      PREVIEW_URL: https://deploy-preview-${{ github.event.pull_request.number }}--scaleastay.netlify.app
 
     steps:
       - name: Checkout repository
@@ -59,16 +62,34 @@ jobs:
           npm install --no-save playwright@1.62.0
           npx playwright install --with-deps chromium
 
-      - name: Run read-only SEO audit
-        run: node scripts/seo-audit.mjs --base-url "$BASE_URL" --output-dir artifacts
+      - name: Run primary read-only SEO audit
+        run: node scripts/seo-audit-v2.1.mjs --base-url "$BASE_URL" --output-dir artifacts/primary
 
-      - name: Add report to job summary
+      - name: Wait for Deploy Preview
+        if: github.event_name == 'pull_request'
+        run: |
+          curl --fail --silent --show-error \
+            --retry 10 --retry-all-errors --retry-delay 12 \
+            "$PREVIEW_URL/" > /dev/null
+
+      - name: Run Deploy Preview read-only SEO audit
+        if: github.event_name == 'pull_request'
+        run: node scripts/seo-audit-v2.1.mjs --base-url "$PREVIEW_URL" --output-dir artifacts/preview
+
+      - name: Add reports to job summary
         if: always()
         run: |
-          if [ -f artifacts/seo-audit.md ]; then
-            cat artifacts/seo-audit.md >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "SEO audit report was not generated." >> "$GITHUB_STEP_SUMMARY"
+          found=0
+          for report in artifacts/*/seo-audit.md; do
+            if [ -f "$report" ]; then
+              found=1
+              echo "## $(basename "$(dirname "$report")")" >> "$GITHUB_STEP_SUMMARY"
+              cat "$report" >> "$GITHUB_STEP_SUMMARY"
+              echo >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "SEO audit reports were not generated." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Upload audit reports
