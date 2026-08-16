@@ -29,9 +29,9 @@ const COPY: Record<string, ApartmentCopy> = {
     facts: ['Up to 4 guests', 'Air conditioning', 'Kitchen', 'Terrace', 'Parking'],
   },
   it: {
-    eyebrow: 'Appartamento a Scalea',
-    summary: 'Un appartamento luminoso e accogliente con interni moderni per una vacanza confortevole vicino al mare. Cucina attrezzata, aria condizionata e terrazza sono ideali sia per soggiorni brevi sia per vacanze più lunghe.',
-    cta: 'Verifica le date disponibili',
+    eyebrow: 'Il tuo appartamento a Scalea',
+    summary: 'Luminoso e accogliente, con interni moderni e tutto il necessario per una vacanza al mare comoda e rilassante. Cucina attrezzata, aria condizionata e terrazza lo rendono adatto sia a soggiorni brevi sia a vacanze più lunghe.',
+    cta: 'Verifica le date su WhatsApp',
     facts: ['Fino a 4 ospiti', 'Aria condizionata', 'Cucina', 'Terrazza', 'Parcheggio'],
   },
   de: {
