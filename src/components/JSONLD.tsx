@@ -17,51 +17,51 @@ const SEO_COPY: Record<string, SeoCopy> = {
     amenitiesSuffix: 'Также в квартире есть фен, микроволновая печь и необходимые кухонные принадлежности.',
     beachQuestion: 'Что предусмотрено для отдыха на пляже?',
     beachAnswer: 'Для гостей предусмотрен пляжный зонт, который можно взять с собой к морю.',
-    airportRouteName: 'Как добраться из аэропорта Lamezia Terme до Casa Marittima в Скалее',
+    airportRouteName: 'Как добраться из аэропорта Lamezia Terme до ScaleaStay в Скалее',
     airportRouteDescription: 'Маршрут из ближайшего международного аэропорта: Airlink до Lamezia Terme Centrale, поезд до Scalea и финальный участок до апартаментов.',
     airportStep1: 'Сесть на автобус Lamezia Airlink от аэропорта до станции Lamezia Terme Centrale.',
     airportStep2: 'Доехать поездом Trenitalia до станции Scalea–Santa Domenica Talao.',
-    airportStep3: 'От станции продолжить на такси, трансфере или по локальному маршруту до Casa Marittima.',
+    airportStep3: 'От станции продолжить на такси, трансфере или по локальному маршруту до ScaleaStay.',
   },
   en: {
     amenitiesSuffix: 'The apartment also includes a hair dryer, microwave and essential kitchen utensils.',
     beachQuestion: 'What is provided for a day at the beach?',
     beachAnswer: 'Guests can use a beach umbrella and take it with them to the sea.',
-    airportRouteName: 'How to reach Casa Marittima in Scalea from Lamezia Terme Airport',
+    airportRouteName: 'How to reach ScaleaStay in Scalea from Lamezia Terme Airport',
     airportRouteDescription: 'Route from the nearest international airport: Airlink to Lamezia Terme Centrale, train to Scalea and the final transfer to the apartment.',
     airportStep1: 'Take the Lamezia Airlink bus from the airport to Lamezia Terme Centrale station.',
     airportStep2: 'Take a Trenitalia train to Scalea–Santa Domenica Talao station.',
-    airportStep3: 'Continue from the station by taxi, transfer or the local route to Casa Marittima.',
+    airportStep3: 'Continue from the station by taxi, transfer or the local route to ScaleaStay.',
   },
   it: {
     amenitiesSuffix: 'L’appartamento dispone inoltre di asciugacapelli, forno a microonde e utensili da cucina essenziali.',
     beachQuestion: 'Cosa è disponibile per una giornata in spiaggia?',
     beachAnswer: 'Gli ospiti possono utilizzare un ombrellone da portare con sé al mare.',
-    airportRouteName: 'Come raggiungere Casa Marittima a Scalea dall’aeroporto di Lamezia Terme',
+    airportRouteName: 'Come raggiungere ScaleaStay a Scalea dall’aeroporto di Lamezia Terme',
     airportRouteDescription: 'Percorso dall’aeroporto internazionale più vicino: Airlink fino a Lamezia Terme Centrale, treno per Scalea e ultimo tratto verso l’appartamento.',
     airportStep1: 'Prendere la navetta Lamezia Airlink dall’aeroporto alla stazione Lamezia Terme Centrale.',
     airportStep2: 'Prendere un treno Trenitalia fino alla stazione Scalea–Santa Domenica Talao.',
-    airportStep3: 'Dalla stazione proseguire in taxi, con transfer o con il percorso locale fino a Casa Marittima.',
+    airportStep3: 'Dalla stazione proseguire in taxi, con transfer o con il percorso locale fino a ScaleaStay.',
   },
   de: {
     amenitiesSuffix: 'Außerdem gibt es einen Haartrockner, eine Mikrowelle und die wichtigsten Küchenutensilien.',
     beachQuestion: 'Was steht für einen Strandtag zur Verfügung?',
     beachAnswer: 'Für Gäste steht ein Sonnenschirm zur Verfügung, der mit zum Meer genommen werden kann.',
-    airportRouteName: 'Anreise vom Flughafen Lamezia Terme zur Casa Marittima in Scalea',
+    airportRouteName: 'Anreise vom Flughafen Lamezia Terme zu ScaleaStay in Scalea',
     airportRouteDescription: 'Route vom nächstgelegenen internationalen Flughafen: Airlink nach Lamezia Terme Centrale, Zug nach Scalea und letzter Abschnitt zum Apartment.',
     airportStep1: 'Mit dem Lamezia Airlink Bus vom Flughafen zum Bahnhof Lamezia Terme Centrale fahren.',
     airportStep2: 'Mit einem Trenitalia-Zug bis Scalea–Santa Domenica Talao fahren.',
-    airportStep3: 'Vom Bahnhof per Taxi, Transfer oder über die lokale Route zur Casa Marittima weiterfahren.',
+    airportStep3: 'Vom Bahnhof per Taxi, Transfer oder über die lokale Route zu ScaleaStay weiterfahren.',
   },
   cs: {
     amenitiesSuffix: 'V apartmánu je také fén, mikrovlnná trouba a základní kuchyňské vybavení.',
     beachQuestion: 'Co je k dispozici pro pobyt na pláži?',
     beachAnswer: 'Hosté mají k dispozici plážový slunečník, který si mohou vzít k moři.',
-    airportRouteName: 'Jak se dostat z letiště Lamezia Terme do Casa Marittima ve Scalee',
+    airportRouteName: 'Jak se dostat z letiště Lamezia Terme do ScaleaStay ve Scalee',
     airportRouteDescription: 'Trasa z nejbližšího mezinárodního letiště: Airlink do Lamezia Terme Centrale, vlak do Scalea a poslední úsek k apartmánu.',
     airportStep1: 'Jeďte autobusem Lamezia Airlink z letiště na nádraží Lamezia Terme Centrale.',
     airportStep2: 'Pokračujte vlakem Trenitalia do stanice Scalea–Santa Domenica Talao.',
-    airportStep3: 'Z nádraží pokračujte taxíkem, transferem nebo místní trasou do Casa Marittima.',
+    airportStep3: 'Z nádraží pokračujte taxíkem, transferem nebo místní trasou do ScaleaStay.',
   },
 };
 
@@ -73,7 +73,7 @@ const JSONLD: React.FC = () => {
   const websiteId = 'https://scaleastay.com/#website';
   const webPageId = `${pageUrl}#webpage`;
   const propertyId = 'https://scaleastay.com/#property';
-  const accommodationId = 'https://scaleastay.com/#casa-marittima';
+  const accommodationId = 'https://scaleastay.com/#scaleastay-apartment';
   const beachId = 'https://scaleastay.com/#nearest-beach';
   const stationId = 'https://scaleastay.com/#scalea-station';
   const airportId = 'https://scaleastay.com/#lamezia-airport';
@@ -115,7 +115,7 @@ const JSONLD: React.FC = () => {
         '@type': 'WebPage',
         '@id': webPageId,
         url: pageUrl,
-        name: 'ScaleaStay — Casa Marittima',
+        name: 'ScaleaStay — holiday apartment in Scalea',
         description: t('heroSubtitle'),
         inLanguage: language,
         isPartOf: { '@id': websiteId },
@@ -139,7 +139,6 @@ const JSONLD: React.FC = () => {
         '@type': 'LodgingBusiness',
         '@id': propertyId,
         name: 'ScaleaStay',
-        alternateName: 'Casa Marittima',
         identifier: 'IT078138C2VN4E3MCD',
         description: t('heroSubtitle'),
         url: pageUrl,
@@ -175,6 +174,11 @@ const JSONLD: React.FC = () => {
         additionalProperty: [
           {
             '@type': 'PropertyValue',
+            name: 'Nearest beach walking distance',
+            value: '600 m; approximately 5–8 minutes on foot',
+          },
+          {
+            '@type': 'PropertyValue',
             name: 'Nearest beach access coordinates',
             value: '39.8064465, 15.7889826',
           },
@@ -191,7 +195,7 @@ const JSONLD: React.FC = () => {
           {
             '@type': 'PropertyValue',
             name: 'Airport public transport route',
-            value: 'Lamezia Airlink to Lamezia Terme Centrale, Trenitalia train to Scalea–Santa Domenica Talao, then local transfer to Casa Marittima',
+            value: 'Lamezia Airlink to Lamezia Terme Centrale, Trenitalia train to Scalea–Santa Domenica Talao, then local transfer to ScaleaStay',
           },
         ],
         subjectOf: [
@@ -202,7 +206,7 @@ const JSONLD: React.FC = () => {
       {
         '@type': 'Accommodation',
         '@id': accommodationId,
-        name: 'Casa Marittima',
+        name: 'ScaleaStay apartment',
         containedInPlace: { '@id': propertyId },
         mainEntityOfPage: { '@id': webPageId },
         occupancy: {
@@ -219,7 +223,7 @@ const JSONLD: React.FC = () => {
       {
         '@type': 'TouristAttraction',
         '@id': beachId,
-        name: 'Nearest beach access to Casa Marittima',
+        name: 'Nearest beach access to ScaleaStay',
         description: 'Nearest confirmed beach access point used by the route section on ScaleaStay.',
         hasMap: beachMapUrl,
         geo: {
