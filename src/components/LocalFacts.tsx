@@ -125,6 +125,27 @@ const COPY: Record<string, LocalFactsCopy> = {
       { title: 'Piazza Gregorio Caloprese', metric: '950 m · přibližně 13 min pěšky' },
     ],
   },
+  pl: {
+    eyebrow: 'Wszystko w zasięgu spaceru',
+    title: 'Wakacje nad morzem, gdzie wszystko jest blisko',
+    subtitle: 'Ze ScaleaStay dojdziesz pieszo na plażę, do Intersparu, na dworzec, do historycznego centrum i w miejsca idealne na wieczorny spacer.',
+    cta: 'Zobacz trasy',
+    extraLabel: 'Także w pobliżu',
+    facts: [
+      { title: 'Plaża', metric: '600 m · około 5–8 min pieszo' },
+      { title: 'Interspar', metric: '230 m · około 3 min pieszo' },
+      { title: 'Dworzec Scalea', metric: '500 m · około 8 min pieszo' },
+      {
+        title: 'Historyczne centrum',
+        metric: '950 m · około 13 min pieszo',
+        description: 'Przyjemny spacer spokojnymi uliczkami Scalei.',
+      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · około 12 min pieszo' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · około 13 min pieszo' },
+    ],
+  },
 };
 
 const ICONS = [Waves, ShoppingBasket, TrainFront, Castle];
