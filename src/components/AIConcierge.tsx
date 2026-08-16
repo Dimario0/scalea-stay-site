@@ -43,23 +43,23 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
 
   if (isSea) {
     switch (lang) {
-      case 'ru': return "До моря примерно 400 м, около 6 минут пешком.";
-      case 'en': return "The sea is about 400 meters away, a 6-minute walk.";
-      case 'it': return "Il mare si trova a circa 400 metri, 6 minuti a piedi.";
-      case 'de': return "Das Meer ist etwa 400 Meter entfernt, 6 Gehminuten.";
-      case 'cs': return "Moře je vzdáleno cca 400 metrů, 6 minut chůze.";
-      default: return "The sea is about 400 meters away, a 6-minute walk.";
+      case 'ru': return "Ближайший пляж — около 600 м от ScaleaStay, обычно 5–8 минут пешком.";
+      case 'en': return "The nearest beach is about 600 m from ScaleaStay, usually a 5–8 minute walk.";
+      case 'it': return "La spiaggia più vicina dista circa 600 m da ScaleaStay, normalmente 5–8 minuti a piedi.";
+      case 'de': return "Der nächste Strand ist etwa 600 m von ScaleaStay entfernt, normalerweise 5–8 Gehminuten.";
+      case 'cs': return "Nejbližší pláž je přibližně 600 m od ScaleaStay, obvykle 5–8 minut pěšky.";
+      default: return "The nearest beach is about 600 m from ScaleaStay, usually a 5–8 minute walk.";
     }
   }
 
   if (isShop) {
     switch (lang) {
-      case 'ru': return "Рядом с апартаментами находится крупный супермаркет Interspar, удобно для ежедневных покупок.";
-      case 'en': return "A large Interspar supermarket is nearby, convenient for daily groceries.";
-      case 'it': return "Nelle vicinanze si trova un grande supermercato Interspar, comodo per la spesa quotidiana.";
-      case 'de': return "Ein großer Interspar-Supermarkt befindet sich in der Nähe, praktisch für tägliche Einkäufe.";
-      case 'cs': return "Nedaleko se nachází velký supermarket Interspar, pohodlné pro každodenní nákupy.";
-      default: return "A large Interspar supermarket is nearby, convenient for daily groceries.";
+      case 'ru': return "Interspar находится примерно в 230 м от ScaleaStay — около 3 минут пешком.";
+      case 'en': return "Interspar is about 230 m from ScaleaStay — around a 3-minute walk.";
+      case 'it': return "Interspar si trova a circa 230 m da ScaleaStay — circa 3 minuti a piedi.";
+      case 'de': return "Interspar ist etwa 230 m von ScaleaStay entfernt — rund 3 Gehminuten.";
+      case 'cs': return "Interspar je přibližně 230 m od ScaleaStay — asi 3 minuty pěšky.";
+      default: return "Interspar is about 230 m from ScaleaStay — around a 3-minute walk.";
     }
   }
 
