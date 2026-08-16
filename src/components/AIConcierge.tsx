@@ -5,19 +5,18 @@ import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 import { motion, AnimatePresence } from 'motion/react';
 
-
 const getLocalResponse = async (input: string, lang: string): Promise<string> => {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 800));
 
   const lowerInput = input.toLowerCase();
 
-  const isSea = /(море|пляж|купат|sea|beach|swim|coast|mare|spiaggia|bagn|meer|strand|schwimm|moř|pláž|koup)/i.test(lowerInput);
-  const isShop = /(магазин|супермаркет|продукт|ед[ау]|interspar|покуш|shop|grocery|food|negozi|supermercat|cib|spes|geschäft|essen|einkauf|obchod|jíd|nákup)/i.test(lowerInput);
-  const isParking = /(парковк|машин|паркинг|park|car|garage|parcheggi|auto|macchin|wagen|aut|vůz)/i.test(lowerInput);
-  const isAC = /(кондиционер|жарк|ac|air|cool|klima|aria)/i.test(lowerInput);
+  const isSea = /(море|пляж|купат|sea|beach|swim|coast|mare|spiaggia|bagn|meer|strand|schwimm|moř|pláž|koup|morze|plaż|kąp)/i.test(lowerInput);
+  const isShop = /(магазин|супермаркет|продукт|ед[ау]|interspar|покуш|shop|grocery|food|negozi|supermercat|cib|spes|geschäft|essen|einkauf|obchod|jíd|nákup|sklep|zakup|jedzeni|spożyw)/i.test(lowerInput);
+  const isParking = /(парковк|машин|паркинг|park|car|garage|parcheggi|auto|macchin|wagen|aut|vůz|samoch|parking)/i.test(lowerInput);
+  const isAC = /(кондиционер|жарк|ac|air|cool|klima|aria|klimatyz)/i.test(lowerInput);
   const isWiFi = /(wi-fi|wifi|интернет|вайфай|вай-фай|internet|wlan)/i.test(lowerInput);
-  const isBooking = /(цен|бронь|бронирова|дат[аы]|свободн|available|price|book|cost|reserv|prezz|prenot|disponibil|tariff|preis|datum|termin|verfügbar|cen|voln|dostupn|kolik)/i.test(lowerInput);
+  const isBooking = /(цен|бронь|бронирова|дат[аы]|свободн|available|price|book|cost|reserv|prezz|prenot|disponibil|tariff|preis|datum|termin|verfügbar|cen|voln|dostupn|kolik|cena|rezerw|termin|dostępn|woln)/i.test(lowerInput);
 
   if (isWiFi) {
     switch (lang) {
@@ -26,6 +25,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "Per questa domanda è meglio chiedere direttamente al proprietario su WhatsApp. https://wa.me/420774620060";
       case 'de': return "Zu dieser Frage wenden Sie sich am besten direkt an den Eigentümer über WhatsApp. https://wa.me/420774620060";
       case 'cs': return "S tímto dotazem se raději obraťte přímo na majitele na WhatsAppu. https://wa.me/420774620060";
+      case 'pl': return "W tej sprawie najlepiej zapytać właściciela bezpośrednio na WhatsAppie. https://wa.me/420774620060";
       default: return "For this question, it is best to check directly with the owner on WhatsApp. https://wa.me/420774620060";
     }
   }
@@ -37,6 +37,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "Non vedo il calendario in tempo reale. Scrivi al proprietario su WhatsApp per verificare rapidamente disponibilità e condizioni di prenotazione. https://wa.me/420774620060";
       case 'de': return "Ich kann den Kalender nicht in Echtzeit sehen. Schreiben Sie dem Eigentümer auf WhatsApp, um freie Termine und Buchungsbedingungen schnell zu prüfen. https://wa.me/420774620060";
       case 'cs': return "Nevidím kalendář v reálném čase. Napište majiteli na WhatsApp a rychle ověříte dostupnost a podmínky rezervace. https://wa.me/420774620060";
+      case 'pl': return "Nie widzę kalendarza w czasie rzeczywistym. Napisz do właściciela na WhatsAppie — szybko sprawdzi wolne terminy i warunki rezerwacji. https://wa.me/420774620060";
       default: return "I cannot see the live calendar. Message the owner on WhatsApp to quickly check availability and booking conditions. https://wa.me/420774620060";
     }
   }
@@ -48,6 +49,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "La spiaggia più vicina dista circa 600 m da ScaleaStay, normalmente 5–8 minuti a piedi.";
       case 'de': return "Der nächste Strand ist etwa 600 m von ScaleaStay entfernt, normalerweise 5–8 Gehminuten.";
       case 'cs': return "Nejbližší pláž je přibližně 600 m od ScaleaStay, obvykle 5–8 minut pěšky.";
+      case 'pl': return "Najbliższa plaża znajduje się około 600 m od ScaleaStay — zwykle 5–8 minut pieszo.";
       default: return "The nearest beach is about 600 m from ScaleaStay, usually a 5–8 minute walk.";
     }
   }
@@ -59,6 +61,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "Interspar si trova a circa 230 m da ScaleaStay — circa 3 minuti a piedi.";
       case 'de': return "Interspar ist etwa 230 m von ScaleaStay entfernt — rund 3 Gehminuten.";
       case 'cs': return "Interspar je přibližně 230 m od ScaleaStay — asi 3 minuty pěšky.";
+      case 'pl': return "Interspar znajduje się około 230 m od ScaleaStay — mniej więcej 3 minuty pieszo.";
       default: return "Interspar is about 230 m from ScaleaStay — around a 3-minute walk.";
     }
   }
@@ -70,6 +73,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "Sì, è disponibile un parcheggio per gli ospiti.";
       case 'de': return "Ja, es gibt Parkplätze für Gäste.";
       case 'cs': return "Ano, pro hosty je k dispozici parkoviště.";
+      case 'pl': return "Tak, dla gości dostępny jest parking.";
       default: return "Yes, there is parking available for guests.";
     }
   }
@@ -81,6 +85,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
       case 'it': return "Sì, gli appartamenti sono dotati di aria condizionata.";
       case 'de': return "Ja, die Apartments verfügen über eine Klimaanlage.";
       case 'cs': return "Ano, apartmány mají klimatizaci.";
+      case 'pl': return "Tak, apartament ma klimatyzację.";
       default: return "Yes, the apartments have air conditioning.";
     }
   }
@@ -91,6 +96,7 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
     case 'it': return "Posso aiutarti con informazioni sulla posizione, il mare, il parcheggio, l'Interspar e le vacanze a Scalea. Per le date disponibili e le prenotazioni, scrivi al proprietario su WhatsApp. https://wa.me/420774620060";
     case 'de': return "Ich kann bei Informationen über Lage, Meer, Parkplätze, Interspar und Urlaub in Scalea helfen. Für verfügbare Daten und Buchungen schreiben Sie bitte dem Eigentümer auf WhatsApp. https://wa.me/420774620060";
     case 'cs': return "Mohu vám poradit ohledně polohy, moře, parkování, Intersparu a dovolené ve Scalei. Pro volné termíny a rezervace napište majiteli na WhatsApp. https://wa.me/420774620060";
+    case 'pl': return "Mogę pomóc w informacjach o lokalizacji, plaży, parkingu, Intersparze i pobycie w Scalei. W sprawie wolnych terminów i rezerwacji najlepiej napisać do właściciela na WhatsAppie. https://wa.me/420774620060";
     default: return "I can help with information about the location, the sea, parking, Interspar, and holidays in Scalea. For available dates and booking, please write to the owner on WhatsApp. https://wa.me/420774620060";
   }
 };
@@ -169,13 +175,14 @@ const AIConcierge: React.FC = () => {
     setMessages(prev => [...prev, { role: 'assistant', content: response }]);
   };
 
-      const getWhatsAppButtonText = () => {
+  const getWhatsAppButtonText = () => {
     switch (language) {
       case 'ru': return 'Написать в WhatsApp';
       case 'en': return 'Message on WhatsApp';
       case 'it': return 'Scrivi su WhatsApp';
       case 'de': return 'Auf WhatsApp schreiben';
       case 'cs': return 'Napsat na WhatsApp';
+      case 'pl': return 'Napisz na WhatsAppie';
       default: return 'Message on WhatsApp';
     }
   };
@@ -198,7 +205,7 @@ const AIConcierge: React.FC = () => {
                 e.preventDefault();
                 handleConciergeWhatsAppClick(part);
               }}
-              onTouchStart={(e) => {
+              onTouchStart={() => {
                 handleConciergeWhatsAppClick(part);
               }}
             >
