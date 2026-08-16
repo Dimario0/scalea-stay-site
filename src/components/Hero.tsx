@@ -41,17 +41,17 @@ const COPY: Record<string, HeroCopy> = {
   de: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderne Ferienwohnung am Meer in Scalea',
-    subtitle: 'ScaleaStay ist eine moderne Ferienwohnung, ideal für einen Urlaub am Meer. Strand, Supermarkt, Bahnhof und das Zentrum von Scalea sind bequem zu Fuß erreichbar.',
-    primaryCta: 'Wohnung ansehen',
-    whatsappCta: 'Freie Termine prüfen',
+    subtitle: 'ScaleaStay ist eine komfortable Ferienwohnung mit modernem Interieur für Ihren Urlaub am Meer. Strand, Interspar, Bahnhof und Zentrum erreichen Sie bequem zu Fuß.',
+    primaryCta: 'Ferienwohnung ansehen',
+    whatsappCta: 'Verfügbarkeit auf WhatsApp prüfen',
     facts: ['Strand · 5–8 Min.', 'Interspar · 3 Min.', 'Bahnhof · 8 Min.'],
   },
   cs: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderní apartmán u moře ve Scalee',
-    subtitle: 'ScaleaStay je moderní apartmán ideální pro dovolenou u moře. Pláž, supermarket, nádraží i centrum města Scalea jsou pohodlně dostupné pěšky.',
+    subtitle: 'ScaleaStay je pohodlný apartmán s moderním interiérem pro dovolenou u moře. Na pláž, do Intersparu, na nádraží i do centra Scalei pohodlně dojdete pěšky.',
     primaryCta: 'Prohlédnout apartmán',
-    whatsappCta: 'Ověřit volné termíny',
+    whatsappCta: 'Ověřit termíny přes WhatsApp',
     facts: ['Pláž · 5–8 min', 'Interspar · 3 min', 'Nádraží · 8 min'],
   },
   pl: {
