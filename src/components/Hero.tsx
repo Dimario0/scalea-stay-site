@@ -4,9 +4,62 @@ import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 
+type HeroCopy = {
+  badge: string;
+  title: string;
+  subtitle: string;
+  primaryCta: string;
+  whatsappCta: string;
+  facts: [string, string, string];
+};
+
+const COPY: Record<string, HeroCopy> = {
+  ru: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Современные апартаменты у моря в Скалее',
+    subtitle: 'Casa Marittima — апартаменты после нового ремонта для отдыха до 4 гостей. Пляж, супермаркет, вокзал и центр Скалеи доступны пешком.',
+    primaryCta: 'Посмотреть апартаменты',
+    whatsappCta: 'Проверить свободные даты',
+    facts: ['Пляж · 8 мин', 'Interspar · 3 мин', 'Вокзал · 8 мин'],
+  },
+  en: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Modern holiday apartment by the sea in Scalea',
+    subtitle: 'Casa Marittima is a newly renovated apartment for up to 4 guests, with the beach, supermarket, train station and central Scalea all within walking distance.',
+    primaryCta: 'View the apartment',
+    whatsappCta: 'Check available dates',
+    facts: ['Beach · 8 min', 'Interspar · 3 min', 'Station · 8 min'],
+  },
+  it: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Appartamento moderno vicino al mare a Scalea',
+    subtitle: 'Casa Marittima è un appartamento recentemente ristrutturato per un massimo di 4 ospiti. Spiaggia, supermercato, stazione e centro di Scalea sono raggiungibili a piedi.',
+    primaryCta: 'Scopri l’appartamento',
+    whatsappCta: 'Verifica le date disponibili',
+    facts: ['Spiaggia · 8 min', 'Interspar · 3 min', 'Stazione · 8 min'],
+  },
+  de: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Moderne Ferienwohnung am Meer in Scalea',
+    subtitle: 'Casa Marittima ist eine neu renovierte Ferienwohnung für bis zu 4 Gäste. Strand, Supermarkt, Bahnhof und das Zentrum von Scalea sind bequem zu Fuß erreichbar.',
+    primaryCta: 'Wohnung ansehen',
+    whatsappCta: 'Freie Termine prüfen',
+    facts: ['Strand · 8 Min.', 'Interspar · 3 Min.', 'Bahnhof · 8 Min.'],
+  },
+  cs: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Moderní apartmán u moře ve Scalee',
+    subtitle: 'Casa Marittima je nově zrekonstruovaný apartmán až pro 4 hosty. Pláž, supermarket, nádraží i centrum města Scalea jsou pohodlně dostupné pěšky.',
+    primaryCta: 'Prohlédnout apartmán',
+    whatsappCta: 'Ověřit volné termíny',
+    facts: ['Pláž · 8 min', 'Interspar · 3 min', 'Nádraží · 8 min'],
+  },
+};
+
 const Hero: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data } = useSiteData();
+  const copy = COPY[language] || COPY.ru;
   const userMainImage = data.siteImages.heroBackground;
   const localFallbacks = ['/web_ready_bg.jpg', '/bg-sea.jpg'];
   
@@ -48,9 +101,9 @@ const Hero: React.FC = () => {
   };
 
   const trustItems = [
-    { icon: '🏖️', label: t('beachDistance') },
-    { icon: '💬', label: t('directBooking') },
-    { icon: '🧭', label: t('localExperience') }
+    { icon: '🏖️', label: copy.facts[0] },
+    { icon: '🛒', label: copy.facts[1] },
+    { icon: '🚆', label: copy.facts[2] }
   ];
 
   return (
@@ -67,18 +120,18 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 z-[1] bg-black/40 backdrop-blur-[1px]" />
       <div className="absolute inset-0 z-[2] bg-gradient-to-b from-slate-950/70 via-transparent to-slate-950" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-24 md:pt-32">
-        <div className="inline-flex items-center space-x-2 mb-8 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 animate-fade-in shadow-2xl">
-          <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-          <span className="text-white text-[11px] font-black uppercase tracking-[0.3em]">{t('heroBadge')}</span>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center pt-24 md:pt-32 pb-14">
+        <div className="inline-flex items-center space-x-2 mb-7 px-5 py-2.5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 animate-fade-in shadow-2xl">
+          <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+          <span className="text-white text-[11px] font-black uppercase tracking-[0.3em]">{copy.badge}</span>
         </div>
         
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[120px] font-[900] text-white leading-[0.9] sm:leading-[0.8] tracking-tighter mb-10 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase break-words hyphens-none">
-          {t('heroTitle')}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[96px] font-[900] text-white leading-[0.95] sm:leading-[0.9] tracking-tighter mb-8 animate-fade-in drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase break-words hyphens-none">
+          {copy.title}
         </h1>
         
-        <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-14 max-w-2xl mx-auto font-medium leading-relaxed animate-fade-in drop-shadow-lg break-words hyphens-none" style={{ animationDelay: '0.2s' }}>
-          {t('heroSubtitle')}
+        <p className="text-lg md:text-xl lg:text-2xl text-white/90 mb-10 max-w-3xl mx-auto font-medium leading-relaxed animate-fade-in drop-shadow-lg break-words hyphens-none" style={{ animationDelay: '0.2s' }}>
+          {copy.subtitle}
         </p>
         
         <div className="flex flex-col items-center animate-fade-in w-full mx-auto" style={{ animationDelay: '0.4s' }}>
@@ -86,28 +139,23 @@ const Hero: React.FC = () => {
             <a 
               href="#apartments" 
               onClick={scrollToApartments}
-              className="w-full sm:w-auto bg-white text-slate-950 px-8 sm:px-14 py-4 sm:py-6 rounded-[28px] font-black text-lg sm:text-xl transition-all hover:bg-indigo-50 hover:-translate-y-1 shadow-[0_20px_50px_rgba(255,255,255,0.2)] active:scale-95 text-center"
+              className="w-full sm:w-auto bg-white text-slate-950 px-8 sm:px-12 py-4 sm:py-5 rounded-[28px] font-black text-base sm:text-lg transition-all hover:bg-indigo-50 hover:-translate-y-1 shadow-[0_20px_50px_rgba(255,255,255,0.2)] active:scale-95 text-center"
             >
-              {t('ourApartments')}
+              {copy.primaryCta}
             </a>
             <a 
               href={CONTACT_INFO.whatsappLink(t('heroWhatsappMsg'))}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('whatsapp_click')}
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-6 rounded-[28px] font-black text-white border-2 border-white/40 backdrop-blur-md hover:bg-white/10 transition-all flex items-center justify-center space-x-4 group text-lg sm:text-xl"
+              onClick={() => trackEvent('whatsapp_click', { source: 'hero' })}
+              className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-[28px] font-black text-white border-2 border-white/40 backdrop-blur-md hover:bg-white/10 transition-all flex items-center justify-center space-x-3 group text-base sm:text-lg"
             >
-               <svg className="w-7 h-7 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                  <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"/>
                </svg>
-               <span>WhatsApp</span>
+               <span>{copy.whatsappCta}</span>
             </a>
           </div>
-          {t('heroCtaHint') && (
-            <p className="mt-4 text-white/70 text-sm font-medium">
-              {t('heroCtaHint')}
-            </p>
-          )}
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-3xl">
             {trustItems.map((item) => (
@@ -116,7 +164,7 @@ const Hero: React.FC = () => {
                 className="flex items-center justify-center gap-3 rounded-2xl border border-white/15 bg-slate-950/35 px-4 py-3 text-white/90 backdrop-blur-lg shadow-lg"
               >
                 <span className="text-lg" aria-hidden="true">{item.icon}</span>
-                <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.16em] leading-tight">
+                <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.12em] leading-tight">
                   {item.label}
                 </span>
               </div>
