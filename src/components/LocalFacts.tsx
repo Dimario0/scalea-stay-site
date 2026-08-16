@@ -121,8 +121,8 @@ const COPY: Record<string, LocalFactsCopy> = {
       },
     ],
     extras: [
-      { title: 'Torre Talao', metric: '900 м · přibližně 12 min pěšky' },
-      { title: 'Piazza Gregorio Caloprese', metric: '950 м · přibližně 13 min pěšky' },
+      { title: 'Torre Talao', metric: '900 m · přibližně 12 min pěšky' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · přibližně 13 min pěšky' },
     ],
   },
 };
