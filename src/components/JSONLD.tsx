@@ -63,6 +63,16 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep2: 'Pokračujte vlakem Trenitalia do stanice Scalea–Santa Domenica Talao.',
     airportStep3: 'Z nádraží pokračujte taxíkem, transferem nebo místní trasou do ScaleaStay.',
   },
+  pl: {
+    amenitiesSuffix: 'W apartamencie są także suszarka do włosów, kuchenka mikrofalowa i podstawowe wyposażenie kuchenne.',
+    beachQuestion: 'Co jest dostępne na dzień na plaży?',
+    beachAnswer: 'Goście mają do dyspozycji parasol plażowy, który można zabrać nad morze.',
+    airportRouteName: 'Jak dojechać z lotniska Lamezia Terme do ScaleaStay w Scalei',
+    airportRouteDescription: 'Trasa z najbliższego międzynarodowego lotniska: Airlink do Lamezia Terme Centrale, pociąg do Scalei i ostatni odcinek do apartamentu.',
+    airportStep1: 'Wsiądź do autobusu Lamezia Airlink z lotniska do stacji Lamezia Terme Centrale.',
+    airportStep2: 'Jedź pociągiem Trenitalia do stacji Scalea–Santa Domenica Talao.',
+    airportStep3: 'Ze stacji jedź dalej taksówką, transferem lub lokalną trasą do ScaleaStay.',
+  },
 };
 
 const JSONLD: React.FC = () => {
@@ -167,7 +177,7 @@ const JSONLD: React.FC = () => {
           '@type': 'ContactPoint',
           contactType: 'reservations',
           telephone: '+420774620060',
-          availableLanguage: ['ru', 'en', 'it', 'de', 'cs'],
+          availableLanguage: ['ru', 'en', 'it', 'de', 'cs', 'pl'],
         },
         containsPlace: { '@id': accommodationId },
         amenityFeature,
