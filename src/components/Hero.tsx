@@ -33,9 +33,9 @@ const COPY: Record<string, HeroCopy> = {
   it: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Appartamento moderno vicino al mare a Scalea',
-    subtitle: 'ScaleaStay è un appartamento moderno ideale per una vacanza al mare. Spiaggia, supermercato, stazione e centro di Scalea sono raggiungibili a piedi.',
+    subtitle: 'ScaleaStay è un appartamento con interni moderni, ideale per una vacanza al mare. Spiaggia, Interspar, stazione e centro di Scalea sono comodamente raggiungibili a piedi.',
     primaryCta: 'Scopri l’appartamento',
-    whatsappCta: 'Verifica le date disponibili',
+    whatsappCta: 'Verifica le date su WhatsApp',
     facts: ['Spiaggia · 5–8 min', 'Interspar · 3 min', 'Stazione · 8 min'],
   },
   de: {
