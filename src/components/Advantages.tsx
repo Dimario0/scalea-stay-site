@@ -44,15 +44,15 @@ const COPY: Record<string, AdvantagesCopy> = {
   },
   it: {
     eyebrow: 'ScaleaStay',
-    title: 'Perché l’appartamento è comodo',
-    subtitle: 'I vantaggi dell’alloggio, senza ripetere le informazioni sulla posizione.',
+    title: 'Comfort pensato per la vacanza',
+    subtitle: 'Spazi e servizi utili per sentirsi comodi durante tutto il soggiorno.',
     items: [
-      { title: 'Interni moderni', desc: 'Interni moderni e arredi nuovi per un soggiorno confortevole.' },
-      { title: 'Aria condizionata', desc: 'Temperatura confortevole anche nelle giornate estive più calde.' },
-      { title: 'Cucina attrezzata', desc: 'Tutto il necessario per preparare i pasti durante la vacanza.' },
-      { title: 'Terrazza', desc: 'Uno spazio in più per rilassarsi con calma.' },
+      { title: 'Interni moderni', desc: 'Ambienti curati e arredi moderni per un soggiorno piacevole.' },
+      { title: 'Aria condizionata', desc: 'Per stare bene in appartamento anche nelle giornate più calde.' },
+      { title: 'Cucina attrezzata', desc: 'Tutto il necessario per preparare i pasti anche in vacanza.' },
+      { title: 'Terrazza', desc: 'Uno spazio in più per rilassarsi durante la giornata.' },
       { title: 'Parcheggio', desc: 'Posto auto disponibile per gli ospiti di ScaleaStay.' },
-      { title: 'Fino a 4 ospiti', desc: 'Una soluzione pratica per coppie, famiglie o piccoli gruppi.' },
+      { title: 'Fino a 4 ospiti', desc: 'Una soluzione comoda per coppie, famiglie o piccoli gruppi.' },
     ],
   },
   de: {
