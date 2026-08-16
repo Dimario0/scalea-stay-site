@@ -23,7 +23,7 @@ const COPY: Record<string, LocalFactsCopy> = {
   ru: {
     eyebrow: 'Всё рядом пешком',
     title: 'Отдых в Скалее без обязательной машины',
-    subtitle: 'От Casa Marittima легко дойти пешком до моря, супермаркета, вокзала, старого города и мест для вечерних прогулок.',
+    subtitle: 'От ScaleaStay легко дойти пешком до моря, супермаркета, вокзала, старого города и мест для вечерних прогулок.',
     cta: 'Посмотреть маршруты',
     extraLabel: 'Ещё рядом',
     facts: [
@@ -44,7 +44,7 @@ const COPY: Record<string, LocalFactsCopy> = {
   en: {
     eyebrow: 'Everything within walking distance',
     title: 'Enjoy Scalea without needing a car',
-    subtitle: 'From Casa Marittima you can easily walk to the sea, supermarket, train station, old town and the main evening-walk area.',
+    subtitle: 'From ScaleaStay you can easily walk to the sea, supermarket, train station, old town and the main evening-walk area.',
     cta: 'View routes',
     extraLabel: 'Also nearby',
     facts: [
@@ -65,7 +65,7 @@ const COPY: Record<string, LocalFactsCopy> = {
   it: {
     eyebrow: 'Tutto raggiungibile a piedi',
     title: 'Vivi Scalea senza dover usare l’auto',
-    subtitle: 'Da Casa Marittima puoi raggiungere facilmente a piedi il mare, il supermercato, la stazione, il centro storico e la zona delle passeggiate serali.',
+    subtitle: 'Da ScaleaStay puoi raggiungere facilmente a piedi il mare, il supermercato, la stazione, il centro storico e la zona delle passeggiate serali.',
     cta: 'Vedi i percorsi',
     extraLabel: 'Anche nelle vicinanze',
     facts: [
@@ -86,7 +86,7 @@ const COPY: Record<string, LocalFactsCopy> = {
   de: {
     eyebrow: 'Alles zu Fuß erreichbar',
     title: 'Scalea genießen, ohne auf ein Auto angewiesen zu sein',
-    subtitle: 'Von Casa Marittima erreichen Sie Meer, Supermarkt, Bahnhof, Altstadt und die zentrale Abendpromenade bequem zu Fuß.',
+    subtitle: 'Von ScaleaStay erreichen Sie Meer, Supermarkt, Bahnhof, Altstadt und die zentrale Abendpromenade bequem zu Fuß.',
     cta: 'Routen ansehen',
     extraLabel: 'Ebenfalls in der Nähe',
     facts: [
@@ -107,7 +107,7 @@ const COPY: Record<string, LocalFactsCopy> = {
   cs: {
     eyebrow: 'Všude pohodlně pěšky',
     title: 'Užijte si Scaleu bez nutnosti používat auto',
-    subtitle: 'Z Casa Marittima snadno dojdete pěšky k moři, supermarketu, nádraží, historickému centru i do hlavní večerní pěší zóny.',
+    subtitle: 'Ze ScaleaStay snadno dojdete pěšky k moři, supermarketu, nádraží, historickému centru i do hlavní večerní pěší zóny.',
     cta: 'Zobrazit trasy',
     extraLabel: 'Také v okolí',
     facts: [
