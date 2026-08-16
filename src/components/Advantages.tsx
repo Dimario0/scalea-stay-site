@@ -81,6 +81,19 @@ const COPY: Record<string, AdvantagesCopy> = {
       { title: 'Až 4 hosté', desc: 'Praktická volba pro páry, rodiny nebo menší skupinu.' },
     ],
   },
+  pl: {
+    eyebrow: 'ScaleaStay',
+    title: 'Komfort na wakacje nad morzem',
+    subtitle: 'Praktyczne wyposażenie i wygodna przestrzeń na krótki wyjazd lub dłuższy pobyt.',
+    items: [
+      { title: 'Nowoczesne wnętrze', desc: 'Jasne, zadbane wnętrze i nowoczesne wyposażenie dla wygodnego pobytu.' },
+      { title: 'Klimatyzacja', desc: 'Komfort w apartamencie także podczas gorących letnich dni.' },
+      { title: 'Wyposażona kuchnia', desc: 'Wszystko, czego potrzeba do przygotowania posiłków podczas wakacji.' },
+      { title: 'Taras', desc: 'Dodatkowa przestrzeń na spokojny odpoczynek.' },
+      { title: 'Parking', desc: 'Miejsce parkingowe dostępne dla gości ScaleaStay.' },
+      { title: 'Do 4 gości', desc: 'Wygodna opcja dla par, rodzin lub małych grup.' },
+    ],
+  },
 };
 
 const ICONS = [Sparkles, AirVent, ChefHat, TreePine, Car, Users];
