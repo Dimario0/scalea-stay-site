@@ -22,7 +22,7 @@ type LocalFactsCopy = {
 const COPY: Record<string, LocalFactsCopy> = {
   ru: {
     eyebrow: 'Всё рядом пешком',
-    title: 'Отдых в Скалее без обязательной машины',
+    title: 'Отдых у моря, где всё рядом',
     subtitle: 'От ScaleaStay легко дойти пешком до моря, супермаркета, вокзала, старого города и мест для вечерних прогулок.',
     cta: 'Посмотреть маршруты',
     extraLabel: 'Ещё рядом',
