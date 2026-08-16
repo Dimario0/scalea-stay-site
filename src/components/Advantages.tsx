@@ -19,7 +19,7 @@ const COPY: Record<string, AdvantagesCopy> = {
   ru: {
     eyebrow: 'ScaleaStay',
     title: 'Почему здесь удобно отдыхать',
-    subtitle: 'Преимущества самой квартиры — без повторения информации о расположении.',
+    subtitle: 'Всё необходимое для комфортного отдыха — от кондиционера и кухни до террасы и парковки.',
     items: [
       { title: 'Современный ремонт', desc: 'Современный интерьер и новая мебель для комфортного отдыха.' },
       { title: 'Кондиционер', desc: 'Комфортная температура в квартире в жаркие летние дни.' },
@@ -31,8 +31,8 @@ const COPY: Record<string, AdvantagesCopy> = {
   },
   en: {
     eyebrow: 'ScaleaStay',
-    title: 'Why the apartment is comfortable',
-    subtitle: 'Features of the apartment itself, without repeating the location information.',
+    title: 'Comfort for your seaside stay',
+    subtitle: 'Everything you need for a comfortable stay, from air conditioning and an equipped kitchen to a terrace and parking.',
     items: [
       { title: 'Modern interior', desc: 'A modern interior and new furniture for a comfortable stay.' },
       { title: 'Air conditioning', desc: 'A comfortable indoor temperature during hot summer days.' },
@@ -57,28 +57,28 @@ const COPY: Record<string, AdvantagesCopy> = {
   },
   de: {
     eyebrow: 'ScaleaStay',
-    title: 'Warum die Wohnung angenehm ist',
-    subtitle: 'Die Vorteile der Unterkunft selbst, ohne die Lageinformationen zu wiederholen.',
+    title: 'Komfort für Ihren Urlaub',
+    subtitle: 'Alles für einen entspannten Aufenthalt – von Klimaanlage und ausgestatteter Küche bis zu Terrasse und Parkplatz.',
     items: [
-      { title: 'Modernes Interieur', desc: 'Modernes Interieur und neue Möbel für einen angenehmen Aufenthalt.' },
-      { title: 'Klimaanlage', desc: 'Angenehme Raumtemperatur auch an heißen Sommertagen.' },
-      { title: 'Ausgestattete Küche', desc: 'Alles Nötige, um während des Urlaubs selbst zu kochen.' },
+      { title: 'Modernes Interieur', desc: 'Helle, gepflegte Räume und moderne Möbel für einen angenehmen Aufenthalt.' },
+      { title: 'Klimaanlage', desc: 'Angenehme Temperaturen in der Wohnung auch an heißen Sommertagen.' },
+      { title: 'Ausgestattete Küche', desc: 'Alles Nötige, um auch im Urlaub selbst Mahlzeiten zuzubereiten.' },
       { title: 'Terrasse', desc: 'Zusätzlicher Platz für ruhige und entspannte Momente.' },
-      { title: 'Parkplatz', desc: 'Ein Gästeparkplatz steht für ScaleaStay zur Verfügung.' },
-      { title: 'Bis zu 4 Gäste', desc: 'Eine praktische Wahl für Paare, Familien oder kleine Gruppen.' },
+      { title: 'Parkplatz', desc: 'Für Gäste von ScaleaStay steht ein Parkplatz zur Verfügung.' },
+      { title: 'Bis zu 4 Gäste', desc: 'Eine komfortable Wahl für Paare, Familien oder kleine Gruppen.' },
     ],
   },
   cs: {
     eyebrow: 'ScaleaStay',
-    title: 'Proč se v apartmánu pohodlně bydlí',
-    subtitle: 'Výhody samotného apartmánu bez opakování informací o poloze.',
+    title: 'Pohodlí pro vaši dovolenou',
+    subtitle: 'Vše pro pohodlný pobyt – od klimatizace a vybavené kuchyně až po terasu a parkování.',
     items: [
-      { title: 'Moderní interiér', desc: 'Moderní interiér a nový nábytek pro pohodlný pobyt.' },
+      { title: 'Moderní interiér', desc: 'Světlý a upravený interiér s moderním vybavením pro pohodlný pobyt.' },
       { title: 'Klimatizace', desc: 'Příjemná teplota v apartmánu i během horkých letních dnů.' },
-      { title: 'Vybavená kuchyň', desc: 'Vše potřebné pro vaření během dovolené.' },
-      { title: 'Terasa', desc: 'Další prostor pro klidný odpočinek.' },
-      { title: 'Parkování', desc: 'Parkovací místo je hostům ScaleaStay k dispozici.' },
-      { title: 'Až 4 hosté', desc: 'Praktická volba pro páry, rodiny nebo menší skupinu.' },
+      { title: 'Vybavená kuchyň', desc: 'Vše potřebné pro přípravu jídla během dovolené.' },
+      { title: 'Terasa', desc: 'Další prostor pro klidný odpočinek během dne.' },
+      { title: 'Parkování', desc: 'Pro hosty ScaleaStay je k dispozici parkovací místo.' },
+      { title: 'Až 4 hosté', desc: 'Pohodlná volba pro páry, rodiny nebo menší skupiny.' },
     ],
   },
   pl: {
