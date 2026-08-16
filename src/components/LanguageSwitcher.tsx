@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Globe, ChevronDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { LANGUAGES } from '../constants';
+import { LANGUAGES } from '../languages';
 import { trackEvent } from '../analytics';
 
 export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled }) => {
