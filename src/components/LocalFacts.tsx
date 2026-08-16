@@ -63,10 +63,10 @@ const COPY: Record<string, LocalFactsCopy> = {
     ],
   },
   it: {
-    eyebrow: 'Tutto raggiungibile a piedi',
-    title: 'Vivi Scalea senza dover usare l’auto',
-    subtitle: 'Da ScaleaStay puoi raggiungere facilmente a piedi il mare, il supermercato, la stazione, il centro storico e la zona delle passeggiate serali.',
-    cta: 'Vedi i percorsi',
+    eyebrow: 'Tutto a portata di mano',
+    title: 'Vacanze al mare, con tutto vicino',
+    subtitle: 'Da ScaleaStay puoi raggiungere a piedi la spiaggia, Interspar, la stazione, il centro storico e le zone più piacevoli per la passeggiata serale.',
+    cta: 'Scopri i percorsi',
     extraLabel: 'Anche nelle vicinanze',
     facts: [
       { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
@@ -75,7 +75,7 @@ const COPY: Record<string, LocalFactsCopy> = {
       {
         title: 'Centro storico',
         metric: '950 m · circa 13 min a piedi',
-        description: 'Una piacevole passeggiata lungo tranquille vie di Scalea.',
+        description: 'Una piacevole passeggiata tra le vie tranquille di Scalea.',
       },
     ],
     extras: [
