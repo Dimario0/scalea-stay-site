@@ -18,31 +18,31 @@ type ApartmentCopy = {
 const COPY: Record<string, ApartmentCopy> = {
   ru: {
     eyebrow: 'Апартаменты в Скалее',
-    summary: 'Светлые и уютные апартаменты после нового ремонта для комфортного отдыха у моря. Современный интерьер, оборудованная кухня, кондиционер и терраса подходят и для короткой поездки, и для длительного отпуска.',
+    summary: 'Светлые и уютные апартаменты с современным ремонтом для комфортного отдыха у моря. Оборудованная кухня, кондиционер и терраса подходят и для короткой поездки, и для длительного отпуска.',
     cta: 'Проверить свободные даты',
     facts: ['До 4 гостей', 'Кондиционер', 'Кухня', 'Терраса', 'Парковка'],
   },
   en: {
     eyebrow: 'Apartment in Scalea',
-    summary: 'A bright, comfortable and newly renovated apartment for a relaxed seaside stay. Modern interiors, an equipped kitchen, air conditioning and a terrace work equally well for a short break or a longer holiday.',
+    summary: 'A bright and comfortable apartment with modern interiors for a relaxed seaside stay. An equipped kitchen, air conditioning and a terrace work equally well for a short break or a longer holiday.',
     cta: 'Check available dates',
     facts: ['Up to 4 guests', 'Air conditioning', 'Kitchen', 'Terrace', 'Parking'],
   },
   it: {
     eyebrow: 'Appartamento a Scalea',
-    summary: 'Un appartamento luminoso, accogliente e recentemente ristrutturato per una vacanza confortevole vicino al mare. Interni moderni, cucina attrezzata, aria condizionata e terrazza sono ideali sia per soggiorni brevi sia per vacanze più lunghe.',
+    summary: 'Un appartamento luminoso e accogliente con interni moderni per una vacanza confortevole vicino al mare. Cucina attrezzata, aria condizionata e terrazza sono ideali sia per soggiorni brevi sia per vacanze più lunghe.',
     cta: 'Verifica le date disponibili',
     facts: ['Fino a 4 ospiti', 'Aria condizionata', 'Cucina', 'Terrazza', 'Parcheggio'],
   },
   de: {
     eyebrow: 'Ferienwohnung in Scalea',
-    summary: 'Eine helle, gemütliche und neu renovierte Ferienwohnung für einen entspannten Aufenthalt am Meer. Modernes Interieur, ausgestattete Küche, Klimaanlage und Terrasse eignen sich sowohl für Kurzreisen als auch für längere Ferien.',
+    summary: 'Eine helle und gemütliche Ferienwohnung mit modernem Interieur für einen entspannten Aufenthalt am Meer. Ausgestattete Küche, Klimaanlage und Terrasse eignen sich sowohl für Kurzreisen als auch für längere Ferien.',
     cta: 'Freie Termine prüfen',
     facts: ['Bis zu 4 Gäste', 'Klimaanlage', 'Küche', 'Terrasse', 'Parkplatz'],
   },
   cs: {
     eyebrow: 'Apartmán ve Scalee',
-    summary: 'Světlý, útulný a nově zrekonstruovaný apartmán pro pohodovou dovolenou u moře. Moderní interiér, vybavená kuchyň, klimatizace a terasa se hodí jak pro krátký pobyt, tak pro delší dovolenou.',
+    summary: 'Světlý a útulný apartmán s moderním interiérem pro pohodovou dovolenou u moře. Vybavená kuchyň, klimatizace a terasa se hodí jak pro krátký pobyt, tak pro delší dovolenou.',
     cta: 'Ověřit volné termíny',
     facts: ['Až 4 hosté', 'Klimatizace', 'Kuchyň', 'Terasa', 'Parkování'],
   },
@@ -94,7 +94,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
       <div className="relative lg:w-3/5 aspect-video lg:aspect-auto overflow-hidden bg-slate-100 max-w-full" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
         <div className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" style={{ transform: `translateX(-${currentImg * 100}%)` }}>
           {displayImages.map((img, idx) => (
-            <img key={idx} src={img} className="w-full h-full object-cover flex-shrink-0" alt={`${t(apartment.nameKey)} - Scalea, Italy - ${t('navApartments')} photo ${idx + 1}`} loading="lazy" referrerPolicy="no-referrer" />
+            <img key={idx} src={img} className="w-full h-full object-cover flex-shrink-0" alt={`ScaleaStay - Scalea, Italy - ${t('navApartments')} photo ${idx + 1}`} loading="lazy" referrerPolicy="no-referrer" />
           ))}
         </div>
 
@@ -118,7 +118,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
 
       <div className="p-5 sm:p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
         <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-3">{copy.eyebrow}</span>
-        <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">{t(apartment.nameKey)}</h3>
+        <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">ScaleaStay</h3>
         <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">{copy.summary}</p>
 
         <div className="flex flex-wrap gap-2 mb-10">
@@ -128,7 +128,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         </div>
 
         <a
-          href={CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', t(apartment.nameKey)))}
+          href={CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', 'ScaleaStay'))}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => {
