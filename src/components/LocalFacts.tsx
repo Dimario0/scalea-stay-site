@@ -84,11 +84,11 @@ const COPY: Record<string, LocalFactsCopy> = {
     ],
   },
   de: {
-    eyebrow: 'Alles zu Fuß erreichbar',
-    title: 'Scalea genießen, ohne auf ein Auto angewiesen zu sein',
-    subtitle: 'Von ScaleaStay erreichen Sie Meer, Supermarkt, Bahnhof, Altstadt und die zentrale Abendpromenade bequem zu Fuß.',
-    cta: 'Routen ansehen',
-    extraLabel: 'Ebenfalls in der Nähe',
+    eyebrow: 'Alles bequem zu Fuß',
+    title: 'Urlaub am Meer, alles in der Nähe',
+    subtitle: 'Von ScaleaStay erreichen Sie Strand, Interspar, Bahnhof, Altstadt und die beliebtesten Bereiche für einen Abendspaziergang bequem zu Fuß.',
+    cta: 'Wege ansehen',
+    extraLabel: 'Auch in der Nähe',
     facts: [
       { title: 'Strand', metric: '600 m · ca. 5–8 Min. zu Fuß' },
       { title: 'Interspar', metric: '230 m · ca. 3 Min. zu Fuß' },
@@ -96,7 +96,7 @@ const COPY: Record<string, LocalFactsCopy> = {
       {
         title: 'Historisches Zentrum',
         metric: '950 m · ca. 13 Min. zu Fuß',
-        description: 'Ein angenehmer Spaziergang durch ruhige Straßen von Scalea.',
+        description: 'Ein angenehmer Spaziergang durch die ruhigen Straßen von Scalea.',
       },
     ],
     extras: [
@@ -105,10 +105,10 @@ const COPY: Record<string, LocalFactsCopy> = {
     ],
   },
   cs: {
-    eyebrow: 'Všude pohodlně pěšky',
-    title: 'Užijte si Scaleu bez nutnosti používat auto',
-    subtitle: 'Ze ScaleaStay snadno dojdete pěšky k moři, supermarketu, nádraží, historickému centru i do hlavní večerní pěší zóny.',
-    cta: 'Zobrazit trasy',
+    eyebrow: 'Všechno pohodlně pěšky',
+    title: 'Dovolená u moře, kde je vše blízko',
+    subtitle: 'Ze ScaleaStay pohodlně dojdete na pláž, do Intersparu, na nádraží, do historického centra i do míst vhodných pro večerní procházku.',
+    cta: 'Prohlédnout trasy',
     extraLabel: 'Také v okolí',
     facts: [
       { title: 'Pláž', metric: '600 m · přibližně 5–8 min pěšky' },
@@ -117,7 +117,7 @@ const COPY: Record<string, LocalFactsCopy> = {
       {
         title: 'Historické centrum',
         metric: '950 m · přibližně 13 min pěšky',
-        description: 'Příjemná procházka klidnými ulicemi města Scalea.',
+        description: 'Příjemná procházka klidnými ulicemi Scalei.',
       },
     ],
     extras: [
