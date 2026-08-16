@@ -46,6 +46,12 @@ const COPY: Record<string, ApartmentCopy> = {
     cta: 'Ověřit volné termíny',
     facts: ['Až 4 hosté', 'Klimatizace', 'Kuchyň', 'Terasa', 'Parkování'],
   },
+  pl: {
+    eyebrow: 'Twój apartament w Scalei',
+    summary: 'Jasny i przytulny apartament z nowoczesnym wnętrzem, stworzony z myślą o wygodnym wypoczynku nad morzem. Wyposażona kuchnia, klimatyzacja i taras sprawdzą się zarówno podczas krótkiego wyjazdu, jak i dłuższych wakacji.',
+    cta: 'Sprawdź terminy na WhatsApp',
+    facts: ['Do 4 gości', 'Klimatyzacja', 'Kuchnia', 'Taras', 'Parking'],
+  },
 };
 
 const ApartmentCard: React.FC<Props> = ({ apartment }) => {
