@@ -54,6 +54,14 @@ const COPY: Record<string, HeroCopy> = {
     whatsappCta: 'Ověřit volné termíny',
     facts: ['Pláž · 5–8 min', 'Interspar · 3 min', 'Nádraží · 8 min'],
   },
+  pl: {
+    badge: 'Scalea • Calabria • Italia',
+    title: 'Nowoczesny apartament blisko morza w Scalei',
+    subtitle: 'ScaleaStay to komfortowy apartament z nowoczesnym wnętrzem na wakacje nad morzem. Plaża, Interspar, dworzec i centrum Scalei są w zasięgu spaceru.',
+    primaryCta: 'Zobacz apartament',
+    whatsappCta: 'Sprawdź terminy na WhatsApp',
+    facts: ['Plaża · 5–8 min', 'Interspar · 3 min', 'Dworzec · 8 min'],
+  },
 };
 
 const Hero: React.FC = () => {
