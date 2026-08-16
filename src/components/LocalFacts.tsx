@@ -27,7 +27,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Посмотреть маршруты',
     extraLabel: 'Ещё рядом',
     facts: [
-      { title: 'Пляж', metric: '600 м · около 8 мин пешком' },
+      { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
       { title: 'Interspar', metric: '230 м · около 3 мин пешком' },
       { title: 'Вокзал Scalea', metric: '500 м · около 8 мин пешком' },
       {
@@ -48,7 +48,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'View routes',
     extraLabel: 'Also nearby',
     facts: [
-      { title: 'Beach', metric: '600 m · about 8 min walk' },
+      { title: 'Beach', metric: '600 m · about 5–8 min walk' },
       { title: 'Interspar', metric: '230 m · about 3 min walk' },
       { title: 'Scalea station', metric: '500 m · about 8 min walk' },
       {
@@ -69,7 +69,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Vedi i percorsi',
     extraLabel: 'Anche nelle vicinanze',
     facts: [
-      { title: 'Spiaggia', metric: '600 m · circa 8 min a piedi' },
+      { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
       { title: 'Interspar', metric: '230 m · circa 3 min a piedi' },
       { title: 'Stazione di Scalea', metric: '500 m · circa 8 min a piedi' },
       {
@@ -90,7 +90,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Routen ansehen',
     extraLabel: 'Ebenfalls in der Nähe',
     facts: [
-      { title: 'Strand', metric: '600 m · ca. 8 Min. zu Fuß' },
+      { title: 'Strand', metric: '600 m · ca. 5–8 Min. zu Fuß' },
       { title: 'Interspar', metric: '230 m · ca. 3 Min. zu Fuß' },
       { title: 'Bahnhof Scalea', metric: '500 m · ca. 8 Min. zu Fuß' },
       {
@@ -111,7 +111,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Zobrazit trasy',
     extraLabel: 'Také v okolí',
     facts: [
-      { title: 'Pláž', metric: '600 m · přibližně 8 min pěšky' },
+      { title: 'Pláž', metric: '600 m · přibližně 5–8 min pěšky' },
       { title: 'Interspar', metric: '230 m · přibližně 3 min pěšky' },
       { title: 'Nádraží Scalea', metric: '500 m · přibližně 8 min pěšky' },
       {
@@ -121,8 +121,8 @@ const COPY: Record<string, LocalFactsCopy> = {
       },
     ],
     extras: [
-      { title: 'Torre Talao', metric: '900 m · přibližně 12 min pěšky' },
-      { title: 'Piazza Gregorio Caloprese', metric: '950 m · přibližně 13 min pěšky' },
+      { title: 'Torre Talao', metric: '900 м · přibližně 12 min pěšky' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 м · přibližně 13 min pěšky' },
     ],
   },
 };
