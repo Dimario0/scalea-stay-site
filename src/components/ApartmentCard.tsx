@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Apartment } from '../types';
 import { CONTACT_INFO } from '../constants';
@@ -9,8 +8,49 @@ interface Props {
   apartment: Apartment;
 }
 
+type ApartmentCopy = {
+  eyebrow: string;
+  summary: string;
+  cta: string;
+  facts: [string, string, string, string, string];
+};
+
+const COPY: Record<string, ApartmentCopy> = {
+  ru: {
+    eyebrow: 'Апартаменты в Скалее',
+    summary: 'Светлые и уютные апартаменты после нового ремонта для комфортного отдыха у моря. Современный интерьер, оборудованная кухня, кондиционер и терраса подходят и для короткой поездки, и для длительного отпуска.',
+    cta: 'Проверить свободные даты',
+    facts: ['До 4 гостей', 'Кондиционер', 'Кухня', 'Терраса', 'Парковка'],
+  },
+  en: {
+    eyebrow: 'Apartment in Scalea',
+    summary: 'A bright, comfortable and newly renovated apartment for a relaxed seaside stay. Modern interiors, an equipped kitchen, air conditioning and a terrace work equally well for a short break or a longer holiday.',
+    cta: 'Check available dates',
+    facts: ['Up to 4 guests', 'Air conditioning', 'Kitchen', 'Terrace', 'Parking'],
+  },
+  it: {
+    eyebrow: 'Appartamento a Scalea',
+    summary: 'Un appartamento luminoso, accogliente e recentemente ristrutturato per una vacanza confortevole vicino al mare. Interni moderni, cucina attrezzata, aria condizionata e terrazza sono ideali sia per soggiorni brevi sia per vacanze più lunghe.',
+    cta: 'Verifica le date disponibili',
+    facts: ['Fino a 4 ospiti', 'Aria condizionata', 'Cucina', 'Terrazza', 'Parcheggio'],
+  },
+  de: {
+    eyebrow: 'Ferienwohnung in Scalea',
+    summary: 'Eine helle, gemütliche und neu renovierte Ferienwohnung für einen entspannten Aufenthalt am Meer. Modernes Interieur, ausgestattete Küche, Klimaanlage und Terrasse eignen sich sowohl für Kurzreisen als auch für längere Ferien.',
+    cta: 'Freie Termine prüfen',
+    facts: ['Bis zu 4 Gäste', 'Klimaanlage', 'Küche', 'Terrasse', 'Parkplatz'],
+  },
+  cs: {
+    eyebrow: 'Apartmán ve Scalee',
+    summary: 'Světlý, útulný a nově zrekonstruovaný apartmán pro pohodovou dovolenou u moře. Moderní interiér, vybavená kuchyň, klimatizace a terasa se hodí jak pro krátký pobyt, tak pro delší dovolenou.',
+    cta: 'Ověřit volné termíny',
+    facts: ['Až 4 hosté', 'Klimatizace', 'Kuchyň', 'Terasa', 'Parkování'],
+  },
+};
+
 const ApartmentCard: React.FC<Props> = ({ apartment }) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const copy = COPY[language] || COPY.ru;
   const [currentImg, setCurrentImg] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -97,6 +137,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
 
         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 px-4 flex justify-between items-center opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">
           <button 
+            type="button"
             onClick={prevImg} 
             className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all active:scale-90"
             aria-label="Previous photo"
@@ -104,6 +145,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
             ←
           </button>
           <button 
+            type="button"
             onClick={nextImg} 
             className="w-10 h-10 rounded-full bg-white/80 backdrop-blur shadow-lg flex items-center justify-center text-slate-900 hover:bg-white transition-all active:scale-90"
             aria-label="Next photo"
@@ -114,18 +156,21 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
       </div>
 
       <div className="p-5 sm:p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
-        <div className="mb-4 sm:mb-6">
-          {/* Rating removed as per user request */}
-        </div>
+        <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-3">
+          {copy.eyebrow}
+        </span>
+        <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">
+          {t(apartment.nameKey)}
+        </h3>
         
-        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 whitespace-pre-line break-words hyphens-none">
-          {t(apartment.descriptionKey)}
+        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">
+          {copy.summary}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-10">
-          {apartment.featuresKeys.map(fk => (
-            <span key={fk} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-400 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-none max-w-full">
-              {t(fk)}
+          {copy.facts.map(fact => (
+            <span key={fact} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-500 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-none max-w-full">
+              {fact}
             </span>
           ))}
         </div>
@@ -149,7 +194,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           }}
           className="w-full py-5 bg-slate-900 text-white rounded-[24px] font-black text-center transition-all hover:bg-indigo-600 shadow-xl hover:-translate-y-1 active:scale-95"
         >
-          {t('bookNow')}
+          {copy.cta}
         </a>
       </div>
     </div>
