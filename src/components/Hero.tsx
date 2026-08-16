@@ -17,7 +17,7 @@ const COPY: Record<string, HeroCopy> = {
   ru: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Современные апартаменты у моря в Скалее',
-    subtitle: 'Casa Marittima — апартаменты после нового ремонта для отдыха до 4 гостей. Пляж, супермаркет, вокзал и центр Скалеи доступны пешком.',
+    subtitle: 'ScaleaStay — апартаменты с современным ремонтом для отдыха у моря до 4 гостей. Пляж, супермаркет, вокзал и центр Скалеи доступны пешком.',
     primaryCta: 'Посмотреть апартаменты',
     whatsappCta: 'Проверить свободные даты',
     facts: ['Пляж · 8 мин', 'Interspar · 3 мин', 'Вокзал · 8 мин'],
@@ -25,7 +25,7 @@ const COPY: Record<string, HeroCopy> = {
   en: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Modern holiday apartment by the sea in Scalea',
-    subtitle: 'Casa Marittima is a newly renovated apartment for up to 4 guests, with the beach, supermarket, train station and central Scalea all within walking distance.',
+    subtitle: 'ScaleaStay is a modern apartment for up to 4 guests, ideal for a seaside holiday, with the beach, supermarket, train station and central Scalea all within walking distance.',
     primaryCta: 'View the apartment',
     whatsappCta: 'Check available dates',
     facts: ['Beach · 8 min', 'Interspar · 3 min', 'Station · 8 min'],
@@ -33,7 +33,7 @@ const COPY: Record<string, HeroCopy> = {
   it: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Appartamento moderno vicino al mare a Scalea',
-    subtitle: 'Casa Marittima è un appartamento recentemente ristrutturato per un massimo di 4 ospiti. Spiaggia, supermercato, stazione e centro di Scalea sono raggiungibili a piedi.',
+    subtitle: 'ScaleaStay è un appartamento moderno per un massimo di 4 ospiti, ideale per una vacanza al mare. Spiaggia, supermercato, stazione e centro di Scalea sono raggiungibili a piedi.',
     primaryCta: 'Scopri l’appartamento',
     whatsappCta: 'Verifica le date disponibili',
     facts: ['Spiaggia · 8 min', 'Interspar · 3 min', 'Stazione · 8 min'],
@@ -41,7 +41,7 @@ const COPY: Record<string, HeroCopy> = {
   de: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderne Ferienwohnung am Meer in Scalea',
-    subtitle: 'Casa Marittima ist eine neu renovierte Ferienwohnung für bis zu 4 Gäste. Strand, Supermarkt, Bahnhof und das Zentrum von Scalea sind bequem zu Fuß erreichbar.',
+    subtitle: 'ScaleaStay ist eine moderne Ferienwohnung für bis zu 4 Gäste und ideal für einen Urlaub am Meer. Strand, Supermarkt, Bahnhof und das Zentrum von Scalea sind bequem zu Fuß erreichbar.',
     primaryCta: 'Wohnung ansehen',
     whatsappCta: 'Freie Termine prüfen',
     facts: ['Strand · 8 Min.', 'Interspar · 3 Min.', 'Bahnhof · 8 Min.'],
@@ -49,7 +49,7 @@ const COPY: Record<string, HeroCopy> = {
   cs: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderní apartmán u moře ve Scalee',
-    subtitle: 'Casa Marittima je nově zrekonstruovaný apartmán až pro 4 hosty. Pláž, supermarket, nádraží i centrum města Scalea jsou pohodlně dostupné pěšky.',
+    subtitle: 'ScaleaStay je moderní apartmán až pro 4 hosty, ideální pro dovolenou u moře. Pláž, supermarket, nádraží i centrum města Scalea jsou pohodlně dostupné pěšky.',
     primaryCta: 'Prohlédnout apartmán',
     whatsappCta: 'Ověřit volné termíny',
     facts: ['Pláž · 8 min', 'Interspar · 3 min', 'Nádraží · 8 min'],
