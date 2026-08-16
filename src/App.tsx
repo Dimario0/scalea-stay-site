@@ -96,7 +96,7 @@ const App: React.FC = () => {
         <section id="apartments" data-analytics="apartments-section" className="pt-16 pb-6 px-4 scroll-mt-40">
           <div id="apartments-grid" className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-indigo-400 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Casa Marittima</span>
+              <span className="text-indigo-400 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">ScaleaStay</span>
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase animate-fade-in break-words hyphens-none">
                 {t('ourApartments')}
               </h2>
