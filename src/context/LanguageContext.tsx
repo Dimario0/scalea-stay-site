@@ -1,18 +1,25 @@
 import React, { createContext, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TRANSLATIONS, LANGUAGES } from '../constants';
+import { TRANSLATIONS } from '../constants';
+import { LANGUAGES, SiteLanguage } from '../languages';
+import { PL_TRANSLATIONS } from '../locales/pl';
 
 interface LanguageContextType {
   language: string;
   setLanguage: (lang: string) => void;
   t: (key: string) => string;
-  currentLanguage: typeof LANGUAGES[0];
+  currentLanguage: SiteLanguage;
 }
 
 type SeoEntry = {
   title: string;
   description: string;
   locale: string;
+};
+
+const ALL_TRANSLATIONS: Record<string, Record<string, string>> = {
+  ...TRANSLATIONS,
+  pl: PL_TRANSLATIONS,
 };
 
 const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
@@ -40,6 +47,11 @@ const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
     title: 'Apartmán ve Scalee, Kalábrie | ScaleaStay',
     description: 'ScaleaStay ve Scalee v Kalábrii: moderní apartmán s klimatizací, parkováním a vybavenou kuchyní. Pláž je 600 m daleko, přibližně 5–8 minut pěšky. Ověřte termíny přímo.',
     locale: 'cs_CZ',
+  },
+  pl: {
+    title: 'Apartament w Scalei blisko morza | ScaleaStay',
+    description: 'ScaleaStay w Scalei w Kalabrii: nowoczesny apartament z klimatyzacją, parkingiem i wyposażoną kuchnią. Plaża jest około 600 m dalej, zwykle 5–8 minut pieszo. Sprawdź wolne terminy bezpośrednio.',
+    locale: 'pl_PL',
   },
 };
 
@@ -139,17 +151,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const location = useLocation();
   const navigate = useNavigate();
   const pathLang = location.pathname.split('/')[1];
-  const language = TRANSLATIONS[pathLang] ? pathLang : 'ru';
+  const language = ALL_TRANSLATIONS[pathLang] ? pathLang : 'ru';
 
   useEffect(() => {
-    if (!TRANSLATIONS[pathLang]) {
+    if (!ALL_TRANSLATIONS[pathLang]) {
       const saved = localStorage.getItem('scalea_language');
       const browserLang = navigator.language.split('-')[0];
 
       let targetLang = 'ru';
-      if (saved && TRANSLATIONS[saved]) {
+      if (saved && ALL_TRANSLATIONS[saved]) {
         targetLang = saved;
-      } else if (TRANSLATIONS[browserLang]) {
+      } else if (ALL_TRANSLATIONS[browserLang]) {
         targetLang = browserLang;
       }
 
@@ -161,11 +173,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [pathLang, location.pathname, location.search, location.hash, navigate]);
 
   const setLanguage = (lang: string) => {
-    if (TRANSLATIONS[lang] && lang !== language) {
+    if (ALL_TRANSLATIONS[lang] && lang !== language) {
       localStorage.setItem('scalea_language', lang);
 
       const pathParts = location.pathname.split('/');
-      if (TRANSLATIONS[pathParts[1]]) {
+      if (ALL_TRANSLATIONS[pathParts[1]]) {
         pathParts[1] = lang;
       } else {
         pathParts.splice(1, 0, lang);
@@ -176,7 +188,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
-  const t = (key: string) => CONTENT_OVERRIDES[language]?.[key] || TRANSLATIONS[language]?.[key] || key;
+  const t = (key: string) => CONTENT_OVERRIDES[language]?.[key] || ALL_TRANSLATIONS[language]?.[key] || key;
   const currentLanguage = LANGUAGES.find((item) => item.code === language) || LANGUAGES[0];
 
   useEffect(() => {
