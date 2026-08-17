@@ -7,6 +7,11 @@ import { useSiteData } from '../context/SiteContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { trackEvent } from '../analytics';
 
+type LandingFact = {
+  label: string;
+  value: string;
+};
+
 type LandingCopy = {
   eyebrow: string;
   title: string;
@@ -14,6 +19,8 @@ type LandingCopy = {
   cta: string;
   apartmentTitle: string;
   apartmentText: string;
+  amenities: [string, string, string, string];
+  facts: [LandingFact, LandingFact, LandingFact, LandingFact];
   locationTitle: string;
   locationText: string;
   directTitle: string;
@@ -34,6 +41,13 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     cta: 'Verifica le date su WhatsApp',
     apartmentTitle: 'Una base comoda per la vacanza in Calabria',
     apartmentText: 'L’appartamento è luminoso e accogliente, con aria condizionata, cucina attrezzata, terrazza e parcheggio. Ospita fino a 4 persone ed è adatto sia a soggiorni brevi sia a vacanze più lunghe.',
+    amenities: ['Aria condizionata', 'Cucina attrezzata', 'Terrazza', 'Parcheggio'],
+    facts: [
+      { label: 'Spiaggia', value: '600 m · circa 5–8 min' },
+      { label: 'Interspar', value: '230 m · circa 3 min' },
+      { label: 'Stazione di Scalea', value: '500 m · circa 8 min' },
+      { label: 'Centro storico', value: '950 m · circa 13 min' },
+    ],
     locationTitle: 'Mare e servizi quotidiani a pochi minuti',
     locationText: 'La posizione permette di vivere Scalea con semplicità: il mare è vicino, il supermercato è a pochi minuti e anche la stazione ferroviaria è raggiungibile a piedi. Il centro storico e Torre Talao sono comodi per una passeggiata serale.',
     directTitle: 'Contatto diretto con il proprietario',
@@ -57,6 +71,13 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     cta: 'Sprawdź terminy na WhatsApp',
     apartmentTitle: 'Wygodna baza na wakacje w Kalabrii',
     apartmentText: 'Jasny i przytulny apartament z klimatyzacją, wyposażoną kuchnią, tarasem i parkingiem. Może pomieścić do 4 gości i sprawdzi się zarówno na krótki wyjazd, jak i dłuższy urlop.',
+    amenities: ['Klimatyzacja', 'Wyposażona kuchnia', 'Taras', 'Parking'],
+    facts: [
+      { label: 'Plaża', value: '600 m · około 5–8 min' },
+      { label: 'Interspar', value: '230 m · około 3 min' },
+      { label: 'Dworzec Scalea', value: '500 m · około 8 min' },
+      { label: 'Historyczne centrum', value: '950 m · około 13 min' },
+    ],
     locationTitle: 'Morze i codzienne zakupy w zasięgu spaceru',
     locationText: 'Lokalizacja ułatwia pobyt bez ciągłego korzystania z samochodu: plaża jest blisko, Interspar kilka minut od apartamentu, a na dworzec można dojść pieszo. Historyczne centrum i Torre Talao są dobrym celem na wieczorny spacer.',
     directTitle: 'Bezpośredni kontakt z właścicielem',
@@ -74,6 +95,9 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
   },
 };
+
+const FACT_ICONS = [Waves, ShoppingBasket, TrainFront, MapPin];
+const AMENITY_ICONS = [CheckCircle2, CheckCircle2, CheckCircle2, CheckCircle2];
 
 const setDescription = (value: string) => {
   const meta = document.querySelector<HTMLMetaElement>('meta[name="description"]');
@@ -113,9 +137,16 @@ const CommercialLanding: React.FC = () => {
     const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]');
     const ogDescription = document.querySelector<HTMLMetaElement>('meta[property="og:description"]');
     const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]');
+    const twitterTitle = document.querySelector<HTMLMetaElement>('meta[property="twitter:title"]');
+    const twitterDescription = document.querySelector<HTMLMetaElement>('meta[property="twitter:description"]');
+    const twitterUrl = document.querySelector<HTMLMetaElement>('meta[property="twitter:url"]');
+
     if (ogTitle) ogTitle.setAttribute('content', copy.seoTitle);
     if (ogDescription) ogDescription.setAttribute('content', copy.seoDescription);
     if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+    if (twitterTitle) twitterTitle.setAttribute('content', copy.seoTitle);
+    if (twitterDescription) twitterDescription.setAttribute('content', copy.seoDescription);
+    if (twitterUrl) twitterUrl.setAttribute('content', canonicalUrl);
   }, [copy, language, navigate, supportedLanguage]);
 
   if (!supportedLanguage) return null;
@@ -124,25 +155,11 @@ const CommercialLanding: React.FC = () => {
   const images = apartment?.images?.filter(Boolean).slice(0, 3) || [];
   const whatsappUrl = CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', 'ScaleaStay'));
 
-  const facts = supportedLanguage === 'it'
-    ? [
-        { icon: Waves, label: 'Spiaggia', value: '600 m · 5–8 min' },
-        { icon: ShoppingBasket, label: 'Interspar', value: '230 m · 3 min' },
-        { icon: TrainFront, label: 'Stazione', value: '500 m · 8 min' },
-        { icon: MapPin, label: 'Centro storico', value: '950 m · 13 min' },
-      ]
-    : [
-        { icon: Waves, label: 'Plaża', value: '600 m · 5–8 min' },
-        { icon: ShoppingBasket, label: 'Interspar', value: '230 m · 3 min' },
-        { icon: TrainFront, label: 'Dworzec', value: '500 m · 8 min' },
-        { icon: MapPin, label: 'Stare miasto', value: '950 m · 13 min' },
-      ];
-
   return (
     <div className="min-h-[100dvh] bg-white text-slate-900">
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
-          <a href={`/${language}/`} className="font-black text-xl tracking-tight text-slate-950">
+          <a href={`/${language}/`} className="font-black text-xl tracking-tight text-slate-950" aria-label="ScaleaStay">
             Scalea<span className="text-indigo-600">Stay</span>
           </a>
           <div className="flex items-center gap-3">
@@ -183,7 +200,7 @@ const CommercialLanding: React.FC = () => {
                 <img
                   key={image}
                   src={image}
-                  alt={`ScaleaStay ${index + 1}`}
+                  alt={`ScaleaStay ${supportedLanguage === 'it' ? 'appartamento' : 'apartament'} ${index + 1}`}
                   className={`w-full object-cover rounded-3xl ${index === 0 ? 'col-span-2 h-64 sm:h-80' : 'h-40 sm:h-48'}`}
                 />
               ))}
@@ -193,13 +210,16 @@ const CommercialLanding: React.FC = () => {
 
         <section className="px-4 py-10 border-b border-slate-100">
           <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {facts.map(({ icon: Icon, label, value }) => (
-              <div key={label} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 sm:p-5">
-                <Icon className="w-5 h-5 text-indigo-600 mb-3" />
-                <p className="text-xs font-black uppercase tracking-wider text-slate-500">{label}</p>
-                <p className="mt-1 text-sm sm:text-base font-black text-slate-950">{value}</p>
-              </div>
-            ))}
+            {copy.facts.map((fact, index) => {
+              const Icon = FACT_ICONS[index];
+              return (
+                <div key={fact.label} className="rounded-2xl border border-slate-100 bg-slate-50 p-4 sm:p-5">
+                  <Icon className="w-5 h-5 text-indigo-600 mb-3" />
+                  <p className="text-xs font-black uppercase tracking-wider text-slate-500">{fact.label}</p>
+                  <p className="mt-1 text-sm sm:text-base font-black text-slate-950">{fact.value}</p>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -210,12 +230,15 @@ const CommercialLanding: React.FC = () => {
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{copy.apartmentText}</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {['Klimatyzacja / Aria condizionata', 'Kuchnia / Cucina', 'Taras / Terrazza', 'Parking'].map((item) => (
-                <div key={item} className="rounded-2xl border border-slate-100 p-5 flex items-center gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                  <span className="text-sm font-bold text-slate-700">{item}</span>
-                </div>
-              ))}
+              {copy.amenities.map((item, index) => {
+                const Icon = AMENITY_ICONS[index];
+                return (
+                  <div key={item} className="rounded-2xl border border-slate-100 p-5 flex items-center gap-3">
+                    <Icon className="w-5 h-5 text-emerald-600 shrink-0" />
+                    <span className="text-sm font-bold text-slate-700">{item}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -226,11 +249,20 @@ const CommercialLanding: React.FC = () => {
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.locationTitle}</h2>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{copy.locationText}</p>
             </div>
-            <div className="rounded-3xl bg-white p-6 border border-sky-100 shadow-sm">
-              <div className="flex gap-4 mb-5"><Waves className="w-6 h-6 text-cyan-600" /><span className="font-black">600 m</span></div>
-              <div className="flex gap-4 mb-5"><ShoppingBasket className="w-6 h-6 text-indigo-600" /><span className="font-black">Interspar · 230 m</span></div>
-              <div className="flex gap-4 mb-5"><TrainFront className="w-6 h-6 text-indigo-600" /><span className="font-black">Scalea station · 500 m</span></div>
-              <div className="flex gap-4"><Car className="w-6 h-6 text-slate-600" /><span className="font-black">Parking</span></div>
+            <div className="rounded-3xl bg-white p-6 border border-sky-100 shadow-sm space-y-5">
+              {copy.facts.slice(0, 3).map((fact, index) => {
+                const Icon = FACT_ICONS[index];
+                return (
+                  <div key={fact.label} className="flex gap-4 items-center">
+                    <Icon className="w-6 h-6 text-indigo-600 shrink-0" />
+                    <span className="font-black">{fact.label} · {fact.value}</span>
+                  </div>
+                );
+              })}
+              <div className="flex gap-4 items-center">
+                <Car className="w-6 h-6 text-slate-600 shrink-0" />
+                <span className="font-black">{copy.amenities[3]}</span>
+              </div>
             </div>
           </div>
         </section>
@@ -279,7 +311,7 @@ const CommercialLanding: React.FC = () => {
       </main>
 
       <footer className="px-4 py-8 border-t border-slate-100 text-center text-xs font-bold text-slate-500">
-        ScaleaStay · Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia
+        <a href={`/${language}/`} className="hover:text-indigo-600">ScaleaStay</a> · Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia
       </footer>
     </div>
   );
