@@ -198,6 +198,7 @@ const JSONLD: React.FC = () => {
         url: pageUrl,
         mainEntityOfPage: { '@id': webPageId },
         hasMap: homeMapUrl,
+        sameAs: [homeMapUrl],
         telephone: '+420774620060',
         image: [
           'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
