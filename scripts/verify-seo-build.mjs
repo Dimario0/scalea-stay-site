@@ -23,6 +23,30 @@ const pages = [
     lang: 'pl',
     canonical: `${SITE_ORIGIN}/pl/apartament-scalea-blisko-morza/`,
   },
+  {
+    path: 'it/come-arrivare-da-lamezia-terme-a-scalea/index.html',
+    lang: 'it',
+    canonical: `${SITE_ORIGIN}/it/come-arrivare-da-lamezia-terme-a-scalea/`,
+    marker: 'data-prerender-guide="airport-it"',
+  },
+  {
+    path: 'pl/jak-dojechac-z-lamezia-terme-do-scalei/index.html',
+    lang: 'pl',
+    canonical: `${SITE_ORIGIN}/pl/jak-dojechac-z-lamezia-terme-do-scalei/`,
+    marker: 'data-prerender-guide="airport-pl"',
+  },
+  {
+    path: 'it/scalea-senza-auto/index.html',
+    lang: 'it',
+    canonical: `${SITE_ORIGIN}/it/scalea-senza-auto/`,
+    marker: 'data-prerender-guide="no-car-it"',
+  },
+  {
+    path: 'pl/scalea-bez-samochodu/index.html',
+    lang: 'pl',
+    canonical: `${SITE_ORIGIN}/pl/scalea-bez-samochodu/`,
+    marker: 'data-prerender-guide="no-car-pl"',
+  },
 ];
 
 const stalePatterns = [
@@ -83,6 +107,9 @@ if (!existsSync(DIST)) {
     if (h1Count !== 1) {
       fail(`${page.path}: expected one H1, found ${h1Count}`);
     }
+    if (page.marker && !html.includes(page.marker)) {
+      fail(`${page.path}: missing prerender marker ${page.marker}`);
+    }
     for (const pattern of stalePatterns) {
       if (pattern.test(html)) {
         fail(`${page.path}: stale public copy matched ${pattern}`);
@@ -113,6 +140,14 @@ if (!existsSync(DIST)) {
     }
     if (!sitemap.includes('hreflang="cs"') || sitemap.includes('hreflang="cz"')) {
       fail('sitemap must use standard Czech hreflang="cs", not "cz"');
+    }
+    if (!sitemap.includes(`${SITE_ORIGIN}/it/come-arrivare-da-lamezia-terme-a-scalea/`) ||
+        !sitemap.includes(`${SITE_ORIGIN}/pl/jak-dojechac-z-lamezia-terme-do-scalei/`)) {
+      fail('airport guide hreflang pair is missing from sitemap');
+    }
+    if (!sitemap.includes(`${SITE_ORIGIN}/it/scalea-senza-auto/`) ||
+        !sitemap.includes(`${SITE_ORIGIN}/pl/scalea-bez-samochodu/`)) {
+      fail('car-free guide hreflang pair is missing from sitemap');
     }
   }
 
