@@ -33,10 +33,29 @@ const stalePatterns = [
   /6\s*minut(?:e|y|en|ová| пешком)/i,
 ];
 
+const sourceStalePatterns = [
+  /Casa Marittima/i,
+  /400\s*(?:m|metri|meters?|meter|metrů|метр)/i,
+  /distanceToSea:\s*['"]400m['"]/i,
+  /(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,
+];
+
 const fail = (message) => {
   console.error(`SEO BUILD VERIFY FAILED: ${message}`);
   process.exitCode = 1;
 };
+
+const constantsPath = path.join(ROOT, 'src', 'constants.tsx');
+if (!existsSync(constantsPath)) {
+  fail('src/constants.tsx is missing');
+} else {
+  const constants = readFileSync(constantsPath, 'utf8');
+  for (const pattern of sourceStalePatterns) {
+    if (pattern.test(constants)) {
+      fail(`src/constants.tsx still contains stale fallback copy matched by ${pattern}`);
+    }
+  }
+}
 
 if (!existsSync(DIST)) {
   fail('dist directory is missing');
