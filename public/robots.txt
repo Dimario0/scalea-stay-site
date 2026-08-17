@@ -1,10 +1,7 @@
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: *
 Allow: /
-Allow: /src/
-Allow: /assets/
 
-# Sitemaps
 Sitemap: https://scaleastay.com/sitemap.xml
-
-# Crawl-delay for aggressive bots
-Crawl-delay: 10
