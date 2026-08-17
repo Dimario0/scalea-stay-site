@@ -128,6 +128,14 @@ const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
   },
 };
 
+const COMMERCIAL_PATHS: Partial<Record<string, string>> = {
+  it: '/it/appartamento-scalea-vicino-mare/',
+  pl: '/pl/apartament-scalea-blisko-morza/',
+};
+
+const isCommercialPath = (pathname: string) =>
+  pathname.includes('/appartamento-scalea-vicino-mare') || pathname.includes('/apartament-scalea-blisko-morza');
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 const setMetaContent = (selector: string, value: string) => {
@@ -173,29 +181,40 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   }, [pathLang, location.pathname, location.search, location.hash, navigate]);
 
   const setLanguage = (lang: string) => {
-    if (ALL_TRANSLATIONS[lang] && lang !== language) {
-      localStorage.setItem('scalea_language', lang);
+    if (!ALL_TRANSLATIONS[lang] || lang === language) return;
 
-      const pathParts = location.pathname.split('/');
-      if (ALL_TRANSLATIONS[pathParts[1]]) {
-        pathParts[1] = lang;
-      } else {
-        pathParts.splice(1, 0, lang);
-      }
+    localStorage.setItem('scalea_language', lang);
 
-      const newPath = pathParts.join('/') || '/';
-      navigate(`${newPath}${location.search}${location.hash}`);
+    if (isCommercialPath(location.pathname)) {
+      const commercialTarget = COMMERCIAL_PATHS[lang];
+      navigate(`${commercialTarget || `/${lang}/`}${location.search}${location.hash}`);
+      return;
     }
+
+    const pathParts = location.pathname.split('/');
+    if (ALL_TRANSLATIONS[pathParts[1]]) {
+      pathParts[1] = lang;
+    } else {
+      pathParts.splice(1, 0, lang);
+    }
+
+    const newPath = pathParts.join('/') || '/';
+    navigate(`${newPath}${location.search}${location.hash}`);
   };
 
   const t = (key: string) => CONTENT_OVERRIDES[language]?.[key] || ALL_TRANSLATIONS[language]?.[key] || key;
   const currentLanguage = LANGUAGES.find((item) => item.code === language) || LANGUAGES[0];
 
   useEffect(() => {
+    document.documentElement.lang = language;
+
+    const isLanguageHome = location.pathname === `/${language}` || location.pathname === `/${language}/`;
+    if (!isLanguageHome) {
+      return;
+    }
+
     const seo = SEO_BY_LANGUAGE[language] || SEO_BY_LANGUAGE.ru;
     const pageUrl = `https://scaleastay.com/${language}/`;
-
-    document.documentElement.lang = language;
     document.title = seo.title;
 
     setMetaContent('meta[name="description"]', seo.description);
@@ -225,7 +244,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (canonical) {
       canonical.setAttribute('href', pageUrl);
     }
-  }, [language]);
+  }, [language, location.pathname]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, currentLanguage }}>
