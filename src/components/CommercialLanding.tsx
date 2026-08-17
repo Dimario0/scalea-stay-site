@@ -17,6 +17,7 @@ type LandingCopy = {
   title: string;
   subtitle: string;
   cta: string;
+  homeLabel: string;
   apartmentTitle: string;
   apartmentText: string;
   amenities: [string, string, string, string];
@@ -39,6 +40,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     title: 'Appartamento a Scalea vicino al mare',
     subtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
     cta: 'Verifica le date su WhatsApp',
+    homeLabel: 'Appartamenti a Scalea',
     apartmentTitle: 'Una base comoda per la vacanza in Calabria',
     apartmentText: 'L’appartamento è luminoso e accogliente, con aria condizionata, cucina attrezzata, terrazza e parcheggio. Ospita fino a 4 persone ed è adatto sia a soggiorni brevi sia a vacanze più lunghe.',
     amenities: ['Aria condizionata', 'Cucina attrezzata', 'Terrazza', 'Parcheggio'],
@@ -69,6 +71,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     title: 'Apartament w Scalei blisko morza',
     subtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
     cta: 'Sprawdź terminy na WhatsApp',
+    homeLabel: 'Apartamenty w Scalei',
     apartmentTitle: 'Wygodna baza na wakacje w Kalabrii',
     apartmentText: 'Jasny i przytulny apartament z klimatyzacją, wyposażoną kuchnią, tarasem i parkingiem. Może pomieścić do 4 gości i sprawdzi się zarówno na krótki wyjazd, jak i dłuższy urlop.',
     amenities: ['Klimatyzacja', 'Wyposażona kuchnia', 'Taras', 'Parking'],
@@ -178,6 +181,14 @@ const CommercialLanding: React.FC = () => {
       </header>
 
       <main>
+        <nav aria-label="Breadcrumb" className="px-4 py-3 border-b border-slate-100 bg-white">
+          <div className="max-w-6xl mx-auto flex items-center gap-2 text-xs font-bold text-slate-500">
+            <a href={`/${language}/`} className="hover:text-indigo-600">{copy.homeLabel}</a>
+            <span aria-hidden="true">/</span>
+            <span className="text-slate-700">{copy.title}</span>
+          </div>
+        </nav>
+
         <section className="bg-slate-950 text-white px-4 py-16 sm:py-20">
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
             <div>
