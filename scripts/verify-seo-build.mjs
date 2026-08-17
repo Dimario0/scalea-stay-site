@@ -31,6 +31,8 @@ const stalePatterns = [
   /(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,
   /6[- ]minute walk/i,
   /6\s*minut(?:e|y|en|ová| пешком)/i,
+  />faqQ(?:6|8)</i,
+  />faqA(?:6|8)</i,
 ];
 
 const sourceStalePatterns = [
