@@ -32,8 +32,12 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
         }`}
       >
         <Globe className="w-4 h-4" />
-        <span className="hidden sm:inline">{currentLanguage.flag} {currentLanguage.name}</span>
-        <span className="sm:hidden">{currentLanguage.flag}</span>
+        <span className="hidden sm:inline">
+          {currentLanguage.flag} {currentLanguage.name} · {currentLanguage.displayCode.toUpperCase()}
+        </span>
+        <span className="sm:hidden">
+          {currentLanguage.flag} {currentLanguage.displayCode.toUpperCase()}
+        </span>
         <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -43,7 +47,7 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute right-0 mt-2 w-48 max-w-[calc(100vw-2rem)] rounded-2xl bg-white shadow-xl border border-slate-100 overflow-hidden z-50 origin-top-right"
+            className="absolute right-0 mt-2 w-52 max-w-[calc(100vw-2rem)] rounded-2xl bg-white shadow-xl border border-slate-100 overflow-hidden z-50 origin-top-right"
           >
             <div className="py-1">
               {LANGUAGES.map((lang) => (
@@ -66,8 +70,11 @@ export const LanguageSwitcher: React.FC<{ scrolled?: boolean }> = ({ scrolled })
                 >
                   <span className="text-lg">{lang.flag}</span>
                   <span className="text-sm">{lang.name}</span>
+                  <span className="ml-auto text-[10px] font-black tracking-widest text-slate-400">
+                    {lang.displayCode.toUpperCase()}
+                  </span>
                   {language === lang.code && (
-                    <div className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-600" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-600" />
                   )}
                 </button>
               ))}
