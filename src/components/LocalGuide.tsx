@@ -43,6 +43,30 @@ const LocalGuide: React.FC = () => {
         }
       : null;
 
+  const guideLinks = language === 'it'
+    ? [
+        {
+          href: '/it/come-arrivare-da-lamezia-terme-a-scalea/',
+          label: 'Come arrivare da Lamezia Terme a Scalea',
+        },
+        {
+          href: '/it/scalea-senza-auto/',
+          label: 'Scalea senza auto: cosa raggiungere a piedi',
+        },
+      ]
+    : language === 'pl'
+      ? [
+          {
+            href: '/pl/jak-dojechac-z-lamezia-terme-do-scalei/',
+            label: 'Jak dojechać z Lamezia Terme do Scalei',
+          },
+          {
+            href: '/pl/scalea-bez-samochodu/',
+            label: 'Scalea bez samochodu: co jest blisko pieszo',
+          },
+        ]
+      : [];
+
   return (
     <section className="py-12 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
@@ -89,16 +113,30 @@ const LocalGuide: React.FC = () => {
           ))}
         </div>
 
-        {commercialLink && (
-          <div className="mt-10 text-center">
-            <a
-              href={commercialLink.href}
-              onClick={() => trackEvent('commercial_landing_open', { source: 'local_guide', language })}
-              className="inline-flex items-center gap-2 rounded-2xl border border-indigo-100 bg-indigo-50/70 px-5 py-3 text-sm font-black text-indigo-700 transition-colors hover:bg-indigo-100"
-            >
-              {commercialLink.label}
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </a>
+        {(commercialLink || guideLinks.length > 0) && (
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {commercialLink && (
+              <a
+                href={commercialLink.href}
+                onClick={() => trackEvent('commercial_landing_open', { source: 'local_guide', language })}
+                className="inline-flex items-center gap-2 rounded-2xl border border-indigo-100 bg-indigo-50/70 px-5 py-3 text-sm font-black text-indigo-700 transition-colors hover:bg-indigo-100"
+              >
+                {commercialLink.label}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            )}
+
+            {guideLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => trackEvent('seo_guide_open', { source: 'local_guide', language, href: link.href })}
+                className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50"
+              >
+                {link.label}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            ))}
           </div>
         )}
       </div>
