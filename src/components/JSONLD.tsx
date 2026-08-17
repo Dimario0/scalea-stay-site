@@ -112,6 +112,7 @@ const JSONLD: React.FC = () => {
   const webPageId = `${pageUrl}#webpage`;
   const propertyId = 'https://scaleastay.com/#property';
   const accommodationId = 'https://scaleastay.com/#scaleastay-apartment';
+  const scaleaId = 'https://scaleastay.com/#scalea';
   const beachId = 'https://scaleastay.com/#nearest-beach';
   const stationId = 'https://scaleastay.com/#scalea-station';
   const airportId = 'https://scaleastay.com/#lamezia-airport';
@@ -165,6 +166,7 @@ const JSONLD: React.FC = () => {
         about: [
           { '@id': propertyId },
           { '@id': accommodationId },
+          { '@id': scaleaId },
         ],
         mentions: [
           { '@id': beachId },
@@ -172,6 +174,20 @@ const JSONLD: React.FC = () => {
           { '@id': airportId },
           { '@id': airportRouteId },
         ],
+      },
+      {
+        '@type': 'City',
+        '@id': scaleaId,
+        name: 'Scalea',
+        containedInPlace: {
+          '@type': 'AdministrativeArea',
+          name: 'Calabria',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressRegion: 'Calabria',
+          addressCountry: 'IT',
+        },
       },
       {
         '@type': 'LodgingBusiness',
@@ -201,6 +217,7 @@ const JSONLD: React.FC = () => {
           latitude: 39.8074152,
           longitude: 15.7949133,
         },
+        containedInPlace: { '@id': scaleaId },
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'reservations',
@@ -269,6 +286,7 @@ const JSONLD: React.FC = () => {
         name: 'Nearest beach access to ScaleaStay',
         description: 'Nearest confirmed beach access point used by the route section on ScaleaStay.',
         hasMap: beachMapUrl,
+        containedInPlace: { '@id': scaleaId },
         geo: {
           '@type': 'GeoCoordinates',
           latitude: 39.8064465,
@@ -287,6 +305,7 @@ const JSONLD: React.FC = () => {
         '@id': stationId,
         name: 'Scalea–Santa Domenica Talao',
         hasMap: stationMapUrl,
+        containedInPlace: { '@id': scaleaId },
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Scalea',
