@@ -19,9 +19,11 @@ import FAQ from './components/FAQ';
 import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
+import CommercialLanding from './components/CommercialLanding';
 import { trackEvent } from './analytics';
 
 const ROUTE_NAMES = ['beach', 'station', 'airport'] as const;
+const COMMERCIAL_SLUGS = ['appartamento-scalea-vicino-mare', 'apartament-scalea-blisko-morza'];
 
 const App: React.FC = () => {
   const { data } = useSiteData();
@@ -83,6 +85,11 @@ const App: React.FC = () => {
     trackEvent('route_section_open', { source: 'footer' });
     document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
+
+  const isCommercialLanding = COMMERCIAL_SLUGS.some((slug) => window.location.pathname.includes(`/${slug}`));
+  if (isCommercialLanding) {
+    return <CommercialLanding />;
+  }
 
   return (
     <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
