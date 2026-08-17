@@ -1,35 +1,47 @@
-
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
-import { Utensils, TowerControl as Tower, MapPin } from 'lucide-react';
+import { ArrowRight, Utensils, TowerControl as Tower, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
+import { trackEvent } from '../analytics';
 
 const LocalGuide: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data } = useSiteData();
   const guideImages = data.siteImages.guideImages || [];
 
   const places = [
-    { 
-      icon: <Utensils className="w-6 h-6" />, 
-      title: t('guidePlace1'), 
+    {
+      icon: <Utensils className="w-6 h-6" />,
+      title: t('guidePlace1'),
       desc: t('guideDesc1'),
       image: guideImages[0] || 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80'
     },
-    { 
-      icon: <Tower className="w-6 h-6" />, 
-      title: t('guidePlace2'), 
+    {
+      icon: <Tower className="w-6 h-6" />,
+      title: t('guidePlace2'),
       desc: t('guideDesc2'),
       image: guideImages[1] || 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp'
     },
-    { 
-      icon: <MapPin className="w-6 h-6" />, 
-      title: t('guidePlace3'), 
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: t('guidePlace3'),
       desc: t('guideDesc3'),
       image: guideImages[2] || 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg'
     },
   ];
+
+  const commercialLink = language === 'it'
+    ? {
+        href: '/it/appartamento-scalea-vicino-mare/',
+        label: 'Scopri l’appartamento a Scalea vicino al mare',
+      }
+    : language === 'pl'
+      ? {
+          href: '/pl/apartament-scalea-blisko-morza/',
+          label: 'Zobacz apartament w Scalei blisko morza',
+        }
+      : null;
 
   return (
     <section className="py-12 px-4 bg-white">
@@ -53,15 +65,15 @@ const LocalGuide: React.FC = () => {
               className="bg-white rounded-[32px] overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group"
             >
               <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={place.image} 
-                  alt={place.title} 
+                <img
+                  src={place.image}
+                  alt={place.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              
+
               <div className="p-8">
                 <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
                   {place.icon}
@@ -76,6 +88,19 @@ const LocalGuide: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {commercialLink && (
+          <div className="mt-10 text-center">
+            <a
+              href={commercialLink.href}
+              onClick={() => trackEvent('commercial_landing_open', { source: 'local_guide', language })}
+              className="inline-flex items-center gap-2 rounded-2xl border border-indigo-100 bg-indigo-50/70 px-5 py-3 text-sm font-black text-indigo-700 transition-colors hover:bg-indigo-100"
+            >
+              {commercialLink.label}
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
