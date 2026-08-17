@@ -10,8 +10,8 @@ export type SiteLanguage = {
 export const LANGUAGES: SiteLanguage[] = [
   ...BASE_LANGUAGES.map((language) => ({
     ...language,
-    // Keep the technical Czech language code as `cs` for standards/SEO,
-    // while showing the familiar country-style abbreviation `CZ` in the UI.
+    // Czech is shown to visitors as CZ. The internal language code stays `cs`
+    // because HTML lang/hreflang use the ISO language code for Czech.
     displayCode: language.code === 'cs' ? 'cz' : language.code,
   })),
   { code: 'pl', name: 'Polski', flag: '🇵🇱', displayCode: 'pl' },
