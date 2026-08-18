@@ -2,8 +2,143 @@
   command = "npm run build"
   publish = "dist"
 
-# Keep real generated HTML files authoritative. The SPA fallback is only used
-# for routes that do not correspond to a generated file in dist.
+# Explicit rewrites for generated static HTML. These rules make direct requests
+# to language roots and SEO/GEO landing pages resolve to their real index.html
+# files in Deploy Preview instead of depending on directory shadowing behavior.
+
+[[redirects]]
+  from = "/ru"
+  to = "/ru/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/ru/"
+  to = "/ru/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/en"
+  to = "/en/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/it"
+  to = "/it/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it/"
+  to = "/it/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/de"
+  to = "/de/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/de/"
+  to = "/de/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/cs"
+  to = "/cs/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/cs/"
+  to = "/cs/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pl"
+  to = "/pl/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/"
+  to = "/pl/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/it/appartamento-scalea-vicino-mare"
+  to = "/it/appartamento-scalea-vicino-mare/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it/appartamento-scalea-vicino-mare/"
+  to = "/it/appartamento-scalea-vicino-mare/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pl/apartament-scalea-blisko-morza"
+  to = "/pl/apartament-scalea-blisko-morza/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/apartament-scalea-blisko-morza/"
+  to = "/pl/apartament-scalea-blisko-morza/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/it/come-arrivare-da-lamezia-terme-a-scalea"
+  to = "/it/come-arrivare-da-lamezia-terme-a-scalea/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it/come-arrivare-da-lamezia-terme-a-scalea/"
+  to = "/it/come-arrivare-da-lamezia-terme-a-scalea/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pl/jak-dojechac-z-lamezia-terme-do-scalei"
+  to = "/pl/jak-dojechac-z-lamezia-terme-do-scalei/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/jak-dojechac-z-lamezia-terme-do-scalei/"
+  to = "/pl/jak-dojechac-z-lamezia-terme-do-scalei/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/it/scalea-senza-auto"
+  to = "/it/scalea-senza-auto/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it/scalea-senza-auto/"
+  to = "/it/scalea-senza-auto/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pl/scalea-bez-samochodu"
+  to = "/pl/scalea-bez-samochodu/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/scalea-bez-samochodu/"
+  to = "/pl/scalea-bez-samochodu/index.html"
+  status = 200
+  force = true
+
+# SPA fallback stays last and only handles paths without generated HTML.
 [[redirects]]
   from = "/*"
   to = "/index.html"
