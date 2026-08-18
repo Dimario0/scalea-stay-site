@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Keep real generated HTML files authoritative. The SPA fallback is only used
+# for routes that do not correspond to a generated file in dist.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
