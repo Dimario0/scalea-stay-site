@@ -17,6 +17,9 @@ const LocalGuide: React.FC = () => {
   const { t, language } = useLanguage();
   const { data } = useSiteData();
   const guideImages = data.siteImages.guideImages || [];
+  const apartmentImage = data.apartments?.[0]?.images?.find(
+    (image) => typeof image === 'string' && image.trim() !== '',
+  ) || 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=85';
 
   const places = [
     {
@@ -51,7 +54,7 @@ const LocalGuide: React.FC = () => {
             tag: 'ScaleaStay',
             title: 'Appartamento vicino al mare',
             text: 'Scopri servizi, posizione, distanze verificate e come controllare le date direttamente.',
-            image: guideImages[1] || 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
+            image: apartmentImage,
             event: 'commercial_landing_open',
           },
           {
@@ -69,7 +72,7 @@ const LocalGuide: React.FC = () => {
             tag: 'A piedi',
             title: 'Scalea senza auto',
             text: 'Mare, Interspar, stazione e centro storico: guarda cosa è davvero raggiungibile a piedi.',
-            image: guideImages[2] || 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
+            image: '',
             event: 'seo_guide_open',
           },
         ],
@@ -86,7 +89,7 @@ const LocalGuide: React.FC = () => {
               tag: 'ScaleaStay',
               title: 'Apartament blisko morza',
               text: 'Zobacz wyposażenie, położenie, sprawdzone odległości i sposób rezerwacji bezpośrednio.',
-              image: guideImages[1] || 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
+              image: apartmentImage,
               event: 'commercial_landing_open',
             },
             {
@@ -104,7 +107,7 @@ const LocalGuide: React.FC = () => {
               tag: 'Pieszo',
               title: 'Scalea bez samochodu',
               text: 'Morze, Interspar, dworzec i stare miasto: sprawdź, co naprawdę jest w zasięgu spaceru.',
-              image: guideImages[2] || 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
+              image: '',
               event: 'seo_guide_open',
             },
           ],
@@ -183,12 +186,24 @@ const LocalGuide: React.FC = () => {
                   onClick={() => trackEvent(card.event, { source: 'guide_cards', language, href: card.href })}
                   className="group relative min-h-[310px] overflow-hidden rounded-[28px] border border-white/10 bg-slate-900 shadow-xl"
                 >
-                  <img
-                    src={card.image}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
+                  {card.image ? (
+                    <img
+                      src={card.image}
+                      alt=""
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.35),transparent_34%),radial-gradient(circle_at_80%_72%,rgba(14,165,233,0.22),transparent_30%),linear-gradient(145deg,#111827,#020617)]">
+                      <div className="absolute left-[18%] top-[24%] flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/90 backdrop-blur-sm">
+                        <Footprints className="h-7 w-7" aria-hidden="true" />
+                      </div>
+                      <div className="absolute right-[18%] top-[48%] flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/90 backdrop-blur-sm">
+                        <MapPin className="h-6 w-6" aria-hidden="true" />
+                      </div>
+                      <div className="absolute left-[30%] top-[39%] h-px w-[42%] rotate-[16deg] border-t border-dashed border-white/35"></div>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/10"></div>
 
                   <div className="relative flex min-h-[310px] flex-col justify-end p-6">
