@@ -10,7 +10,6 @@ import { REVIEWS, CONTACT_INFO } from './constants';
 import { useSiteData } from './context/SiteContext';
 import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
-import AboutGrid from './components/AboutGrid';
 import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
@@ -121,7 +120,9 @@ const App: React.FC = () => {
 
         <WeatherForecast />
 
-        <LocalGuide />
+        <div id="about" className="scroll-mt-40">
+          <LocalGuide />
+        </div>
 
         <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
@@ -136,47 +137,6 @@ const App: React.FC = () => {
                   <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest break-words hyphens-none">— {t(rev.nameKey)}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="about" className="pt-16 pb-12 px-4 overflow-hidden bg-slate-950 text-white rounded-t-[60px] scroll-mt-40">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none break-words hyphens-none">
-                  {t('aboutScalea')}
-                </h2>
-                <p className="text-slate-400 text-lg mb-12 leading-relaxed break-words hyphens-none">
-                  {t('aboutScaleaDesc')}
-                </p>
-                
-                <div className="space-y-12">
-                  <div className="group flex space-x-6">
-                    <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 text-2xl">
-                      🌊
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black mb-2 uppercase">{t('localExperience')}</h4>
-                      <p className="text-slate-400 text-sm leading-relaxed">{t('localExperienceDesc')}</p>
-                    </div>
-                  </div>
-
-                  <div className="group flex space-x-6">
-                    <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 text-2xl">
-                      ✨
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black mb-2 uppercase">{t('flawlessService')}</h4>
-                      <p className="text-slate-400 text-sm leading-relaxed">{t('flawlessServiceDesc')}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-[30px]">
-                <AboutGrid images={data.siteImages.aboutImages} />
-              </div>
             </div>
           </div>
         </section>
