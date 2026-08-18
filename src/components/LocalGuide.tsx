@@ -1,7 +1,15 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
-import { ArrowRight, Utensils, TowerControl as Tower, MapPin } from 'lucide-react';
+import {
+  ArrowRight,
+  Footprints,
+  Home,
+  MapPin,
+  Plane,
+  TowerControl as Tower,
+  Utensils,
+} from 'lucide-react';
 import { motion } from 'motion/react';
 import { trackEvent } from '../analytics';
 
@@ -31,41 +39,77 @@ const LocalGuide: React.FC = () => {
     },
   ];
 
-  const commercialLink = language === 'it'
+  const planningContent = language === 'it'
     ? {
-        href: '/it/appartamento-scalea-vicino-mare/',
-        label: 'Scopri l’appartamento a Scalea vicino al mare',
+        eyebrow: 'Organizza il soggiorno',
+        title: 'Guide utili per vivere Scalea con semplicità',
+        subtitle: 'Tre percorsi rapidi per capire dove alloggiare, come arrivare e cosa puoi fare a piedi.',
+        cards: [
+          {
+            href: '/it/appartamento-scalea-vicino-mare/',
+            icon: <Home className="w-5 h-5" />,
+            tag: 'ScaleaStay',
+            title: 'Appartamento vicino al mare',
+            text: 'Scopri servizi, posizione, distanze verificate e come controllare le date direttamente.',
+            image: guideImages[1] || 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
+            event: 'commercial_landing_open',
+          },
+          {
+            href: '/it/come-arrivare-da-lamezia-terme-a-scalea/',
+            icon: <Plane className="w-5 h-5" />,
+            tag: 'Arrivo',
+            title: 'Da Lamezia Terme a Scalea',
+            text: 'Airlink, stazione centrale, treno per Scalea e ultimo tratto fino all’appartamento.',
+            image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+            event: 'seo_guide_open',
+          },
+          {
+            href: '/it/scalea-senza-auto/',
+            icon: <Footprints className="w-5 h-5" />,
+            tag: 'A piedi',
+            title: 'Scalea senza auto',
+            text: 'Mare, Interspar, stazione e centro storico: guarda cosa è davvero raggiungibile a piedi.',
+            image: guideImages[2] || 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
+            event: 'seo_guide_open',
+          },
+        ],
       }
     : language === 'pl'
       ? {
-          href: '/pl/apartament-scalea-blisko-morza/',
-          label: 'Zobacz apartament w Scalei blisko morza',
+          eyebrow: 'Zaplanuj pobyt',
+          title: 'Praktyczne przewodniki po Scalei',
+          subtitle: 'Trzy szybkie ścieżki: gdzie nocować, jak dojechać i co jest dostępne pieszo.',
+          cards: [
+            {
+              href: '/pl/apartament-scalea-blisko-morza/',
+              icon: <Home className="w-5 h-5" />,
+              tag: 'ScaleaStay',
+              title: 'Apartament blisko morza',
+              text: 'Zobacz wyposażenie, położenie, sprawdzone odległości i sposób rezerwacji bezpośrednio.',
+              image: guideImages[1] || 'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
+              event: 'commercial_landing_open',
+            },
+            {
+              href: '/pl/jak-dojechac-z-lamezia-terme-do-scalei/',
+              icon: <Plane className="w-5 h-5" />,
+              tag: 'Dojazd',
+              title: 'Z Lamezia Terme do Scalei',
+              text: 'Airlink, stacja centralna, pociąg do Scalei i ostatni odcinek do apartamentu.',
+              image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',
+              event: 'seo_guide_open',
+            },
+            {
+              href: '/pl/scalea-bez-samochodu/',
+              icon: <Footprints className="w-5 h-5" />,
+              tag: 'Pieszo',
+              title: 'Scalea bez samochodu',
+              text: 'Morze, Interspar, dworzec i stare miasto: sprawdź, co naprawdę jest w zasięgu spaceru.',
+              image: guideImages[2] || 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
+              event: 'seo_guide_open',
+            },
+          ],
         }
       : null;
-
-  const guideLinks = language === 'it'
-    ? [
-        {
-          href: '/it/come-arrivare-da-lamezia-terme-a-scalea/',
-          label: 'Come arrivare da Lamezia Terme a Scalea',
-        },
-        {
-          href: '/it/scalea-senza-auto/',
-          label: 'Scalea senza auto: cosa raggiungere a piedi',
-        },
-      ]
-    : language === 'pl'
-      ? [
-          {
-            href: '/pl/jak-dojechac-z-lamezia-terme-do-scalei/',
-            label: 'Jak dojechać z Lamezia Terme do Scalei',
-          },
-          {
-            href: '/pl/scalea-bez-samochodu/',
-            label: 'Scalea bez samochodu: co jest blisko pieszo',
-          },
-        ]
-      : [];
 
   return (
     <section className="py-12 px-4 bg-white">
@@ -113,30 +157,61 @@ const LocalGuide: React.FC = () => {
           ))}
         </div>
 
-        {(commercialLink || guideLinks.length > 0) && (
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {commercialLink && (
-              <a
-                href={commercialLink.href}
-                onClick={() => trackEvent('commercial_landing_open', { source: 'local_guide', language })}
-                className="inline-flex items-center gap-2 rounded-2xl border border-indigo-100 bg-indigo-50/70 px-5 py-3 text-sm font-black text-indigo-700 transition-colors hover:bg-indigo-100"
-              >
-                {commercialLink.label}
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-            )}
+        {planningContent && (
+          <div className="mt-16 rounded-[36px] bg-slate-950 px-5 py-8 md:px-8 md:py-10 overflow-hidden">
+            <div className="max-w-3xl mb-8">
+              <p className="text-indigo-300 text-xs font-black uppercase tracking-[0.24em] mb-3">
+                {planningContent.eyebrow}
+              </p>
+              <h3 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-3">
+                {planningContent.title}
+              </h3>
+              <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+                {planningContent.subtitle}
+              </p>
+            </div>
 
-            {guideLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => trackEvent('seo_guide_open', { source: 'local_guide', language, href: link.href })}
-                className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-5 py-3 text-sm font-black text-slate-700 transition-colors hover:bg-slate-50"
-              >
-                {link.label}
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {planningContent.cards.map((card, idx) => (
+                <motion.a
+                  key={card.href}
+                  href={card.href}
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.08 }}
+                  onClick={() => trackEvent(card.event, { source: 'guide_cards', language, href: card.href })}
+                  className="group relative min-h-[310px] overflow-hidden rounded-[28px] border border-white/10 bg-slate-900 shadow-xl"
+                >
+                  <img
+                    src={card.image}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/10"></div>
+
+                  <div className="relative flex min-h-[310px] flex-col justify-end p-6">
+                    <div className="mb-auto flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/30 px-3 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                        {card.icon}
+                        {card.tag}
+                      </span>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-950 transition-transform duration-300 group-hover:translate-x-1">
+                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl font-black leading-tight text-white mb-3">
+                      {card.title}
+                    </h4>
+                    <p className="text-sm leading-relaxed text-slate-200">
+                      {card.text}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
           </div>
         )}
       </div>
