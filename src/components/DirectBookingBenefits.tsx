@@ -1,10 +1,21 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2 } from 'lucide-react';
+import { CONTACT_INFO } from '../constants';
+import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
+import { trackEvent } from '../analytics';
+
+const CTA_LABELS: Record<string, string> = {
+  ru: 'Проверить свободные даты',
+  en: 'Check available dates',
+  it: 'Verifica le date disponibili',
+  de: 'Freie Termine prüfen',
+  cs: 'Ověřit volné termíny',
+  pl: 'Sprawdź wolne terminy',
+};
 
 const DirectBookingBenefits: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const benefits = [
     { icon: <MessageCircle className="w-5 h-5" />, text: t('directBookItem1') },
@@ -41,6 +52,22 @@ const DirectBookingBenefits: React.FC = () => {
               <p className="text-sm font-bold text-slate-700 leading-snug mt-2">{item.text}</p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <a
+            href={CONTACT_INFO.whatsappLink(t('whatsappBookingMsg'))}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              trackEvent('booking_button_click', { source: 'direct_booking_benefits', page_path: window.location.pathname });
+              trackEvent('whatsapp_click', { source: 'direct_booking_benefits', page_path: window.location.pathname });
+            }}
+            className="inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl bg-indigo-600 px-7 py-4 text-sm font-black text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-indigo-700 active:scale-95"
+          >
+            <span>{CTA_LABELS[language] || CTA_LABELS.ru}</span>
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
