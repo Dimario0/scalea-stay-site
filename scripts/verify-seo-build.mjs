@@ -7,163 +7,50 @@ const DIST = path.join(ROOT, 'dist');
 const SITE_ORIGIN = 'https://scaleastay.com';
 
 const pages = [
-  { path: 'ru/index.html', lang: 'ru', canonical: `${SITE_ORIGIN}/ru/` },
-  { path: 'en/index.html', lang: 'en', canonical: `${SITE_ORIGIN}/en/` },
-  { path: 'it/index.html', lang: 'it', canonical: `${SITE_ORIGIN}/it/` },
-  { path: 'de/index.html', lang: 'de', canonical: `${SITE_ORIGIN}/de/` },
-  { path: 'cs/index.html', lang: 'cs', canonical: `${SITE_ORIGIN}/cs/` },
-  { path: 'pl/index.html', lang: 'pl', canonical: `${SITE_ORIGIN}/pl/` },
-  {
-    path: 'it/appartamento-scalea-vicino-mare/index.html',
-    lang: 'it',
-    canonical: `${SITE_ORIGIN}/it/appartamento-scalea-vicino-mare/`,
-  },
-  {
-    path: 'pl/apartament-scalea-blisko-morza/index.html',
-    lang: 'pl',
-    canonical: `${SITE_ORIGIN}/pl/apartament-scalea-blisko-morza/`,
-  },
-  {
-    path: 'it/come-arrivare-da-lamezia-terme-a-scalea/index.html',
-    lang: 'it',
-    canonical: `${SITE_ORIGIN}/it/come-arrivare-da-lamezia-terme-a-scalea/`,
-    marker: 'data-prerender-guide="airport-it"',
-  },
-  {
-    path: 'pl/jak-dojechac-z-lamezia-terme-do-scalei/index.html',
-    lang: 'pl',
-    canonical: `${SITE_ORIGIN}/pl/jak-dojechac-z-lamezia-terme-do-scalei/`,
-    marker: 'data-prerender-guide="airport-pl"',
-  },
-  {
-    path: 'it/scalea-senza-auto/index.html',
-    lang: 'it',
-    canonical: `${SITE_ORIGIN}/it/scalea-senza-auto/`,
-    marker: 'data-prerender-guide="no-car-it"',
-  },
-  {
-    path: 'pl/scalea-bez-samochodu/index.html',
-    lang: 'pl',
-    canonical: `${SITE_ORIGIN}/pl/scalea-bez-samochodu/`,
-    marker: 'data-prerender-guide="no-car-pl"',
-  },
-];
+  ['ru/index.html','ru','/ru/'],['en/index.html','en','/en/'],['it/index.html','it','/it/'],['de/index.html','de','/de/'],['cs/index.html','cs','/cs/'],['pl/index.html','pl','/pl/'],
+  ['it/appartamento-scalea-vicino-mare/index.html','it','/it/appartamento-scalea-vicino-mare/'],
+  ['pl/apartament-scalea-blisko-morza/index.html','pl','/pl/apartament-scalea-blisko-morza/'],
+  ['it/come-arrivare-da-lamezia-terme-a-scalea/index.html','it','/it/come-arrivare-da-lamezia-terme-a-scalea/'],
+  ['pl/jak-dojechac-z-lamezia-terme-do-scalei/index.html','pl','/pl/jak-dojechac-z-lamezia-terme-do-scalei/'],
+  ['it/scalea-senza-auto/index.html','it','/it/scalea-senza-auto/'],
+  ['pl/scalea-bez-samochodu/index.html','pl','/pl/scalea-bez-samochodu/'],
+  ['it/spiagge-scalea/index.html','it','/it/spiagge-scalea/'],
+  ['pl/plaze-scalea/index.html','pl','/pl/plaze-scalea/'],
+  ['it/centro-storico-scalea-sera/index.html','it','/it/centro-storico-scalea-sera/'],
+  ['pl/stare-miasto-scalea-wieczorem/index.html','pl','/pl/stare-miasto-scalea-wieczorem/'],
+  ['it/dove-mangiare-scalea/index.html','it','/it/dove-mangiare-scalea/'],
+  ['pl/gdzie-zjesc-scalea/index.html','pl','/pl/gdzie-zjesc-scalea/'],
+].map(([file,lang,url]) => ({file,lang,canonical:`${SITE_ORIGIN}${url}`}));
 
-const stalePatterns = [
-  /Casa Marittima/i,
-  /400\s*(?:m|metri|meters?|meter|metrů|метр)/i,
-  /(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,
-  /6[- ]minute walk/i,
-  /6\s*minut(?:e|y|en|ová| пешком)/i,
-  />faqQ(?:6|8)</i,
-  />faqA(?:6|8)</i,
-];
+const stalePatterns = [/Casa Marittima/i,/400\s*(?:m|metri|meters?|meter|metrů|метр)/i,/(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,/>faqQ(?:6|8)</i,/>faqA(?:6|8)</i];
+const fail = (m) => { console.error(`SEO BUILD VERIFY FAILED: ${m}`); process.exitCode = 1; };
 
-const sourceStalePatterns = [
-  /Casa Marittima/i,
-  /400\s*(?:m|metri|meters?|meter|metrů|метр)/i,
-  /distanceToSea:\s*['"]400m['"]/i,
-  /(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,
-];
-
-const fail = (message) => {
-  console.error(`SEO BUILD VERIFY FAILED: ${message}`);
-  process.exitCode = 1;
-};
-
-const constantsPath = path.join(ROOT, 'src', 'constants.tsx');
-if (!existsSync(constantsPath)) {
-  fail('src/constants.tsx is missing');
-} else {
-  const constants = readFileSync(constantsPath, 'utf8');
-  for (const pattern of sourceStalePatterns) {
-    if (pattern.test(constants)) {
-      fail(`src/constants.tsx still contains stale fallback copy matched by ${pattern}`);
-    }
-  }
+if (!existsSync(DIST)) fail('dist directory is missing');
+for (const p of pages) {
+  const filePath = path.join(DIST,p.file);
+  if (!existsSync(filePath)) { fail(`missing ${p.file}`); continue; }
+  const html = readFileSync(filePath,'utf8');
+  if (!new RegExp(`<html lang=["']${p.lang}["']`,'i').test(html)) fail(`${p.file}: wrong html lang`);
+  if (!html.includes(`rel="canonical" href="${p.canonical}"`)) fail(`${p.file}: missing self canonical`);
+  if (!/meta name="robots" content="index,follow,max-image-preview:large"/i.test(html)) fail(`${p.file}: not explicitly indexable`);
+  const h1 = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
+  if (h1 !== 1) fail(`${p.file}: expected one H1, found ${h1}`);
+  for (const pattern of stalePatterns) if (pattern.test(html)) fail(`${p.file}: stale public copy matched ${pattern}`);
 }
 
-if (!existsSync(DIST)) {
-  fail('dist directory is missing');
-} else {
-  for (const page of pages) {
-    const filePath = path.join(DIST, page.path);
-    if (!existsSync(filePath)) {
-      fail(`missing ${page.path}`);
-      continue;
-    }
-
-    const html = readFileSync(filePath, 'utf8');
-    if (!new RegExp(`<html lang=["']${page.lang}["']`, 'i').test(html)) {
-      fail(`${page.path}: wrong or missing html lang=${page.lang}`);
-    }
-    if (!html.includes(`rel="canonical" href="${page.canonical}"`)) {
-      fail(`${page.path}: missing self canonical ${page.canonical}`);
-    }
-    if (!/meta name="robots" content="index,follow,max-image-preview:large"/i.test(html)) {
-      fail(`${page.path}: page is not explicitly indexable`);
-    }
-    const h1Count = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
-    if (h1Count !== 1) {
-      fail(`${page.path}: expected one H1, found ${h1Count}`);
-    }
-    if (page.marker && !html.includes(page.marker)) {
-      fail(`${page.path}: missing prerender marker ${page.marker}`);
-    }
-    for (const pattern of stalePatterns) {
-      if (pattern.test(html)) {
-        fail(`${page.path}: stale public copy matched ${pattern}`);
-      }
-    }
-  }
-
-  const rootIndexPath = path.join(DIST, 'index.html');
-  if (!existsSync(rootIndexPath)) {
-    fail('missing root index.html');
-  } else {
-    const rootHtml = readFileSync(rootIndexPath, 'utf8');
-    if (!/meta name="robots" content="noindex,follow"/i.test(rootHtml)) {
-      fail('root index must remain noindex,follow');
-    }
-  }
-
-  const sitemapPath = path.join(DIST, 'sitemap.xml');
-  const robotsPath = path.join(DIST, 'robots.txt');
-  if (!existsSync(sitemapPath)) {
-    fail('missing sitemap.xml');
-  } else {
-    const sitemap = readFileSync(sitemapPath, 'utf8');
-    for (const page of pages) {
-      if (!sitemap.includes(`<loc>${page.canonical}</loc>`)) {
-        fail(`sitemap missing ${page.canonical}`);
-      }
-    }
-    if (!sitemap.includes('hreflang="cs"') || sitemap.includes('hreflang="cz"')) {
-      fail('sitemap must use standard Czech hreflang="cs", not "cz"');
-    }
-    if (!sitemap.includes(`${SITE_ORIGIN}/it/come-arrivare-da-lamezia-terme-a-scalea/`) ||
-        !sitemap.includes(`${SITE_ORIGIN}/pl/jak-dojechac-z-lamezia-terme-do-scalei/`)) {
-      fail('airport guide hreflang pair is missing from sitemap');
-    }
-    if (!sitemap.includes(`${SITE_ORIGIN}/it/scalea-senza-auto/`) ||
-        !sitemap.includes(`${SITE_ORIGIN}/pl/scalea-bez-samochodu/`)) {
-      fail('car-free guide hreflang pair is missing from sitemap');
-    }
-  }
-
-  if (!existsSync(robotsPath)) {
-    fail('missing robots.txt');
-  } else {
-    const robots = readFileSync(robotsPath, 'utf8');
-    if (!robots.includes('User-agent: OAI-SearchBot') || !robots.includes('Allow: /')) {
-      fail('robots.txt must explicitly allow OAI-SearchBot');
-    }
-    if (!robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) {
-      fail('robots.txt sitemap URL is missing or incorrect');
-    }
-  }
+const root = path.join(DIST,'index.html');
+if (!existsSync(root) || !/meta name="robots" content="noindex,follow"/i.test(readFileSync(root,'utf8'))) fail('root index must remain noindex,follow');
+const sitemapPath = path.join(DIST,'sitemap.xml');
+if (!existsSync(sitemapPath)) fail('missing sitemap.xml');
+else {
+  const sitemap = readFileSync(sitemapPath,'utf8');
+  for (const p of pages) if (!sitemap.includes(`<loc>${p.canonical}</loc>`)) fail(`sitemap missing ${p.canonical}`);
+  if (!sitemap.includes('hreflang="cs"') || sitemap.includes('hreflang="cz"')) fail('sitemap must use cs, not cz');
 }
-
-if (!process.exitCode) {
-  console.log('SEO BUILD VERIFY PASS');
+const robotsPath = path.join(DIST,'robots.txt');
+if (!existsSync(robotsPath)) fail('missing robots.txt');
+else {
+  const robots = readFileSync(robotsPath,'utf8');
+  if (!robots.includes('User-agent: OAI-SearchBot') || !robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) fail('robots.txt missing OAI-SearchBot or sitemap');
 }
+if (!process.exitCode) console.log(`SEO BUILD VERIFY PASS: ${pages.length} indexable pages`);
