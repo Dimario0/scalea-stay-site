@@ -20,6 +20,18 @@ interface SiteContextType {
   exportConfig: () => string;
 }
 
+const normalizeApartments = (apartments: Apartment[]): Apartment[] =>
+  apartments.map((apartment) => {
+    if (apartment.id !== '1') return apartment;
+
+    return {
+      ...apartment,
+      name: 'ScaleaStay',
+      description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — 600 м, около 5–8 минут пешком.',
+      distanceToSea: '600m',
+    };
+  });
+
 const SiteContext = createContext<SiteContextType | undefined>(undefined);
 
 export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,7 +40,7 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const initialData: SiteData = {
       version: SITE_DATA_VERSION,
       siteImages: SITE_IMAGES,
-      apartments: APARTMENTS,
+      apartments: normalizeApartments(APARTMENTS),
       contactInfo: CONTACT_INFO
     };
 
@@ -74,6 +86,8 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
           
           parsed.version = SITE_DATA_VERSION;
         }
+
+        parsed.apartments = normalizeApartments(parsed.apartments || APARTMENTS);
         return parsed;
       } catch (e) {
         console.error("Failed to parse saved data", e);
@@ -119,7 +133,7 @@ export const SiteProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setData({
       version: SITE_DATA_VERSION,
       siteImages: SITE_IMAGES,
-      apartments: APARTMENTS,
+      apartments: normalizeApartments(APARTMENTS),
       contactInfo: CONTACT_INFO
     });
   };

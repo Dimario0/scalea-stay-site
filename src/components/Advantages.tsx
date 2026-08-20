@@ -1,51 +1,145 @@
-
 import React from 'react';
-import { MapPin, Waves, Sparkles, Users, Car, ShoppingCart } from 'lucide-react';
+import { AirVent, Car, ChefHat, Sparkles, TreePine, Users } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'motion/react';
 
-const Advantages: React.FC = () => {
-  const { t } = useLanguage();
+type Advantage = {
+  title: string;
+  desc: string;
+};
 
-  const advantages = [
-    { icon: <MapPin className="w-6 h-6" />, title: t('advLocation'), desc: t('advLocationDesc') },
-    { icon: <Waves className="w-6 h-6" />, title: t('advSea'), desc: t('advSeaDesc') },
-    { icon: <ShoppingCart className="w-6 h-6" />, title: t('advSupermarket'), desc: t('advSupermarketDesc') },
-    { icon: <Sparkles className="w-6 h-6" />, title: t('advRenovation'), desc: t('advRenovationDesc') },
-    { icon: <Users className="w-6 h-6" />, title: t('advFamily'), desc: t('advFamilyDesc') },
-    { icon: <Car className="w-6 h-6" />, title: t('advParking'), desc: t('advParkingDesc') },
-  ];
+type AdvantagesCopy = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  items: [Advantage, Advantage, Advantage, Advantage, Advantage, Advantage];
+};
+
+const COPY: Record<string, AdvantagesCopy> = {
+  ru: {
+    eyebrow: 'ScaleaStay',
+    title: 'Почему здесь удобно отдыхать',
+    subtitle: 'Всё необходимое для комфортного отдыха — от кондиционера и кухни до террасы и парковки.',
+    items: [
+      { title: 'Современный ремонт', desc: 'Современный интерьер и новая мебель для комфортного отдыха.' },
+      { title: 'Кондиционер', desc: 'Комфортная температура в квартире в жаркие летние дни.' },
+      { title: 'Оборудованная кухня', desc: 'Всё необходимое, чтобы готовить дома во время отпуска.' },
+      { title: 'Терраса', desc: 'Дополнительное пространство для спокойного отдыха.' },
+      { title: 'Парковка', desc: 'Парковочное место для гостей ScaleaStay.' },
+      { title: 'До 4 гостей', desc: 'Удобный вариант для пары, семьи или небольшой компании.' },
+    ],
+  },
+  en: {
+    eyebrow: 'ScaleaStay',
+    title: 'Comfort for your seaside stay',
+    subtitle: 'Everything you need for a comfortable stay, from air conditioning and an equipped kitchen to a terrace and parking.',
+    items: [
+      { title: 'Modern interior', desc: 'A modern interior and new furniture for a comfortable stay.' },
+      { title: 'Air conditioning', desc: 'A comfortable indoor temperature during hot summer days.' },
+      { title: 'Equipped kitchen', desc: 'Everything you need to prepare meals during your holiday.' },
+      { title: 'Terrace', desc: 'Extra space for quiet moments and relaxed evenings.' },
+      { title: 'Parking', desc: 'Guest parking is available for ScaleaStay.' },
+      { title: 'Up to 4 guests', desc: 'A practical choice for couples, families or a small group.' },
+    ],
+  },
+  it: {
+    eyebrow: 'ScaleaStay',
+    title: 'Comfort pensato per la vacanza',
+    subtitle: 'Spazi e servizi utili per sentirsi comodi durante tutto il soggiorno.',
+    items: [
+      { title: 'Interni moderni', desc: 'Ambienti curati e arredi moderni per un soggiorno piacevole.' },
+      { title: 'Aria condizionata', desc: 'Per stare bene in appartamento anche nelle giornate più calde.' },
+      { title: 'Cucina attrezzata', desc: 'Tutto il necessario per preparare i pasti anche in vacanza.' },
+      { title: 'Terrazza', desc: 'Uno spazio in più per rilassarsi durante la giornata.' },
+      { title: 'Parcheggio', desc: 'Posto auto disponibile per gli ospiti di ScaleaStay.' },
+      { title: 'Fino a 4 ospiti', desc: 'Una soluzione comoda per coppie, famiglie o piccoli gruppi.' },
+    ],
+  },
+  de: {
+    eyebrow: 'ScaleaStay',
+    title: 'Komfort für Ihren Urlaub',
+    subtitle: 'Alles für einen entspannten Aufenthalt – von Klimaanlage und ausgestatteter Küche bis zu Terrasse und Parkplatz.',
+    items: [
+      { title: 'Modernes Interieur', desc: 'Helle, gepflegte Räume und moderne Möbel für einen angenehmen Aufenthalt.' },
+      { title: 'Klimaanlage', desc: 'Angenehme Temperaturen in der Wohnung auch an heißen Sommertagen.' },
+      { title: 'Ausgestattete Küche', desc: 'Alles Nötige, um auch im Urlaub selbst Mahlzeiten zuzubereiten.' },
+      { title: 'Terrasse', desc: 'Zusätzlicher Platz für ruhige und entspannte Momente.' },
+      { title: 'Parkplatz', desc: 'Für Gäste von ScaleaStay steht ein Parkplatz zur Verfügung.' },
+      { title: 'Bis zu 4 Gäste', desc: 'Eine komfortable Wahl für Paare, Familien oder kleine Gruppen.' },
+    ],
+  },
+  cs: {
+    eyebrow: 'ScaleaStay',
+    title: 'Pohodlí pro vaši dovolenou',
+    subtitle: 'Vše pro pohodlný pobyt – od klimatizace a vybavené kuchyně až po terasu a parkování.',
+    items: [
+      { title: 'Moderní interiér', desc: 'Světlý a upravený interiér s moderním vybavením pro pohodlný pobyt.' },
+      { title: 'Klimatizace', desc: 'Příjemná teplota v apartmánu i během horkých letních dnů.' },
+      { title: 'Vybavená kuchyň', desc: 'Vše potřebné pro přípravu jídla během dovolené.' },
+      { title: 'Terasa', desc: 'Další prostor pro klidný odpočinek během dne.' },
+      { title: 'Parkování', desc: 'Pro hosty ScaleaStay je k dispozici parkovací místo.' },
+      { title: 'Až 4 hosté', desc: 'Pohodlná volba pro páry, rodiny nebo menší skupiny.' },
+    ],
+  },
+  pl: {
+    eyebrow: 'ScaleaStay',
+    title: 'Komfort na wakacje nad morzem',
+    subtitle: 'Praktyczne wyposażenie i wygodna przestrzeń na krótki wyjazd lub dłuższy pobyt.',
+    items: [
+      { title: 'Nowoczesne wnętrze', desc: 'Jasne, zadbane wnętrze i nowoczesne wyposażenie dla wygodnego pobytu.' },
+      { title: 'Klimatyzacja', desc: 'Komfort w apartamencie także podczas gorących letnich dni.' },
+      { title: 'Wyposażona kuchnia', desc: 'Wszystko, czego potrzeba do przygotowania posiłków podczas wakacji.' },
+      { title: 'Taras', desc: 'Dodatkowa przestrzeń na spokojny odpoczynek.' },
+      { title: 'Parking', desc: 'Miejsce parkingowe dostępne dla gości ScaleaStay.' },
+      { title: 'Do 4 gości', desc: 'Wygodna opcja dla par, rodzin lub małych grup.' },
+    ],
+  },
+};
+
+const ICONS = [Sparkles, AirVent, ChefHat, TreePine, Car, Users];
+
+const Advantages: React.FC = () => {
+  const { language } = useLanguage();
+  const copy = COPY[language] || COPY.ru;
 
   return (
     <section className="py-12 px-4 bg-white">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 max-w-3xl mx-auto">
+          <span className="block text-[10px] sm:text-xs font-black uppercase tracking-[0.35em] text-indigo-600 mb-4">
+            {copy.eyebrow}
+          </span>
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-none">
-            {t('advantagesTitle')}
+            {copy.title}
           </h2>
-          <div className="w-12 h-1 bg-indigo-600 mx-auto rounded-full"></div>
+          <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
+            {copy.subtitle}
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {advantages.map((adv, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-500 group text-center"
-            >
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3 sm:mb-4 mx-auto group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
-                <div className="scale-75 sm:scale-90">{adv.icon}</div>
-              </div>
-              <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-slate-900 mb-1 sm:mb-2 leading-tight break-words hyphens-none">
-                {adv.title}
-              </h3>
-              <p className="text-slate-500 text-[10px] sm:text-xs leading-relaxed font-medium break-words hyphens-none">
-                {adv.desc}
-              </p>
-            </motion.div>
-          ))}
+          {copy.items.map((adv, idx) => {
+            const Icon = ICONS[idx];
+            return (
+              <motion.div
+                key={adv.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.05 }}
+                className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-all duration-500 group text-center"
+              >
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-3 sm:mb-4 mx-auto group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-500">
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </div>
+                <h3 className="text-xs sm:text-sm font-black uppercase tracking-tight text-slate-900 mb-1 sm:mb-2 leading-tight break-words hyphens-none">
+                  {adv.title}
+                </h3>
+                <p className="text-slate-500 text-[10px] sm:text-xs leading-relaxed font-medium break-words hyphens-none">
+                  {adv.desc}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,8 +9,6 @@ import { REVIEWS, CONTACT_INFO } from './constants';
 import { useSiteData } from './context/SiteContext';
 import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
-import AboutGrid from './components/AboutGrid';
-import TargetAudience from './components/TargetAudience';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
 import LocalFacts from './components/LocalFacts';
@@ -19,9 +16,11 @@ import FAQ from './components/FAQ';
 import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
+import CommercialLanding from './components/CommercialLanding';
 import { trackEvent } from './analytics';
 
 const ROUTE_NAMES = ['beach', 'station', 'airport'] as const;
+const COMMERCIAL_SLUGS = ['appartamento-scalea-vicino-mare', 'apartament-scalea-blisko-morza'];
 
 const App: React.FC = () => {
   const { data } = useSiteData();
@@ -84,17 +83,22 @@ const App: React.FC = () => {
     document.getElementById('routes')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const isCommercialLanding = COMMERCIAL_SLUGS.some((slug) => window.location.pathname.includes(`/${slug}`));
+  if (isCommercialLanding) {
+    return <CommercialLanding />;
+  }
+
   return (
     <div className="flex-1 min-h-[100dvh] w-full overflow-x-hidden bg-slate-950 selection:bg-indigo-100 selection:text-indigo-900 flex flex-col">
       <Navbar />
-      
+
       <main className="flex-1 flex flex-col">
         <Hero />
 
         <section id="apartments" data-analytics="apartments-section" className="pt-16 pb-6 px-4 scroll-mt-40">
           <div id="apartments-grid" className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-indigo-400 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">Selection 2026</span>
+              <span className="text-indigo-400 font-black text-xs uppercase tracking-[0.4em] mb-4 block animate-fade-in">ScaleaStay</span>
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase animate-fade-in break-words hyphens-none">
                 {t('ourApartments')}
               </h2>
@@ -107,19 +111,15 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
-        
+
         <Advantages />
-
-        <WeatherForecast />
-
-        <LocalGuide />
 
         <LocalFacts />
 
-        <section className="py-8 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
+        <section className="py-10 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <h2 className="text-2xl font-black uppercase tracking-tighter break-words hyphens-none">{t('reviews')}</h2>
+              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter break-words hyphens-none">{t('reviews')}</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-4">
               {REVIEWS.map((rev, i) => (
@@ -133,50 +133,13 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        <section id="about" className="pt-16 pb-12 px-4 overflow-hidden bg-slate-950 text-white rounded-t-[60px] scroll-mt-40">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-8 tracking-tighter uppercase leading-none break-words hyphens-none">
-                  {t('aboutScalea')}
-                </h2>
-                <p className="text-slate-400 text-lg mb-12 leading-relaxed break-words hyphens-none">
-                  {t('aboutScaleaDesc')}
-                </p>
-                
-                <div className="space-y-12">
-                  <div className="group flex space-x-6">
-                    <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 text-2xl">
-                      🌊
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black mb-2 uppercase">{t('localExperience')}</h4>
-                      <p className="text-slate-400 text-sm leading-relaxed">{t('localExperienceDesc')}</p>
-                    </div>
-                  </div>
-
-                  <div className="group flex space-x-6">
-                    <div className="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 text-2xl">
-                      ✨
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-black mb-2 uppercase">{t('flawlessService')}</h4>
-                      <p className="text-slate-400 text-sm leading-relaxed">{t('flawlessServiceDesc')}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-[30px]">
-                <AboutGrid images={data.siteImages.aboutImages} />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <TargetAudience />
-
         <DirectBookingBenefits />
+
+        <div id="about" className="scroll-mt-40">
+          <LocalGuide />
+        </div>
+
+        <WeatherForecast />
 
         <FAQ />
 
@@ -184,13 +147,13 @@ const App: React.FC = () => {
 
         <section id="contact" className="mt-auto pt-8 pb-16 bg-slate-950 text-white text-center scroll-mt-40">
           <div className="max-w-4xl mx-auto px-6">
-             <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
-               {t('directBooking')}
-             </div>
+            <div className="mb-6 inline-block px-6 py-2 border border-white/10 rounded-full text-[10px] font-black uppercase tracking-[0.5em] text-white/40">
+              {t('directBooking')}
+            </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 tracking-tighter leading-none uppercase break-words hyphens-none">
               Scalea <br /> <span className="text-indigo-400 italic text-3xl sm:text-4xl md:text-5xl break-words hyphens-none">{t('waitsForYou')}</span>
             </h2>
-            
+
             <div className="mb-10 text-left max-w-2xl mx-auto bg-white/5 p-6 rounded-[28px] border border-white/10">
               <h3 className="text-lg font-black uppercase tracking-widest mb-6 text-center text-indigo-400 hyphens-none break-words">{t('howToGet')}</h3>
               <div className="grid sm:grid-cols-2 gap-5">
@@ -209,8 +172,8 @@ const App: React.FC = () => {
                   </div>
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 type="button"
                 onClick={scrollToRoutes}
                 className="mt-7 w-full py-3.5 border-2 border-indigo-400/30 text-indigo-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-400 hover:text-white transition-all active:scale-95"
@@ -220,7 +183,7 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex flex-wrap justify-center gap-6 mb-12">
-              <a 
+              <a
                 href={CONTACT_INFO.whatsappLink(t('whatsappBookingMsg'))}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -248,15 +211,15 @@ const App: React.FC = () => {
       <AIConcierge />
       <AdminPanel />
       <FloatingCallButton />
-      
+
       <div className="bg-slate-900 text-white/60 py-4 px-4 text-center border-t border-white/5">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3">
           <p className="text-[10px] font-bold uppercase tracking-widest">
             {t('designCreditTitle')}
           </p>
-          <a 
-            href="https://t.me/+420773594223" 
-            target="_blank" 
+          <a
+            href="https://t.me/+420773594223"
+            target="_blank"
             rel="noopener noreferrer"
             className="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-full font-black text-[9px] uppercase tracking-[0.2em] transition-all active:scale-95 shadow-lg shadow-indigo-500/20"
           >

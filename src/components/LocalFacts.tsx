@@ -1,11 +1,12 @@
 import React from 'react';
-import { ArrowDownRight, ShoppingBasket, TrainFront, UsersRound, Waves } from 'lucide-react';
+import { ArrowDownRight, Castle, Landmark, ShoppingBasket, TrainFront, Waves } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 
 type LocalFact = {
   title: string;
-  description: string;
+  metric: string;
+  description?: string;
 };
 
 type LocalFactsCopy = {
@@ -13,133 +14,142 @@ type LocalFactsCopy = {
   title: string;
   subtitle: string;
   cta: string;
+  extraLabel: string;
   facts: [LocalFact, LocalFact, LocalFact, LocalFact];
+  extras: [LocalFact, LocalFact];
 };
 
 const COPY: Record<string, LocalFactsCopy> = {
   ru: {
-    eyebrow: 'Полезно до поездки',
-    title: 'Что удобно рядом с Casa Marittima',
-    subtitle: 'Проверенные ориентиры без приблизительных обещаний о расстоянии и времени.',
-    cta: 'Открыть маршруты',
+    eyebrow: 'Всё рядом пешком',
+    title: 'Отдых у моря, где всё рядом',
+    subtitle: 'От ScaleaStay легко дойти пешком до моря, супермаркета, вокзала, старого города и мест для вечерних прогулок.',
+    cta: 'Посмотреть маршруты',
+    extraLabel: 'Ещё рядом',
     facts: [
+      { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
+      { title: 'Interspar', metric: '230 м · около 3 мин пешком' },
+      { title: 'Вокзал Scalea', metric: '500 м · около 8 мин пешком' },
       {
-        title: 'Ближайший пляж',
-        description: 'Пешеходный путь строится между точными координатами дома и ближайшего пляжного выхода. Фактическое время зависит от выбранных улиц.',
+        title: 'Исторический центр',
+        metric: '950 м · около 13 мин пешком',
+        description: 'Приятная прогулка по спокойным улицам Скалеи.',
       },
-      {
-        title: 'Покупки на каждый день',
-        description: 'В центральной части Скалеи удобно покупать продукты, воду и всё необходимое для отдыха.',
-      },
-      {
-        title: 'Без автомобиля',
-        description: 'Станция Scalea–Santa Domenica Talao связана с городом. Из аэропорта SUF можно ехать Airlink до Lamezia Terme Centrale, затем поездом до Scalea.',
-      },
-      {
-        title: 'Для семей до 4 гостей',
-        description: 'В квартире есть кухня, микроволновая печь, кондиционер, терраса, пляжный зонт и гостевая парковка.',
-      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 м · около 12 мин пешком' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 м · около 13 мин пешком' },
     ],
   },
   en: {
-    eyebrow: 'Useful before arrival',
-    title: 'What is convenient around Casa Marittima',
-    subtitle: 'Confirmed practical information without approximate distance or walking-time promises.',
-    cta: 'Open routes',
+    eyebrow: 'Everything within walking distance',
+    title: 'Enjoy Scalea without needing a car',
+    subtitle: 'From ScaleaStay you can easily walk to the sea, supermarket, train station, old town and the main evening-walk area.',
+    cta: 'View routes',
+    extraLabel: 'Also nearby',
     facts: [
+      { title: 'Beach', metric: '600 m · about 5–8 min walk' },
+      { title: 'Interspar', metric: '230 m · about 3 min walk' },
+      { title: 'Scalea station', metric: '500 m · about 8 min walk' },
       {
-        title: 'Nearest beach access',
-        description: 'The walking route is built between the confirmed apartment and beach-access coordinates. Actual time depends on the streets selected.',
+        title: 'Historic centre',
+        metric: '950 m · about 13 min walk',
+        description: 'A pleasant walk through quiet streets of Scalea.',
       },
-      {
-        title: 'Everyday shopping',
-        description: 'Groceries, water and everyday holiday essentials are easy to buy in central Scalea.',
-      },
-      {
-        title: 'Arrival without a car',
-        description: 'Scalea–Santa Domenica Talao station serves the town. From SUF Airport, take Airlink to Lamezia Terme Centrale and continue by train to Scalea.',
-      },
-      {
-        title: 'For families up to 4 guests',
-        description: 'The apartment includes a kitchen, microwave, air conditioning, terrace, beach umbrella and guest parking.',
-      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · about 12 min walk' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · about 13 min walk' },
     ],
   },
   it: {
-    eyebrow: 'Utile prima del viaggio',
-    title: 'Cosa è comodo vicino a Casa Marittima',
-    subtitle: 'Informazioni pratiche confermate, senza promesse approssimative su distanza o tempi a piedi.',
-    cta: 'Apri i percorsi',
+    eyebrow: 'Tutto a portata di mano',
+    title: 'Vacanze al mare, con tutto vicino',
+    subtitle: 'Da ScaleaStay puoi raggiungere a piedi la spiaggia, Interspar, la stazione, il centro storico e le zone più piacevoli per la passeggiata serale.',
+    cta: 'Scopri i percorsi',
+    extraLabel: 'Anche nelle vicinanze',
     facts: [
+      { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
+      { title: 'Interspar', metric: '230 m · circa 3 min a piedi' },
+      { title: 'Stazione di Scalea', metric: '500 m · circa 8 min a piedi' },
       {
-        title: 'Accesso alla spiaggia più vicino',
-        description: 'Il percorso pedonale viene costruito tra le coordinate confermate dell’appartamento e dell’accesso alla spiaggia. Il tempo effettivo dipende dalle strade scelte.',
+        title: 'Centro storico',
+        metric: '950 m · circa 13 min a piedi',
+        description: 'Una piacevole passeggiata tra le vie tranquille di Scalea.',
       },
-      {
-        title: 'Acquisti quotidiani',
-        description: 'Nel centro di Scalea è facile acquistare generi alimentari, acqua e tutto il necessario per il soggiorno.',
-      },
-      {
-        title: 'Arrivo senza auto',
-        description: 'La stazione Scalea–Santa Domenica Talao serve la città. Dall’aeroporto SUF: Airlink fino a Lamezia Terme Centrale e poi treno per Scalea.',
-      },
-      {
-        title: 'Per famiglie fino a 4 ospiti',
-        description: 'L’appartamento dispone di cucina, microonde, aria condizionata, terrazza, ombrellone e parcheggio per gli ospiti.',
-      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · circa 12 min a piedi' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · circa 13 min a piedi' },
     ],
   },
   de: {
-    eyebrow: 'Nützlich vor der Anreise',
-    title: 'Was rund um Casa Marittima praktisch ist',
-    subtitle: 'Bestätigte praktische Angaben ohne ungefähre Versprechen zu Entfernung oder Gehzeit.',
-    cta: 'Routen öffnen',
+    eyebrow: 'Alles bequem zu Fuß',
+    title: 'Urlaub am Meer, alles in der Nähe',
+    subtitle: 'Von ScaleaStay erreichen Sie Strand, Interspar, Bahnhof, Altstadt und die beliebtesten Bereiche für einen Abendspaziergang bequem zu Fuß.',
+    cta: 'Wege ansehen',
+    extraLabel: 'Auch in der Nähe',
     facts: [
+      { title: 'Strand', metric: '600 m · ca. 5–8 Min. zu Fuß' },
+      { title: 'Interspar', metric: '230 m · ca. 3 Min. zu Fuß' },
+      { title: 'Bahnhof Scalea', metric: '500 m · ca. 8 Min. zu Fuß' },
       {
-        title: 'Nächstgelegener Strandzugang',
-        description: 'Der Fußweg wird zwischen den bestätigten Koordinaten der Unterkunft und des Strandzugangs berechnet. Die tatsächliche Zeit hängt von den gewählten Straßen ab.',
+        title: 'Historisches Zentrum',
+        metric: '950 m · ca. 13 Min. zu Fuß',
+        description: 'Ein angenehmer Spaziergang durch die ruhigen Straßen von Scalea.',
       },
-      {
-        title: 'Einkaufen im Alltag',
-        description: 'Lebensmittel, Wasser und alles Wichtige für den Urlaub lassen sich im Zentrum von Scalea bequem einkaufen.',
-      },
-      {
-        title: 'Anreise ohne Auto',
-        description: 'Der Bahnhof Scalea–Santa Domenica Talao bedient die Stadt. Vom Flughafen SUF geht es mit Airlink nach Lamezia Terme Centrale und weiter mit dem Zug nach Scalea.',
-      },
-      {
-        title: 'Für Familien bis 4 Gäste',
-        description: 'Die Wohnung bietet Küche, Mikrowelle, Klimaanlage, Terrasse, Sonnenschirm und Gästeparkplatz.',
-      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · ca. 12 Min. zu Fuß' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · ca. 13 Min. zu Fuß' },
     ],
   },
   cs: {
-    eyebrow: 'Užitečné před cestou',
-    title: 'Co je praktické v okolí Casa Marittima',
-    subtitle: 'Ověřené praktické informace bez přibližných slibů o vzdálenosti nebo době chůze.',
-    cta: 'Otevřít trasy',
+    eyebrow: 'Všechno pohodlně pěšky',
+    title: 'Dovolená u moře, kde je vše blízko',
+    subtitle: 'Ze ScaleaStay pohodlně dojdete na pláž, do Intersparu, na nádraží, do historického centra i do míst vhodných pro večerní procházku.',
+    cta: 'Prohlédnout trasy',
+    extraLabel: 'Také v okolí',
     facts: [
+      { title: 'Pláž', metric: '600 m · přibližně 5–8 min pěšky' },
+      { title: 'Interspar', metric: '230 m · přibližně 3 min pěšky' },
+      { title: 'Nádraží Scalea', metric: '500 m · přibližně 8 min pěšky' },
       {
-        title: 'Nejbližší vstup na pláž',
-        description: 'Pěší trasa se vytváří mezi potvrzenými souřadnicemi apartmánu a vstupu na pláž. Skutečný čas závisí na zvolených ulicích.',
+        title: 'Historické centrum',
+        metric: '950 m · přibližně 13 min pěšky',
+        description: 'Příjemná procházka klidnými ulicemi Scalei.',
       },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · přibližně 12 min pěšky' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · přibližně 13 min pěšky' },
+    ],
+  },
+  pl: {
+    eyebrow: 'Wszystko w zasięgu spaceru',
+    title: 'Wakacje nad morzem, gdzie wszystko jest blisko',
+    subtitle: 'Ze ScaleaStay dojdziesz pieszo na plażę, do Intersparu, na dworzec, do historycznego centrum i w miejsca idealne na wieczorny spacer.',
+    cta: 'Zobacz trasy',
+    extraLabel: 'Także w pobliżu',
+    facts: [
+      { title: 'Plaża', metric: '600 m · około 5–8 min pieszo' },
+      { title: 'Interspar', metric: '230 m · około 3 min pieszo' },
+      { title: 'Dworzec Scalea', metric: '500 m · około 8 min pieszo' },
       {
-        title: 'Každodenní nákupy',
-        description: 'Potraviny, vodu a vše potřebné pro dovolenou lze pohodlně nakoupit v centru města Scalea.',
+        title: 'Historyczne centrum',
+        metric: '950 m · około 13 min pieszo',
+        description: 'Przyjemny spacer spokojnymi uliczkami Scalei.',
       },
-      {
-        title: 'Příjezd bez auta',
-        description: 'Město obsluhuje stanice Scalea–Santa Domenica Talao. Z letiště SUF jeďte Airlinkem do Lamezia Terme Centrale a poté vlakem do Scalea.',
-      },
-      {
-        title: 'Pro rodiny až se 4 hosty',
-        description: 'Apartmán nabízí kuchyň, mikrovlnnou troubu, klimatizaci, terasu, slunečník a parkování pro hosty.',
-      },
+    ],
+    extras: [
+      { title: 'Torre Talao', metric: '900 m · około 12 min pieszo' },
+      { title: 'Piazza Gregorio Caloprese', metric: '950 m · około 13 min pieszo' },
     ],
   },
 };
 
-const ICONS = [Waves, ShoppingBasket, TrainFront, UsersRound];
+const ICONS = [Waves, ShoppingBasket, TrainFront, Castle];
+const EXTRA_ICONS = [Landmark, ArrowDownRight];
 
 const LocalFacts: React.FC = () => {
   const { language } = useLanguage();
@@ -155,14 +165,14 @@ const LocalFacts: React.FC = () => {
   return (
     <section id="local-info" className="px-4 py-14 bg-gradient-to-b from-sky-50 via-white to-white scroll-mt-40">
       <div className="max-w-6xl mx-auto">
-        <div className="max-w-3xl mb-10">
+        <div className="max-w-4xl mb-10">
           <span className="block text-[10px] sm:text-xs font-black uppercase tracking-[0.35em] text-indigo-600 mb-4">
             {copy.eyebrow}
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 mb-4 break-words hyphens-none">
             {copy.title}
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-2xl">
+          <p className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-3xl">
             {copy.subtitle}
           </p>
         </div>
@@ -175,16 +185,43 @@ const LocalFacts: React.FC = () => {
                 <div className="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-5">
                   <Icon className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <dt className="font-black uppercase tracking-tight text-slate-900 mb-3">
+                <dt className="font-black uppercase tracking-tight text-slate-900 mb-2">
                   {fact.title}
                 </dt>
-                <dd className="text-sm leading-relaxed text-slate-500">
-                  {fact.description}
+                <dd className="text-sm font-black text-indigo-600 leading-relaxed">
+                  {fact.metric}
                 </dd>
+                {fact.description && (
+                  <dd className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-500">
+                    {fact.description}
+                  </dd>
+                )}
               </div>
             );
           })}
         </dl>
+
+        <div className="mt-6 rounded-[28px] border border-slate-100 bg-slate-50/70 p-5 sm:p-6">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-4">
+            {copy.extraLabel}
+          </p>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {copy.extras.map((fact, index) => {
+              const Icon = EXTRA_ICONS[index];
+              return (
+                <div key={fact.title} className="flex items-center gap-4 rounded-2xl bg-white px-4 py-4 border border-slate-100">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-tight text-slate-900">{fact.title}</p>
+                    <p className="text-xs text-slate-500 mt-1">{fact.metric}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         <button
           type="button"

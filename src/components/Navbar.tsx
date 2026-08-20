@@ -11,6 +11,7 @@ const ROUTE_LABELS: Record<string, string> = {
   it: 'Percorsi',
   de: 'Wege',
   cs: 'Trasy',
+  pl: 'Trasy',
 };
 
 const Navbar: React.FC = () => {

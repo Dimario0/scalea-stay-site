@@ -10,6 +10,15 @@ const getWeatherIcon = (code: number) => {
   return '☁️';
 };
 
+const DATE_LOCALES: Record<string, string> = {
+  ru: 'ru-RU',
+  en: 'en-GB',
+  it: 'it-IT',
+  de: 'de-DE',
+  cs: 'cs-CZ',
+  pl: 'pl-PL',
+};
+
 const WeatherForecast: React.FC = () => {
   const { t, language } = useLanguage();
   const [forecast, setForecast] = useState<DayForecast[]>([]);
@@ -123,7 +132,7 @@ const WeatherForecast: React.FC = () => {
                   : 'bg-white border border-slate-100 shadow-sm opacity-80 hover:opacity-100'
                 }`}>
                   <span className={`text-[9px] font-black uppercase tracking-widest mb-2 ${idx === 0 ? 'text-indigo-600' : 'text-slate-400'}`}>
-                    {idx === 0 ? t('weatherToday') : new Date(day.date).toLocaleDateString(language === 'ru' ? 'ru-RU' : 'en-US', { weekday: 'short' })}
+                    {idx === 0 ? t('weatherToday') : new Date(day.date).toLocaleDateString(DATE_LOCALES[language] || 'en-GB', { weekday: 'short' })}
                   </span>
                   
                   <span className="text-xl sm:text-2xl mb-1 sm:mb-3">{getWeatherIcon(day.weatherCode)}</span>

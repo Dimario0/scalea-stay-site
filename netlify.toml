@@ -1,0 +1,85 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Language roots resolve to their generated static HTML.
+[[redirects]]
+  from = "/ru"
+  to = "/ru/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/ru/"
+  to = "/ru/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/en"
+  to = "/en/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/en/"
+  to = "/en/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it"
+  to = "/it/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/it/"
+  to = "/it/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/de"
+  to = "/de/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/de/"
+  to = "/de/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/cs"
+  to = "/cs/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/cs/"
+  to = "/cs/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl"
+  to = "/pl/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/"
+  to = "/pl/index.html"
+  status = 200
+  force = true
+
+# All current and future IT/PL content landing pages are generated as /<lang>/<slug>/index.html.
+# Keeping these generic avoids another routing-only deploy for every new guide.
+[[redirects]]
+  from = "/it/*"
+  to = "/it/:splat/index.html"
+  status = 200
+  force = true
+[[redirects]]
+  from = "/pl/*"
+  to = "/pl/:splat/index.html"
+  status = 200
+  force = true
+
+# Remaining client-side routes fall back to the SPA.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
