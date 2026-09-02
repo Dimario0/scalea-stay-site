@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
-    "build": "vite build && node scripts/add-content-guides.mjs && node scripts/verify-seo-build.mjs",
+    "build": "vite build && node scripts/add-content-guides.mjs && node scripts/optimize-gsc-opportunities.mjs && node scripts/align-main-typography.mjs && node scripts/verify-seo-build.mjs",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
