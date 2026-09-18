@@ -14,11 +14,10 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     description: 'Проведите несколько недель или месяц зимой в Скалее: апартаменты с одной спальней, Wi-Fi, газовым отоплением, кухней и террасой. Стоимость по запросу.',
     h1: 'Останьтесь в Скалее на зиму — с домашним комфортом',
     eyebrow: 'Калабрия · Зима и несезон',
-    intro: 'Несколько недель или месяц у моря в своём ритме. Апартаменты с одной спальней, современным интерьером и собственной террасой. Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни вдали от дома.',
+    intro: 'Несколько недель или месяц у моря в своём ритме. Апартаменты с одной спальней и современным интерьером. Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни вдали от дома.',
     features: [
-      ['Собственная терраса', 'Завтрак на свежем воздухе в погожий день или отдых после прогулки. Терраса — ваше личное пространство.'],
-      ['Живите в своём ритме', 'Готовьте на оборудованной кухне и отдыхайте в отдельной спальне. Устраивайте день так, как удобно вам.'],
       ['Комфорт в прохладные месяцы', 'В апартаментах есть газовое отопление и Wi‑Fi. Также доступны кондиционер и парковка для гостей.'],
+      ['Живите в своём ритме', 'Готовьте на оборудованной кухне и отдыхайте в отдельной спальне. Устраивайте день так, как удобно вам.'],
     ],
     nearby: [['Ближайший пляж', 'Примерно 5–8 минут пешком до прогулки у моря.'], ['Interspar', 'Около 3 минут пешком за повседневными покупками.'], ['Железнодорожный вокзал', 'Около 8 минут пешком до станции Scalea–Santa Domenica Talao.']],
     extraFaq: [
@@ -32,11 +31,10 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     description: 'Spend a few weeks or a month in Scalea this winter. A one-bedroom apartment with Wi-Fi, gas heating, a kitchen and a private terrace. Price on request.',
     h1: 'Make yourself at home in Scalea this winter',
     eyebrow: 'Calabria · Winter and off-season stays',
-    intro: 'Spend a few weeks or a month by the sea at your own pace. Enjoy a one-bedroom apartment with modern interiors, your own terrace, Wi‑Fi, gas heating and an equipped kitchen.',
+    intro: 'Spend a few weeks or a month by the sea at your own pace. Enjoy a one-bedroom apartment with modern interiors, Wi‑Fi, gas heating and an equipped kitchen.',
     features: [
-      ['A terrace of your own', 'Enjoy breakfast outside on a fine day or unwind after a walk. Your private terrace gives you a little more space to relax.'],
-      ['Room for your everyday routine', 'Prepare meals in the equipped kitchen and enjoy the privacy of a separate bedroom. Plan each day around what suits you.'],
       ['Comfort in the cooler months', 'Gas heating and Wi‑Fi are available in the apartment. Air conditioning and guest parking complete the amenities.'],
+      ['Room for your everyday routine', 'Prepare meals in the equipped kitchen and enjoy the privacy of a separate bedroom. Plan each day around what suits you.'],
     ],
     nearby: [['Nearest beach', 'About a 5–8 minute walk for some time by the sea.'], ['Interspar', 'About a 3-minute walk for everyday groceries.'], ['Railway station', 'About an 8-minute walk to Scalea–Santa Domenica Talao station.']],
     extraFaq: [
@@ -50,11 +48,10 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     description: 'Einige Wochen oder einen Monat im Winter in Scalea verbringen: Ferienwohnung mit einem Schlafzimmer, WLAN, Gasheizung, Küche und Terrasse. Preis auf Anfrage.',
     h1: 'Den Winter in Scalea verbringen und sich zu Hause fühlen',
     eyebrow: 'Kalabrien · Winter und Nebensaison',
-    intro: 'Einige Wochen oder einen Monat am Meer, ganz in Ihrem eigenen Rhythmus. Die modern eingerichtete Ferienwohnung bietet ein separates Schlafzimmer, eine eigene Terrasse, WLAN, Gasheizung und eine ausgestattete Küche.',
+    intro: 'Einige Wochen oder einen Monat am Meer, ganz in Ihrem eigenen Rhythmus. Die modern eingerichtete Ferienwohnung bietet ein separates Schlafzimmer, WLAN, Gasheizung und eine ausgestattete Küche.',
     features: [
-      ['Eine Terrasse nur für Sie', 'An einem schönen Tag draußen frühstücken oder nach einem Spaziergang entspannen: Die eigene Terrasse bietet Platz für Ihre Auszeit.'],
-      ['Freiraum für Ihren Alltag', 'Bereiten Sie Ihre Mahlzeiten in der ausgestatteten Küche zu und genießen Sie die Privatsphäre eines separaten Schlafzimmers. Sie bestimmen Ihren Tagesablauf.'],
       ['Komfort auch an kühleren Tagen', 'Die Ferienwohnung verfügt über Gasheizung und WLAN. Klimaanlage und ein Parkplatz für Gäste ergänzen die Ausstattung.'],
+      ['Freiraum für Ihren Alltag', 'Bereiten Sie Ihre Mahlzeiten in der ausgestatteten Küche zu und genießen Sie die Privatsphäre eines separaten Schlafzimmers. Sie bestimmen Ihren Tagesablauf.'],
     ],
     nearby: [['Nächster Strand', 'Etwa 5–8 Minuten zu Fuß für einen Spaziergang am Meer.'], ['Interspar', 'Etwa 3 Minuten zu Fuß für den täglichen Einkauf.'], ['Bahnhof', 'Etwa 8 Minuten zu Fuß zum Bahnhof Scalea–Santa Domenica Talao.']],
     extraFaq: [
@@ -68,11 +65,10 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     description: 'Několik týdnů nebo měsíc v zimní Scalee. Apartmán s jednou ložnicí, Wi-Fi, plynovým topením, kuchyní a vlastní terasou. Cena na vyžádání.',
     h1: 'Prožijte zimu ve Scalee s pohodlím domova',
     eyebrow: 'Kalábrie · Zima a pobyty mimo sezónu',
-    intro: 'Několik týdnů nebo měsíc u moře ve vlastním rytmu. Moderně zařízený apartmán nabízí samostatnou ložnici, vlastní terasu, Wi‑Fi, plynové topení a vybavenou kuchyň.',
+    intro: 'Několik týdnů nebo měsíc u moře ve vlastním rytmu. Moderně zařízený apartmán nabízí samostatnou ložnici, Wi‑Fi, plynové topení a vybavenou kuchyň.',
     features: [
-      ['Terasa jen pro vás', 'Za hezkého počasí si dejte snídani venku nebo si odpočiňte po procházce. Vlastní terasa vám poskytne další prostor pro sebe.'],
-      ['Každý den podle vás', 'Připravte si jídlo ve vybavené kuchyni a užijte si soukromí samostatné ložnice. Denní program si určujete sami.'],
       ['Pohodlí i v chladnějších měsících', 'V apartmánu je plynové topení a Wi‑Fi. K vybavení patří také klimatizace a parkování pro hosty.'],
+      ['Každý den podle vás', 'Připravte si jídlo ve vybavené kuchyni a užijte si soukromí samostatné ložnice. Denní program si určujete sami.'],
     ],
     nearby: [['Nejbližší pláž', 'Přibližně 5–8 minut pěšky na procházku k moři.'], ['Interspar', 'Přibližně 3 minuty pěšky na běžný nákup.'], ['Vlakové nádraží', 'Přibližně 8 minut pěšky na nádraží Scalea–Santa Domenica Talao.']],
     extraFaq: [
@@ -86,11 +82,10 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     description: 'Spędź kilka tygodni lub miesiąc zimą w Scalei. Apartament z jedną sypialnią, Wi-Fi, ogrzewaniem gazowym, kuchnią i tarasem. Cena na zapytanie.',
     h1: 'Spędź zimę w Scalei z wygodą własnego mieszkania',
     eyebrow: 'Kalabria · Zima i pobyty poza sezonem',
-    intro: 'Kilka tygodni lub miesiąc nad morzem, we własnym rytmie. Nowocześnie urządzony apartament z oddzielną sypialnią, własnym tarasem, Wi‑Fi, ogrzewaniem gazowym i wyposażoną kuchnią.',
+    intro: 'Kilka tygodni lub miesiąc nad morzem, we własnym rytmie. Nowocześnie urządzony apartament z oddzielną sypialnią, Wi‑Fi, ogrzewaniem gazowym i wyposażoną kuchnią.',
     features: [
-      ['Taras tylko dla Ciebie', 'Śniadanie na świeżym powietrzu w pogodny dzień lub odpoczynek po spacerze. Własny taras to dodatkowe miejsce na chwilę dla siebie.'],
-      ['Codzienność po swojemu', 'Przygotuj posiłek w wyposażonej kuchni i odpocznij w oddzielnej sypialni. Zaplanuj dzień tak, jak lubisz.'],
       ['Wygodnie również w chłodniejsze miesiące', 'Apartament ma ogrzewanie gazowe i Wi‑Fi. Do dyspozycji gości są również klimatyzacja i parking.'],
+      ['Codzienność po swojemu', 'Przygotuj posiłek w wyposażonej kuchni i odpocznij w oddzielnej sypialni. Zaplanuj dzień tak, jak lubisz.'],
     ],
     nearby: [['Najbliższa plaża', 'Około 5–8 minut pieszo na spacer nad morzem.'], ['Interspar', 'Około 3 minuty pieszo po codzienne zakupy.'], ['Dworzec kolejowy', 'Około 8 minut pieszo do stacji Scalea–Santa Domenica Talao.']],
     extraFaq: [
@@ -120,8 +115,16 @@ const UI = {
   cs: ['Navigace','Prohlédnout apartmán','Kontaktujte přímo majitele','Interiér apartmánu ScaleaStay ve Scalee','Prostor, kde se budete cítit jako doma','Nahlédněte do apartmánu','Všechny fotografie apartmánu','K moři i za nákupy pěšky','Váš příští pobyt','Naplánujte si pobyt ve Scalee','Napište termín, délku pobytu a počet hostů. Nabídku obdržíte přímo od majitele.','Energie a služby se hradí zvlášť. Cenu a podmínky dohodneme před potvrzením.','Prohlédnout fotografie','Odpovědi před cestou','Objevte ScaleaStay','Fotografie a informace o apartmánu','Zpět na hlavní stránku','Samostatná ložnice s manželskou postelí a oknem','Vaše samostatná ložnice','Koupelna ScaleaStay se sprchou, umyvadlem a pračkou','Koupelna se sprchou a pračkou','Jazyk'],
   pl: ['Nawigacja','Zobacz apartament','Skontaktuj się bezpośrednio z właścicielem','Wnętrze apartamentu ScaleaStay w Scalei','Przestrzeń, w której poczujesz się jak w domu','Zajrzyj do apartamentu','Wszystkie zdjęcia apartamentu','Morze i codzienne zakupy w zasięgu spaceru','Twój kolejny pobyt','Zaplanuj pobyt w Scalei','Napisz termin, długość pobytu i liczbę gości. Otrzymasz ofertę bezpośrednio od właściciela.','Media płatne osobno. Cenę i warunki ustalamy przed potwierdzeniem.','Zobacz zdjęcia','Odpowiedzi przed wyjazdem','Poznaj ScaleaStay','Zdjęcia i informacje o apartamencie','Powrót na stronę główną','Oddzielna sypialnia z łóżkiem dwuosobowym i oknem','Twoja oddzielna sypialnia','Łazienka ScaleaStay z prysznicem, umywalką i pralką','Łazienka z prysznicem i pralką','Język'],
 } satisfies Record<StayLanguage, string[]>;
+const TERRACE_PHOTO_COPY: Record<StayLanguage, { terraceAlt: string; terraceCaption: string }> = {
+  ru: { terraceAlt: 'Терраса апартаментов ScaleaStay с перилами и видом на улицу', terraceCaption: 'Терраса апартаментов' },
+  it: { terraceAlt: 'Terrazza dell’appartamento ScaleaStay con ringhiera e vista sulla strada', terraceCaption: 'La terrazza dell’appartamento' },
+  en: { terraceAlt: 'ScaleaStay apartment terrace with railings and a street view', terraceCaption: 'The apartment terrace' },
+  de: { terraceAlt: 'Terrasse der Ferienwohnung ScaleaStay mit Geländer und Blick auf die Straße', terraceCaption: 'Die Terrasse der Ferienwohnung' },
+  cs: { terraceAlt: 'Terasa apartmánu ScaleaStay se zábradlím a výhledem do ulice', terraceCaption: 'Terasa apartmánu' },
+  pl: { terraceAlt: 'Taras apartamentu ScaleaStay z balustradą i widokiem na ulicę', terraceCaption: 'Taras apartamentu' },
+};
 export function getLongStayUi(language: StayLanguage) {
   const [navigation, apartment, owner, heroAlt, features, photos, allPhotos, nearby, offerEyebrow, offerTitle, offerText, terms, viewPhotos, faq, arrival, details, back, bedroomAlt, bedroomCaption, bathroomAlt, bathroomCaption, languageLabel] = UI[language];
-  return { navigation, apartment, owner, heroAlt, features, photos, allPhotos, nearby, offerEyebrow, offerTitle, offerText, terms, viewPhotos, faq, arrival, details, back, bedroomAlt, bedroomCaption, bathroomAlt, bathroomCaption, languageLabel };
+  return { ...TERRACE_PHOTO_COPY[language], navigation, apartment, owner, heroAlt, features, photos, allPhotos, nearby, offerEyebrow, offerTitle, offerText, terms, viewPhotos, faq, arrival, details, back, bedroomAlt, bedroomCaption, bathroomAlt, bathroomCaption, languageLabel };
 }
 export const LONG_STAY_PAGES = (Object.keys(LONG_STAY_ROUTES) as StayLanguage[]).map(language => ({ language, ...LONG_STAY_ROUTES[language] }));
