@@ -235,7 +235,7 @@ const AIConcierge: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] font-sans">
+    <div className="fixed bottom-6 right-6 z-[110] font-sans">
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
