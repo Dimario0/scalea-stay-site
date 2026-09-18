@@ -21,7 +21,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   ru: {
     amenitiesSuffix: 'Также в квартире есть фен, микроволновая печь и необходимые кухонные принадлежности.',
     availabilityQuestion: 'Как проверить свободные даты?',
-    availabilityAnswer: 'Напишите нам в WhatsApp — владелец быстро проверит доступность на выбранные даты.',
+    availabilityAnswer: "Напишите даты и число гостей в WhatsApp — владелец проверит свободные даты и сообщит стоимость.",
     shopQuestion: 'Есть ли рядом магазины?',
     shopAnswer: 'Да. Interspar находится примерно в 230 м от ScaleaStay — около 3 минут пешком.',
     beachQuestion: 'Что предусмотрено для отдыха на пляже?',
@@ -35,7 +35,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   en: {
     amenitiesSuffix: 'The apartment also includes a hair dryer, microwave and essential kitchen utensils.',
     availabilityQuestion: 'How can I check available dates?',
-    availabilityAnswer: 'Message us on WhatsApp and the owner will quickly check availability for your dates.',
+    availabilityAnswer: "Send your dates and number of guests on WhatsApp. The owner will check availability and share the price.",
     shopQuestion: 'Are there shops nearby?',
     shopAnswer: 'Yes. Interspar is about 230 m from ScaleaStay, around a 3-minute walk.',
     beachQuestion: 'What is provided for a day at the beach?',
@@ -49,7 +49,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   it: {
     amenitiesSuffix: 'L’appartamento dispone inoltre di asciugacapelli, forno a microonde e utensili da cucina essenziali.',
     availabilityQuestion: 'Come posso verificare le date disponibili?',
-    availabilityAnswer: 'Scrivi su WhatsApp e il proprietario verificherà rapidamente la disponibilità per le tue date.',
+    availabilityAnswer: "Invia date e numero di ospiti su WhatsApp: il proprietario verificherà la disponibilità e ti comunicherà il prezzo.",
     shopQuestion: 'Ci sono negozi nelle vicinanze?',
     shopAnswer: 'Sì. Interspar si trova a circa 230 m da ScaleaStay, circa 3 minuti a piedi.',
     beachQuestion: 'Cosa è disponibile per una giornata in spiaggia?',
@@ -63,7 +63,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   de: {
     amenitiesSuffix: 'Außerdem gibt es einen Haartrockner, eine Mikrowelle und die wichtigsten Küchenutensilien.',
     availabilityQuestion: 'Wie kann ich freie Termine prüfen?',
-    availabilityAnswer: 'Schreiben Sie uns auf WhatsApp; der Eigentümer prüft die Verfügbarkeit für Ihre Daten schnell.',
+    availabilityAnswer: "Senden Sie Reisedaten und Gästezahl per WhatsApp. Der Eigentümer prüft die Verfügbarkeit und nennt den Preis.",
     shopQuestion: 'Gibt es Geschäfte in der Nähe?',
     shopAnswer: 'Ja. Interspar liegt etwa 230 m von ScaleaStay entfernt, rund 3 Gehminuten.',
     beachQuestion: 'Was steht für einen Strandtag zur Verfügung?',
@@ -77,7 +77,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   cs: {
     amenitiesSuffix: 'V apartmánu je také fén, mikrovlnná trouba a základní kuchyňské vybavení.',
     availabilityQuestion: 'Jak ověřit volné termíny?',
-    availabilityAnswer: 'Napište na WhatsApp a majitel rychle ověří dostupnost pro vaše termíny.',
+    availabilityAnswer: "Pošlete termín a počet hostů přes WhatsApp. Majitel ověří dostupnost a sdělí cenu.",
     shopQuestion: 'Jsou v okolí obchody?',
     shopAnswer: 'Ano. Interspar je přibližně 230 m od ScaleaStay, asi 3 minuty pěšky.',
     beachQuestion: 'Co je k dispozici pro pobyt na pláži?',
@@ -91,7 +91,7 @@ const SEO_COPY: Record<string, SeoCopy> = {
   pl: {
     amenitiesSuffix: 'W apartamencie są także suszarka do włosów, kuchenka mikrofalowa i podstawowe wyposażenie kuchenne.',
     availabilityQuestion: 'Jak sprawdzić wolne terminy?',
-    availabilityAnswer: 'Napisz na WhatsApp, a właściciel szybko sprawdzi dostępność dla wybranych terminów.',
+    availabilityAnswer: "Wyślij termin i liczbę gości przez WhatsApp. Właściciel sprawdzi dostępność i poda cenę.",
     shopQuestion: 'Czy w pobliżu są sklepy?',
     shopAnswer: 'Tak. Interspar znajduje się około 230 m od ScaleaStay, czyli około 3 minuty pieszo.',
     beachQuestion: 'Co jest dostępne na dzień na plaży?',

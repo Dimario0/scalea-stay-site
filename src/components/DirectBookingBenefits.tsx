@@ -1,18 +1,10 @@
+import { getLongStayCopy } from '../content/longStay';
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO } from '../constants';
-import { ShieldCheck, MessageCircle, CreditCard, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, MessageCircle, CreditCard, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { trackEvent } from '../analytics';
-
-const CTA_LABELS: Record<string, string> = {
-  ru: 'Проверить свободные даты',
-  en: 'Check available dates',
-  it: 'Verifica le date disponibili',
-  de: 'Freie Termine prüfen',
-  cs: 'Ověřit volné termíny',
-  pl: 'Sprawdź wolne terminy',
-};
 
 const DirectBookingBenefits: React.FC = () => {
   const { t, language } = useLanguage();
@@ -21,8 +13,6 @@ const DirectBookingBenefits: React.FC = () => {
     { icon: <MessageCircle className="w-5 h-5" />, text: t('directBookItem1') },
     { icon: <CreditCard className="w-5 h-5" />, text: t('directBookItem2') },
     { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem3') },
-    { icon: <ShieldCheck className="w-5 h-5" />, text: t('directBookItem4') },
-    { icon: <CheckCircle2 className="w-5 h-5" />, text: t('directBookItem5') },
   ];
 
   return (
@@ -56,7 +46,7 @@ const DirectBookingBenefits: React.FC = () => {
 
         <div className="mt-8 flex justify-center">
           <a
-            href={CONTACT_INFO.whatsappLink(t('whatsappBookingMsg'))}
+            href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => {
@@ -65,7 +55,7 @@ const DirectBookingBenefits: React.FC = () => {
             }}
             className="inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-2xl bg-indigo-600 px-7 py-4 text-sm font-black text-white shadow-xl transition-all hover:-translate-y-1 hover:bg-indigo-700 active:scale-95"
           >
-            <span>{CTA_LABELS[language] || CTA_LABELS.ru}</span>
+            <span>{getLongStayCopy(language).availabilityCta}</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>

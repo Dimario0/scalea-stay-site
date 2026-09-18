@@ -8,9 +8,7 @@ import { getLongStayCopy } from '../content/longStay';
 type HeroCopy = {
   badge: string;
   title: string;
-  subtitle: string;
   primaryCta: string;
-  whatsappCta: string;
   facts: [string, string, string];
 };
 
@@ -18,49 +16,37 @@ const COPY: Record<string, HeroCopy> = {
   ru: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Современные апартаменты у моря в Скалее',
-    subtitle: 'ScaleaStay — апартаменты с современным ремонтом для отдыха у моря. Пляж, супермаркет, вокзал и центр Скалеи доступны пешком.',
     primaryCta: 'Посмотреть апартаменты',
-    whatsappCta: 'Проверить свободные даты',
     facts: ['Пляж · 5–8 мин', 'Interspar · 3 мин', 'Вокзал · 8 мин'],
   },
   en: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Modern holiday apartment by the sea in Scalea',
-    subtitle: 'ScaleaStay is a modern apartment ideal for a seaside holiday, with the beach, supermarket, train station and central Scalea all within walking distance.',
     primaryCta: 'View the apartment',
-    whatsappCta: 'Check available dates',
     facts: ['Beach · 5–8 min', 'Interspar · 3 min', 'Station · 8 min'],
   },
   it: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Appartamento moderno vicino al mare a Scalea',
-    subtitle: 'ScaleaStay è un appartamento con interni moderni, ideale per una vacanza al mare. Spiaggia, Interspar, stazione e centro di Scalea sono comodamente raggiungibili a piedi.',
     primaryCta: 'Scopri l’appartamento',
-    whatsappCta: 'Verifica le date su WhatsApp',
     facts: ['Spiaggia · 5–8 min', 'Interspar · 3 min', 'Stazione · 8 min'],
   },
   de: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderne Ferienwohnung am Meer in Scalea',
-    subtitle: 'ScaleaStay ist eine komfortable Ferienwohnung mit modernem Interieur für Ihren Urlaub am Meer. Strand, Interspar, Bahnhof und Zentrum erreichen Sie bequem zu Fuß.',
     primaryCta: 'Ferienwohnung ansehen',
-    whatsappCta: 'Verfügbarkeit auf WhatsApp prüfen',
     facts: ['Strand · 5–8 Min.', 'Interspar · 3 Min.', 'Bahnhof · 8 Min.'],
   },
   cs: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderní apartmán u moře ve Scalee',
-    subtitle: 'ScaleaStay je pohodlný apartmán s moderním interiérem pro dovolenou u moře. Na pláž, do Intersparu, na nádraží i do centra Scalei pohodlně dojdete pěšky.',
     primaryCta: 'Prohlédnout apartmán',
-    whatsappCta: 'Ověřit termíny přes WhatsApp',
     facts: ['Pláž · 5–8 min', 'Interspar · 3 min', 'Nádraží · 8 min'],
   },
   pl: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Nowoczesny apartament blisko morza w Scalei',
-    subtitle: 'ScaleaStay to komfortowy apartament z nowoczesnym wnętrzem na wakacje nad morzem. Plaża, Interspar, dworzec i centrum Scalei są w zasięgu spaceru.',
     primaryCta: 'Zobacz apartament',
-    whatsappCta: 'Sprawdź terminy na WhatsApp',
     facts: ['Plaża · 5–8 min', 'Interspar · 3 min', 'Dworzec · 8 min'],
   },
 };
@@ -153,7 +139,7 @@ const Hero: React.FC = () => {
               {copy.primaryCta}
             </a>
             <a 
-              href={CONTACT_INFO.whatsappLink(t('heroWhatsappMsg'))}
+              href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackEvent('whatsapp_click', { source: 'hero' })}
@@ -162,7 +148,7 @@ const Hero: React.FC = () => {
                <svg className="w-6 h-6 [@media(orientation:landscape)_and_(max-height:700px)]:w-5 [@media(orientation:landscape)_and_(max-height:700px)]:h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                  <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5"/>
                </svg>
-               <span>{copy.whatsappCta}</span>
+               <span>{getLongStayCopy(language).availabilityCta}</span>
             </a>
           </div>
 

@@ -160,7 +160,7 @@ const CommercialLanding: React.FC = () => {
 
   const apartment = data.apartments[0];
   const images = apartment?.images?.filter(Boolean).slice(0, 3) || [];
-  const whatsappUrl = CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', 'ScaleaStay'));
+  const whatsappUrl = CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry);
 
   return (
     <div className="min-h-[100dvh] bg-white text-slate-900">
@@ -206,7 +206,7 @@ const CommercialLanding: React.FC = () => {
                 onClick={() => trackEvent('whatsapp_click', { source: 'commercial_landing_hero', language })}
                 className="inline-flex items-center gap-3 rounded-2xl bg-indigo-600 px-6 py-4 font-black text-white shadow-xl active:scale-95"
               >
-                <MessageCircle className="w-5 h-5" /> {copy.cta}
+                <MessageCircle className="w-5 h-5" /> {stayCopy.availabilityCta}
               </a>
             </div>
 
@@ -242,7 +242,7 @@ const CommercialLanding: React.FC = () => {
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.apartmentTitle}</h2>
-              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{copy.apartmentText}</p>
+              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[...copy.amenities, stayCopy.wifi, stayCopy.heating].map((item, index) => {
@@ -287,12 +287,12 @@ const CommercialLanding: React.FC = () => {
         <section className="px-4 py-16 bg-slate-950 text-white">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.directTitle}</h2>
-              <p className="text-slate-300 leading-relaxed text-base sm:text-lg">{copy.directText}</p>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{t('directBookTitle')}</h2>
+              <p className="text-slate-300 leading-relaxed text-base sm:text-lg">{stayCopy.terms}</p>
             </div>
             <div>
               <div className="space-y-3 mb-6">
-                {copy.directPoints.map((point) => (
+                {[t('directBookItem1'), t('directBookItem2'), t('directBookItem3')].map((point) => (
                   <div key={point} className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-4">
                     <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
                     <span className="font-bold">{point}</span>
@@ -306,7 +306,7 @@ const CommercialLanding: React.FC = () => {
                 onClick={() => trackEvent('whatsapp_click', { source: 'commercial_landing_direct', language })}
                 className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-6 py-4 font-black text-white"
               >
-                <MessageCircle className="w-5 h-5" /> {copy.cta}
+                <MessageCircle className="w-5 h-5" /> {stayCopy.availabilityCta}
               </a>
             </div>
           </div>

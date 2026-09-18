@@ -21,7 +21,7 @@ const COPY: Record<string, AdvantagesCopy> = {
     title: 'Почему здесь удобно отдыхать',
     subtitle: 'Всё необходимое для комфортного отдыха — от кондиционера и кухни до террасы и парковки.',
     items: [
-      { title: 'Современный ремонт', desc: 'Современный интерьер и новая мебель для комфортного отдыха.' },
+      { title: 'Современный ремонт', desc: 'Современный интерьер для отдыха после прогулок и пляжа.' },
       { title: 'Кондиционер', desc: 'Комфортная температура в квартире в жаркие летние дни.' },
       { title: 'Оборудованная кухня', desc: 'Всё необходимое, чтобы готовить дома во время отпуска.' },
       { title: 'Терраса', desc: 'Дополнительное пространство для спокойного отдыха.' },
@@ -34,7 +34,7 @@ const COPY: Record<string, AdvantagesCopy> = {
     title: 'Comfort for your seaside stay',
     subtitle: 'Everything you need for a comfortable stay, from air conditioning and an equipped kitchen to a terrace and parking.',
     items: [
-      { title: 'Modern interior', desc: 'A modern interior and new furniture for a comfortable stay.' },
+      { title: 'Modern interior', desc: 'Modern interiors to relax in after a day at the beach.' },
       { title: 'Air conditioning', desc: 'A comfortable indoor temperature during hot summer days.' },
       { title: 'Equipped kitchen', desc: 'Everything you need to prepare meals during your holiday.' },
       { title: 'Terrace', desc: 'Extra space for quiet moments and relaxed evenings.' },

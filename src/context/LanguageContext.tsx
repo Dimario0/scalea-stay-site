@@ -58,7 +58,7 @@ const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
 
 const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
   ru: {
-    apt1Desc: 'ScaleaStay — уютные апартаменты в центральной части Скалеи рядом с морем. Современный интерьер, кондиционер, терраса, оборудованная кухня и парковка подходят для семейного отдыха до четырёх гостей.\n📍 Ближайший пляж — 600 м, около 5–8 минут пешком; маршрут открыт в разделе «Маршруты».',
+    apt1Desc: "Апартаменты с одной спальней и собственной террасой. Готовьте на оборудованной кухне, отдыхайте после пляжа и выбирайте удобный для вас срок поездки.",
     advLocationDesc: 'Центральная часть Скалеи: рядом магазины, прогулочные улицы и основные городские маршруты.',
     advSeaDesc: 'Ближайший пляж — 600 м, около 5–8 минут пешком. Точный пешеходный маршрут показан в разделе «Маршруты».',
     advSupermarket: 'Магазины рядом',
@@ -72,7 +72,7 @@ const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
     taItem4: 'Тем, кому важно удобно покупать продукты и всё необходимое рядом с квартирой.',
   },
   en: {
-    apt1Desc: 'ScaleaStay is a comfortable apartment in central Scalea near the sea. A modern interior, air conditioning, terrace, equipped kitchen and parking make it suitable for families of up to four guests.\n📍 The nearest beach is 600 m away, about a 5–8 minute walk; the route is available in the Routes section.',
+    apt1Desc: "A one-bedroom apartment with your own terrace. Prepare meals in the equipped kitchen, unwind after the beach and stay for a short break or a longer visit.",
     advLocationDesc: 'Central Scalea, with shops, walking streets and the main local routes nearby.',
     advSeaDesc: 'The nearest beach is 600 m away, about a 5–8 minute walk. The exact walking route is shown in the interactive Routes section.',
     advSupermarket: 'Shops nearby',
@@ -86,7 +86,7 @@ const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
     taItem4: 'Guests who want groceries and everyday essentials conveniently available near the apartment.',
   },
   it: {
-    apt1Desc: 'ScaleaStay è un appartamento accogliente nella zona centrale di Scalea, vicino al mare. Interni moderni, aria condizionata, terrazza, cucina attrezzata e parcheggio sono adatti a famiglie fino a quattro ospiti.\n📍 La spiaggia più vicina dista 600 m, circa 5–8 minuti a piedi; il percorso è disponibile nella sezione «Percorsi».',
+    apt1Desc: "Un appartamento con una camera da letto e una terrazza tutta per te. Prepara i pasti nella cucina attrezzata, rilassati dopo la spiaggia e scegli tra una breve vacanza e un soggiorno più lungo.",
     advLocationDesc: 'Zona centrale di Scalea, con negozi, vie per passeggiare e principali collegamenti urbani nelle vicinanze.',
     advSeaDesc: 'La spiaggia più vicina dista 600 m, circa 5–8 minuti a piedi. Il percorso pedonale preciso è mostrato nella sezione interattiva «Percorsi».',
     advSupermarket: 'Negozi nelle vicinanze',
@@ -100,7 +100,7 @@ const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
     taItem4: 'A chi desidera acquistare comodamente generi alimentari e beni essenziali vicino all’appartamento.',
   },
   de: {
-    apt1Desc: 'ScaleaStay ist eine gemütliche Ferienwohnung im zentralen Teil von Scalea nahe am Meer. Moderne Einrichtung, Klimaanlage, Terrasse, ausgestattete Küche und Parkplatz eignen sich für Familien mit bis zu vier Gästen.\n📍 Der nächste Strand ist 600 m entfernt, etwa 5–8 Gehminuten; die Route ist im Bereich „Routen“ verfügbar.',
+    apt1Desc: "Eine Ferienwohnung mit einem Schlafzimmer und eigener Terrasse. Kochen Sie in der ausgestatteten Küche, entspannen Sie nach dem Strandbesuch und bleiben Sie für einen Kurzurlaub oder länger.",
     advLocationDesc: 'Zentrale Lage in Scalea mit Geschäften, Spazierstraßen und den wichtigsten örtlichen Verbindungen in der Nähe.',
     advSeaDesc: 'Der nächste Strand ist 600 m entfernt, etwa 5–8 Gehminuten. Die genaue Fußroute wird im interaktiven Bereich „Routen“ angezeigt.',
     advSupermarket: 'Geschäfte in der Nähe',
@@ -114,7 +114,7 @@ const CONTENT_OVERRIDES: Record<string, Record<string, string>> = {
     taItem4: 'Für Gäste, die Lebensmittel und Dinge des täglichen Bedarfs bequem in der Nähe der Unterkunft kaufen möchten.',
   },
   cs: {
-    apt1Desc: 'ScaleaStay je útulný apartmán v centrální části města Scalea nedaleko moře. Moderní interiér, klimatizace, terasa, vybavená kuchyň a parkování jsou vhodné pro rodiny až se čtyřmi hosty.\n📍 Nejbližší pláž je 600 m daleko, přibližně 5–8 minut pěšky; trasa je dostupná v sekci „Trasy“.',
+    apt1Desc: "Apartmán s jednou ložnicí a vlastní terasou. Připravte si jídlo ve vybavené kuchyni, odpočiňte si po návratu z pláže a přijeďte na krátkou dovolenou i delší pobyt.",
     advLocationDesc: 'Centrální část města Scalea s obchody, pěšími ulicemi a hlavními místními trasami v okolí.',
     advSeaDesc: 'Nejbližší pláž je 600 m daleko, přibližně 5–8 minut pěšky. Přesná pěší trasa je zobrazena v interaktivní sekci „Trasy“.',
     advSupermarket: 'Obchody v okolí',

@@ -419,7 +419,7 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
             <h1 style="margin:0 auto 28px;max-width:920px;color:#fff;font:900 clamp(2.5rem,7vw,5.5rem)/.96 system-ui,sans-serif;letter-spacing:-.045em;text-wrap:balance;">${escapeHtml(page.heroTitle)}</h1>
             <p style="max-width:760px;margin:0 auto 34px;color:#cbd5e1;font:500 clamp(1rem,2vw,1.3rem)/1.6 system-ui,sans-serif;">${escapeHtml(page.heroSubtitle)}</p>
             <p style="margin:0 auto 32px;color:#fff;font:800 1rem/1.6 system-ui,sans-serif;">600 m · 5–8 min · Interspar 230 m · station 500 m · parking</p>
-            <a href="https://wa.me/420774620060" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(page.cta)}</a>
+            <a href="https://wa.me/420774620060?text=${encodeURIComponent(getLongStayCopy(page.language).inquiry)}" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(getLongStayCopy(page.language).availabilityCta)}</a>
           </div>
         </section>
         ${buildLongStayShell(page.language)}

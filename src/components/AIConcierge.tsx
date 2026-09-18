@@ -16,11 +16,13 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
   const isShop = /(магазин|супермаркет|продукт|ед[ау]|interspar|покуш|shop|grocery|food|negozi|supermercat|cib|spes|geschäft|essen|einkauf|obchod|jíd|nákup|sklep|zakup|jedzeni|spożyw)/i.test(lowerInput);
   const isParking = /(парковк|машин|паркинг|park|car|garage|parcheggi|auto|macchin|wagen|aut|vůz|samoch|parking)/i.test(lowerInput);
   const isAC = /(кондиционер|жарк|ac|air|cool|klima|aria|klimatyz)/i.test(lowerInput);
-  const isWiFi = /(wi-fi|wifi|интернет|вайфай|вай-фай|internet|wlan)/i.test(lowerInput);
+  const isWiFi = /(wi[-‑– ]?fi|wifi|интернет|вайфай|вай-фай|internet|wlan)/i.test(lowerInput);
   const isBooking = /(цен|бронь|бронирова|дат[аы]|свободн|available|price|book|cost|reserv|prezz|prenot|disponibil|tariff|preis|datum|termin|verfügbar|cen|voln|dostupn|kolik|cena|rezerw|termin|dostępn|woln)/i.test(lowerInput);
 
   if (isWiFi) {
-    return `${getLongStayCopy(lang).faq[0].a} https://wa.me/420774620060`;
+    const asksAboutSpeed = /(скорост|быстр|стабил|работ|виде|speed|fast|stabl|work|video|veloc|lavor|schnell|geschwindigkeit|arbeit|rychl|prác|prędko|szybk|prac)/i.test(lowerInput);
+    const answer = asksAboutSpeed ? getLongStayCopy(lang).speedAnswer : getLongStayCopy(lang).faq[0].a;
+    return `${answer} https://wa.me/420774620060`;
   }
 
   const isHeating = /(отоплен|обогрев|heating|riscaldament|heizung|topen|vytáp|ogrzew)/i.test(lowerInput);
