@@ -47,5 +47,29 @@ export const NEARBY_PHOTOS = {
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
     "date": "2009-08-31",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Isola_di_Dino.jpg/960px-Isola_di_Dino.jpg"
+  },
+  "pompeii-forum": {
+    "src": "/images/nearby/pompeii-forum.jpg",
+    "width": 960,
+    "height": 634,
+    "author": "Commonists",
+    "title": "Forum (Pompeii) and the Vesuvio.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Forum_(Pompeii)_and_the_Vesuvio.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "date": "2021-05-02 10:30:42",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Forum_%28Pompeii%29_and_the_Vesuvio.jpg/960px-Forum_%28Pompeii%29_and_the_Vesuvio.jpg"
+  },
+  "pompeii-columns": {
+    "src": "/images/nearby/pompeii-columns.jpg",
+    "width": 960,
+    "height": 682,
+    "author": "Ad Meskens",
+    "title": "Pompeii, Forum 03.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Pompeii,_Forum_03.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "date": "2019-07-18 09:56:22",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Pompeii%2C_Forum_03.jpg/960px-Pompeii%2C_Forum_03.jpg"
   }
 } as const;

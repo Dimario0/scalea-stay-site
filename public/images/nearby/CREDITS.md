@@ -45,3 +45,25 @@ Photographs downloaded from Wikimedia Commons on 2026-09-18. The files retain th
 - Source photo date: 2009-08-31
 - Download: https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Isola_di_Dino.jpg/960px-Isola_di_Dino.jpg
 - Changes: Wikimedia display-size copy; CSS presentation crop only.
+
+## pompeii-forum
+
+- File: `pompeii-forum.jpg` (960 × 634)
+- Work: Forum (Pompeii) and the Vesuvio.jpg
+- Author: Commonists
+- Source: https://commons.wikimedia.org/wiki/File:Forum_(Pompeii)_and_the_Vesuvio.jpg
+- License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- Source photo date: 2021-05-02 10:30:42
+- Download: https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Forum_%28Pompeii%29_and_the_Vesuvio.jpg/960px-Forum_%28Pompeii%29_and_the_Vesuvio.jpg
+- Changes: Wikimedia display-size copy; CSS presentation crop only.
+
+## pompeii-columns
+
+- File: `pompeii-columns.jpg` (960 × 682)
+- Work: Pompeii, Forum 03.jpg
+- Author: Ad Meskens
+- Source: https://commons.wikimedia.org/wiki/File:Pompeii,_Forum_03.jpg
+- License: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0)
+- Source photo date: 2019-07-18 09:56:22
+- Download: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Pompeii%2C_Forum_03.jpg/960px-Pompeii%2C_Forum_03.jpg
+- Changes: Wikimedia display-size copy; CSS presentation crop only.
