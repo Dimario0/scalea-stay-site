@@ -4,7 +4,7 @@ import type { StayLanguage } from './longStayRoutes';
 export const NEARBY_PLACES = [
   { id: 'scalea', destination: 'Torre Talao, Scalea, Italy', mode: 'walking', source: 'https://www.italia.it/it/calabria/cosenza/scalea' },
   { id: 'diamante', destination: 'Centro storico, Diamante, Italy', mode: 'driving', source: 'https://www.italia.it/it/calabria/diamante' },
-  { id: 'arcomagno', destination: 'San Nicola Arcella, Italy', mode: 'driving', source: 'https://www.arcomagnocalabria.it/prodotto/biglietti-escursione-arcomagno/' },
+  { id: 'arcomagno', destination: 'Spiaggia Marinella, San Nicola Arcella, Italy', mode: 'driving', source: 'https://www.arcomagnocalabria.it/prodotto/biglietti-escursione-arcomagno/' },
   // Drive to the coast, not to the island. Boat availability must be checked locally.
   { id: 'dino', destination: 'Spiaggia di Fiuzzi, Praia a Mare, Italy', mode: 'driving', source: 'https://www.italia.it/en/calabria/things-to-do/calabria-boat-dino-cirella-island' },
 ] as const;
@@ -12,10 +12,12 @@ export const NEARBY_PLACES = [
 type PlaceCopy = { title: string; text: string; practical: string };
 type NearbyCopy = {
   nav: string; eyebrow: string; title: string; intro: string; map: string;
-  source: string; access: string; season: string; places: [PlaceCopy, PlaceCopy, PlaceCopy, PlaceCopy];
+  source: string; access: string; season: string; practicalLabel: string; credits: string; photoNote: string; photoAlt: [string, string, string, string]; places: [PlaceCopy, PlaceCopy, PlaceCopy, PlaceCopy];
 };
 export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
   ru: {
+    practicalLabel: "Как добраться и что учесть", credits: "Фотографии и авторы",
+    photoNote: "Реальные фотографии мест, снятые в разные годы и сезоны. Для карточек уменьшены и кадрируются при показе.", photoAlt: ["Панорама побережья Скалеи с башней Torre Talao вдали", "Панорама Диаманте на берегу Тирренского моря", "Скальная арка Аркоманьо над бирюзовой бухтой", "Остров Дино и побережье у Прайя-а-Маре"],
     nav: 'Что посмотреть', eyebrow: 'Впечатления рядом', title: 'Красивые места для ваших прогулок и поездок',
     intro: 'Сегодня — улочки старой Скалеи, завтра — росписи Диаманте или морские панорамы. Выберите настроение дня, а вечером возвращайтесь в свои апартаменты.',
     map: 'Маршрут от апартаментов', source: 'О месте', access: 'Условия посещения',
@@ -23,11 +25,13 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Старая Скалея и Torre Talao', text: 'Узкие улочки, лестницы и виды на море. Совместите прогулку по историческому центру с набережной у башни — символа Скалеи.', practical: 'Пешком по городу. В старом центре есть подъёмы и ступени; карта ведёт к Torre Talao.' },
       { title: 'Диаманте — город настенных росписей', text: 'Разглядывайте рисунки на фасадах, сворачивайте в переулки и выходите к морю. Идея для неспешной прогулки с фотоаппаратом.', practical: 'Поездка в соседний город на машине, затем прогулка пешком по центру.' },
-      { title: 'Сан-Никола-Арчелла и Аркоманьо', text: 'Панорамы побережья и природная скальная арка над небольшой бухтой — место для тех, кто любит выразительные морские пейзажи.', practical: 'На машине до Сан-Никола-Арчеллы. К Аркоманьо ведёт отдельная тропа со ступенями; условия входа проверьте перед поездкой.' },
+      { title: 'Сан-Никола-Арчелла и Аркоманьо', text: 'Панорамы побережья и природная скальная арка над небольшой бухтой — место для тех, кто любит выразительные морские пейзажи.', practical: 'Карта ведёт к пляжу Маринелла в Сан-Никола-Арчелле. Далее — пешая тропа к Аркоманьо со ступенями. Вход по билету; доступ и условия проверьте перед поездкой.' },
       { title: 'Остров Дино у Прайя-а-Маре', text: 'Полюбуйтесь островом с берега Фьюцци. Морская прогулка позволяет увидеть его скалы и пещеры с другого ракурса.', practical: 'Карта ведёт к берегу Фьюцци на машине. Поездку на лодке нужно согласовать отдельно с организатором.' },
     ],
   },
   en: {
+    practicalLabel: "Getting there and planning your visit", credits: "Photo credits",
+    photoNote: "Real photographs taken in different years and seasons. Reduced for the cards and cropped for display.", photoAlt: ["Scalea coastline with Torre Talao in the distance", "Panorama of Diamante on the Tyrrhenian coast", "Arcomagno rock arch above a turquoise cove", "Dino Island and the coast near Praia a Mare"],
     nav: 'Places to explore', eyebrow: 'Discover the area', title: 'Beautiful places for walks and day trips',
     intro: 'Scalea’s old lanes today, Diamante’s murals or coastal views tomorrow. Follow your mood, then return to your own apartment in the evening.',
     map: 'Directions from the apartment', source: 'About this place', access: 'Visitor information',
@@ -35,11 +39,13 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Old Scalea and Torre Talao', text: 'Narrow lanes, stone steps and sea views. Combine the historic centre with a walk along the seafront beside Scalea’s landmark tower.', practical: 'Explore on foot. The old town has slopes and steps; the map leads to Torre Talao.' },
       { title: 'Diamante, a town of murals', text: 'Discover paintings on the façades, wander through little lanes and stroll down to the sea. A lovely outing to enjoy with a camera.', practical: 'Drive to the neighbouring town, then explore the centre on foot.' },
-      { title: 'San Nicola Arcella and Arcomagno', text: 'Coastal panoramas and a natural rock arch above a small cove: a destination for anyone drawn to dramatic seascapes.', practical: 'Drive to San Nicola Arcella. Arcomagno has a separate footpath with steps; check entry arrangements before your trip.' },
+      { title: 'San Nicola Arcella and Arcomagno', text: 'Coastal panoramas and a natural rock arch above a small cove: a destination for anyone drawn to dramatic seascapes.', practical: 'The map leads to Marinella beach in San Nicola Arcella. Continue on foot to Arcomagno along a path with steps. Entry is ticketed; check access and visitor arrangements before travelling.' },
       { title: 'Dino Island near Praia a Mare', text: 'Admire the island from the Fiuzzi shore. A boat trip offers another perspective on its cliffs and sea caves.', practical: 'The map gives driving directions to the Fiuzzi shore. Arrange any boat trip separately with an operator.' },
     ],
   },
   it: {
+    practicalLabel: "Come arrivare e organizzare la visita", credits: "Fotografie e autori",
+    photoNote: "Fotografie reali scattate in anni e stagioni diversi. Ridotte per le schede e ritagliate nella visualizzazione.", photoAlt: ["Panorama della costa di Scalea con Torre Talao in lontananza", "Panorama di Diamante sulla costa tirrenica", "Arco roccioso dell’Arcomagno sulla baia turchese", "Isola di Dino e costa presso Praia a Mare"],
     nav: 'Cosa vedere', eyebrow: 'Da scoprire nei dintorni', title: 'Luoghi da vivere, tra passeggiate e gite',
     intro: 'Oggi i vicoli di Scalea, domani i murales di Diamante o i panorami della costa. Scegli il ritmo della giornata e torna nel tuo appartamento la sera.',
     map: 'Itinerario dall’appartamento', source: 'Scopri il luogo', access: 'Informazioni per la visita',
@@ -47,11 +53,13 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Scalea vecchia e Torre Talao', text: 'Vicoli, scalinate e scorci sul mare. Abbina il centro storico a una passeggiata sul lungomare, accanto alla torre simbolo di Scalea.', practical: 'A piedi in città. Il borgo presenta salite e gradini; la mappa conduce a Torre Talao.' },
       { title: 'Diamante, la città dei murales', text: 'Dipinti sulle facciate, vicoli da esplorare e una passeggiata verso il mare. Un’idea per una gita lenta, con la macchina fotografica a portata di mano.', practical: 'In auto fino alla cittadina vicina, poi a piedi nel centro.' },
-      { title: 'San Nicola Arcella e l’Arcomagno', text: 'Panorami sulla costa e un arco naturale di roccia sopra una piccola baia: una meta per chi ama i paesaggi marini più suggestivi.', practical: 'In auto fino a San Nicola Arcella. L’Arcomagno si raggiunge con un sentiero separato, con gradini: verifica le condizioni d’ingresso.' },
+      { title: 'San Nicola Arcella e l’Arcomagno', text: 'Panorami sulla costa e un arco naturale di roccia sopra una piccola baia: una meta per chi ama i paesaggi marini più suggestivi.', practical: 'La mappa conduce alla spiaggia Marinella, a San Nicola Arcella. Si prosegue a piedi verso l’Arcomagno su un sentiero con gradini. L’ingresso è a pagamento: verifica accessi e condizioni prima di partire.' },
       { title: 'Isola di Dino, a Praia a Mare', text: 'Ammira l’isola dalla costa di Fiuzzi. Un’uscita in barca permette di scoprire le sue pareti rocciose e le grotte marine da un’altra prospettiva.', practical: 'La mappa indica il percorso in auto fino alla costa di Fiuzzi. L’escursione in barca va concordata separatamente con un operatore.' },
     ],
   },
   de: {
+    practicalLabel: "Anreise und Hinweise für den Besuch", credits: "Fotos und Bildnachweise",
+    photoNote: "Echte Aufnahmen aus verschiedenen Jahren und Jahreszeiten. Für die Karten verkleinert und im Bildausschnitt angepasst.", photoAlt: ["Küste von Scalea mit Torre Talao in der Ferne", "Panorama von Diamante an der tyrrhenischen Küste", "Felsbogen Arcomagno über einer türkisfarbenen Bucht", "Insel Dino und die Küste bei Praia a Mare"],
     nav: 'Ausflugsziele', eyebrow: 'Die Umgebung entdecken', title: 'Schöne Orte für Spaziergänge und Ausflüge',
     intro: 'Heute die Gassen von Scalea, morgen die Wandbilder von Diamante oder weite Blicke aufs Meer. Gestalten Sie Ihren Tag und kehren Sie abends in Ihre Ferienwohnung zurück.',
     map: 'Route ab der Ferienwohnung', source: 'Mehr zum Ort', access: 'Besucherinformationen',
@@ -59,11 +67,13 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Scaleas Altstadt und Torre Talao', text: 'Enge Gassen, Treppen und Meerblicke. Verbinden Sie die Altstadt mit einem Spaziergang an der Promenade beim Wahrzeichen von Scalea.', practical: 'Zu Fuß durch die Stadt. Die Altstadt hat Steigungen und Stufen; die Karte führt zur Torre Talao.' },
       { title: 'Diamante, die Stadt der Wandbilder', text: 'Entdecken Sie bemalte Fassaden, kleine Gassen und den Weg hinunter zum Meer. Ein schöner Ausflug für einen entspannten Tag mit der Kamera.', practical: 'Mit dem Auto in den Nachbarort, anschließend zu Fuß durch das Zentrum.' },
-      { title: 'San Nicola Arcella und Arcomagno', text: 'Küstenpanoramen und ein natürlicher Felsbogen über einer kleinen Bucht: ein Ziel für alle, die eindrucksvolle Meereslandschaften lieben.', practical: 'Mit dem Auto nach San Nicola Arcella. Zum Arcomagno führt ein separater Fußweg mit Stufen; prüfen Sie vorher die Zugangsbedingungen.' },
+      { title: 'San Nicola Arcella und Arcomagno', text: 'Küstenpanoramen und ein natürlicher Felsbogen über einer kleinen Bucht: ein Ziel für alle, die eindrucksvolle Meereslandschaften lieben.', practical: 'Die Karte führt zum Strand Marinella in San Nicola Arcella. Weiter geht es zu Fuß auf einem Weg mit Stufen zum Arcomagno. Der Eintritt ist kostenpflichtig; prüfen Sie vorab Zugang und Besuchsbedingungen.' },
       { title: 'Insel Dino bei Praia a Mare', text: 'Bewundern Sie die Insel vom Ufer bei Fiuzzi aus. Bei einer Bootsfahrt erleben Sie ihre Felswände und Meereshöhlen aus einem anderen Blickwinkel.', practical: 'Die Karte zeigt die Autofahrt zur Küste bei Fiuzzi. Eine Bootsfahrt vereinbaren Sie separat mit einem Anbieter.' },
     ],
   },
   cs: {
+    practicalLabel: "Jak se tam dostat a co vědět", credits: "Fotografie a autoři",
+    photoNote: "Skutečné fotografie z různých let a ročních období. Pro karty jsou zmenšené a při zobrazení oříznuté.", photoAlt: ["Pobřeží Scalei s věží Torre Talao v dálce", "Panorama Diamante na pobřeží Tyrhénského moře", "Skalní oblouk Arcomagno nad tyrkysovou zátokou", "Ostrov Dino a pobřeží u Praia a Mare"],
     nav: 'Co vidět', eyebrow: 'Objevte okolí', title: 'Krásná místa na procházky a výlety',
     intro: 'Dnes staré uličky Scalei, zítra nástěnné malby v Diamante nebo výhledy na pobřeží. Vyberte si program podle nálady a večer se vraťte do svého apartmánu.',
     map: 'Trasa od apartmánu', source: 'O tomto místě', access: 'Informace k návštěvě',
@@ -71,11 +81,13 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Stará Scalea a Torre Talao', text: 'Úzké uličky, schodiště a výhledy na moře. Spojte historické centrum s procházkou po nábřeží u věže, která je symbolem Scalei.', practical: 'Pěšky po městě. V historickém centru jsou svahy a schody; mapa vede k Torre Talao.' },
       { title: 'Diamante, město nástěnných maleb', text: 'Objevujte obrazy na fasádách, malé uličky a cestu k moři. Příjemný nápad na poklidný výlet s fotoaparátem.', practical: 'Autem do sousedního města, poté pěšky po centru.' },
-      { title: 'San Nicola Arcella a Arcomagno', text: 'Výhledy na pobřeží a přírodní skalní oblouk nad malou zátokou. Místo pro každého, kdo má rád působivé mořské scenérie.', practical: 'Autem do San Nicola Arcella. K Arcomagnu vede samostatná pěší stezka se schody; před cestou ověřte podmínky vstupu.' },
+      { title: 'San Nicola Arcella a Arcomagno', text: 'Výhledy na pobřeží a přírodní skalní oblouk nad malou zátokou. Místo pro každého, kdo má rád působivé mořské scenérie.', practical: 'Mapa vede na pláž Marinella v San Nicola Arcella. Dále pokračujte pěšky po stezce se schody k Arcomagnu. Vstup je placený; před cestou ověřte přístup a podmínky návštěvy.' },
       { title: 'Ostrov Dino u Praia a Mare', text: 'Prohlédněte si ostrov z pobřeží Fiuzzi. Výlet lodí nabízí jiný pohled na jeho skály a mořské jeskyně.', practical: 'Mapa ukazuje cestu autem na pobřeží Fiuzzi. Výlet lodí si domluvte zvlášť s pořadatelem.' },
     ],
   },
   pl: {
+    practicalLabel: "Dojazd i wskazówki przed wizytą", credits: "Zdjęcia i autorzy",
+    photoNote: "Prawdziwe zdjęcia z różnych lat i pór roku. Pomniejszone na potrzeby kart i kadrowane przy wyświetlaniu.", photoAlt: ["Wybrzeże Scalei z wieżą Torre Talao w oddali", "Panorama Diamante nad Morzem Tyrreńskim", "Skalny łuk Arcomagno nad turkusową zatoką", "Wyspa Dino i wybrzeże przy Praia a Mare"],
     nav: 'Co zobaczyć', eyebrow: 'Odkryj okolicę', title: 'Piękne miejsca na spacery i wycieczki',
     intro: 'Dziś uliczki starej Scalei, jutro murale w Diamante albo widoki na wybrzeże. Wybierz plan zgodny ze swoim nastrojem i wróć wieczorem do własnego apartamentu.',
     map: 'Trasa z apartamentu', source: 'O tym miejscu', access: 'Informacje dla odwiedzających',
@@ -83,7 +95,7 @@ export const NEARBY_COPY: Record<StayLanguage, NearbyCopy> = {
     places: [
       { title: 'Stara Scalea i Torre Talao', text: 'Wąskie uliczki, schody i widoki na morze. Połącz zwiedzanie starego miasta ze spacerem promenadą przy wieży będącej symbolem Scalei.', practical: 'Pieszo po mieście. Na starówce są podejścia i schody; mapa prowadzi do Torre Talao.' },
       { title: 'Diamante, miasto murali', text: 'Odkrywaj malowidła na fasadach, zaglądaj w zaułki i zejdź nad morze. Pomysł na spokojną wycieczkę z aparatem.', practical: 'Samochodem do sąsiedniego miasta, następnie pieszo po centrum.' },
-      { title: 'San Nicola Arcella i Arcomagno', text: 'Panoramy wybrzeża i naturalny skalny łuk nad niewielką zatoką. Miejsce dla miłośników wyrazistych nadmorskich krajobrazów.', practical: 'Samochodem do San Nicola Arcella. Do Arcomagno prowadzi osobna ścieżka ze schodami; przed wyjazdem sprawdź warunki wejścia.' },
+      { title: 'San Nicola Arcella i Arcomagno', text: 'Panoramy wybrzeża i naturalny skalny łuk nad niewielką zatoką. Miejsce dla miłośników wyrazistych nadmorskich krajobrazów.', practical: 'Mapa prowadzi na plażę Marinella w San Nicola Arcella. Dalej idzie się pieszo ścieżką ze schodami do Arcomagno. Wstęp jest płatny; przed wyjazdem sprawdź dostęp i warunki zwiedzania.' },
       { title: 'Wyspa Dino przy Praia a Mare', text: 'Podziwiaj wyspę z brzegu Fiuzzi. Rejs pozwala zobaczyć jej skaliste ściany i morskie groty z innej perspektywy.', practical: 'Mapa prowadzi samochodem na wybrzeże Fiuzzi. Rejs trzeba uzgodnić osobno z organizatorem.' },
     ],
   },
