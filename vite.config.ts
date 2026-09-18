@@ -5,6 +5,10 @@ import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
+import { APARTMENT_COPY } from './src/content/apartment';
+import { getFaqItems } from './src/content/faq';
+import { translate } from './src/content/translations';
+import { APARTMENTS, CONTACT_INFO } from './src/constants';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -370,14 +374,14 @@ const buildPairHeadAlternates = <T extends { language: PriorityLanguage; path: s
   `    <link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${pages[0].path}" />`,
 ].join('\n');
 
-const buildLongStayShell = (language: LanguageCode) => {
+const buildLongStayShell = (language: LanguageCode, includeFaq = true) => {
   const copy = getLongStayCopy(language);
   const whatsapp = `https://wa.me/420774620060?text=${encodeURIComponent(copy.message)}`;
   return `<section id="long-stay" style="padding:48px 24px;background:#eef2ff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
     <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.layout)}</p><p>${escapeHtml(copy.location)}</p>
     <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
-    ${copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
+    ${includeFaq ? copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('') : ''}
   </div></section>`;
 };
 
@@ -390,6 +394,33 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
   numberOfBedrooms: 1,
   amenityFeature: CONFIRMED_AMENITIES,
 });
+
+// Read the same copy as the interactive page so crawlers and guests see the same facts.
+const buildApartmentShell = (language: LanguageCode) => {
+  const copy = getLongStayCopy(language);
+  const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
+  return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
+    <h2>${escapeHtml(translate(language, 'ourApartments'))}</h2>
+    <h3>ScaleaStay</h3><p>${escapeHtml(copy.apartmentSummary)}</p>
+    <ul>${facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul>
+    <img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />
+    <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
+  </div></section>`;
+};
+
+const buildFaqShell = (language: LanguageCode) => `<section id="faq" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
+  <h2>${escapeHtml(translate(language, 'faqTitle'))}</h2>
+  ${getFaqItems(language).map(({ q, a }) => `<details style="padding:16px 0;border-bottom:1px solid #e2e8f0"><summary style="cursor:pointer;font-weight:700">${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
+</div></section>`;
+
+const buildFaqSchema = (language: LanguageCode) => JSON.stringify({
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  '@id': `${SITE_ORIGIN}/${language}/#faq`, url: `${SITE_ORIGIN}/${language}/#faq`,
+  inLanguage: language,
+  mainEntity: getFaqItems(language).map(({ q, a }) => ({
+    '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+}).replaceAll('<', '\\u003c');
 
 const buildPrerenderShell = (language: LanguageCode) => {
   const content = PRERENDER_CONTENT[language];
@@ -406,7 +437,9 @@ const buildPrerenderShell = (language: LanguageCode) => {
             </nav>
           </div>
         </section>
-        ${buildLongStayShell(language)}
+        ${buildApartmentShell(language)}
+        ${buildLongStayShell(language, false)}
+        ${buildFaqShell(language)}
       </main>
     </div>`;
 };
@@ -491,6 +524,7 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
     buildRootHeadAlternates(),
     `    <script type="application/ld+json">${buildWebsiteSchema(language)}</script>`,
     `    <script type="application/ld+json">${buildConfirmedStaySchema(language)}</script>`,
+    `    <script id="prerender-faq-schema" type="application/ld+json">${buildFaqSchema(language)}</script>`,
   ].filter(Boolean).join('\n');
 
   html = html.replace('</head>', `${metadata}\n</head>`);

@@ -35,6 +35,25 @@ for (const p of pages) {
   if (!/meta name="robots" content="index,follow,max-image-preview:large"/i.test(html)) fail(`${p.file}: not explicitly indexable`);
   const h1 = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
   if (h1 !== 1) fail(`${p.file}: expected one H1, found ${h1}`);
+  if (/^[a-z]{2}\/index\.html$/.test(p.file)) {
+    const body = html.split('<body')[1] || '';
+    if (!body.includes('id="apartments"')) fail(`${p.file}: apartment content missing from initial HTML`);
+    if (!body.includes('id="faq"')) fail(`${p.file}: FAQ content missing from initial HTML`);
+    const schemaSource = html.match(/<script id="prerender-faq-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
+    try {
+      const faq = JSON.parse(schemaSource || 'null');
+      if (!faq || faq.inLanguage !== p.lang || faq.mainEntity?.length !== 12) {
+        fail(`${p.file}: missing or incomplete localized FAQ schema`);
+      } else {
+        const escape = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
+        for (const item of faq.mainEntity) {
+          if (!body.includes(`<summary style="cursor:pointer;font-weight:700">${escape(item.name)}</summary>`) || !body.includes(`<p>${escape(item.acceptedAnswer.text)}</p>`)) {
+            fail(`${p.file}: FAQ schema and initial visible content disagree: ${item.name}`);
+          }
+        }
+      }
+    } catch { fail(`${p.file}: invalid FAQ JSON`); }
+  }
   for (const pattern of stalePatterns) if (pattern.test(html)) fail(`${p.file}: stale public copy matched ${pattern}`);
 }
 
