@@ -9,6 +9,8 @@ import { APARTMENT_COPY } from './src/content/apartment';
 import { getFaqItems } from './src/content/faq';
 import { translate } from './src/content/translations';
 import { APARTMENTS, CONTACT_INFO } from './src/constants';
+import { LONG_STAY_LANDING, LONG_STAY_PATH, LONG_STAY_LINK_LABEL } from './src/content/longStayLanding';
+import { renderLongStay, longStayStyles, longStaySchema } from './scripts/render-long-stay';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -263,6 +265,7 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 ${rootSitemapEntries}
 ${commercialSitemapEntries}
 ${guideSitemapEntries}
+  <url><loc>${SITE_ORIGIN}${LONG_STAY_PATH}</loc><lastmod>${STAY_LASTMOD}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
 `;
 
@@ -381,6 +384,7 @@ const buildLongStayShell = (language: LanguageCode, includeFaq = true) => {
     <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
     <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.layout)}</p><p>${escapeHtml(copy.location)}</p>
     <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
+    ${language === 'it' ? `<p><a href="${LONG_STAY_PATH}">${escapeHtml(LONG_STAY_LINK_LABEL)} →</a></p>` : ''}
     ${includeFaq ? copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('') : ''}
   </div></section>`;
 };
@@ -575,6 +579,27 @@ const localizeGuideHtml = (sourceHtml: string, page: GuidePage) => {
   return html;
 };
 
+// A complete HTML landing page: native links and FAQ work without the SPA bundle.
+const buildLongStayHtml = (sourceHtml: string) => {
+  const canonical = `${SITE_ORIGIN}${LONG_STAY_PATH}`;
+  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, 'it'), LONG_STAY_LANDING.title, LONG_STAY_LANDING.description, canonical);
+  html = html.replace(/\s*<script\b[^>]*type="module"[^>]*>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<link\b[^>]*rel="stylesheet"[^>]*>/gi, tag => tag.includes('href="/assets/') ? '' : tag);
+  html = html.replace(/<meta name="viewport"[^>]*>/, '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+  html = html.replace(/<link rel="preload" as="image"[^>]*>/, `<link rel="preload" as="image" href="${escapeHtml(APARTMENTS[0].images[0])}">`);
+  for (const tag of ['og:image', 'twitter:image']) {
+    html = replaceOrInsertHeadTag(html, new RegExp(`<meta property="${tag}" content="[^"]*">`, 'i'), `<meta property="${tag}" content="${escapeHtml(APARTMENTS[0].images[0])}">`);
+  }
+  html = html.replace('</head>', `<meta name="robots" content="index,follow,max-image-preview:large">
+    <meta property="og:site_name" content="ScaleaStay"><meta property="og:locale" content="it_IT">
+    <script type="application/ld+json">${buildWebsiteSchema('it')}</script>
+    <script type="application/ld+json">${longStaySchema}</script>
+    ${longStayStyles}</head>`);
+  html = injectShell(html, renderLongStay());
+  validateOneH1(html, LONG_STAY_PATH);
+  return html;
+};
+
 const outputDirectoryFor = (dist: string, pagePath: string) => path.join(dist, pagePath.replace(/^\//, '').replace(/\/$/, ''));
 
 const seoBuildCleanup = (): Plugin => ({
@@ -596,6 +621,10 @@ const seoBuildCleanup = (): Plugin => ({
       mkdirSync(languageDirectory, { recursive: true });
       writeFileSync(path.join(languageDirectory, 'index.html'), localizeHtml(builtHtml, language, true), 'utf8');
     });
+
+    const stayDirectory = outputDirectoryFor(outputDirectory, LONG_STAY_PATH);
+    mkdirSync(stayDirectory, { recursive: true });
+    writeFileSync(path.join(stayDirectory, 'index.html'), buildLongStayHtml(builtHtml), 'utf8');
 
     COMMERCIAL_PAGES.forEach((page) => {
       const pageDirectory = outputDirectoryFor(outputDirectory, page.path);

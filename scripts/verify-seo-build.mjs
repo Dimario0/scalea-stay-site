@@ -7,6 +7,7 @@ const DIST = path.join(ROOT, 'dist');
 const SITE_ORIGIN = 'https://scaleastay.com';
 
 const pages = [
+  ['it/soggiorni-lunghi-scalea/index.html','it','/it/soggiorni-lunghi-scalea/'],
   ['ru/index.html','ru','/ru/'],['en/index.html','en','/en/'],['it/index.html','it','/it/'],['de/index.html','de','/de/'],['cs/index.html','cs','/cs/'],['pl/index.html','pl','/pl/'],
   ['it/appartamento-scalea-vicino-mare/index.html','it','/it/appartamento-scalea-vicino-mare/'],
   ['pl/apartament-scalea-blisko-morza/index.html','pl','/pl/apartament-scalea-blisko-morza/'],
@@ -53,6 +54,15 @@ for (const p of pages) {
         }
       }
     } catch { fail(`${p.file}: invalid FAQ JSON`); }
+  }
+  if (p.file === 'it/soggiorni-lunghi-scalea/index.html') {
+    if (/<script[^>]*type="module"/i.test(html)) fail('long-stay page must not be replaced by the home SPA');
+    if ((html.match(/<details>/g) || []).length !== 6) fail('long-stay page must expose all six FAQ answers');
+    if (/hreflang=/.test(html)) fail('long-stay page must not advertise translations that do not exist');
+    if (!html.includes('CIN: IT078138C2VN4E3MCD')) fail('long-stay page missing property identifier');
+    for (const source of ['it/index.html', 'it/appartamento-scalea-vicino-mare/index.html']) {
+      if (!readFileSync(path.join(DIST, source), 'utf8').includes('href="/it/soggiorni-lunghi-scalea/"')) fail(`${source}: missing link to long-stay page`);
+    }
   }
   for (const pattern of stalePatterns) if (pattern.test(html)) fail(`${p.file}: stale public copy matched ${pattern}`);
 }
