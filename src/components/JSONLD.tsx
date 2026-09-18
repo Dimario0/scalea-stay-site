@@ -1,14 +1,9 @@
-import React from 'react';
+import { getFaqItems } from '../content/faq';
+import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { getLongStayCopy, CONFIRMED_AMENITIES } from '../content/longStay';
 
 type SeoCopy = {
-  amenitiesSuffix: string;
-  availabilityQuestion: string;
-  availabilityAnswer: string;
-  shopQuestion: string;
-  shopAnswer: string;
-  beachQuestion: string;
-  beachAnswer: string;
   airportRouteName: string;
   airportRouteDescription: string;
   airportStep1: string;
@@ -18,13 +13,6 @@ type SeoCopy = {
 
 const SEO_COPY: Record<string, SeoCopy> = {
   ru: {
-    amenitiesSuffix: 'Также в квартире есть фен, микроволновая печь и необходимые кухонные принадлежности.',
-    availabilityQuestion: 'Как проверить свободные даты?',
-    availabilityAnswer: 'Напишите нам в WhatsApp — владелец быстро проверит доступность на выбранные даты.',
-    shopQuestion: 'Есть ли рядом магазины?',
-    shopAnswer: 'Да. Interspar находится примерно в 230 м от ScaleaStay — около 3 минут пешком.',
-    beachQuestion: 'Что предусмотрено для отдыха на пляже?',
-    beachAnswer: 'Для гостей предусмотрен пляжный зонт, который можно взять с собой к морю.',
     airportRouteName: 'Как добраться из аэропорта Lamezia Terme до ScaleaStay в Скалее',
     airportRouteDescription: 'Маршрут из ближайшего международного аэропорта: Airlink до Lamezia Terme Centrale, поезд до Scalea и финальный участок до апартаментов.',
     airportStep1: 'Сесть на автобус Lamezia Airlink от аэропорта до станции Lamezia Terme Centrale.',
@@ -32,13 +20,6 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep3: 'От станции продолжить на такси, трансфере или по локальному маршруту до ScaleaStay.',
   },
   en: {
-    amenitiesSuffix: 'The apartment also includes a hair dryer, microwave and essential kitchen utensils.',
-    availabilityQuestion: 'How can I check available dates?',
-    availabilityAnswer: 'Message us on WhatsApp and the owner will quickly check availability for your dates.',
-    shopQuestion: 'Are there shops nearby?',
-    shopAnswer: 'Yes. Interspar is about 230 m from ScaleaStay, around a 3-minute walk.',
-    beachQuestion: 'What is provided for a day at the beach?',
-    beachAnswer: 'Guests can use a beach umbrella and take it with them to the sea.',
     airportRouteName: 'How to reach ScaleaStay in Scalea from Lamezia Terme Airport',
     airportRouteDescription: 'Route from the nearest international airport: Airlink to Lamezia Terme Centrale, train to Scalea and the final transfer to the apartment.',
     airportStep1: 'Take the Lamezia Airlink bus from the airport to Lamezia Terme Centrale station.',
@@ -46,13 +27,6 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep3: 'Continue from the station by taxi, transfer or the local route to ScaleaStay.',
   },
   it: {
-    amenitiesSuffix: 'L’appartamento dispone inoltre di asciugacapelli, forno a microonde e utensili da cucina essenziali.',
-    availabilityQuestion: 'Come posso verificare le date disponibili?',
-    availabilityAnswer: 'Scrivi su WhatsApp e il proprietario verificherà rapidamente la disponibilità per le tue date.',
-    shopQuestion: 'Ci sono negozi nelle vicinanze?',
-    shopAnswer: 'Sì. Interspar si trova a circa 230 m da ScaleaStay, circa 3 minuti a piedi.',
-    beachQuestion: 'Cosa è disponibile per una giornata in spiaggia?',
-    beachAnswer: 'Gli ospiti possono utilizzare un ombrellone da portare con sé al mare.',
     airportRouteName: 'Come raggiungere ScaleaStay a Scalea dall’aeroporto di Lamezia Terme',
     airportRouteDescription: 'Percorso dall’aeroporto internazionale più vicino: Airlink fino a Lamezia Terme Centrale, treno per Scalea e ultimo tratto verso l’appartamento.',
     airportStep1: 'Prendere la navetta Lamezia Airlink dall’aeroporto alla stazione Lamezia Terme Centrale.',
@@ -60,13 +34,6 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep3: 'Dalla stazione proseguire in taxi, con transfer o con il percorso locale fino a ScaleaStay.',
   },
   de: {
-    amenitiesSuffix: 'Außerdem gibt es einen Haartrockner, eine Mikrowelle und die wichtigsten Küchenutensilien.',
-    availabilityQuestion: 'Wie kann ich freie Termine prüfen?',
-    availabilityAnswer: 'Schreiben Sie uns auf WhatsApp; der Eigentümer prüft die Verfügbarkeit für Ihre Daten schnell.',
-    shopQuestion: 'Gibt es Geschäfte in der Nähe?',
-    shopAnswer: 'Ja. Interspar liegt etwa 230 m von ScaleaStay entfernt, rund 3 Gehminuten.',
-    beachQuestion: 'Was steht für einen Strandtag zur Verfügung?',
-    beachAnswer: 'Für Gäste steht ein Sonnenschirm zur Verfügung, der mit zum Meer genommen werden kann.',
     airportRouteName: 'Anreise vom Flughafen Lamezia Terme zu ScaleaStay in Scalea',
     airportRouteDescription: 'Route vom nächstgelegenen internationalen Flughafen: Airlink nach Lamezia Terme Centrale, Zug nach Scalea und letzter Abschnitt zum Apartment.',
     airportStep1: 'Mit dem Lamezia Airlink Bus vom Flughafen zum Bahnhof Lamezia Terme Centrale fahren.',
@@ -74,13 +41,6 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep3: 'Vom Bahnhof per Taxi, Transfer oder über die lokale Route zu ScaleaStay weiterfahren.',
   },
   cs: {
-    amenitiesSuffix: 'V apartmánu je také fén, mikrovlnná trouba a základní kuchyňské vybavení.',
-    availabilityQuestion: 'Jak ověřit volné termíny?',
-    availabilityAnswer: 'Napište na WhatsApp a majitel rychle ověří dostupnost pro vaše termíny.',
-    shopQuestion: 'Jsou v okolí obchody?',
-    shopAnswer: 'Ano. Interspar je přibližně 230 m od ScaleaStay, asi 3 minuty pěšky.',
-    beachQuestion: 'Co je k dispozici pro pobyt na pláži?',
-    beachAnswer: 'Hosté mají k dispozici plážový slunečník, který si mohou vzít k moři.',
     airportRouteName: 'Jak se dostat z letiště Lamezia Terme do ScaleaStay ve Scalee',
     airportRouteDescription: 'Trasa z nejbližšího mezinárodního letiště: Airlink do Lamezia Terme Centrale, vlak do Scalea a poslední úsek k apartmánu.',
     airportStep1: 'Jeďte autobusem Lamezia Airlink z letiště na nádraží Lamezia Terme Centrale.',
@@ -88,13 +48,6 @@ const SEO_COPY: Record<string, SeoCopy> = {
     airportStep3: 'Z nádraží pokračujte taxíkem, transferem nebo místní trasou do ScaleaStay.',
   },
   pl: {
-    amenitiesSuffix: 'W apartamencie są także suszarka do włosów, kuchenka mikrofalowa i podstawowe wyposażenie kuchenne.',
-    availabilityQuestion: 'Jak sprawdzić wolne terminy?',
-    availabilityAnswer: 'Napisz na WhatsApp, a właściciel szybko sprawdzi dostępność dla wybranych terminów.',
-    shopQuestion: 'Czy w pobliżu są sklepy?',
-    shopAnswer: 'Tak. Interspar znajduje się około 230 m od ScaleaStay, czyli około 3 minuty pieszo.',
-    beachQuestion: 'Co jest dostępne na dzień na plaży?',
-    beachAnswer: 'Goście mają do dyspozycji parasol plażowy, który można zabrać nad morze.',
     airportRouteName: 'Jak dojechać z lotniska Lamezia Terme do ScaleaStay w Scalei',
     airportRouteDescription: 'Trasa z najbliższego międzynarodowego lotniska: Airlink do Lamezia Terme Centrale, pociąg do Scalei i ostatni odcinek do apartamentu.',
     airportStep1: 'Wsiądź do autobusu Lamezia Airlink z lotniska do stacji Lamezia Terme Centrale.',
@@ -104,6 +57,10 @@ const SEO_COPY: Record<string, SeoCopy> = {
 };
 
 const JSONLD: React.FC = () => {
+  useEffect(() => {
+    // The live graph below replaces the initial FAQ schema and follows language changes.
+    document.getElementById('prerender-faq-schema')?.remove();
+  }, []);
   const { t, language } = useLanguage();
   const copy = SEO_COPY[language] || SEO_COPY.ru;
   const pageUrl = `https://scaleastay.com/${language}/`;
@@ -124,20 +81,11 @@ const JSONLD: React.FC = () => {
   const stationMapUrl = 'https://www.google.com/maps/search/?api=1&query=Scalea-Santa%20Domenica%20Talao%20railway%20station';
   const airportMapUrl = 'https://www.google.com/maps/search/?api=1&query=Lamezia%20Terme%20International%20Airport';
 
-  const faqItems = [
-    { question: t('faqQ1'), answer: t('faqA1') },
-    { question: t('faqQ2'), answer: `${t('faqA2')} ${copy.amenitiesSuffix}` },
-    { question: t('faqQ3'), answer: t('faqA3') },
-    { question: t('faqQ4'), answer: t('faqA4') },
-    { question: t('faqQ5'), answer: t('faqA5') },
-    { question: copy.availabilityQuestion, answer: copy.availabilityAnswer },
-    { question: t('faqQ7'), answer: t('faqA7') },
-    { question: copy.shopQuestion, answer: copy.shopAnswer },
-    { question: copy.beachQuestion, answer: copy.beachAnswer },
-  ];
+  const faqItems = getFaqItems(language).map(({ q, a }) => ({ question: q, answer: a }));
 
   const airportSteps = [copy.airportStep1, copy.airportStep2, copy.airportStep3];
   const amenityFeature = [
+    ...CONFIRMED_AMENITIES,
     { '@type': 'LocationFeatureSpecification', name: 'Air conditioning', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Private parking', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Terrace', value: true },
@@ -267,6 +215,8 @@ const JSONLD: React.FC = () => {
         '@type': 'Accommodation',
         '@id': accommodationId,
         name: 'ScaleaStay apartment',
+        description: getLongStayCopy(language).layout,
+        numberOfBedrooms: 1,
         containedInPlace: { '@id': propertyId },
         mainEntityOfPage: { '@id': webPageId },
         occupancy: {

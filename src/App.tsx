@@ -1,6 +1,9 @@
+import { getLongStayCopy } from './content/longStay';
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import LongStay from './components/LongStay';
+import EventsPreview from './components/EventsPreview';
 import ApartmentCard from './components/ApartmentCard';
 import WeatherForecast from './components/WeatherForecast';
 import AIConcierge from './components/AIConcierge';
@@ -24,7 +27,7 @@ const COMMERCIAL_SLUGS = ['appartamento-scalea-vicino-mare', 'apartament-scalea-
 
 const App: React.FC = () => {
   const { data } = useSiteData();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -112,6 +115,10 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        <LongStay />
+
+        {__EVENTS_PREVIEW__ && <EventsPreview />}
+
         <Advantages />
 
         <LocalFacts />
@@ -184,13 +191,13 @@ const App: React.FC = () => {
 
             <div className="flex flex-wrap justify-center gap-6 mb-12">
               <a
-                href={CONTACT_INFO.whatsappLink(t('whatsappBookingMsg'))}
+                href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent('whatsapp_click')}
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-[24px] font-black text-lg transition-all shadow-[0_20px_50px_rgba(79,70,229,0.3)] hover:-translate-y-2 active:scale-95 flex items-center space-x-4 group"
               >
-                <span>WhatsApp</span>
+                <span>{getLongStayCopy(language).availabilityCta}</span>
                 <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>

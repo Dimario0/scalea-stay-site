@@ -1,62 +1,18 @@
 import React, { useState } from 'react';
 import { Apartment } from '../types';
+import { APARTMENT_COPY } from '../content/apartment';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
+import { getLongStayCopy } from '../content/longStay';
 
 interface Props {
   apartment: Apartment;
 }
 
-type ApartmentCopy = {
-  eyebrow: string;
-  summary: string;
-  cta: string;
-  facts: [string, string, string, string, string];
-};
-
-const COPY: Record<string, ApartmentCopy> = {
-  ru: {
-    eyebrow: 'Апартаменты в Скалее',
-    summary: 'Светлые и уютные апартаменты с современным ремонтом для комфортного отдыха у моря. Оборудованная кухня, кондиционер и терраса подходят и для короткой поездки, и для длительного отпуска.',
-    cta: 'Проверить свободные даты',
-    facts: ['До 4 гостей', 'Кондиционер', 'Кухня', 'Терраса', 'Парковка'],
-  },
-  en: {
-    eyebrow: 'Apartment in Scalea',
-    summary: 'A bright and comfortable apartment with modern interiors for a relaxed seaside stay. An equipped kitchen, air conditioning and a terrace work equally well for a short break or a longer holiday.',
-    cta: 'Check available dates',
-    facts: ['Up to 4 guests', 'Air conditioning', 'Kitchen', 'Terrace', 'Parking'],
-  },
-  it: {
-    eyebrow: 'Il tuo appartamento a Scalea',
-    summary: 'Luminoso e accogliente, con interni moderni e tutto il necessario per una vacanza al mare comoda e rilassante. Cucina attrezzata, aria condizionata e terrazza lo rendono adatto sia a soggiorni brevi sia a vacanze più lunghe.',
-    cta: 'Verifica le date su WhatsApp',
-    facts: ['Fino a 4 ospiti', 'Aria condizionata', 'Cucina', 'Terrazza', 'Parcheggio'],
-  },
-  de: {
-    eyebrow: 'Ferienwohnung in Scalea',
-    summary: 'Eine helle und gemütliche Ferienwohnung mit modernem Interieur für einen entspannten Aufenthalt am Meer. Ausgestattete Küche, Klimaanlage und Terrasse eignen sich sowohl für Kurzreisen als auch für längere Ferien.',
-    cta: 'Freie Termine prüfen',
-    facts: ['Bis zu 4 Gäste', 'Klimaanlage', 'Küche', 'Terrasse', 'Parkplatz'],
-  },
-  cs: {
-    eyebrow: 'Apartmán ve Scalee',
-    summary: 'Světlý a útulný apartmán s moderním interiérem pro pohodovou dovolenou u moře. Vybavená kuchyň, klimatizace a terasa se hodí jak pro krátký pobyt, tak pro delší dovolenou.',
-    cta: 'Ověřit volné termíny',
-    facts: ['Až 4 hosté', 'Klimatizace', 'Kuchyň', 'Terasa', 'Parkování'],
-  },
-  pl: {
-    eyebrow: 'Twój apartament w Scalei',
-    summary: 'Jasny i przytulny apartament z nowoczesnym wnętrzem, stworzony z myślą o wygodnym wypoczynku nad morzem. Wyposażona kuchnia, klimatyzacja i taras sprawdzą się zarówno podczas krótkiego wyjazdu, jak i dłuższych wakacji.',
-    cta: 'Sprawdź terminy na WhatsApp',
-    facts: ['Do 4 gości', 'Klimatyzacja', 'Kuchnia', 'Taras', 'Parking'],
-  },
-};
-
 const ApartmentCard: React.FC<Props> = ({ apartment }) => {
   const { t, language } = useLanguage();
-  const copy = COPY[language] || COPY.ru;
+  const copy = APARTMENT_COPY[language] || APARTMENT_COPY.ru;
   const [currentImg, setCurrentImg] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -125,16 +81,16 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
       <div className="p-5 sm:p-8 lg:p-12 lg:w-2/5 flex flex-col justify-center">
         <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-3">{copy.eyebrow}</span>
         <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">ScaleaStay</h3>
-        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">{copy.summary}</p>
+        <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">{getLongStayCopy(language).apartmentSummary}</p>
 
         <div className="flex flex-wrap gap-2 mb-10">
-          {copy.facts.map(fact => (
+          {[...copy.facts, getLongStayCopy(language).wifi, getLongStayCopy(language).heating].map(fact => (
             <span key={fact} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-500 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-none max-w-full">{fact}</span>
           ))}
         </div>
 
         <a
-          href={CONTACT_INFO.whatsappLink(t('apartmentBookingMsg').replace('{name}', 'ScaleaStay'))}
+          href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => {
@@ -146,7 +102,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           }}
           className="w-full py-5 bg-slate-900 text-white rounded-[24px] font-black text-center transition-all hover:bg-indigo-600 shadow-xl hover:-translate-y-1 active:scale-95"
         >
-          {copy.cta}
+          {getLongStayCopy(language).availabilityCta}
         </a>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { getLongStayCopy } from '../content/longStay';
 
 import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
@@ -137,7 +138,7 @@ const Navbar: React.FC = () => {
             </button>
 
             <a 
-              href={CONTACT_INFO.whatsappLink(t('navWhatsappMsg'))}
+              href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -153,7 +154,7 @@ const Navbar: React.FC = () => {
                 : 'bg-white text-indigo-600 hover:bg-indigo-50 shadow-white/20'
               }`}
             >
-              <span>{t('bookNow')}</span>
+              <span>{getLongStayCopy(language).shortCta}</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -178,7 +179,7 @@ const Navbar: React.FC = () => {
               </a>
             ))}
             <a 
-              href={CONTACT_INFO.whatsappLink(t('navWhatsappMsg'))}
+              href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
@@ -190,7 +191,7 @@ const Navbar: React.FC = () => {
               }}
               className="block w-full text-center px-6 py-5 bg-indigo-600 text-white rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl mt-4"
             >
-              {t('bookNow')}
+              {getLongStayCopy(language).shortCta}
             </a>
           </div>
         </div>
