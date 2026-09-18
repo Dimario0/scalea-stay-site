@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { getLongStayCopy, CONFIRMED_AMENITIES } from '../content/longStay';
 
 type SeoCopy = {
   amenitiesSuffix: string;
@@ -125,6 +126,7 @@ const JSONLD: React.FC = () => {
   const airportMapUrl = 'https://www.google.com/maps/search/?api=1&query=Lamezia%20Terme%20International%20Airport';
 
   const faqItems = [
+    ...getLongStayCopy(language).faq.map(({ q, a }) => ({ question: q, answer: a })),
     { question: t('faqQ1'), answer: t('faqA1') },
     { question: t('faqQ2'), answer: `${t('faqA2')} ${copy.amenitiesSuffix}` },
     { question: t('faqQ3'), answer: t('faqA3') },
@@ -138,6 +140,7 @@ const JSONLD: React.FC = () => {
 
   const airportSteps = [copy.airportStep1, copy.airportStep2, copy.airportStep3];
   const amenityFeature = [
+    ...CONFIRMED_AMENITIES,
     { '@type': 'LocationFeatureSpecification', name: 'Air conditioning', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Private parking', value: true },
     { '@type': 'LocationFeatureSpecification', name: 'Terrace', value: true },
@@ -267,6 +270,7 @@ const JSONLD: React.FC = () => {
         '@type': 'Accommodation',
         '@id': accommodationId,
         name: 'ScaleaStay apartment',
+        description: getLongStayCopy(language).space,
         containedInPlace: { '@id': propertyId },
         mainEntityOfPage: { '@id': webPageId },
         occupancy: {

@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
+import { getLongStayCopy } from '../content/longStay';
 import {
   Bus,
   Car,
@@ -255,6 +256,7 @@ const FAQ: React.FC = () => {
   const copy = LOCAL_COPY[language] || LOCAL_COPY.ru;
 
   const faqs = useMemo(() => [
+    ...getLongStayCopy(language).faq,
     { q: t('faqQ1'), a: t('faqA1') },
     { q: t('faqQ2'), a: `${t('faqA2')} ${copy.amenitiesSuffix}` },
     { q: t('faqQ3'), a: t('faqA3') },
@@ -264,7 +266,7 @@ const FAQ: React.FC = () => {
     { q: t('faqQ7'), a: t('faqA7') },
     { q: copy.shopQuestion, a: copy.shopAnswer },
     { q: copy.beachQuestion, a: copy.beachAnswer },
-  ], [copy, t]);
+  ], [copy, t, language]);
 
   const isBeach = activeRoute === 'beach';
   const isStation = activeRoute === 'station';

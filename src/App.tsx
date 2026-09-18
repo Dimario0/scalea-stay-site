@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import LongStay from './components/LongStay';
 import ApartmentCard from './components/ApartmentCard';
 import WeatherForecast from './components/WeatherForecast';
 import AIConcierge from './components/AIConcierge';
@@ -111,6 +112,8 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <LongStay />
 
         <Advantages />
 

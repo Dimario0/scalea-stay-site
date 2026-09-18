@@ -3,6 +3,7 @@ import { CONTACT_INFO } from '../constants';
 import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
+import { getLongStayCopy } from '../content/longStay';
 
 type HeroCopy = {
   badge: string;
@@ -139,7 +140,7 @@ const Hero: React.FC = () => {
         </h1>
         
         <p className="text-lg md:text-xl lg:text-2xl [@media(orientation:landscape)_and_(max-height:850px)]:text-xl [@media(orientation:landscape)_and_(max-height:700px)]:text-lg text-white/90 mb-8 xl:mb-10 [@media(orientation:landscape)_and_(max-height:850px)]:mb-5 [@media(orientation:landscape)_and_(max-height:700px)]:mb-4 max-w-3xl mx-auto font-medium leading-relaxed animate-fade-in drop-shadow-lg break-words hyphens-none" style={{ animationDelay: '0.2s' }}>
-          {copy.subtitle}
+          {getLongStayCopy(language).hero}
         </p>
         
         <div className="flex flex-col items-center animate-fade-in w-full mx-auto" style={{ animationDelay: '0.4s' }}>

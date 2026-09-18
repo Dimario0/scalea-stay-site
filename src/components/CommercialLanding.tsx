@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Car, CheckCircle2, MapPin, MessageCircle, ShoppingBasket, TrainFront, Waves } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
@@ -6,6 +6,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { trackEvent } from '../analytics';
+import { getLongStayCopy } from '../content/longStay';
+import LongStay from './LongStay';
 
 type LandingFact = {
   label: string;
@@ -118,7 +120,9 @@ const CommercialLanding: React.FC = () => {
   const navigate = useNavigate();
 
   const supportedLanguage: 'it' | 'pl' | null = language === 'it' || language === 'pl' ? language : null;
-  const copy = supportedLanguage ? COPY[supportedLanguage] : COPY.it;
+  const baseCopy = supportedLanguage ? COPY[supportedLanguage] : COPY.it;
+  const stayCopy = getLongStayCopy(language);
+  const copy = useMemo(() => ({ ...baseCopy, seoDescription: stayCopy.seo }), [baseCopy, stayCopy]);
 
   useEffect(() => {
     if (!supportedLanguage) {
@@ -241,8 +245,8 @@ const CommercialLanding: React.FC = () => {
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{copy.apartmentText}</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              {copy.amenities.map((item, index) => {
-                const Icon = AMENITY_ICONS[index];
+              {[...copy.amenities, stayCopy.wifi, stayCopy.heating].map((item, index) => {
+                const Icon = AMENITY_ICONS[index] || CheckCircle2;
                 return (
                   <div key={item} className="rounded-2xl border border-slate-100 p-5 flex items-center gap-3">
                     <Icon className="w-5 h-5 text-emerald-600 shrink-0" />
@@ -278,6 +282,8 @@ const CommercialLanding: React.FC = () => {
           </div>
         </section>
 
+        <LongStay />
+
         <section className="px-4 py-16 bg-slate-950 text-white">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -310,7 +316,7 @@ const CommercialLanding: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-center mb-8">{copy.faqTitle}</h2>
             <div className="space-y-3">
-              {copy.faq.map((item) => (
+              {[...stayCopy.faq, ...copy.faq].map((item) => (
                 <div key={item.q} className="rounded-2xl border border-slate-100 p-5 sm:p-6">
                   <h3 className="font-black text-slate-950 mb-2">{item.q}</h3>
                   <p className="text-slate-600 leading-relaxed">{item.a}</p>

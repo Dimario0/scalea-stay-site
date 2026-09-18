@@ -4,12 +4,14 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
+const STAY_LASTMOD = '2026-09-18';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -223,13 +225,13 @@ const rootSitemapEntries = LANGUAGES
     <loc>${SITE_ORIGIN}/${language}/</loc>
 ${rootAlternateLinks}
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/ru/"/>
-    <lastmod>${SEO_LASTMOD}</lastmod>
+    <lastmod>${STAY_LASTMOD}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>`)
   .join('\n');
 
-const buildPairedSitemapEntries = <T extends { language: PriorityLanguage; path: string }>(pages: T[], priority: string) => {
+const buildPairedSitemapEntries = <T extends { language: PriorityLanguage; path: string }>(pages: T[], priority: string, lastmod = SEO_LASTMOD) => {
   const alternates = pages
     .map((page) => `    <xhtml:link rel="alternate" hreflang="${page.language}" href="${SITE_ORIGIN}${page.path}"/>`)
     .join('\n');
@@ -239,14 +241,14 @@ const buildPairedSitemapEntries = <T extends { language: PriorityLanguage; path:
     <loc>${SITE_ORIGIN}${page.path}</loc>
 ${alternates}
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${pages[0].path}"/>
-    <lastmod>${SEO_LASTMOD}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${priority}</priority>
   </url>`)
     .join('\n');
 };
 
-const commercialSitemapEntries = buildPairedSitemapEntries(COMMERCIAL_PAGES, '0.9');
+const commercialSitemapEntries = buildPairedSitemapEntries(COMMERCIAL_PAGES, '0.9', STAY_LASTMOD);
 const guideSitemapEntries = (['airport', 'no-car'] as GuideTopic[])
   .map((topic) => buildPairedSitemapEntries(GUIDE_PAGES.filter((page) => page.topic === topic), '0.8'))
   .join('\n');
@@ -277,7 +279,7 @@ const buildCommercialSchema = (page: CommercialPage) => JSON.stringify({
       '@id': `${SITE_ORIGIN}${page.path}#webpage`,
       url: `${SITE_ORIGIN}${page.path}`,
       name: page.title,
-      description: page.description,
+      description: getLongStayCopy(page.language).seo,
       inLanguage: page.language,
       about: { '@id': `${SITE_ORIGIN}/#property` },
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
@@ -368,6 +370,26 @@ const buildPairHeadAlternates = <T extends { language: PriorityLanguage; path: s
   `    <link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${pages[0].path}" />`,
 ].join('\n');
 
+const buildLongStayShell = (language: LanguageCode) => {
+  const copy = getLongStayCopy(language);
+  const whatsapp = `https://wa.me/420774620060?text=${encodeURIComponent(copy.message)}`;
+  return `<section id="long-stay" style="padding:48px 24px;background:#eef2ff;color:#0f172a"><div style="max-width:960px;margin:auto">
+    <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
+    <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.space)}</p><p>${escapeHtml(copy.location)}</p>
+    <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
+    ${copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
+  </div></section>`;
+};
+
+const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Accommodation',
+  '@id': `${SITE_ORIGIN}/#scaleastay-apartment`,
+  name: 'ScaleaStay apartment',
+  description: getLongStayCopy(language).space,
+  amenityFeature: CONFIRMED_AMENITIES,
+});
+
 const buildPrerenderShell = (language: LanguageCode) => {
   const content = PRERENDER_CONTENT[language];
   return `    <div id="root" data-prerender-language="${language}">
@@ -376,13 +398,14 @@ const buildPrerenderShell = (language: LanguageCode) => {
           <div style="width:100%;max-width:1040px;margin:0 auto;">
             <p style="display:inline-block;margin:0 0 28px;padding:10px 18px;border:1px solid rgba(255,255,255,.22);border-radius:16px;background:rgba(255,255,255,.1);font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;">ScaleaStay · Scalea, Calabria</p>
             <h1 style="margin:0 auto 32px;max-width:1000px;color:#fff;font:900 clamp(2.5rem,8vw,7.5rem)/.92 system-ui,sans-serif;letter-spacing:-.055em;text-transform:uppercase;text-wrap:balance;">${escapeHtml(content.heroTitle)}</h1>
-            <p style="max-width:760px;margin:0 auto 40px;color:rgba(255,255,255,.9);font:500 clamp(1rem,2.2vw,1.4rem)/1.55 system-ui,sans-serif;">${escapeHtml(content.heroSubtitle)}</p>
+            <p style="max-width:760px;margin:0 auto 40px;color:rgba(255,255,255,.9);font:500 clamp(1rem,2.2vw,1.4rem)/1.55 system-ui,sans-serif;">${escapeHtml(getLongStayCopy(language).hero)}</p>
             <nav aria-label="Primary" style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
               <a href="#apartments" style="display:inline-block;padding:16px 28px;border-radius:22px;background:#fff;color:#0f172a;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(content.apartmentsLabel)}</a>
               <a href="#routes" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(content.routesLabel)}</a>
             </nav>
           </div>
         </section>
+        ${buildLongStayShell(language)}
       </main>
     </div>`;
 };
@@ -398,6 +421,7 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
             <a href="https://wa.me/420774620060" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(page.cta)}</a>
           </div>
         </section>
+        ${buildLongStayShell(page.language)}
       </main>
     </div>`;
 
@@ -450,7 +474,7 @@ const applyBasicSeo = (html: string, title: string, description: string, pageUrl
 };
 
 const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boolean) => {
-  const seo = LOCALIZED_SEO[language];
+  const seo = { ...LOCALIZED_SEO[language], description: getLongStayCopy(language).seo };
   const pageUrl = `${SITE_ORIGIN}/${language}/`;
   const alternateLocales = LANGUAGES
     .filter((code) => code !== language)
@@ -465,6 +489,7 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
     alternateLocales,
     buildRootHeadAlternates(),
     `    <script type="application/ld+json">${buildWebsiteSchema(language)}</script>`,
+    `    <script type="application/ld+json">${buildConfirmedStaySchema(language)}</script>`,
   ].filter(Boolean).join('\n');
 
   html = html.replace('</head>', `${metadata}\n</head>`);
@@ -477,13 +502,14 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
 const localizeCommercialHtml = (sourceHtml: string, page: CommercialPage) => {
   const pageUrl = `${SITE_ORIGIN}${page.path}`;
   const pair = COMMERCIAL_PAGES;
-  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, page.language), page.title, page.description, pageUrl);
+  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, page.language), page.title, getLongStayCopy(page.language).seo, pageUrl);
   const metadata = [
     '    <meta name="robots" content="index,follow,max-image-preview:large">',
     '    <meta property="og:site_name" content="ScaleaStay">',
     `    <meta property="og:locale" content="${LOCALIZED_SEO[page.language].locale}">`,
     buildPairHeadAlternates(pair),
     `    <script type="application/ld+json">${buildWebsiteSchema(page.language)}</script>`,
+    `    <script type="application/ld+json">${buildConfirmedStaySchema(page.language)}</script>`,
     `    <script type="application/ld+json">${buildCommercialSchema(page)}</script>`,
   ].join('\n');
 

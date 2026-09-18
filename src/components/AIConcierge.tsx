@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
+import { getLongStayCopy } from '../content/longStay';
 import { motion, AnimatePresence } from 'motion/react';
 
 const getLocalResponse = async (input: string, lang: string): Promise<string> => {
@@ -19,15 +20,14 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
   const isBooking = /(цен|бронь|бронирова|дат[аы]|свободн|available|price|book|cost|reserv|prezz|prenot|disponibil|tariff|preis|datum|termin|verfügbar|cen|voln|dostupn|kolik|cena|rezerw|termin|dostępn|woln)/i.test(lowerInput);
 
   if (isWiFi) {
-    switch (lang) {
-      case 'ru': return "По этому вопросу лучше уточнить напрямую у владельца в WhatsApp. https://wa.me/420774620060";
-      case 'en': return "For this question, it is best to check directly with the owner on WhatsApp. https://wa.me/420774620060";
-      case 'it': return "Per questa domanda è meglio chiedere direttamente al proprietario su WhatsApp. https://wa.me/420774620060";
-      case 'de': return "Zu dieser Frage wenden Sie sich am besten direkt an den Eigentümer über WhatsApp. https://wa.me/420774620060";
-      case 'cs': return "S tímto dotazem se raději obraťte přímo na majitele na WhatsAppu. https://wa.me/420774620060";
-      case 'pl': return "W tej sprawie najlepiej zapytać właściciela bezpośrednio na WhatsAppie. https://wa.me/420774620060";
-      default: return "For this question, it is best to check directly with the owner on WhatsApp. https://wa.me/420774620060";
-    }
+    return `${getLongStayCopy(lang).faq[0].a} https://wa.me/420774620060`;
+  }
+
+  const isHeating = /(отоплен|обогрев|heating|riscaldament|heizung|topen|vytáp|ogrzew)/i.test(lowerInput);
+  const isLongStay = /(несезон|зимов|месяц|длительн|off.?season|long.?stay|month|mensil|mese|mesi|fuori stagione|monat|langzeit|neben.?saison|mimo sez|měsíc|dlouhodob|miesiąc|miesięcz|długotermin|poza sezon)/i.test(lowerInput);
+  if (isHeating || isLongStay) {
+    const answer = getLongStayCopy(lang).faq[isHeating ? 1 : 2].a;
+    return `${answer} https://wa.me/420774620060`;
   }
 
   if (isBooking) {

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { TRANSLATIONS } from '../constants';
 import { LANGUAGES, SiteLanguage } from '../languages';
 import { PL_TRANSLATIONS } from '../locales/pl';
+import { getLongStayCopy } from '../content/longStay';
 
 interface LanguageContextType {
   language: string;
@@ -213,7 +214,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       return;
     }
 
-    const seo = SEO_BY_LANGUAGE[language] || SEO_BY_LANGUAGE.ru;
+    const seo = { ...(SEO_BY_LANGUAGE[language] || SEO_BY_LANGUAGE.ru), description: getLongStayCopy(language).seo };
     const pageUrl = `https://scaleastay.com/${language}/`;
     document.title = seo.title;
 

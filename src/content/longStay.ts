@@ -1,0 +1,113 @@
+// Owner-confirmed on 18 September 2026. Rates and dates remain on request.
+export const LONG_STAY_COPY = {
+  ru: {
+    wifi: 'Wi-Fi в квартире', heating: 'Газовое отопление', area: 'Около 40 м² + терраса',
+    hero: 'Wi-Fi, газовое отопление и терраса — для отдыха у моря и проживания в несезон.',
+    title: 'Останьтесь в Скалее подольше', eyebrow: 'Несезон · длительное проживание',
+    intro: 'Планируете провести у моря несколько недель или месяц? В ScaleaStay есть Wi-Fi, газовое отопление, оборудованная кухня и терраса. Современный ремонт и магазины рядом делают повседневную жизнь удобнее.',
+    space: 'Около 40 м² внутри квартиры; терраса — дополнительное пространство и в эту площадь не входит.',
+    location: 'Interspar — около 230 м, вокзал — 500 м, ближайший пляж — 600 м. За продуктами и на прогулку можно ходить пешком.',
+    terms: 'Стоимость на ваши даты — по запросу. Срок проживания, доступность и условия коммунальных платежей согласуем до бронирования.',
+    cta: 'Узнать стоимость длительного проживания',
+    message: 'Здравствуйте! Интересует длительное проживание в ScaleaStay. Даты: __. Срок проживания: __. Количество гостей: __. Подскажите стоимость и условия коммунальных платежей.',
+    seo: 'Апартаменты в Скалее: Wi-Fi, газовое отопление, кухня и терраса. Около 40 м² внутри, пляж — 600 м. Длительное проживание в несезон — по запросу.',
+    faq: [
+      { q: 'Есть ли в квартире Wi-Fi?', a: 'Да, в квартире есть Wi-Fi. Если для поездки важна определённая скорость соединения, уточните её у владельца перед бронированием.' },
+      { q: 'Есть ли отопление для проживания в несезон?', a: 'Да, в квартире есть газовое отопление. Условия оплаты коммунальных услуг согласуются до бронирования.' },
+      { q: 'Можно ли снять квартиру на несколько недель или месяц?', a: 'Да, вы можете запросить длительное проживание в несезон. Напишите даты, срок и количество гостей в WhatsApp — владелец уточнит доступность, стоимость и условия.' },
+    ],
+  },
+  en: {
+    wifi: 'Wi-Fi in the apartment', heating: 'Gas heating', area: 'Approx. 40 m² + terrace',
+    hero: 'Wi-Fi, gas heating and a terrace for seaside holidays and off-season stays.',
+    title: 'Stay a little longer in Scalea', eyebrow: 'Off-season · longer stays',
+    intro: 'Planning a few weeks or a month by the sea? ScaleaStay has Wi-Fi, gas heating, an equipped kitchen and a terrace. Modern interiors and nearby shops make everyday life convenient.',
+    space: 'Approximately 40 m² indoors; the terrace is additional space and is not included in this area.',
+    location: 'Interspar is about 230 m away, the station 500 m and the nearest beach 600 m. Walk to the shops or down to the sea.',
+    terms: 'Request a quote for your dates. Length of stay, availability and utility charges are agreed before booking.',
+    cta: 'Request a quote for a longer stay',
+    message: 'Hello! I am interested in a longer stay at ScaleaStay. Dates: __. Length of stay: __. Number of guests: __. Please share the price and utility terms.',
+    seo: 'Scalea apartment with Wi-Fi, gas heating, kitchen and terrace. Approx. 40 m² indoors, beach 600 m away. Longer off-season stays on request.',
+    faq: [
+      { q: 'Does the apartment have Wi-Fi?', a: 'Yes, Wi-Fi is available in the apartment. If you need a specific connection speed, please check with the owner before booking.' },
+      { q: 'Is there heating for off-season stays?', a: 'Yes, the apartment has gas heating. Utility payment terms are agreed before booking.' },
+      { q: 'Can I rent the apartment for a few weeks or a month?', a: 'Yes, you can request a longer off-season stay. Send your dates, length of stay and number of guests on WhatsApp for availability, a quote and terms.' },
+    ],
+  },
+  it: {
+    wifi: 'Wi-Fi in appartamento', heating: 'Riscaldamento a gas', area: 'Circa 40 m² + terrazza',
+    hero: 'Wi-Fi, riscaldamento a gas e terrazza per le vacanze al mare e i soggiorni fuori stagione.',
+    title: 'Fermati più a lungo a Scalea', eyebrow: 'Fuori stagione · soggiorni prolungati',
+    intro: 'Vuoi trascorrere qualche settimana o un mese al mare? ScaleaStay dispone di Wi-Fi, riscaldamento a gas, cucina attrezzata e terrazza. Gli interni moderni e i negozi vicini rendono comoda la vita quotidiana.',
+    space: 'Circa 40 m² interni; la terrazza è uno spazio aggiuntivo e non è compresa in questa superficie.',
+    location: 'Interspar a circa 230 m, la stazione a 500 m e la spiaggia più vicina a 600 m. Puoi fare la spesa e passeggiare al mare a piedi.',
+    terms: 'Preventivo su richiesta per le tue date. Durata, disponibilità e condizioni delle utenze vengono concordate prima della prenotazione.',
+    cta: 'Richiedi un preventivo per un soggiorno lungo',
+    message: 'Buongiorno! Mi interessa un soggiorno prolungato a ScaleaStay. Date: __. Durata: __. Numero di ospiti: __. Vorrei conoscere il prezzo e le condizioni delle utenze.',
+    seo: 'Appartamento a Scalea con Wi-Fi, riscaldamento a gas, cucina e terrazza. Circa 40 m² interni, spiaggia a 600 m. Soggiorni lunghi fuori stagione su richiesta.',
+    faq: [
+      { q: 'È disponibile il Wi-Fi in appartamento?', a: 'Sì, il Wi-Fi è disponibile in appartamento. Se hai bisogno di una velocità specifica, chiedi al proprietario prima di prenotare.' },
+      { q: 'C’è il riscaldamento per i soggiorni fuori stagione?', a: 'Sì, l’appartamento dispone di riscaldamento a gas. Le condizioni di pagamento delle utenze vengono concordate prima della prenotazione.' },
+      { q: 'Posso affittare l’appartamento per qualche settimana o un mese?', a: 'Sì, puoi richiedere un soggiorno prolungato fuori stagione. Invia date, durata e numero di ospiti su WhatsApp per conoscere disponibilità, preventivo e condizioni.' },
+    ],
+  },
+  de: {
+    wifi: 'WLAN in der Wohnung', heating: 'Gasheizung', area: 'Ca. 40 m² + Terrasse',
+    hero: 'WLAN, Gasheizung und Terrasse für Urlaub am Meer und Aufenthalte in der Nebensaison.',
+    title: 'Bleiben Sie länger in Scalea', eyebrow: 'Nebensaison · längere Aufenthalte',
+    intro: 'Planen Sie einige Wochen oder einen Monat am Meer? ScaleaStay bietet WLAN, Gasheizung, eine ausgestattete Küche und eine Terrasse. Moderne Einrichtung und Geschäfte in der Nähe erleichtern den Alltag.',
+    space: 'Etwa 40 m² Innenfläche; die Terrasse ist zusätzliche Fläche und darin nicht enthalten.',
+    location: 'Interspar ist etwa 230 m entfernt, der Bahnhof 500 m und der nächste Strand 600 m. Einkäufe und Spaziergänge am Meer sind zu Fuß möglich.',
+    terms: 'Preis für Ihre Reisedaten auf Anfrage. Aufenthaltsdauer, Verfügbarkeit und Nebenkosten werden vor der Buchung vereinbart.',
+    cta: 'Preis für einen längeren Aufenthalt anfragen',
+    message: 'Hallo! Ich interessiere mich für einen längeren Aufenthalt bei ScaleaStay. Reisedaten: __. Aufenthaltsdauer: __. Gästezahl: __. Bitte teilen Sie mir den Preis und die Nebenkostenbedingungen mit.',
+    seo: 'Ferienwohnung in Scalea mit WLAN, Gasheizung, Küche und Terrasse. Ca. 40 m² Innenfläche, Strand 600 m entfernt. Längere Aufenthalte auf Anfrage.',
+    faq: [
+      { q: 'Gibt es WLAN in der Wohnung?', a: 'Ja, WLAN ist in der Wohnung verfügbar. Wenn Sie eine bestimmte Verbindungsgeschwindigkeit benötigen, fragen Sie bitte vor der Buchung beim Eigentümer nach.' },
+      { q: 'Gibt es eine Heizung für die Nebensaison?', a: 'Ja, die Wohnung hat eine Gasheizung. Die Zahlungsbedingungen für Nebenkosten werden vor der Buchung vereinbart.' },
+      { q: 'Kann ich die Wohnung für einige Wochen oder einen Monat mieten?', a: 'Ja, längere Aufenthalte in der Nebensaison können angefragt werden. Senden Sie Reisedaten, Dauer und Gästezahl per WhatsApp, um Verfügbarkeit, Preis und Bedingungen zu erfahren.' },
+    ],
+  },
+  cs: {
+    wifi: 'Wi-Fi v apartmánu', heating: 'Plynové topení', area: 'Přibližně 40 m² + terasa',
+    hero: 'Wi-Fi, plynové topení a terasa pro dovolenou u moře i pobyty mimo sezónu.',
+    title: 'Zůstaňte ve Scalee déle', eyebrow: 'Mimo sezónu · delší pobyty',
+    intro: 'Plánujete několik týdnů nebo měsíc u moře? ScaleaStay nabízí Wi-Fi, plynové topení, vybavenou kuchyň a terasu. Moderní interiér a blízké obchody usnadňují každodenní život.',
+    space: 'Přibližně 40 m² vnitřní plochy; terasa je další prostor a do této plochy se nezapočítává.',
+    location: 'Interspar je přibližně 230 m daleko, nádraží 500 m a nejbližší pláž 600 m. Na nákupy i na procházku k moři dojdete pěšky.',
+    terms: 'Cena pro vaše termíny na vyžádání. Délku pobytu, dostupnost a podmínky úhrady energií a služeb dohodneme před rezervací.',
+    cta: 'Zjistit cenu delšího pobytu',
+    message: 'Dobrý den! Mám zájem o delší pobyt ve ScaleaStay. Termín: __. Délka pobytu: __. Počet hostů: __. Prosím o cenu a podmínky úhrady energií a služeb.',
+    seo: 'Apartmán ve Scalee s Wi-Fi, plynovým topením, kuchyní a terasou. Přibližně 40 m² uvnitř, pláž 600 m. Delší pobyty mimo sezónu na vyžádání.',
+    faq: [
+      { q: 'Je v apartmánu Wi-Fi?', a: 'Ano, v apartmánu je Wi-Fi. Pokud potřebujete konkrétní rychlost připojení, ověřte si ji u majitele před rezervací.' },
+      { q: 'Je k dispozici topení pro pobyt mimo sezónu?', a: 'Ano, apartmán má plynové topení. Podmínky úhrady energií a služeb dohodneme před rezervací.' },
+      { q: 'Mohu si apartmán pronajmout na několik týdnů nebo měsíc?', a: 'Ano, můžete se domluvit na delším pobytu mimo sezónu. Pošlete termín, délku pobytu a počet hostů přes WhatsApp a majitel ověří dostupnost, cenu a podmínky.' },
+    ],
+  },
+  pl: {
+    wifi: 'Wi-Fi w apartamencie', heating: 'Ogrzewanie gazowe', area: 'Około 40 m² + taras',
+    hero: 'Wi-Fi, ogrzewanie gazowe i taras na wakacje nad morzem i pobyty poza sezonem.',
+    title: 'Zostań w Scalei na dłużej', eyebrow: 'Poza sezonem · dłuższe pobyty',
+    intro: 'Planujesz kilka tygodni lub miesiąc nad morzem? ScaleaStay oferuje Wi-Fi, ogrzewanie gazowe, wyposażoną kuchnię i taras. Nowoczesne wnętrze i pobliskie sklepy ułatwiają codzienne życie.',
+    space: 'Około 40 m² wewnątrz apartamentu; taras to dodatkowa przestrzeń, niewliczona w tę powierzchnię.',
+    location: 'Interspar jest około 230 m dalej, dworzec 500 m, a najbliższa plaża 600 m. Na zakupy i na spacer nad morze można dojść pieszo.',
+    terms: 'Cena na wybrane terminy na zapytanie. Długość pobytu, dostępność i zasady opłat za media ustalamy przed rezerwacją.',
+    cta: 'Zapytaj o cenę dłuższego pobytu',
+    message: 'Dzień dobry! Interesuje mnie dłuższy pobyt w ScaleaStay. Termin: __. Długość pobytu: __. Liczba gości: __. Proszę o cenę i zasady opłat za media.',
+    seo: 'Apartament w Scalei z Wi-Fi, ogrzewaniem gazowym, kuchnią i tarasem. Około 40 m² wewnątrz, plaża 600 m. Dłuższe pobyty poza sezonem na zapytanie.',
+    faq: [
+      { q: 'Czy w apartamencie jest Wi-Fi?', a: 'Tak, w apartamencie jest Wi-Fi. Jeśli potrzebujesz określonej prędkości połączenia, sprawdź ją u właściciela przed rezerwacją.' },
+      { q: 'Czy jest ogrzewanie na pobyt poza sezonem?', a: 'Tak, apartament ma ogrzewanie gazowe. Zasady rozliczania mediów ustalamy przed rezerwacją.' },
+      { q: 'Czy mogę wynająć apartament na kilka tygodni lub miesiąc?', a: 'Tak, możesz zapytać o dłuższy pobyt poza sezonem. Wyślij termin, długość pobytu i liczbę gości przez WhatsApp, aby poznać dostępność, cenę i warunki.' },
+    ],
+  },
+};
+
+export const getLongStayCopy = (language: string) =>
+  LONG_STAY_COPY[language as keyof typeof LONG_STAY_COPY] || LONG_STAY_COPY.en;
+
+export const CONFIRMED_AMENITIES = [
+  { '@type': 'LocationFeatureSpecification', name: 'Wi-Fi', value: true },
+  { '@type': 'LocationFeatureSpecification', name: 'Gas heating', value: true },
+];
