@@ -82,4 +82,12 @@ else {
   const robots = readFileSync(robotsPath,'utf8');
   if (!robots.includes('User-agent: OAI-SearchBot') || !robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) fail('robots.txt missing OAI-SearchBot or sitemap');
 }
+const agenda = path.join(DIST, 'it/eventi-scalea/index.html');
+if (existsSync(agenda)) {
+  const html = readFileSync(agenda, 'utf8');
+  if (!html.includes('content="noindex,follow"')) fail('events prototype must remain noindex');
+  if (readFileSync(sitemapPath, 'utf8').includes('/it/eventi-scalea/')) fail('events prototype must not be in sitemap');
+  if (!readFileSync(path.join(DIST, 'it/index.html'), 'utf8').includes('id="events-preview"')) fail('missing home events teaser');
+  if ((html.match(/<h1(?:\s|>)/gi) || []).length !== 1) fail('events page needs one H1');
+}
 if (!process.exitCode) console.log(`SEO BUILD VERIFY PASS: ${pages.length} indexable pages`);

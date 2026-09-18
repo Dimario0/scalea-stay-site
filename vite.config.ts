@@ -11,6 +11,9 @@ import { translate } from './src/content/translations';
 import { APARTMENTS, CONTACT_INFO } from './src/constants';
 import { LONG_STAY_LANDING, LONG_STAY_PATH, LONG_STAY_LINK_LABEL } from './src/content/longStayLanding';
 import { renderLongStay, longStayStyles, longStaySchema } from './scripts/render-long-stay';
+import { EVENTS_PATH } from './src/content/events';
+import { renderEventsTeaser } from './src/content/eventsMarkup';
+import { renderEvents, eventsStyles, eventsClient } from './scripts/render-events';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -426,7 +429,7 @@ const buildFaqSchema = (language: LanguageCode) => JSON.stringify({
   })),
 }).replaceAll('<', '\\u003c');
 
-const buildPrerenderShell = (language: LanguageCode) => {
+const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
   const content = PRERENDER_CONTENT[language];
   return `    <div id="root" data-prerender-language="${language}">
       <main aria-label="ScaleaStay" style="min-height:100vh;background:#020617;color:#fff;">
@@ -443,6 +446,7 @@ const buildPrerenderShell = (language: LanguageCode) => {
         </section>
         ${buildApartmentShell(language)}
         ${buildLongStayShell(language, false)}
+        ${eventsPreview && language === 'it' ? renderEventsTeaser() : ''}
         ${buildFaqShell(language)}
       </main>
     </div>`;
@@ -511,7 +515,7 @@ const applyBasicSeo = (html: string, title: string, description: string, pageUrl
   return next;
 };
 
-const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boolean) => {
+const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boolean, eventsPreview = false) => {
   const seo = { ...LOCALIZED_SEO[language], description: getLongStayCopy(language).seo };
   const pageUrl = `${SITE_ORIGIN}/${language}/`;
   const alternateLocales = LANGUAGES
@@ -532,7 +536,7 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
   ].filter(Boolean).join('\n');
 
   html = html.replace('</head>', `${metadata}\n</head>`);
-  html = injectShell(html, buildPrerenderShell(language));
+  html = injectShell(html, buildPrerenderShell(language, eventsPreview));
   validateOneH1(html, language);
   if (!html.includes(`data-prerender-language="${language}"`)) throw new Error(`Missing prerender marker for ${language}`);
   return html;
@@ -600,9 +604,23 @@ const buildLongStayHtml = (sourceHtml: string) => {
   return html;
 };
 
+// Experimental agenda stays out of production builds and the public sitemap.
+const buildEventsHtml = (sourceHtml: string) => {
+  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, 'it'), 'Eventi a Scalea e dintorni | ScaleaStay', 'Concerti, festival e appuntamenti a Scalea e dintorni: date, luoghi e fonti per organizzare il tuo soggiorno.', `${SITE_ORIGIN}${EVENTS_PATH}`);
+  html = html.replace(/\s*<script\b[^>]*type="module"[^>]*>[\s\S]*?<\/script>/gi, '');
+  html = html.replace(/<link\b[^>]*rel="stylesheet"[^>]*>/gi, tag => tag.includes('href="/assets/') ? '' : tag);
+  html = html.replace(/<meta name="viewport"[^>]*>/, '<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+  html = html.replace(/<link rel="preload" as="image"[^>]*>/, '');
+  html = html.replace('</head>', `<meta name="robots" content="noindex,follow"><meta property="og:locale" content="it_IT">${eventsStyles}</head>`);
+  html = injectShell(html, renderEvents());
+  html = html.replace('</body>', `${eventsClient}</body>`);
+  validateOneH1(html, EVENTS_PATH);
+  return html;
+};
+
 const outputDirectoryFor = (dist: string, pagePath: string) => path.join(dist, pagePath.replace(/^\//, '').replace(/\/$/, ''));
 
-const seoBuildCleanup = (): Plugin => ({
+const seoBuildCleanup = (eventsPreview: boolean): Plugin => ({
   name: 'scaleastay-seo-build-cleanup',
   enforce: 'pre',
   transformIndexHtml(html) {
@@ -619,12 +637,18 @@ const seoBuildCleanup = (): Plugin => ({
     LANGUAGES.forEach((language) => {
       const languageDirectory = path.join(outputDirectory, language);
       mkdirSync(languageDirectory, { recursive: true });
-      writeFileSync(path.join(languageDirectory, 'index.html'), localizeHtml(builtHtml, language, true), 'utf8');
+      writeFileSync(path.join(languageDirectory, 'index.html'), localizeHtml(builtHtml, language, true, eventsPreview), 'utf8');
     });
 
     const stayDirectory = outputDirectoryFor(outputDirectory, LONG_STAY_PATH);
     mkdirSync(stayDirectory, { recursive: true });
     writeFileSync(path.join(stayDirectory, 'index.html'), buildLongStayHtml(builtHtml), 'utf8');
+
+    if (eventsPreview) {
+      const eventsDirectory = outputDirectoryFor(outputDirectory, EVENTS_PATH);
+      mkdirSync(eventsDirectory, { recursive: true });
+      writeFileSync(path.join(eventsDirectory, 'index.html'), buildEventsHtml(builtHtml), 'utf8');
+    }
 
     COMMERCIAL_PAGES.forEach((page) => {
       const pageDirectory = outputDirectoryFor(outputDirectory, page.path);
@@ -645,14 +669,16 @@ const seoBuildCleanup = (): Plugin => ({
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
+  const eventsPreview = process.env.CONTEXT === 'deploy-preview' || (process.env.CONTEXT !== 'production' && (env.VITE_EVENTS_PREVIEW === 'true' || mode === 'development'));
 
   return {
     server: {
       port: 3000,
       host: '0.0.0.0',
     },
-    plugins: [seoBuildCleanup(), tailwindcss(), react()],
+    plugins: [seoBuildCleanup(eventsPreview), tailwindcss(), react()],
     define: {
+      __EVENTS_PREVIEW__: JSON.stringify(eventsPreview),
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),
     },
     resolve: {

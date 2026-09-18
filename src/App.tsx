@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LongStay from './components/LongStay';
+import EventsPreview from './components/EventsPreview';
 import ApartmentCard from './components/ApartmentCard';
 import WeatherForecast from './components/WeatherForecast';
 import AIConcierge from './components/AIConcierge';
@@ -115,6 +116,8 @@ const App: React.FC = () => {
         </section>
 
         <LongStay />
+
+        {__EVENTS_PREVIEW__ && <EventsPreview />}
 
         <Advantages />
 
