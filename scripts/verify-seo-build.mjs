@@ -6,7 +6,13 @@ const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const SITE_ORIGIN = 'https://scaleastay.com';
 
+const stayRoutes = {
+  ru: '/ru/zimnee-prozhivanie-scalea/', en: '/en/winter-long-stays-scalea/',
+  it: '/it/soggiorni-lunghi-scalea/', de: '/de/ueberwintern-scalea/',
+  cs: '/cs/zimni-dlouhodobe-pobyty-scalea/', pl: '/pl/zimowe-dluzsze-pobyty-scalea/',
+};
 const pages = [
+  ...Object.entries(stayRoutes).filter(([lang]) => lang !== 'it').map(([lang, url]) => [url.slice(1)+'index.html', lang, url]),
   ['it/soggiorni-lunghi-scalea/index.html','it','/it/soggiorni-lunghi-scalea/'],
   ['ru/index.html','ru','/ru/'],['en/index.html','en','/en/'],['it/index.html','it','/it/'],['de/index.html','de','/de/'],['cs/index.html','cs','/cs/'],['pl/index.html','pl','/pl/'],
   ['it/appartamento-scalea-vicino-mare/index.html','it','/it/appartamento-scalea-vicino-mare/'],
@@ -55,10 +61,17 @@ for (const p of pages) {
       }
     } catch { fail(`${p.file}: invalid FAQ JSON`); }
   }
-  if (p.file === 'it/soggiorni-lunghi-scalea/index.html') {
+  if (p.canonical === SITE_ORIGIN + stayRoutes[p.lang]) {
     if (/<script[^>]*type="module"/i.test(html)) fail('long-stay page must not be replaced by the home SPA');
     if ((html.match(/<details>/g) || []).length !== 6) fail('long-stay page must expose all six FAQ answers');
-    if (/hreflang=/.test(html)) fail('long-stay page must not advertise translations that do not exist');
+    for (const [lang, url] of Object.entries(stayRoutes)) {
+      if (!html.includes(`<link rel="alternate" hreflang="${lang}" href="${SITE_ORIGIN}${url}"`)) fail(`${p.file}: missing reciprocal alternate ${lang}`);
+      if (!html.includes(`<a href="${url}" lang="${lang}" hreflang="${lang}"`)) fail(`${p.file}: missing language switch ${lang}`);
+    }
+    const graphs = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m => { const j = JSON.parse(m[1]); return j['@graph'] || [j]; });
+    const faq = graphs.find(j => j['@type'] === 'FAQPage');
+    if (faq?.inLanguage !== p.lang || faq.mainEntity.length !== 6) fail(`${p.file}: wrong localized FAQ schema`);
+    if (!readFileSync(path.join(DIST, p.lang, 'index.html'), 'utf8').includes(`href="${stayRoutes[p.lang]}"`)) fail(`${p.lang}: missing home link`);
     if (!html.includes('CIN: IT078138C2VN4E3MCD')) fail('long-stay page missing property identifier');
     for (const source of ['it/index.html', 'it/appartamento-scalea-vicino-mare/index.html']) {
       if (!readFileSync(path.join(DIST, source), 'utf8').includes('href="/it/soggiorni-lunghi-scalea/"')) fail(`${source}: missing link to long-stay page`);

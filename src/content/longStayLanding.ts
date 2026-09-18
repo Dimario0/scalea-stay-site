@@ -1,14 +1,12 @@
 import { getLongStayCopy } from './longStay';
 
-export const LONG_STAY_PATH = '/it/soggiorni-lunghi-scalea/';
-export const LONG_STAY_LINK_LABEL = 'Scopri i soggiorni lunghi a Scalea';
 const stay = getLongStayCopy('it');
 
 export const LONG_STAY_LANDING = {
-  title: 'Soggiorni lunghi a Scalea con Wi-Fi e riscaldamento | ScaleaStay',
-  description: 'Appartamento a Scalea per soggiorni di alcune settimane o un mese fuori stagione. Wi-Fi, riscaldamento a gas, cucina e terrazza. Preventivo su richiesta.',
-  h1: 'Il tuo appartamento a Scalea, per restare più a lungo',
-  eyebrow: 'Calabria · Fuori stagione',
+  title: 'Soggiorni invernali e lunghi a Scalea con Wi-Fi e riscaldamento | ScaleaStay',
+  description: 'Appartamento a Scalea per soggiorni di alcune settimane o un mese in inverno o fuori stagione. Wi-Fi, riscaldamento a gas, cucina e terrazza. Preventivo su richiesta.',
+  h1: 'Il tuo inverno a Scalea, con il comfort di casa',
+  eyebrow: 'Calabria · Inverno e fuori stagione',
   intro: 'Una camera da letto separata, interni moderni e una terrazza privata. Scegli ScaleaStay per qualche settimana o un mese vicino al mare, con i tuoi spazi e le comodità di casa.',
   cta: 'Verifica disponibilità e prezzo',
   message: stay.message,
