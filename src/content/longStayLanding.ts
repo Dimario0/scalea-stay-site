@@ -25,7 +25,7 @@ export const LONG_STAY_LANDING = {
   faq: [
     { q: 'Posso fermarmi per qualche settimana o un mese?', a: 'Sì, i soggiorni prolungati fuori stagione sono possibili previo accordo, in base alla disponibilità per il periodo desiderato.' },
     { q: 'C’è il riscaldamento per i mesi più freschi?', a: 'Sì, l’appartamento dispone di riscaldamento a gas.' },
-    { q: 'C’è il Wi‑Fi? Posso usarlo per lavorare?', a: 'Sì, il Wi‑Fi è attivo. Se hai bisogno di una velocità specifica per il lavoro o le videochiamate, chiedici di verificarla prima di prenotare.' },
+    { q: 'È disponibile il Wi‑Fi?', a: 'Sì, il Wi‑Fi è disponibile in appartamento.' },
     { q: 'Quanto costa un soggiorno di un mese?', a: 'Il prezzo è su richiesta. Prepariamo un preventivo in base alle date, alla durata e al numero di ospiti, prima della conferma della prenotazione.' },
     { q: 'Le utenze sono incluse nel prezzo?', a: 'No, per i soggiorni lunghi le utenze si pagano separatamente. Le voci e le modalità di calcolo vengono chiarite insieme al preventivo.' },
     { q: 'Si può soggiornare senza automobile?', a: 'Puoi raggiungere a piedi il mare, Interspar e la stazione. Per le escursioni e gli spostamenti più lunghi, verifica i collegamenti per le date del tuo viaggio.' },
