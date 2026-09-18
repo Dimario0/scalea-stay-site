@@ -11,7 +11,7 @@ const LongStay: React.FC = () => {
   const facts = [
     { Icon: Wifi, label: copy.wifi },
     { Icon: Flame, label: copy.heating },
-    { Icon: House, label: copy.area },
+    { Icon: House, label: copy.layout },
   ];
 
   return (
@@ -31,7 +31,6 @@ const LongStay: React.FC = () => {
               </li>
             ))}
           </ul>
-          <p className="text-slate-600 text-sm leading-relaxed mb-4">{copy.space}</p>
           <p className="text-slate-700 text-sm leading-relaxed mb-6">{copy.terms}</p>
           <a href={CONTACT_INFO.whatsappLink(copy.message)} target="_blank" rel="noopener noreferrer"
             onClick={() => trackEvent('whatsapp_click', { source: 'long_stay', language })}

@@ -375,7 +375,7 @@ const buildLongStayShell = (language: LanguageCode) => {
   const whatsapp = `https://wa.me/420774620060?text=${encodeURIComponent(copy.message)}`;
   return `<section id="long-stay" style="padding:48px 24px;background:#eef2ff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
-    <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.space)}</p><p>${escapeHtml(copy.location)}</p>
+    <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.layout)}</p><p>${escapeHtml(copy.location)}</p>
     <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
     ${copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
   </div></section>`;
@@ -386,7 +386,8 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
   '@type': 'Accommodation',
   '@id': `${SITE_ORIGIN}/#scaleastay-apartment`,
   name: 'ScaleaStay apartment',
-  description: getLongStayCopy(language).space,
+  description: getLongStayCopy(language).layout,
+  numberOfBedrooms: 1,
   amenityFeature: CONFIRMED_AMENITIES,
 });
 

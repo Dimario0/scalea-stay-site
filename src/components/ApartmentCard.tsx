@@ -127,10 +127,9 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-3">{copy.eyebrow}</span>
         <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">ScaleaStay</h3>
         <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">{copy.summary}</p>
-        <p className="text-slate-600 text-sm leading-relaxed mb-5">{getLongStayCopy(language).space}</p>
 
         <div className="flex flex-wrap gap-2 mb-10">
-          {[...copy.facts, getLongStayCopy(language).wifi, getLongStayCopy(language).heating].map(fact => (
+          {[...copy.facts.map((fact, index) => index === 3 ? getLongStayCopy(language).layout : fact), getLongStayCopy(language).wifi, getLongStayCopy(language).heating].map(fact => (
             <span key={fact} className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 bg-slate-50 text-slate-500 rounded-lg border border-slate-100 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors break-words hyphens-none max-w-full">{fact}</span>
           ))}
         </div>

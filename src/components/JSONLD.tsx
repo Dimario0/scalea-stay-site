@@ -270,7 +270,8 @@ const JSONLD: React.FC = () => {
         '@type': 'Accommodation',
         '@id': accommodationId,
         name: 'ScaleaStay apartment',
-        description: getLongStayCopy(language).space,
+        description: getLongStayCopy(language).layout,
+        numberOfBedrooms: 1,
         containedInPlace: { '@id': propertyId },
         mainEntityOfPage: { '@id': webPageId },
         occupancy: {
