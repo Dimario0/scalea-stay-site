@@ -1,3 +1,4 @@
+import { getNearbyCopy } from '../content/nearby';
 import { getLongStayCopy } from '../content/longStay';
 import { getLongStayRoute } from '../content/longStayRoutes';
 
@@ -70,7 +71,7 @@ const Navbar: React.FC = () => {
     { name: t('navApartments'), id: 'apartments' },
     { name: getLongStayRoute(language).nav, id: 'long-stay', href: getLongStayRoute(language).path },
     { name: t('navWeather'), id: 'weather' },
-    { name: t('navAbout'), id: 'about' },
+    { name: getNearbyCopy(language).nav, id: 'about' },
     { name: t('navFaq'), id: 'faq' },
     { name: ROUTE_LABELS[language] || ROUTE_LABELS.ru, id: 'routes' },
     { name: t('navContact'), id: 'contact' },

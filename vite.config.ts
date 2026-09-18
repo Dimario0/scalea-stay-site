@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
+import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
 import { APARTMENT_COPY } from './src/content/apartment';
 import { getFaqItems } from './src/content/faq';
@@ -449,6 +450,7 @@ const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
         ${buildApartmentShell(language)}
         ${buildLongStayShell(language, false)}
         ${eventsPreview && language === 'it' ? renderEventsTeaser() : ''}
+        <div id="about">${renderNearby(language)}</div>
         ${buildFaqShell(language)}
       </main>
     </div>`;
