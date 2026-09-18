@@ -37,3 +37,14 @@ Current sources checked 2026-09-18:
 Run `node scripts/verify-events.mjs` for Rome date boundaries, multi-day events,
 cancellations and empty listings. Also verify preview/production builds, mobile layout,
 source links and the inquiry text. Tests must not send messages or analytics requests.
+
+Music and nightlife guide (checked 2026-09-18):
+- https://www.ilclubbino.it/: summer DJ programme and completed dates, including
+  David Morales and Hector Romero. No newly confirmed upcoming date found.
+- https://www.buddhabeachclub.it/: venue confirms afternoon beach parties with DJs;
+  no future guest or date is inferred from that general description.
+- https://www.comune.scalea.cs.it/novita/lattesa-e-finita-ecco-la-line-up-ufficiale-del-laos-fest/:
+  Laos Fest, 31 July–2 August 2026, with Motta, Santi Francesi and Mobrici, completed.
+The separate music section is a guide to venues/festivals, not upcoming event cards.
+Keep it outside date-based grouping; only add future performers to the agenda after
+verifying an explicit dated announcement. Include these sources in weekly reviews.
