@@ -11,7 +11,7 @@ import { translate } from './src/content/translations';
 import { APARTMENTS, CONTACT_INFO } from './src/constants';
 import { getLongStayRoute } from './src/content/longStayRoutes';
 import { getLongStayLanding, LONG_STAY_PAGES } from './src/content/longStayTranslations';
-import { renderLongStay, longStayStyles, longStaySchema } from './scripts/render-long-stay';
+import { renderLongStay, longStayStyles, longStaySchema, longStayClient } from './scripts/render-long-stay';
 import { EVENTS_PATH } from './src/content/events';
 import { renderEventsTeaser } from './src/content/eventsMarkup';
 import { renderEvents, eventsStyles, eventsClient } from './scripts/render-events';
@@ -442,6 +442,7 @@ const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
             <nav aria-label="Primary" style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
               <a href="#apartments" style="display:inline-block;padding:16px 28px;border-radius:22px;background:#fff;color:#0f172a;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(content.apartmentsLabel)}</a>
               <a href="#routes" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(content.routesLabel)}</a>
+              <a href="${getLongStayRoute(language).path}" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(getLongStayRoute(language).nav)}</a>
             </nav>
           </div>
         </section>
@@ -603,6 +604,7 @@ const buildLongStayHtml = (sourceHtml: string, language: LanguageCode) => {
     <script type="application/ld+json">${longStaySchema(language)}</script>
     ${longStayStyles}</head>`);
   html = injectShell(html, renderLongStay(language));
+  html = html.replace('</body>', `${longStayClient}</body>`);
   validateOneH1(html, pagePath);
   return html;
 };

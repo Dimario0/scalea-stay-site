@@ -1,4 +1,5 @@
 import { getLongStayCopy } from '../content/longStay';
+import { getLongStayRoute } from '../content/longStayRoutes';
 
 import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
@@ -67,6 +68,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: t('navHome'), id: 'home' },
     { name: t('navApartments'), id: 'apartments' },
+    { name: getLongStayRoute(language).nav, id: 'long-stay', href: getLongStayRoute(language).path },
     { name: t('navWeather'), id: 'weather' },
     { name: t('navAbout'), id: 'about' },
     { name: t('navFaq'), id: 'faq' },
@@ -96,12 +98,12 @@ const Navbar: React.FC = () => {
             </span>
           </div>
           
-          <div className={`hidden lg:flex items-center p-1 rounded-2xl ${scrolled ? 'bg-slate-100/80' : 'bg-white/10'}`}>
+          <div className={`hidden xl:flex order-3 w-full justify-center items-center p-1 rounded-2xl ${scrolled ? 'bg-slate-100/80' : 'bg-white/10'}`}>
             {navLinks.map((link, idx) => (
               <a 
                 key={link.id}
-                href={`#${link.id}`} 
-                onClick={(e) => scrollToSection(e, link.id)}
+                href={link.href || `#${link.id}`}
+                onClick={(e) => link.href ? setIsMobileMenuOpen(false) : scrollToSection(e, link.id)}
                 className={`px-3 xl:px-4 py-2.5 rounded-xl text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 flex items-center justify-center leading-none ${
                   idx > 0 ? 'ml-0.5' : ''
                 } ${
@@ -124,7 +126,7 @@ const Navbar: React.FC = () => {
             
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-3 rounded-xl transition-all ${scrolled ? 'text-slate-900 bg-slate-100' : 'text-white bg-white/10'}`}
+              className={`xl:hidden p-3 rounded-xl transition-all ${scrolled ? 'text-slate-900 bg-slate-100' : 'text-white bg-white/10'}`}
               aria-label="Menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -162,13 +164,13 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
-        <div className={`lg:hidden mt-4 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+        <div className={`xl:hidden mt-4 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
           <div className="bg-white/95 backdrop-blur-2xl rounded-[32px] p-6 shadow-2xl border border-white/20 space-y-2 max-h-[70vh] overflow-y-auto">
             {navLinks.map((link) => (
               <a 
                 key={link.id}
-                href={`#${link.id}`} 
-                onClick={(e) => scrollToSection(e, link.id)}
+                href={link.href || `#${link.id}`}
+                onClick={(e) => link.href ? setIsMobileMenuOpen(false) : scrollToSection(e, link.id)}
                 className={`block px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all ${
                   activeSection === link.id
                   ? 'bg-indigo-600 text-white shadow-lg'
