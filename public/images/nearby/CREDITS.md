@@ -67,3 +67,13 @@ Photographs downloaded from Wikimedia Commons on 2026-09-18. The files retain th
 - Source photo date: 2019-07-18 09:56:22
 - Download: https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Pompeii%2C_Forum_03.jpg/960px-Pompeii%2C_Forum_03.jpg
 - Changes: Wikimedia display-size copy; CSS presentation crop only.
+
+## scalea-winter.jpg
+
+Scalea Centro Storico.jpg — Ingo Kuebler, 2009-09-07.
+
+Source: https://commons.wikimedia.org/wiki/File:Scalea_Centro_Storico.jpg
+
+License: CC BY 3.0 — https://creativecommons.org/licenses/by/3.0
+
+960 × 720 Wikimedia thumbnail; cropped by CSS for display. Used on winter pages.

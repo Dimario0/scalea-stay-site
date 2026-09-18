@@ -1,5 +1,17 @@
 // Real photographs; license metadata verified on 2026-09-18.
 export const NEARBY_PHOTOS = {
+  "scalea-winter": {
+    "src": "/images/nearby/scalea-winter.jpg",
+    "width": 960,
+    "height": 720,
+    "author": "Ingo Kuebler",
+    "title": "Scalea Centro Storico.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Scalea_Centro_Storico.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "date": "2009-09-07",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Scalea_Centro_Storico.jpg/960px-Scalea_Centro_Storico.jpg"
+},
   "scalea": {
     "src": "/images/nearby/scalea.jpg",
     "width": 960,
