@@ -116,12 +116,12 @@ const UI = {
   pl: ['Nawigacja','Zobacz apartament','Skontaktuj się bezpośrednio z właścicielem','Wnętrze apartamentu ScaleaStay w Scalei','Przestrzeń, w której poczujesz się jak w domu','Zajrzyj do apartamentu','Wszystkie zdjęcia apartamentu','Morze i codzienne zakupy w zasięgu spaceru','Twój kolejny pobyt','Zaplanuj pobyt w Scalei','Napisz termin, długość pobytu i liczbę gości. Otrzymasz ofertę bezpośrednio od właściciela.','Media płatne osobno. Cenę i warunki ustalamy przed potwierdzeniem.','Zobacz zdjęcia','Odpowiedzi przed wyjazdem','Poznaj ScaleaStay','Zdjęcia i informacje o apartamencie','Powrót na stronę główną','Oddzielna sypialnia z łóżkiem dwuosobowym i oknem','Twoja oddzielna sypialnia','Łazienka ScaleaStay z prysznicem, umywalką i pralką','Łazienka z prysznicem i pralką','Język'],
 } satisfies Record<StayLanguage, string[]>;
 const TERRACE_PHOTO_COPY: Record<StayLanguage, { terraceAlt: string; terraceCaption: string }> = {
-  ru: { terraceAlt: 'Терраса апартаментов ScaleaStay с перилами и видом на улицу', terraceCaption: 'Терраса апартаментов' },
-  it: { terraceAlt: 'Terrazza dell’appartamento ScaleaStay con ringhiera e vista sulla strada', terraceCaption: 'La terrazza dell’appartamento' },
-  en: { terraceAlt: 'ScaleaStay apartment terrace with railings and a street view', terraceCaption: 'The apartment terrace' },
-  de: { terraceAlt: 'Terrasse der Ferienwohnung ScaleaStay mit Geländer und Blick auf die Straße', terraceCaption: 'Die Terrasse der Ferienwohnung' },
-  cs: { terraceAlt: 'Terasa apartmánu ScaleaStay se zábradlím a výhledem do ulice', terraceCaption: 'Terasa apartmánu' },
-  pl: { terraceAlt: 'Taras apartamentu ScaleaStay z balustradą i widokiem na ulicę', terraceCaption: 'Taras apartamentu' },
+  ru: { terraceAlt: 'Терраса апартаментов ScaleaStay с двумя креслами и круглым столиком', terraceCaption: 'Терраса апартаментов' },
+  it: { terraceAlt: 'Terrazza dell’appartamento ScaleaStay con due poltroncine e un tavolino rotondo', terraceCaption: 'La terrazza dell’appartamento' },
+  en: { terraceAlt: 'ScaleaStay apartment terrace with two armchairs and a round table', terraceCaption: 'The apartment terrace' },
+  de: { terraceAlt: 'Terrasse der Ferienwohnung ScaleaStay mit zwei Sesseln und einem runden Tisch', terraceCaption: 'Die Terrasse der Ferienwohnung' },
+  cs: { terraceAlt: 'Terasa apartmánu ScaleaStay se dvěma křesly a kulatým stolkem', terraceCaption: 'Terasa apartmánu' },
+  pl: { terraceAlt: 'Taras apartamentu ScaleaStay z dwoma fotelami i okrągłym stolikiem', terraceCaption: 'Taras apartamentu' },
 };
 export function getLongStayUi(language: StayLanguage) {
   const [navigation, apartment, owner, heroAlt, features, photos, allPhotos, nearby, offerEyebrow, offerTitle, offerText, terms, viewPhotos, faq, arrival, details, back, bedroomAlt, bedroomCaption, bathroomAlt, bathroomCaption, languageLabel] = UI[language];

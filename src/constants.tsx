@@ -46,7 +46,7 @@ export const APARTMENTS: Apartment[] = [
       'https://i.postimg.cc/vBX0rgth/IMG_0349.jpg',
       'https://i.postimg.cc/fL58ctvn/IMG_0329.jpg',
       'https://i.postimg.cc/tTDB3ZNM/IMG_0355.jpg',
-      'https://i.postimg.cc/DZ5xrJPr/IMG_0348.jpg',
+      '/images/scaleastay-terrace-seating.jpg',
       'https://i.postimg.cc/j5vMHw4P/IMG_0357.jpg',
       'https://i.postimg.cc/ZRjw8Bx7/IMG_0358.jpg'
     ],
