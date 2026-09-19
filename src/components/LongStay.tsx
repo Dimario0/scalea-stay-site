@@ -3,7 +3,7 @@ import { Wifi, Flame, House, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO } from '../constants';
 import { trackEvent } from '../analytics';
-import { LONG_STAY_PATH, LONG_STAY_LINK_LABEL } from '../content/longStayLanding';
+import { getLongStayRoute } from '../content/longStayRoutes';
 import { getLongStayCopy } from '../content/longStay';
 
 const LongStay: React.FC = () => {
@@ -38,11 +38,9 @@ const LongStay: React.FC = () => {
             className="flex items-center justify-center gap-3 w-full rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-4 text-sm font-bold text-center transition-colors">
             {copy.cta}<ArrowRight aria-hidden="true" className="w-5 h-5 shrink-0" />
           </a>
-          {language === 'it' && (
-            <a href={LONG_STAY_PATH} className="inline-block mt-5 text-sm font-bold text-indigo-700 underline underline-offset-4">
-              {LONG_STAY_LINK_LABEL} →
-            </a>
-          )}
+          <a href={getLongStayRoute(language).path} className="inline-block mt-5 text-sm font-bold text-indigo-700 underline underline-offset-4">
+            {getLongStayRoute(language).label} →
+          </a>
         </div>
       </div>
     </section>

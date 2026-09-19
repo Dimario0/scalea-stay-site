@@ -3,7 +3,7 @@ export const LONG_STAY_COPY = {
   ru: {
     wifi: 'Wi‑Fi', heating: 'Газовое отопление', layout: "Апартаменты с одной спальней и террасой",
     hero: "У моря — с домашним комфортом: Wi‑Fi, газовое отопление и собственная терраса.",
-    title: 'Останьтесь в Скалее подольше', eyebrow: 'Несезон · длительное проживание',
+    title: 'Останьтесь в Скалее подольше', eyebrow: 'Зима и несезон · длительное проживание',
     intro: "Останьтесь у моря на несколько недель или месяц. Готовьте дома, отдыхайте на собственной террасе и гуляйте по Скалее. Wi‑Fi и газовое отопление помогут сохранить привычный ритм жизни.",
     location: 'Interspar — около 230 м, вокзал — 500 м, ближайший пляж — 600 м. За продуктами и на прогулку можно ходить пешком.',
     terms: "Напишите даты и число гостей — уточним свободные даты, стоимость проживания и оплату коммунальных услуг до бронирования.",
@@ -24,7 +24,7 @@ export const LONG_STAY_COPY = {
   en: {
     wifi: 'Wi‑Fi', heating: 'Gas heating', layout: "One-bedroom apartment with a terrace",
     hero: "Feel at home by the sea, with Wi‑Fi, gas heating and your own terrace.",
-    title: 'Stay a little longer in Scalea', eyebrow: 'Off-season · longer stays',
+    title: 'Stay a little longer in Scalea', eyebrow: 'Winter and off-season · longer stays',
     intro: "Make Scalea your home for a few weeks or a month. Cook in the apartment, unwind on your own terrace and explore the town on foot. Wi‑Fi and gas heating make it easier to keep your everyday routine.",
     location: 'Interspar is about 230 m away, the station 500 m and the nearest beach 600 m. Walk to the shops or down to the sea.',
     terms: "Send your dates and number of guests. We’ll confirm availability, the price and utility charges before you book.",
@@ -45,7 +45,7 @@ export const LONG_STAY_COPY = {
   it: {
     wifi: 'Wi‑Fi', heating: 'Riscaldamento a gas', layout: "Appartamento con una camera da letto e terrazza",
     hero: "Al mare, con il comfort di casa: Wi‑Fi, riscaldamento a gas e una terrazza tutta per te.",
-    title: 'Fermati più a lungo a Scalea', eyebrow: 'Fuori stagione · soggiorni prolungati',
+    title: 'Fermati più a lungo a Scalea', eyebrow: 'Inverno e fuori stagione · soggiorni prolungati',
     intro: "Vivi Scalea per qualche settimana o un mese. Cucina in appartamento, rilassati sulla tua terrazza e scopri la città a piedi. Wi‑Fi e riscaldamento a gas ti aiutano a mantenere le tue abitudini anche fuori stagione.",
     location: 'Interspar a circa 230 m, la stazione a 500 m e la spiaggia più vicina a 600 m. Puoi fare la spesa e passeggiare al mare a piedi.',
     terms: "Scrivici le date e il numero di ospiti: ti confermeremo disponibilità, prezzo e costi delle utenze prima della prenotazione.",
@@ -66,7 +66,7 @@ export const LONG_STAY_COPY = {
   de: {
     wifi: 'WLAN', heating: 'Gasheizung', layout: "Ferienwohnung mit einem Schlafzimmer und Terrasse",
     hero: "Am Meer wie zu Hause: mit WLAN, Gasheizung und eigener Terrasse.",
-    title: 'Bleiben Sie länger in Scalea', eyebrow: 'Nebensaison · längere Aufenthalte',
+    title: 'Bleiben Sie länger in Scalea', eyebrow: 'Winter und Nebensaison · längere Aufenthalte',
     intro: "Verbringen Sie einige Wochen oder einen Monat in Scalea. Kochen Sie in Ihrer Ferienwohnung, entspannen Sie auf der eigenen Terrasse und erkunden Sie den Ort zu Fuß. WLAN und Gasheizung erleichtern den Alltag auch in der Nebensaison.",
     location: 'Interspar ist etwa 230 m entfernt, der Bahnhof 500 m und der nächste Strand 600 m. Einkäufe und Spaziergänge am Meer sind zu Fuß möglich.',
     terms: "Senden Sie uns Ihre Reisedaten und die Gästezahl. Verfügbarkeit, Preis und Nebenkosten klären wir vor der Buchung.",
@@ -87,7 +87,7 @@ export const LONG_STAY_COPY = {
   cs: {
     wifi: 'Wi‑Fi', heating: 'Plynové topení', layout: "Apartmán s jednou ložnicí a terasou",
     hero: "U moře jako doma: Wi‑Fi, plynové topení a vlastní terasa.",
-    title: 'Zůstaňte ve Scalee déle', eyebrow: 'Mimo sezónu · delší pobyty',
+    title: 'Zůstaňte ve Scalee déle', eyebrow: 'Zima a mimo sezónu · delší pobyty',
     intro: "Zůstaňte ve Scalee na několik týdnů nebo měsíc. Vařte si v apartmánu, odpočívejte na vlastní terase a objevujte město pěšky. Wi‑Fi a plynové topení vám pomohou zachovat běžný rytmus i mimo sezónu.",
     location: 'Interspar je přibližně 230 m daleko, nádraží 500 m a nejbližší pláž 600 m. Na nákupy i na procházku k moři dojdete pěšky.',
     terms: "Napište nám termín a počet hostů. Před rezervací upřesníme dostupnost, cenu pobytu i platby za energie a služby.",
@@ -108,7 +108,7 @@ export const LONG_STAY_COPY = {
   pl: {
     wifi: 'Wi‑Fi', heating: 'Ogrzewanie gazowe', layout: "Apartament z jedną sypialnią i tarasem",
     hero: "Nad morzem jak w domu: Wi‑Fi, ogrzewanie gazowe i własny taras.",
-    title: 'Zostań w Scalei na dłużej', eyebrow: 'Poza sezonem · dłuższe pobyty',
+    title: 'Zostań w Scalei na dłużej', eyebrow: 'Zima i poza sezonem · dłuższe pobyty',
     intro: "Zostań w Scalei na kilka tygodni lub miesiąc. Gotuj w apartamencie, odpoczywaj na własnym tarasie i odkrywaj miasto pieszo. Wi‑Fi i ogrzewanie gazowe ułatwiają codzienne życie również poza sezonem.",
     location: 'Interspar jest około 230 m dalej, dworzec 500 m, a najbliższa plaża 600 m. Na zakupy i na spacer nad morze można dojść pieszo.',
     terms: "Napisz termin i liczbę gości. Przed rezerwacją potwierdzimy dostępność, cenę pobytu i zasady opłat za media.",
