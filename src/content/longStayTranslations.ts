@@ -22,7 +22,6 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     nearby: [['Ближайший пляж', 'Примерно 5–8 минут пешком до прогулки у моря.'], ['Interspar', 'Около 3 минут пешком за повседневными покупками.'], ['Железнодорожный вокзал', 'Около 8 минут пешком до станции Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Сколько стоит проживание на месяц?', 'Стоимость по запросу: она зависит от дат, срока проживания и числа гостей. Цену согласуем до подтверждения бронирования.'],
-      ['Коммунальные расходы включены в стоимость?', 'Нет, при длительном проживании коммунальные расходы оплачиваются отдельно. Состав платежей и порядок расчёта уточняем вместе с предложением.'],
       ['Можно ли приехать без автомобиля?', 'До моря, Interspar и вокзала можно дойти пешком. Для экскурсий и дальних поездок проверьте транспортное расписание на ваши даты.'],
     ],
   },
@@ -39,7 +38,6 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     nearby: [['Nearest beach', 'About a 5–8 minute walk for some time by the sea.'], ['Interspar', 'About a 3-minute walk for everyday groceries.'], ['Railway station', 'About an 8-minute walk to Scalea–Santa Domenica Talao station.']],
     extraFaq: [
       ['How much does a month-long stay cost?', 'Prices are available on request and depend on your dates, length of stay and number of guests. We agree the price before confirming your booking.'],
-      ['Are utilities included?', 'No. Utilities are charged separately for longer stays. The charges and how they are calculated are explained with your quote.'],
       ['Can I stay without a car?', 'You can walk to the sea, Interspar and the railway station. For excursions and longer journeys, check transport timetables for your travel dates.'],
     ],
   },
@@ -56,7 +54,6 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     nearby: [['Nächster Strand', 'Etwa 5–8 Minuten zu Fuß für einen Spaziergang am Meer.'], ['Interspar', 'Etwa 3 Minuten zu Fuß für den täglichen Einkauf.'], ['Bahnhof', 'Etwa 8 Minuten zu Fuß zum Bahnhof Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Was kostet ein Aufenthalt von einem Monat?', 'Den Preis erhalten Sie auf Anfrage. Er richtet sich nach Reisedaten, Aufenthaltsdauer und Gästezahl und wird vor der Buchungsbestätigung vereinbart.'],
-      ['Sind die Nebenkosten im Preis enthalten?', 'Nein, bei längeren Aufenthalten werden die Nebenkosten separat berechnet. Welche Kosten anfallen und wie sie berechnet werden, klären wir mit dem Angebot.'],
       ['Ist ein Aufenthalt ohne Auto möglich?', 'Das Meer, Interspar und der Bahnhof sind zu Fuß erreichbar. Prüfen Sie für Ausflüge und längere Strecken die Verbindungen für Ihre Reisedaten.'],
     ],
   },
@@ -73,7 +70,6 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     nearby: [['Nejbližší pláž', 'Přibližně 5–8 minut pěšky na procházku k moři.'], ['Interspar', 'Přibližně 3 minuty pěšky na běžný nákup.'], ['Vlakové nádraží', 'Přibližně 8 minut pěšky na nádraží Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Kolik stojí měsíční pobyt?', 'Cena je na vyžádání a závisí na termínu, délce pobytu a počtu hostů. Dohodneme ji před potvrzením rezervace.'],
-      ['Jsou energie a služby zahrnuté v ceně?', 'Ne, u delších pobytů se energie a služby hradí zvlášť. Jednotlivé položky a způsob výpočtu upřesníme společně s nabídkou.'],
       ['Mohu přijet bez auta?', 'K moři, do Intersparu i na nádraží dojdete pěšky. Pro výlety a delší cesty si ověřte dopravní spojení na svůj termín.'],
     ],
   },
@@ -90,7 +86,6 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     nearby: [['Najbliższa plaża', 'Około 5–8 minut pieszo na spacer nad morzem.'], ['Interspar', 'Około 3 minuty pieszo po codzienne zakupy.'], ['Dworzec kolejowy', 'Około 8 minut pieszo do stacji Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Ile kosztuje pobyt na miesiąc?', 'Cena jest dostępna na zapytanie i zależy od terminu, długości pobytu oraz liczby gości. Ustalamy ją przed potwierdzeniem rezerwacji.'],
-      ['Czy media są wliczone w cenę?', 'Nie, przy dłuższych pobytach media są płatne osobno. Zakres opłat i sposób rozliczenia wyjaśniamy razem z ofertą.'],
       ['Czy można przyjechać bez samochodu?', 'Do morza, Intersparu i dworca można dojść pieszo. Planując wycieczki i dalsze przejazdy, sprawdź połączenia na termin swojego pobytu.'],
     ],
   },

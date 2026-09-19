@@ -63,14 +63,14 @@ for (const p of pages) {
   }
   if (p.canonical === SITE_ORIGIN + stayRoutes[p.lang]) {
     if (/<script[^>]*type="module"/i.test(html)) fail('long-stay page must not be replaced by the home SPA');
-    if ((html.match(/<details>/g) || []).length !== 6) fail('long-stay page must expose all six FAQ answers');
+    if ((html.match(/<details>/g) || []).length !== 5) fail('long-stay page must expose all five FAQ answers');
     for (const [lang, url] of Object.entries(stayRoutes)) {
       if (!html.includes(`<link rel="alternate" hreflang="${lang}" href="${SITE_ORIGIN}${url}"`)) fail(`${p.file}: missing reciprocal alternate ${lang}`);
       if (!html.includes(`<a href="${url}" lang="${lang}" hreflang="${lang}"`)) fail(`${p.file}: missing language switch ${lang}`);
     }
     const graphs = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m => { const j = JSON.parse(m[1]); return j['@graph'] || [j]; });
     const faq = graphs.find(j => j['@type'] === 'FAQPage');
-    if (faq?.inLanguage !== p.lang || faq.mainEntity.length !== 6) fail(`${p.file}: wrong localized FAQ schema`);
+    if (faq?.inLanguage !== p.lang || faq.mainEntity.length !== 5) fail(`${p.file}: wrong localized FAQ schema`);
     if (!readFileSync(path.join(DIST, p.lang, 'index.html'), 'utf8').includes(`href="${stayRoutes[p.lang]}"`)) fail(`${p.lang}: missing home link`);
     if (!html.includes('CIN: IT078138C2VN4E3MCD')) fail('long-stay page missing property identifier');
     for (const source of ['it/index.html', 'it/appartamento-scalea-vicino-mare/index.html']) {
