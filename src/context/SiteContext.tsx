@@ -26,7 +26,7 @@ const normalizeApartments = (apartments: Apartment[]): Apartment[] =>
 
     return {
       ...apartment,
-      images: apartment.images.map(image => image === 'https://i.postimg.cc/DZ5xrJPr/IMG_0348.jpg' ? APARTMENTS[0].images[4] : image),
+      images: apartment.images.map(image => image === 'https://i.postimg.cc/DZ5xrJPr/IMG_0348.jpg' ? APARTMENTS[0].images[4] : image === 'https://i.postimg.cc/fL58ctvn/IMG_0329.jpg' ? APARTMENTS[0].images[2] : image),
       name: 'ScaleaStay',
       description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — 600 м, около 5–8 минут пешком.',
       distanceToSea: '600m',
