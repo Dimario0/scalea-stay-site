@@ -5,7 +5,6 @@ import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { trackEvent } from '../analytics';
 import { getLongStayCopy } from '../content/longStay';
 import LongStay from './LongStay';
 
@@ -175,7 +174,7 @@ const CommercialLanding: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('whatsapp_click', { source: 'commercial_landing_header', language })}
+              data-analytics-source="commercial_landing_header"
               className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-xs font-black uppercase tracking-wider text-white"
             >
               WhatsApp <ArrowRight className="w-4 h-4" />
@@ -203,7 +202,7 @@ const CommercialLanding: React.FC = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackEvent('whatsapp_click', { source: 'commercial_landing_hero', language })}
+                data-analytics-source="commercial_landing_hero"
                 className="inline-flex items-center gap-3 rounded-2xl bg-indigo-600 px-6 py-4 font-black text-white shadow-xl active:scale-95"
               >
                 <MessageCircle className="w-5 h-5" /> {stayCopy.availabilityCta}
@@ -303,7 +302,7 @@ const CommercialLanding: React.FC = () => {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackEvent('whatsapp_click', { source: 'commercial_landing_direct', language })}
+                data-analytics-source="commercial_landing_direct"
                 className="inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-emerald-500 px-6 py-4 font-black text-white"
               >
                 <MessageCircle className="w-5 h-5" /> {stayCopy.availabilityCta}

@@ -18,7 +18,6 @@ import {
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
-import { trackEvent } from '../analytics';
 
 type GuideLanguage = 'it' | 'pl';
 type GuideTopic = 'airport' | 'no-car';
@@ -299,7 +298,7 @@ const GuideLanding: React.FC = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('whatsapp_click', { source: 'guide_header', topic: page.topic, language })}
+              data-analytics-source="guide_header"
               className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-xs font-black uppercase tracking-wider text-white"
             >
               WhatsApp <ArrowRight className="w-4 h-4" />
@@ -473,7 +472,7 @@ const GuideLanding: React.FC = () => {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackEvent('whatsapp_click', { source: 'guide_footer', topic: page.topic, language })}
+                  data-analytics-source="guide_footer"
                   className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 px-4 py-3 font-black text-sm text-white"
                 >
                   <MessageCircle className="w-4 h-4" /> {page.whatsappCta}

@@ -144,13 +144,7 @@ const Navbar: React.FC = () => {
               href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                trackEvent('booking_button_click');
-                const hrefStr = CONTACT_INFO.whatsappLink('');
-                if (hrefStr.includes('wa.me') || hrefStr.includes('whatsapp')) {
-                  trackEvent('whatsapp_click');
-                }
-              }}
+              data-analytics-source="navigation"
               className={`hidden sm:flex px-6 md:px-10 py-3 md:py-4 rounded-xl md:rounded-2xl text-[12px] md:text-xs font-bold uppercase tracking-widest transition-all shadow-2xl active:scale-95 items-center space-x-3 shrink-0 ${
                 scrolled 
                 ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-300/40' 
@@ -185,13 +179,7 @@ const Navbar: React.FC = () => {
               href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => {
-                trackEvent('booking_button_click');
-                const hrefStr = CONTACT_INFO.whatsappLink('');
-                if (hrefStr.includes('wa.me') || hrefStr.includes('whatsapp')) {
-                  trackEvent('whatsapp_click');
-                }
-              }}
+              data-analytics-source="navigation"
               className="block w-full text-center px-6 py-5 bg-indigo-600 text-white rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl mt-4"
             >
               {getLongStayCopy(language).shortCta}

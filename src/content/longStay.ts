@@ -12,7 +12,7 @@ export const LONG_STAY_COPY = {
     seo: 'Апартаменты в Скалее: Wi‑Fi, газовое отопление, кухня и терраса. Одна спальня, пляж — 600 м. Длительное проживание в несезон — по запросу.',
     availabilityCta: "Узнать цену и свободные даты",
     shortCta: "Узнать цену",
-    inquiry: "Здравствуйте! Интересуют апартаменты ScaleaStay. Даты: __. Количество гостей: __. Подскажите, свободны ли эти даты и сколько будет стоить проживание?",
+    inquiry: "Здравствуйте! Нашёл апартаменты на scaleastay.com. Интересуют апартаменты ScaleaStay. Даты: __. Количество гостей: __. Подскажите, свободны ли эти даты и сколько будет стоить проживание?",
     apartmentSummary: "Апартаменты с одной спальней и собственной террасой. Готовьте на оборудованной кухне, отдыхайте после пляжа и выбирайте удобный для вас срок поездки.",
     speedAnswer: "Wi‑Fi подключён. Если вам нужна определённая скорость для работы или видеозвонков, уточните её у владельца перед бронированием.",
     faq: [
@@ -33,7 +33,7 @@ export const LONG_STAY_COPY = {
     seo: 'Scalea apartment with Wi‑Fi, gas heating, kitchen and terrace. One bedroom, beach 600 m away. Longer off-season stays on request.',
     availabilityCta: "Check dates and price",
     shortCta: "Ask for a price",
-    inquiry: "Hello! I am interested in the ScaleaStay apartment. Dates: __. Number of guests: __. Is it available and what would the total stay cost?",
+    inquiry: "Hello! I found the apartment on scaleastay.com. I am interested in the ScaleaStay apartment. Dates: __. Number of guests: __. Is it available and what would the total stay cost?",
     apartmentSummary: "A one-bedroom apartment with your own terrace. Prepare meals in the equipped kitchen, unwind after the beach and stay for a short break or a longer visit.",
     speedAnswer: "Wi‑Fi is connected. If you need a particular speed for work or video calls, please check with the owner before booking.",
     faq: [
@@ -54,7 +54,7 @@ export const LONG_STAY_COPY = {
     seo: 'Appartamento a Scalea con Wi‑Fi, riscaldamento a gas, cucina e terrazza. Una camera da letto, spiaggia a 600 m. Soggiorni lunghi fuori stagione su richiesta.',
     availabilityCta: "Chiedi disponibilità e prezzo",
     shortCta: "Chiedi un preventivo",
-    inquiry: "Buongiorno! Mi interessa l’appartamento ScaleaStay. Date: __. Numero di ospiti: __. È disponibile e qual è il costo del soggiorno?",
+    inquiry: "Buongiorno! Ho trovato l’appartamento su scaleastay.com. Mi interessa l’appartamento ScaleaStay. Date: __. Numero di ospiti: __. È disponibile e qual è il costo del soggiorno?",
     apartmentSummary: "Un appartamento con una camera da letto e una terrazza tutta per te. Prepara i pasti nella cucina attrezzata, rilassati dopo la spiaggia e scegli tra una breve vacanza e un soggiorno più lungo.",
     speedAnswer: "Il Wi‑Fi è attivo. Se ti serve una velocità specifica per lavorare o fare videochiamate, chiedi al proprietario prima di prenotare.",
     faq: [
@@ -75,7 +75,7 @@ export const LONG_STAY_COPY = {
     seo: 'Ferienwohnung in Scalea mit WLAN, Gasheizung, Küche und Terrasse. Ein Schlafzimmer, Strand 600 m entfernt. Längere Aufenthalte auf Anfrage.',
     availabilityCta: "Verfügbarkeit und Preis anfragen",
     shortCta: "Preis anfragen",
-    inquiry: "Hallo! Ich interessiere mich für die Ferienwohnung ScaleaStay. Reisedaten: __. Gästezahl: __. Ist die Wohnung verfügbar und was kostet der Aufenthalt?",
+    inquiry: "Hallo! Ich habe die Ferienwohnung auf scaleastay.com gefunden. Ich interessiere mich für die Ferienwohnung ScaleaStay. Reisedaten: __. Gästezahl: __. Ist die Wohnung verfügbar und was kostet der Aufenthalt?",
     apartmentSummary: "Eine Ferienwohnung mit einem Schlafzimmer und eigener Terrasse. Kochen Sie in der ausgestatteten Küche, entspannen Sie nach dem Strandbesuch und bleiben Sie für einen Kurzurlaub oder länger.",
     speedAnswer: "WLAN ist eingerichtet. Wenn Sie eine bestimmte Geschwindigkeit für Arbeit oder Videoanrufe benötigen, fragen Sie bitte vor der Buchung beim Eigentümer nach.",
     faq: [
@@ -96,7 +96,7 @@ export const LONG_STAY_COPY = {
     seo: 'Apartmán ve Scalee s Wi‑Fi, plynovým topením, kuchyní a terasou. Jedna ložnice, pláž 600 m. Delší pobyty mimo sezónu na vyžádání.',
     availabilityCta: "Ověřit termín a cenu",
     shortCta: "Zjistit cenu",
-    inquiry: "Dobrý den! Mám zájem o apartmán ScaleaStay. Termín: __. Počet hostů: __. Je apartmán volný a kolik by pobyt stál?",
+    inquiry: "Dobrý den! Apartmán jsem našel na scaleastay.com. Mám zájem o apartmán ScaleaStay. Termín: __. Počet hostů: __. Je apartmán volný a kolik by pobyt stál?",
     apartmentSummary: "Apartmán s jednou ložnicí a vlastní terasou. Připravte si jídlo ve vybavené kuchyni, odpočiňte si po návratu z pláže a přijeďte na krátkou dovolenou i delší pobyt.",
     speedAnswer: "Wi‑Fi je připojena. Pokud potřebujete konkrétní rychlost pro práci nebo videohovory, ověřte si ji u majitele před rezervací.",
     faq: [
@@ -117,7 +117,7 @@ export const LONG_STAY_COPY = {
     seo: 'Apartament w Scalei z Wi‑Fi, ogrzewaniem gazowym, kuchnią i tarasem. Jedna sypialnia, plaża 600 m. Dłuższe pobyty poza sezonem na zapytanie.',
     availabilityCta: "Zapytaj o termin i cenę",
     shortCta: "Zapytaj o cenę",
-    inquiry: "Dzień dobry! Interesuje mnie apartament ScaleaStay. Termin: __. Liczba gości: __. Czy apartament jest dostępny i jaki jest koszt pobytu?",
+    inquiry: "Dzień dobry! Apartament znalazłem na scaleastay.com. Interesuje mnie apartament ScaleaStay. Termin: __. Liczba gości: __. Czy apartament jest dostępny i jaki jest koszt pobytu?",
     apartmentSummary: "Apartament z jedną sypialnią i własnym tarasem. Przygotuj posiłek w wyposażonej kuchni, odpocznij po powrocie z plaży i przyjedź na krótki wyjazd lub dłuższy pobyt.",
     speedAnswer: "Wi‑Fi jest podłączone. Jeśli potrzebujesz określonej prędkości do pracy lub rozmów wideo, sprawdź ją u właściciela przed rezerwacją.",
     faq: [
