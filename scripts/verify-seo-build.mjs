@@ -32,6 +32,37 @@ const pages = [
 const stalePatterns = [/Casa Marittima/i,/400\s*(?:m|metri|meters?|meter|metrů|метр)/i,/(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,/>faqQ(?:6|8)</i,/>faqA(?:6|8)</i];
 const fail = (m) => { console.error(`SEO BUILD VERIFY FAILED: ${m}`); process.exitCode = 1; };
 
+// Check both the published discovery guide and its source, including stale builds.
+const llmsFiles = ['public/llms.txt', 'dist/llms.txt'];
+const llmsStalePatterns = [
+  ...stalePatterns,
+  /do not state a fixed walking (?:distance|time)/i,
+  /do not (?:invent|claim|state)[^.\n]*wi[-\u2010-\u2015 ]?fi (?:availability|is available)/i,
+  /(?:no|without) wi[-\u2010-\u2015 ]?fi/i,
+  /wi[-\u2010-\u2015 ]?fi[^.\n]*(?:not (?:available|installed)|unavailable|unconfirmed|coming soon|planned)/i,
+];
+const llmsRequiredFacts = [
+  ['current brand', /^# ScaleaStay$/m],
+  ['confirmed beach distance and approximate walking time', /nearest beach is 600 m away, about a 5[–-]8 minute walk/i],
+  ['installed Wi-Fi', /Wi[-\u2010-\u2015 ]?Fi is installed and available\./i],
+];
+const llmsContents = [];
+for (const file of llmsFiles) {
+  const filePath = path.join(ROOT, file);
+  if (!existsSync(filePath)) { fail(`missing ${file}`); continue; }
+  const content = readFileSync(filePath, 'utf8');
+  llmsContents.push(content);
+  for (const pattern of llmsStalePatterns) {
+    if (pattern.test(content)) fail(`${file}: stale public copy matched ${pattern}`);
+  }
+  for (const [fact, pattern] of llmsRequiredFacts) {
+    if (!pattern.test(content)) fail(`${file}: missing ${fact}`);
+  }
+}
+if (llmsContents.length === 2 && llmsContents[0] !== llmsContents[1]) {
+  fail('dist/llms.txt differs from public/llms.txt; rebuild before publishing');
+}
+
 if (!existsSync(DIST)) fail('dist directory is missing');
 for (const p of pages) {
   const filePath = path.join(DIST,p.file);
@@ -103,4 +134,4 @@ if (existsSync(agenda)) {
   if (!readFileSync(path.join(DIST, 'it/index.html'), 'utf8').includes('id="events-preview"')) fail('missing home events teaser');
   if ((html.match(/<h1(?:\s|>)/gi) || []).length !== 1) fail('events page needs one H1');
 }
-if (!process.exitCode) console.log(`SEO BUILD VERIFY PASS: ${pages.length} indexable pages`);
+if (!process.exitCode) console.log(`SEO BUILD VERIFY PASS: ${pages.length} indexable pages; public/dist llms.txt verified`);
