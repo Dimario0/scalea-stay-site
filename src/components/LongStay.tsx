@@ -2,7 +2,6 @@ import React from 'react';
 import { Wifi, Flame, House, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO } from '../constants';
-import { trackEvent } from '../analytics';
 import { getLongStayRoute } from '../content/longStayRoutes';
 import { getLongStayCopy } from '../content/longStay';
 
@@ -34,7 +33,7 @@ const LongStay: React.FC = () => {
           </ul>
           <p className="text-slate-700 text-sm leading-relaxed mb-6">{copy.terms}</p>
           <a href={CONTACT_INFO.whatsappLink(copy.message)} target="_blank" rel="noopener noreferrer"
-            onClick={() => trackEvent('whatsapp_click', { source: 'long_stay', language })}
+            data-analytics-source="long_stay"
             className="flex items-center justify-center gap-3 w-full rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-4 text-sm font-bold text-center transition-colors">
             {copy.cta}<ArrowRight aria-hidden="true" className="w-5 h-5 shrink-0" />
           </a>

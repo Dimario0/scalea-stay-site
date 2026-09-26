@@ -8,7 +8,7 @@ const LASTMOD = '2026-09-02';
 const ORIGIN = 'https://scaleastay.com';
 const canonical = `${ORIGIN}/it/dove-mangiare-scalea/`;
 const sibling = `${ORIGIN}/pl/gdzie-zjesc-scalea/`;
-const whatsapp = 'https://wa.me/420774620060';
+const whatsapp = 'https://wa.me/420774620060?text=' + encodeURIComponent('Buongiorno! Ho trovato l’appartamento su scaleastay.com. Mi interessa un soggiorno a ScaleaStay. Arrivo: __. Partenza: __. Ospiti: __. Le date sono disponibili e qual è il prezzo?');
 
 const esc = (s) => String(s)
   .replaceAll('&', '&amp;')

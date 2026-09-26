@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
 import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
-import { trackEvent } from '../analytics';
 import { getLongStayCopy } from '../content/longStay';
 
 type HeroCopy = {
@@ -142,7 +141,7 @@ const Hero: React.FC = () => {
               href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackEvent('whatsapp_click', { source: 'hero' })}
+              data-analytics-source="hero"
               className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 xl:py-6 [@media(orientation:landscape)_and_(max-height:850px)]:py-4 rounded-[28px] font-black text-white border-2 border-white/40 backdrop-blur-md hover:bg-white/10 transition-all flex items-center justify-center space-x-3 group text-base sm:text-lg [@media(orientation:landscape)_and_(max-height:700px)]:text-base"
             >
                <svg className="w-6 h-6 [@media(orientation:landscape)_and_(max-height:700px)]:w-5 [@media(orientation:landscape)_and_(max-height:700px)]:h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

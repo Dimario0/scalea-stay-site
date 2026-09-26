@@ -194,7 +194,7 @@ const App: React.FC = () => {
                 href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackEvent('whatsapp_click')}
+                data-analytics-source="footer"
                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-[24px] font-black text-lg transition-all shadow-[0_20px_50px_rgba(79,70,229,0.3)] hover:-translate-y-2 active:scale-95 flex items-center space-x-4 group"
               >
                 <span>{getLongStayCopy(language).availabilityCta}</span>
