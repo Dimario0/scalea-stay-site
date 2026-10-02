@@ -1,3 +1,4 @@
+import { renderGuideStayInquiry, guideStayInquiryStyles } from './guide-stay-inquiry.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -154,7 +155,7 @@ const html = `<!doctype html>
     @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:720px}.trust{grid-template-columns:1fr}.links{grid-template-columns:1fr}}
     @media(max-width:640px){.wrap{width:min(100% - 28px,1180px)}.nav{padding-top:14px}.nav-shell{min-height:68px;padding:8px 10px;border-radius:28px}.brand-mark{width:42px;height:42px;border-radius:14px}.brand{font-size:20px;gap:10px}.nav-cta{display:none}.lang{padding:12px 14px}.hero{min-height:760px;padding-top:122px}.badge{font-size:9px;letter-spacing:.2em}.lead{font-size:16px}.cta{width:100%;min-height:56px}.grid{grid-template-columns:1fr}.content,.faq{padding:64px 0}.card{min-height:0;padding:25px}.section-head{margin-bottom:30px}}
   </style>
-</head>
+${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
 <body>
   <header class="nav">
     <div class="wrap nav-shell">
@@ -198,6 +199,7 @@ const html = `<!doctype html>
       </div>
     </section>
 
+    ${renderGuideStayInquiry('it', whatsapp)}
     <section class="faq">
       <div class="wrap">
         <div class="section-head">
