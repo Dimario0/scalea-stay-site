@@ -5,7 +5,7 @@ import process from 'node:process';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
-const LASTMOD = '2026-09-02';
+const LASTMOD = '2026-10-03';
 const ORIGIN = 'https://scaleastay.com';
 const canonical = `${ORIGIN}/it/dove-mangiare-scalea/`;
 const sibling = `${ORIGIN}/pl/gdzie-zjesc-scalea/`;
@@ -80,6 +80,70 @@ const faqs = page.faq.map(([q, a]) => `
 
 const chips = page.chips.map((chip) => `<div class="trust-chip"><span class="dot"></span>${esc(chip)}</div>`).join('');
 
+// Native disclosures keep the complete plans in the initial HTML and work without JavaScript.
+const dinnerPlans = [
+  {
+    label: 'Spendere meno', title: 'Una cena semplice',
+    intro: 'Pizza o un locale informale: parti dal menù, non solo dal prezzo del piatto.',
+    steps: [
+      ['Confronta il totale', 'Prima di sederti controlla anche coperto, bevande e supplementi: il solo prezzo della pizza non racconta tutta la cena.'],
+      ['Controlla la formula del giorno', 'Se trovi un menù fisso, chiedi cosa include e se è disponibile anche la sera.'],
+      ['Scegli una zona comoda', 'Apri la mappa e controlla la distanza dal tuo punto di partenza prima di scegliere il locale.'],
+    ],
+    query: 'pizzerie Scalea Calabria', mapLabel: 'Cerca pizzerie sulla mappa',
+    guide: '/it/scalea-senza-auto/', guideLabel: 'Organizza gli spostamenti senza auto',
+  },
+  {
+    label: 'Sapori locali', title: 'Voglia di Calabria',
+    intro: 'Trattoria o cucina di mare: scegli in base a quello che vuoi assaggiare.',
+    steps: [
+      ['Guarda il menù', 'Cerca i piatti calabresi e chiedi quali proposte sono disponibili quel giorno. Se preferisci il pesce, controlla il menù prima di prenotare.'],
+      ['Chiedi come ordinare', 'Vuoi condividere gli antipasti? Chiedi le porzioni e il prezzo prima di scegliere per tutto il tavolo.'],
+      ['Verifica il tavolo', 'Controlla apertura e prenotazione direttamente con il locale, soprattutto in alta stagione e nei weekend.'],
+    ],
+    query: 'trattorie Scalea Calabria', mapLabel: 'Cerca trattorie sulla mappa',
+    guide: '/it/centro-storico-scalea-sera/', guideLabel: 'Scopri il centro storico per il dopo cena',
+  },
+  {
+    label: 'Cena + passeggiata', title: 'La serata continua',
+    intro: 'Scegli prima dove passeggiare, poi un ristorante nella zona che preferisci.',
+    steps: [
+      ['Scegli lo scenario', 'Preferisci il borgo o la costa? Per il centro parti dalla zona di Piazza Caloprese; per una serata verso il mare confronta i locali sul lungomare.'],
+      ['Controlla il percorso', 'Guarda sulla mappa la posizione esatta del ristorante e il tragitto a piedi prima di prenotare.'],
+      ['Lascia spazio alla passeggiata', 'Usa le guide del centro storico o delle spiagge per decidere come continuare la serata.'],
+    ],
+    query: 'ristoranti Piazza Caloprese Scalea', mapLabel: 'Cerca ristoranti in centro sulla mappa',
+    guide: '/it/spiagge-scalea/', guideLabel: 'Esplora la zona mare nella guida alle spiagge',
+  },
+];
+
+const dinnerPlanner = `
+    <section class="dinner-planner" id="scegli-la-serata" aria-labelledby="dinner-planner-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">La tua serata, a modo tuo</div>
+          <h2 id="dinner-planner-title">Che serata vuoi fare a Scalea?</h2>
+          <p>Apri l’idea che ti piace: trovi cosa controllare prima di scegliere, una mappa e una guida per continuare la serata.</p>
+        </div>
+        <div class="dinner-options">${dinnerPlans.map((plan) => `
+          <details class="dinner-option">
+            <summary>
+              <span class="dinner-label">${esc(plan.label)}</span>
+              <span class="dinner-title">${esc(plan.title)}</span>
+              <span class="dinner-intro">${esc(plan.intro)}</span>
+              <span class="dinner-toggle"><span class="dinner-closed">Apri l’idea</span><span class="dinner-open">Chiudi l’idea</span><span class="dinner-plus" aria-hidden="true">+</span></span>
+            </summary>
+            <div class="dinner-body">
+              <ol>${plan.steps.map(([title, text]) => `<li><strong>${esc(title)}</strong><span>${esc(text)}</span></li>`).join('')}</ol>
+              <a class="dinner-map" href="${esc('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(plan.query))}" target="_blank" rel="noopener noreferrer">${esc(plan.mapLabel)} <span aria-hidden="true">↗</span></a>
+              <a class="dinner-guide" href="${plan.guide}">${esc(plan.guideLabel)} <span aria-hidden="true">→</span></a>
+            </div>
+          </details>`).join('')}
+        </div>
+        <p class="dinner-map-note">Le mappe aprono una ricerca su Google Maps: confronta i risultati e verifica menù, orari e disponibilità con il locale scelto.</p>
+      </div>
+    </section>`;
+
 const html = `<!doctype html>
 <html lang="it">
 <head>
@@ -139,6 +203,37 @@ const html = `<!doctype html>
     .card h2{font-size:23px;line-height:1.12;letter-spacing:-.025em;margin:18px 0 13px;color:#0f172a}
     .card p{margin:0;color:#64748b;font-size:15px;line-height:1.72;font-weight:500}
     .note{margin-top:22px;padding:23px 26px;border-radius:24px;background:#eef2ff;border:1px solid #c7d2fe;color:#3730a3;font-size:14px;line-height:1.7;font-weight:700}
+    .hero-guide-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;margin-top:18px;color:white;font-size:15px;font-weight:800;text-decoration:underline;text-underline-offset:5px}
+    .dinner-planner{padding:72px 0;background:#fff8ef;scroll-margin-top:24px}
+    .dinner-planner .section-head{max-width:760px;margin-bottom:32px}
+    .dinner-planner .section-head h2{text-transform:none;line-height:1.08}
+    .dinner-planner .section-head p{margin:20px auto 0;color:#475569;font-size:17px;line-height:1.65;max-width:640px}
+    .dinner-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start}
+    .dinner-option{margin:0;padding:0;border:1px solid #e7ddd2;border-radius:26px;overflow:hidden;box-shadow:0 12px 30px rgba(86,57,31,.04)}
+    .dinner-option summary{padding:28px;min-height:256px;display:flex;flex-direction:column;gap:14px;list-style:none}
+    .dinner-label{align-self:flex-start;padding:7px 10px;border-radius:9px;background:#eef2ff;color:#4338ca;font-size:11px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .dinner-title{font-size:25px;line-height:1.15;letter-spacing:-.025em}
+    .dinner-intro{color:#475569;font-size:15px;font-weight:500;line-height:1.6}
+    .dinner-toggle{display:flex;align-items:center;justify-content:space-between;margin-top:auto;color:#4338ca;font-size:14px;padding-top:8px}
+    .dinner-plus{font-size:24px;line-height:1;font-weight:500}
+    .dinner-open{display:none}
+    .dinner-option[open]{border-color:#a5b4fc}
+    .dinner-option[open] .dinner-open{display:inline}
+    .dinner-option[open] .dinner-closed{display:none}
+    .dinner-option[open] .dinner-plus{transform:rotate(45deg)}
+    .dinner-option[open] summary{background:#f8fafc}
+    .dinner-body{padding:24px 28px 28px;border-top:1px solid #e2e8f0}
+    .dinner-body ol{margin:0 0 24px;padding-left:20px;color:#4338ca}
+    .dinner-body li{padding-left:5px;margin-bottom:20px}
+    .dinner-body li:last-child{margin-bottom:0}
+    .dinner-body li strong,.dinner-body li span{display:block}
+    .dinner-body li strong{color:#0f172a;font-size:15px;margin-bottom:6px}
+    .dinner-body li span{color:#475569;font-size:14px;line-height:1.7}
+    .dinner-map,.dinner-guide{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:13px 16px;border-radius:14px;font-size:14px;font-weight:800;line-height:1.45}
+    .dinner-map{background:#4338ca;color:white}
+    .dinner-guide{margin-top:10px;border:1px solid #c7d2fe;color:#3730a3}
+    .dinner-map-note{max-width:760px;margin:24px auto 0;text-align:center;font-size:13px;line-height:1.7;color:#64748b}
+    .dinner-option summary:focus-visible,.dinner-map:focus-visible,.dinner-guide:focus-visible,.hero-guide-link:focus-visible{outline:3px solid #818cf8;outline-offset:4px}
     .faq{padding:84px 0;background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
     .faq-grid{max-width:920px;margin:0 auto}
     details{background:white;border:1px solid #e2e8f0;border-radius:22px;padding:21px 24px;margin:12px 0;box-shadow:0 10px 28px rgba(15,23,42,.035)}
@@ -153,6 +248,8 @@ const html = `<!doctype html>
     .rel span{color:#818cf8;font-size:22px}
     footer{background:#0f172a;color:#64748b;text-align:center;padding:32px 20px 46px;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
     @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{min-height:720px}.trust{grid-template-columns:1fr}.links{grid-template-columns:1fr}}
+    @media(max-width:1000px){.dinner-options{grid-template-columns:1fr}.dinner-option summary{min-height:0;gap:10px}.dinner-intro{max-width:640px}.dinner-toggle{margin-top:4px}.dinner-planner{padding:56px 0}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media(max-width:640px){.wrap{width:min(100% - 28px,1180px)}.nav{padding-top:14px}.nav-shell{min-height:68px;padding:8px 10px;border-radius:28px}.brand-mark{width:42px;height:42px;border-radius:14px}.brand{font-size:20px;gap:10px}.nav-cta{display:none}.lang{padding:12px 14px}.hero{min-height:760px;padding-top:122px}.badge{font-size:9px;letter-spacing:.2em}.lead{font-size:16px}.cta{width:100%;min-height:56px}.grid{grid-template-columns:1fr}.content,.faq{padding:64px 0}.card{min-height:0;padding:25px}.section-head{margin-bottom:30px}}
   </style>
 ${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
@@ -174,7 +271,7 @@ ${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
 
   <main>
     <section class="hero">
-      <img class="hero-bg" src="${page.heroImage}" alt="Ristorante a Scalea">
+      <img class="hero-bg" src="${page.heroImage}" alt="">
       <div class="overlay-1"></div><div class="overlay-2"></div>
       <div class="wrap hero-body">
         <div class="badge"><span class="dot"></span>${esc(page.eyebrow)}</div>
@@ -185,9 +282,11 @@ ${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
           <a class="cta secondary" href="${whatsapp}" rel="noopener">Verifica le date su WhatsApp</a>
         </div>
         <div class="trust">${chips}</div>
+        <a class="hero-guide-link" href="#scegli-la-serata">Scegli la tua serata <span aria-hidden="true">↓</span></a>
       </div>
     </section>
 
+    ${dinnerPlanner}
     <section class="content">
       <div class="wrap">
         <div class="section-head">
