@@ -1,11 +1,12 @@
 import { renderGuideStayInquiry, guideStayInquiryStyles } from './guide-stay-inquiry.mjs';
+import { foodGuideCheckedDate, renderFoodGuideReferences, foodGuideReferenceStyles } from './food-guide-references.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
-const LASTMOD = '2026-10-03';
+const LASTMOD = foodGuideCheckedDate;
 const ORIGIN = 'https://scaleastay.com';
 const canonical = `${ORIGIN}/it/dove-mangiare-scalea/`;
 const sibling = `${ORIGIN}/pl/gdzie-zjesc-scalea/`;
@@ -26,20 +27,20 @@ const page = {
   heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=84',
   chips: ['Trattorie e cucina calabrese', 'Centro storico o mare', 'Opzioni per ogni budget'],
   cards: [
-    ['Dove mangiare a Scalea spendendo poco', 'Per spendere meno conviene confrontare menù e formule del giorno tra pizzerie, trattorie e locali informali. I prezzi e le aperture cambiano, quindi verifica sempre il menù aggiornato prima di scegliere.'],
+    ['Dove mangiare a Scalea spendendo poco', 'Per rispettare il tuo budget confronta i menù di pizzerie, trattorie e locali informali, includendo coperto e bevande. Verifica il prezzo totale prima di scegliere.'],
     ['Dove cenare: centro storico o mare?', 'Per abbinare cena e passeggiata, il centro storico e la zona centrale verso Piazza Caloprese sono comodi. Se preferisci il lungomare e una serata vicino alla costa, valuta invece un locale nella zona mare.'],
-    ['Trattorie e cucina calabrese', 'La Rondinella, Trattoria Il Gallo Bianco e Donna Concetta Vini & Sfizi sono nomi utili da controllare quando cerchi cucina italiana, mediterranea o locale. Scegli in base al menù e all’apertura del giorno.'],
-    ['Pesce e cucina di mare', 'La Perla del Tirreno è uno dei nomi da controllare per cucina di pesce; tra le alternative locali compaiono anche Vitazzurra e Cimalonga Ristorante. Verifica sempre menù e apertura del giorno.'],
+    ['Trattorie e cucina calabrese', 'La Rondinella Osteria Pop pubblica un menù digitale con proposte à la carte e un percorso degustazione. Trattoria Il Gallo Bianco indica cucina italiana, mediterranea e calabrese nella propria scheda su Tripadvisor, in località Sant’Angelo. Qui sotto trovi i riferimenti.'],
+    ['Pesce e cucina di mare', 'Vitazzurra descrive sul proprio sito pesce alla griglia, pasta ai frutti di mare e fritture. La Perla del Tirreno indica cucina di pesce nella propria scheda; l’apertura va confermata perché il profilo riporta anche una pausa per ferie.'],
     ['Pizza e cena informale', 'A Scalea trovi anche pizzerie, pub e locali casual, utili quando vuoi una cena semplice o un pasto veloce. La scelta migliore dipende dalla zona, dal menù del giorno e da quanto vuoi spendere.'],
     ['Come scegliere per stasera', 'Controlla apertura, menù, recensioni recenti e possibilità di prenotazione. In alta stagione o nel weekend è prudente verificare prima, soprattutto per i locali più richiesti.'],
   ],
   note: 'Le indicazioni servono per orientarsi, non sono una classifica. Ristoranti, gestione, prezzi, giorni di chiusura e orari possono cambiare: prima di uscire verifica sempre le informazioni aggiornate per la data specifica.',
   faq: [
-    ['Dove mangiare a Scalea spendendo poco?', 'Per una cena più economica confronta menù e formule del giorno di pizzerie, trattorie e locali informali. Evitiamo prezzi fissi perché possono cambiare durante la stagione.'],
+    ['Dove mangiare a Scalea spendendo poco?', 'Confronta il costo totale dal menù, compresi coperto e bevande. I costi dipendono dal locale e da cosa ordini: verifica il prezzo prima di scegliere.'],
     ['Dove cenare a Scalea?', 'Se vuoi proseguire con una passeggiata, puoi orientarti verso il centro storico o la zona centrale di Piazza Caloprese; se preferisci il mare, scegli un locale più vicino alla costa.'],
     ['Dove mangiare nel centro storico di Scalea?', 'Nel borgo e nelle zone centrali trovi ristoranti e locali adatti a combinare cena e passeggiata. Prima di andare controlla apertura e posizione esatta del locale scelto.'],
-    ['Quali trattorie e ristoranti calabresi vale la pena controllare?', 'Tra i nomi da controllare ci sono La Rondinella, Trattoria Il Gallo Bianco e Donna Concetta Vini & Sfizi. La scelta dipende dal menù e dall’apertura del giorno.'],
-    ['Dove mangiare pesce a Scalea?', 'La Perla del Tirreno è uno dei nomi da controllare per cucina di mare; tra le alternative locali compaiono anche Vitazzurra e Cimalonga Ristorante. Verifica il menù del giorno prima di scegliere.'],
+    ['Quali trattorie e ristoranti calabresi vale la pena controllare?', 'La Rondinella Osteria Pop ha un menù digitale collegato al sito del locale. La scheda gestita da Trattoria Il Gallo Bianco indica cucina calabrese in località Sant’Angelo. Conferma con il locale menù e apertura per la data scelta.'],
+    ['Dove mangiare pesce a Scalea?', 'Vitazzurra presenta cucina di pesce sul proprio sito. La Perla del Tirreno indica pesce e cucina mediterranea nella propria scheda, ma il profilo riporta anche «chiuso per ferie»: conferma la riapertura prima di andarci.'],
     ['È necessario prenotare?', 'In alta stagione, la sera e nei weekend è prudente controllare disponibilità e prenotare quando possibile.'],
   ],
 };
@@ -87,7 +88,7 @@ const dinnerPlans = [
     intro: 'Pizza o un locale informale: parti dal menù, non solo dal prezzo del piatto.',
     steps: [
       ['Confronta il totale', 'Prima di sederti controlla anche coperto, bevande e supplementi: il solo prezzo della pizza non racconta tutta la cena.'],
-      ['Controlla la formula del giorno', 'Se trovi un menù fisso, chiedi cosa include e se è disponibile anche la sera.'],
+      ['Chiedi prima di ordinare', 'Se un prezzo non è chiaro, chiedi al locale il costo e cosa include prima di ordinare.'],
       ['Scegli una zona comoda', 'Apri la mappa e controlla la distanza dal tuo punto di partenza prima di scegliere il locale.'],
     ],
     query: 'pizzerie Scalea Calabria', mapLabel: 'Cerca pizzerie sulla mappa',
@@ -97,11 +98,11 @@ const dinnerPlans = [
     label: 'Sapori locali', title: 'Voglia di Calabria',
     intro: 'Trattoria o cucina di mare: scegli in base a quello che vuoi assaggiare.',
     steps: [
-      ['Guarda il menù', 'Cerca i piatti calabresi e chiedi quali proposte sono disponibili quel giorno. Se preferisci il pesce, controlla il menù prima di prenotare.'],
+      ['Guarda il menù', 'La Rondinella Osteria Pop pubblica un menù digitale: aprilo nei riferimenti qui sotto e conferma con il locale le proposte disponibili per la tua serata.'],
       ['Chiedi come ordinare', 'Vuoi condividere gli antipasti? Chiedi le porzioni e il prezzo prima di scegliere per tutto il tavolo.'],
       ['Verifica il tavolo', 'Controlla apertura e prenotazione direttamente con il locale, soprattutto in alta stagione e nei weekend.'],
     ],
-    query: 'trattorie Scalea Calabria', mapLabel: 'Cerca trattorie sulla mappa',
+    query: 'La Rondinella Osteria Pop Piazza Spinelli Scalea', mapLabel: 'Trova Osteria Pop sulla mappa',
     guide: '/it/centro-storico-scalea-sera/', guideLabel: 'Scopri il centro storico per il dopo cena',
   },
   {
@@ -123,7 +124,7 @@ const dinnerPlanner = `
         <div class="section-head">
           <div class="kicker">La tua serata, a modo tuo</div>
           <h2 id="dinner-planner-title">Che serata vuoi fare a Scalea?</h2>
-          <p>Apri l’idea che ti piace: trovi cosa controllare prima di scegliere, una mappa e una guida per continuare la serata.</p>
+          <p>Apri l’idea che ti piace: trovi consigli per organizzare la serata, una mappa e una guida. I riferimenti dei locali e dei menù sono riportati qui sotto.</p>
         </div>
         <div class="dinner-options">${dinnerPlans.map((plan) => `
           <details class="dinner-option">
@@ -253,7 +254,7 @@ const html = `<!doctype html>
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media(max-width:640px){.wrap{width:min(100% - 28px,1180px)}.nav{padding-top:14px}.nav-shell{min-height:68px;padding:8px 10px;border-radius:28px}.brand-mark{width:42px;height:42px;border-radius:14px}.brand{font-size:20px;gap:10px}.nav-cta{display:none}.lang{padding:12px 14px}.hero{min-height:760px;padding-top:122px}.badge{font-size:9px;letter-spacing:.2em}.lead{font-size:16px}.cta{width:100%;min-height:56px}.grid{grid-template-columns:1fr}.content,.faq{padding:64px 0}.card{min-height:0;padding:25px}.section-head{margin-bottom:30px}}
   </style>
-${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
+${guideStayInquiryStyles}${foodGuideReferenceStyles}<script defer src="/stay-inquiry.js"></script></head>
 <body>
   <header class="nav">
     <div class="wrap nav-shell">
@@ -296,6 +297,7 @@ ${guideStayInquiryStyles}<script defer src="/stay-inquiry.js"></script></head>
         </div>
         <div class="grid">${cards}</div>
         <div class="note">${esc(page.note)}</div>
+        ${renderFoodGuideReferences('it')}
       </div>
     </section>
 
