@@ -82,6 +82,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-indigo-600 mb-3">{copy.eyebrow}</span>
         <h3 className="text-3xl sm:text-4xl font-black tracking-tighter text-slate-900 mb-5 break-words hyphens-none">ScaleaStay</h3>
         <p className="text-slate-500 text-sm lg:text-base leading-relaxed mb-6 sm:mb-8 break-words hyphens-none">{getLongStayCopy(language).apartmentSummary}</p>
+        <p className="text-slate-500 text-xs leading-relaxed mb-6 break-words">Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
 
         <div className="flex flex-wrap gap-2 mb-10">
           {[...copy.facts, getLongStayCopy(language).wifi, getLongStayCopy(language).heating].map(fact => (

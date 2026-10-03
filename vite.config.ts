@@ -7,7 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
 import { APARTMENT_COPY } from './src/content/apartment';
-import { getFaqItems } from './src/content/faq';
+import { getFaqItems, getCommercialFaqItems } from './src/content/faq';
 import { translate } from './src/content/translations';
 import { APARTMENTS, CONTACT_INFO } from './src/constants';
 import { getLongStayRoute } from './src/content/longStayRoutes';
@@ -23,6 +23,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-09-18';
+const APARTMENT_LASTMOD = '2026-10-03';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -236,7 +237,7 @@ const rootSitemapEntries = LANGUAGES
     <loc>${SITE_ORIGIN}/${language}/</loc>
 ${rootAlternateLinks}
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/ru/"/>
-    <lastmod>${STAY_LASTMOD}</lastmod>
+    <lastmod>${APARTMENT_LASTMOD}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>`)
@@ -259,7 +260,7 @@ ${alternates}
     .join('\n');
 };
 
-const commercialSitemapEntries = buildPairedSitemapEntries(COMMERCIAL_PAGES, '0.9', STAY_LASTMOD);
+const commercialSitemapEntries = buildPairedSitemapEntries(COMMERCIAL_PAGES, '0.9', APARTMENT_LASTMOD);
 const guideSitemapEntries = (['airport', 'no-car'] as GuideTopic[])
   .map((topic) => buildPairedSitemapEntries(GUIDE_PAGES.filter((page) => page.topic === topic), '0.8'))
   .join('\n');
@@ -293,7 +294,7 @@ const buildCommercialSchema = (page: CommercialPage) => JSON.stringify({
       name: page.title,
       description: getLongStayCopy(page.language).seo,
       inLanguage: page.language,
-      about: { '@id': `${SITE_ORIGIN}/#property` },
+      about: { '@id': `${SITE_ORIGIN}/#scaleastay-apartment` },
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
     },
     {
@@ -401,6 +402,12 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
   name: 'ScaleaStay apartment',
   description: getLongStayCopy(language).layout,
   numberOfBedrooms: 1,
+  occupancy: { '@type': 'QuantitativeValue', value: 4 },
+  identifier: 'IT078138C2VN4E3MCD',
+  address: {
+    '@type': 'PostalAddress', streetAddress: 'Via Giuseppe Saragat 11',
+    addressLocality: 'Scalea', addressRegion: 'Calabria', postalCode: '87029', addressCountry: 'IT',
+  },
   amenityFeature: CONFIRMED_AMENITIES,
 });
 
@@ -411,22 +418,23 @@ const buildApartmentShell = (language: LanguageCode) => {
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <h2>${escapeHtml(translate(language, 'ourApartments'))}</h2>
     <h3>ScaleaStay</h3><p>${escapeHtml(copy.apartmentSummary)}</p>
+    <p>Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
     <ul>${facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul>
     <img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
   </div></section>`;
 };
 
-const buildFaqShell = (language: LanguageCode) => `<section id="faq" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
+const buildFaqShell = (language: LanguageCode, items = getFaqItems(language)) => `<section id="faq" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
   <h2>${escapeHtml(translate(language, 'faqTitle'))}</h2>
-  ${getFaqItems(language).map(({ q, a }) => `<details style="padding:16px 0;border-bottom:1px solid #e2e8f0"><summary style="cursor:pointer;font-weight:700">${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
+  ${items.map(({ q, a }) => `<details style="padding:16px 0;border-bottom:1px solid #e2e8f0"><summary style="cursor:pointer;font-weight:700">${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('')}
 </div></section>`;
 
-const buildFaqSchema = (language: LanguageCode) => JSON.stringify({
+const buildFaqSchema = (language: LanguageCode, pagePath = `/${language}/`, items = getFaqItems(language)) => JSON.stringify({
   '@context': 'https://schema.org', '@type': 'FAQPage',
-  '@id': `${SITE_ORIGIN}/${language}/#faq`, url: `${SITE_ORIGIN}/${language}/#faq`,
+  '@id': `${SITE_ORIGIN}${pagePath}#faq`, url: `${SITE_ORIGIN}${pagePath}#faq`,
   inLanguage: language,
-  mainEntity: getFaqItems(language).map(({ q, a }) => ({
+  mainEntity: items.map(({ q, a }) => ({
     '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a },
   })),
 }).replaceAll('<', '\\u003c');
@@ -463,11 +471,13 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
             <p style="margin:0 0 24px;color:#a5b4fc;font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;">ScaleaStay · Scalea · Calabria</p>
             <h1 style="margin:0 auto 28px;max-width:920px;color:#fff;font:900 clamp(2.5rem,7vw,5.5rem)/.96 system-ui,sans-serif;letter-spacing:-.045em;text-wrap:balance;">${escapeHtml(page.heroTitle)}</h1>
             <p style="max-width:760px;margin:0 auto 34px;color:#cbd5e1;font:500 clamp(1rem,2vw,1.3rem)/1.6 system-ui,sans-serif;">${escapeHtml(page.heroSubtitle)}</p>
-            <p style="margin:0 auto 32px;color:#fff;font:800 1rem/1.6 system-ui,sans-serif;">600 m · 5–8 min · Interspar 230 m · station 500 m · parking</p>
+            <p style="margin:0 auto 32px;color:#fff;font:800 1rem/1.6 system-ui,sans-serif;">${escapeHtml(getLongStayCopy(page.language).location)}</p>
             <a href="https://wa.me/420774620060?text=${encodeURIComponent(getLongStayCopy(page.language).inquiry)}" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(getLongStayCopy(page.language).availabilityCta)}</a>
           </div>
         </section>
-        ${buildLongStayShell(page.language)}
+        ${buildApartmentShell(page.language)}
+        ${buildLongStayShell(page.language, false)}
+        ${buildFaqShell(page.language, getCommercialFaqItems(page.language))}
       </main>
     </div>`;
 
@@ -558,6 +568,7 @@ const localizeCommercialHtml = (sourceHtml: string, page: CommercialPage) => {
     `    <script type="application/ld+json">${buildWebsiteSchema(page.language)}</script>`,
     `    <script type="application/ld+json">${buildConfirmedStaySchema(page.language)}</script>`,
     `    <script type="application/ld+json">${buildCommercialSchema(page)}</script>`,
+    `    <script id="prerender-faq-schema" type="application/ld+json">${buildFaqSchema(page.language, page.path, getCommercialFaqItems(page.language))}</script>`,
   ].join('\n');
 
   html = html.replace('</head>', `${metadata}\n</head>`);
