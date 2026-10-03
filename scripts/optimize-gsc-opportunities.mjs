@@ -234,6 +234,7 @@ const html = `<!doctype html>
     .dinner-guide{margin-top:10px;border:1px solid #c7d2fe;color:#3730a3}
     .dinner-map-note{max-width:760px;margin:24px auto 0;text-align:center;font-size:13px;line-height:1.7;color:#64748b}
     .dinner-option summary:focus-visible,.dinner-map:focus-visible,.dinner-guide:focus-visible,.hero-guide-link:focus-visible{outline:3px solid #818cf8;outline-offset:4px}
+    .dinner-option summary:focus-visible{outline-offset:-4px}
     .faq{padding:84px 0;background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0}
     .faq-grid{max-width:920px;margin:0 auto}
     details{background:white;border:1px solid #e2e8f0;border-radius:22px;padding:21px 24px;margin:12px 0;box-shadow:0 10px 28px rgba(15,23,42,.035)}
