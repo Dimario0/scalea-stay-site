@@ -74,6 +74,15 @@ for (const p of pages) {
   const h1 = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
   if (h1 !== 1) fail(`${p.file}: expected one H1, found ${h1}`);
   const commercial = /\/(?:appartamento-scalea-vicino-mare|apartament-scalea-blisko-morza)\//.test(p.canonical);
+  if (commercial) {
+    const description = html.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
+    if (!description.includes('4 ') || !description.includes('600 m') || !description.includes('5–8') || !description.includes('Wi-Fi') || !description.includes('WhatsApp') || /fuori stagione|soggiorni lunghi|dłuższe pobyty/i.test(description)) {
+      fail(`${p.file}: commercial description must describe the apartment, capacity and direct date enquiry`);
+    }
+    for (const name of ['og:description', 'twitter:description']) {
+      if (!html.includes(`property="${name}" content="${description}"`)) fail(`${p.file}: ${name} differs from commercial description`);
+    }
+  }
   if (/^[a-z]{2}\/index\.html$/.test(p.file) || commercial) {
     const body = html.split('<body')[1] || '';
     if (!body.includes('id="apartments"')) fail(`${p.file}: apartment content missing from initial HTML`);
@@ -103,6 +112,9 @@ for (const p of pages) {
       }
       if (commercial && !graphs.some(j => j['@type'] === 'WebPage' && j.about?.['@id'] === apartment?.['@id'])) {
         fail(`${p.file}: commercial WebPage must refer to the declared accommodation`);
+      }
+      if (commercial && !graphs.some(j => j['@type'] === 'WebPage' && j.url === p.canonical && j.description === html.match(/<meta name="description" content="([^"]*)"/i)?.[1])) {
+        fail(`${p.file}: commercial WebPage description differs from the search description`);
       }
     } catch { fail(`${p.file}: invalid accommodation JSON`); }
   }

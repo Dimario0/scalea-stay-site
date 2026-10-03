@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Car, CheckCircle2, MapPin, MessageCircle, ShoppingBasket, TrainFront, Waves } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
@@ -59,7 +59,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Controllo rapido delle date', 'Contatto diretto', 'Informazioni pratiche prima dell’arrivo'],
     faqTitle: 'Domande frequenti su ScaleaStay',
     seoTitle: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    seoDescription: 'Appartamento a Scalea in Calabria con spiaggia a circa 600 m, Interspar a 230 m, stazione a 500 m, aria condizionata, cucina, terrazza e parcheggio. Verifica le date su WhatsApp.',
+    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
     canonicalPath: '/it/appartamento-scalea-vicino-mare/',
   },
   pl: {
@@ -84,7 +84,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Szybkie sprawdzenie terminów', 'Bezpośredni kontakt', 'Praktyczne informacje przed przyjazdem'],
     faqTitle: 'Najczęstsze pytania o ScaleaStay',
     seoTitle: 'Apartament w Scalei blisko morza | ScaleaStay',
-    seoDescription: 'Apartament w Scalei w Kalabrii: plaża około 600 m, Interspar 230 m, dworzec 500 m, klimatyzacja, kuchnia, taras i parking. Sprawdź wolne terminy przez WhatsApp.',
+    seoDescription: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
   },
 };
@@ -108,9 +108,8 @@ const CommercialLanding: React.FC = () => {
   const navigate = useNavigate();
 
   const supportedLanguage: 'it' | 'pl' | null = language === 'it' || language === 'pl' ? language : null;
-  const baseCopy = supportedLanguage ? COPY[supportedLanguage] : COPY.it;
+  const copy = supportedLanguage ? COPY[supportedLanguage] : COPY.it;
   const stayCopy = getLongStayCopy(language);
-  const copy = useMemo(() => ({ ...baseCopy, seoDescription: stayCopy.seo }), [baseCopy, stayCopy]);
 
   useEffect(() => {
     document.getElementById('prerender-faq-schema')?.remove();
