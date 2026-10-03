@@ -140,7 +140,7 @@ const COMMERCIAL_PAGES: CommercialPage[] = [
     language: 'it',
     path: '/it/appartamento-scalea-vicino-mare/',
     title: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    description: 'Appartamento a Scalea in Calabria con spiaggia a circa 600 m, Interspar a 230 m, stazione a 500 m, aria condizionata, cucina, terrazza e parcheggio. Verifica le date su WhatsApp.',
+    description: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
     heroTitle: 'Appartamento a Scalea vicino al mare',
     heroSubtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
     cta: 'Verifica le date su WhatsApp',
@@ -149,7 +149,7 @@ const COMMERCIAL_PAGES: CommercialPage[] = [
     language: 'pl',
     path: '/pl/apartament-scalea-blisko-morza/',
     title: 'Apartament w Scalei blisko morza | ScaleaStay',
-    description: 'Apartament w Scalei w Kalabrii: plaża około 600 m, Interspar 230 m, dworzec 500 m, klimatyzacja, kuchnia, taras i parking. Sprawdź wolne terminy przez WhatsApp.',
+    description: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
     heroTitle: 'Apartament w Scalei blisko morza',
     heroSubtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
     cta: 'Sprawdź terminy na WhatsApp',
@@ -292,7 +292,7 @@ const buildCommercialSchema = (page: CommercialPage) => JSON.stringify({
       '@id': `${SITE_ORIGIN}${page.path}#webpage`,
       url: `${SITE_ORIGIN}${page.path}`,
       name: page.title,
-      description: getLongStayCopy(page.language).seo,
+      description: page.description,
       inLanguage: page.language,
       about: { '@id': `${SITE_ORIGIN}/#scaleastay-apartment` },
       isPartOf: { '@id': `${SITE_ORIGIN}/#website` },
@@ -559,7 +559,7 @@ const localizeHtml = (sourceHtml: string, language: LanguageCode, indexable: boo
 const localizeCommercialHtml = (sourceHtml: string, page: CommercialPage) => {
   const pageUrl = `${SITE_ORIGIN}${page.path}`;
   const pair = COMMERCIAL_PAGES;
-  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, page.language), page.title, getLongStayCopy(page.language).seo, pageUrl);
+  let html = applyBasicSeo(cleanBaseHtml(sourceHtml, page.language), page.title, page.description, pageUrl);
   const metadata = [
     '    <meta name="robots" content="index,follow,max-image-preview:large">',
     '    <meta property="og:site_name" content="ScaleaStay">',
