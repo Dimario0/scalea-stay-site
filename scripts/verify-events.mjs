@@ -11,8 +11,10 @@ assert.equal(romeToday(new Date('2026-12-20T23:00:00Z')), '2026-12-21');
 assert.equal(eventStatus({start:'2026-09-09',end:'2026-09-13'}, '2026-09-13'), 'upcoming');
 assert.equal(eventStatus({start:'2026-09-09',end:'2026-09-13'}, '2026-09-14'), 'past');
 assert.equal(eventStatus({start:'2026-09-20',end:'2026-09-20',cancelled:true}, '2026-09-18'), 'cancelled');
-assert.deepEqual(upcomingEvents('2026-09-18').map(e=>e.id), ['cocktail-tango-2026-09-20']);
-assert.deepEqual(upcomingEvents('2026-09-21'), []);
+assert.deepEqual(upcomingEvents('2026-09-18').map(e=>e.id), ['cocktail-tango-2026-09-20', 'trofeo-arcomagno-2026']);
+assert.deepEqual(upcomingEvents('2026-09-21').map(e=>e.id), ['trofeo-arcomagno-2026']);
+assert.deepEqual(upcomingEvents('2026-09-27').map(e=>e.id), ['trofeo-arcomagno-2026']);
+assert.deepEqual(upcomingEvents('2026-09-28'), []);
 assert.deepEqual(upcomingEvents('2026-09-18', LOCAL_EVENTS.map(e=>({...e,cancelled:true}))), []);
 assert.equal(new Set(LOCAL_EVENTS.map(e=>e.id)).size, LOCAL_EVENTS.length);
 for (const event of LOCAL_EVENTS) {
