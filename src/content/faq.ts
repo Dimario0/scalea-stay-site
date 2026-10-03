@@ -9,8 +9,10 @@ const FAQ_COPY: Record<string, {
   shopAnswer: string;
   beachQuestion: string;
   beachAnswer: string;
+  familyAnswer: string;
 }> = {
   ru: {
+    familyAnswer: 'Да, апартаменты подходят для семьи и вмещают до 4 гостей. В квартире одна спальня, оборудованная кухня и собственная терраса.',
     amenitiesSuffix: 'Также в квартире есть фен, микроволновая печь и необходимые кухонные принадлежности.',
     availabilityQuestion: 'Как проверить свободные даты?',
     availabilityAnswer: "Напишите даты и число гостей в WhatsApp — владелец проверит свободные даты и сообщит стоимость.",
@@ -20,6 +22,7 @@ const FAQ_COPY: Record<string, {
     beachAnswer: 'Для гостей предусмотрен пляжный зонт, который можно взять с собой к морю.',
   },
   en: {
+    familyAnswer: 'Yes, the apartment is suitable for families and accommodates up to 4 guests. It has one bedroom, an equipped kitchen and a private terrace.',
     amenitiesSuffix: 'The apartment also includes a hair dryer, microwave and essential kitchen utensils.',
     availabilityQuestion: 'How can I check available dates?',
     availabilityAnswer: "Send your dates and number of guests on WhatsApp. The owner will check availability and share the price.",
@@ -29,6 +32,7 @@ const FAQ_COPY: Record<string, {
     beachAnswer: 'Guests can use a beach umbrella and take it with them to the sea.',
   },
   it: {
+    familyAnswer: 'Sì, l’appartamento è adatto alle famiglie e può ospitare fino a 4 persone. Dispone di una camera da letto, cucina attrezzata e terrazza privata.',
     amenitiesSuffix: 'L’appartamento dispone inoltre di asciugacapelli, forno a microonde e utensili da cucina essenziali.',
     availabilityQuestion: 'Come posso verificare le date disponibili?',
     availabilityAnswer: "Invia date e numero di ospiti su WhatsApp: il proprietario verificherà la disponibilità e ti comunicherà il prezzo.",
@@ -38,6 +42,7 @@ const FAQ_COPY: Record<string, {
     beachAnswer: 'Gli ospiti possono utilizzare un ombrellone da portare con sé al mare.',
   },
   de: {
+    familyAnswer: 'Ja, die Ferienwohnung eignet sich für Familien und bietet Platz für bis zu 4 Gäste. Sie hat ein Schlafzimmer, eine ausgestattete Küche und eine eigene Terrasse.',
     amenitiesSuffix: 'Außerdem gibt es einen Haartrockner, eine Mikrowelle und die wichtigsten Küchenutensilien.',
     availabilityQuestion: 'Wie kann ich freie Termine prüfen?',
     availabilityAnswer: "Senden Sie Reisedaten und Gästezahl per WhatsApp. Der Eigentümer prüft die Verfügbarkeit und nennt den Preis.",
@@ -47,6 +52,7 @@ const FAQ_COPY: Record<string, {
     beachAnswer: 'Für Gäste steht ein Sonnenschirm zur Verfügung, der mit zum Meer genommen werden kann.',
   },
   cs: {
+    familyAnswer: 'Ano, apartmán je vhodný pro rodiny a pojme až 4 hosty. Má jednu ložnici, vybavenou kuchyň a vlastní terasu.',
     amenitiesSuffix: 'V apartmánu je také fén, mikrovlnná trouba a základní kuchyňské vybavení.',
     availabilityQuestion: 'Jak ověřit volné termíny?',
     availabilityAnswer: "Pošlete termín a počet hostů přes WhatsApp. Majitel ověří dostupnost a sdělí cenu.",
@@ -56,6 +62,7 @@ const FAQ_COPY: Record<string, {
     beachAnswer: 'Hosté mají k dispozici plážový slunečník, který si mohou vzít k moři.',
   },
   pl: {
+    familyAnswer: 'Tak, apartament jest odpowiedni dla rodzin i może pomieścić do 4 gości. Ma jedną sypialnię, wyposażoną kuchnię i prywatny taras.',
     amenitiesSuffix: 'W apartamencie są także suszarka do włosów, kuchenka mikrofalowa i podstawowe wyposażenie kuchenne.',
     availabilityQuestion: 'Jak sprawdzić wolne terminy?',
     availabilityAnswer: "Wyślij termin i liczbę gości przez WhatsApp. Właściciel sprawdzi dostępność i poda cenę.",
@@ -77,8 +84,25 @@ export const getFaqItems = (language: string) => {
     { q: t('faqQ4'), a: t('faqA4') },
     { q: t('faqQ5'), a: t('faqA5') },
     { q: copy.availabilityQuestion, a: copy.availabilityAnswer },
-    { q: t('faqQ7'), a: t('faqA7') },
+    { q: t('faqQ7'), a: copy.familyAnswer },
     { q: copy.shopQuestion, a: copy.shopAnswer },
     { q: copy.beachQuestion, a: copy.beachAnswer },
   ];
+};
+
+// Commercial pages have no Routes section; keep their location answer self-contained.
+const COMMERCIAL_TRAVEL_FAQ = {
+  it: [
+    { q: 'Quanto dista la spiaggia?', a: 'La spiaggia più vicina è a circa 600 m, normalmente 5–8 minuti a piedi. ScaleaStay si trova in Via Giuseppe Saragat 11, Scalea.' },
+    { q: 'Si può arrivare in treno?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 500 m, circa 8 minuti a piedi.' },
+  ],
+  pl: [
+    { q: 'Jak daleko jest do plaży?', a: 'Najbliższa plaża znajduje się około 600 m od apartamentu — zwykle 5–8 minut pieszo. ScaleaStay mieści się przy Via Giuseppe Saragat 11 w Scalei.' },
+    { q: 'Czy można przyjechać pociągiem?', a: 'Tak. Dworzec Scalea–Santa Domenica Talao jest około 500 m od apartamentu, mniej więcej 8 minut pieszo.' },
+  ],
+};
+
+export const getCommercialFaqItems = (language: 'it' | 'pl') => {
+  const [beach, train] = COMMERCIAL_TRAVEL_FAQ[language];
+  return [...getFaqItems(language).map(item => item.q === translate(language, 'faqQ1') ? beach : item), train];
 };

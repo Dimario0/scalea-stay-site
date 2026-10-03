@@ -73,14 +73,15 @@ for (const p of pages) {
   if (!/meta name="robots" content="index,follow,max-image-preview:large"/i.test(html)) fail(`${p.file}: not explicitly indexable`);
   const h1 = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
   if (h1 !== 1) fail(`${p.file}: expected one H1, found ${h1}`);
-  if (/^[a-z]{2}\/index\.html$/.test(p.file)) {
+  const commercial = /\/(?:appartamento-scalea-vicino-mare|apartament-scalea-blisko-morza)\//.test(p.canonical);
+  if (/^[a-z]{2}\/index\.html$/.test(p.file) || commercial) {
     const body = html.split('<body')[1] || '';
     if (!body.includes('id="apartments"')) fail(`${p.file}: apartment content missing from initial HTML`);
     if (!body.includes('id="faq"')) fail(`${p.file}: FAQ content missing from initial HTML`);
     const schemaSource = html.match(/<script id="prerender-faq-schema" type="application\/ld\+json">([\s\S]*?)<\/script>/)?.[1];
     try {
       const faq = JSON.parse(schemaSource || 'null');
-      if (!faq || faq.inLanguage !== p.lang || faq.mainEntity?.length !== 12) {
+      if (!faq || faq.inLanguage !== p.lang || faq.mainEntity?.length !== (commercial ? 13 : 12) || faq.url !== `${p.canonical}#faq`) {
         fail(`${p.file}: missing or incomplete localized FAQ schema`);
       } else {
         const escape = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
@@ -91,6 +92,19 @@ for (const p of pages) {
         }
       }
     } catch { fail(`${p.file}: invalid FAQ JSON`); }
+    try {
+      const graphs = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].flatMap(m => { const j = JSON.parse(m[1]); return j['@graph'] || [j]; });
+      const apartment = graphs.find(j => j['@id'] === `${SITE_ORIGIN}/#scaleastay-apartment`);
+      if (apartment?.numberOfBedrooms !== 1 || apartment?.occupancy?.value !== 4 || apartment?.identifier !== 'IT078138C2VN4E3MCD' || apartment?.address?.streetAddress !== 'Via Giuseppe Saragat 11') {
+        fail(`${p.file}: incomplete confirmed accommodation schema`);
+      }
+      if (!body.includes('CIN: IT078138C2VN4E3MCD') || !body.includes('Via Giuseppe Saragat 11') || !/600\s*[mм]/.test(body) || !body.includes('5–8')) {
+        fail(`${p.file}: confirmed location/identifier missing from initial visible HTML`);
+      }
+      if (commercial && !graphs.some(j => j['@type'] === 'WebPage' && j.about?.['@id'] === apartment?.['@id'])) {
+        fail(`${p.file}: commercial WebPage must refer to the declared accommodation`);
+      }
+    } catch { fail(`${p.file}: invalid accommodation JSON`); }
   }
   if (p.canonical === SITE_ORIGIN + stayRoutes[p.lang]) {
     if (/<script[^>]*type="module"/i.test(html)) fail('long-stay page must not be replaced by the home SPA');

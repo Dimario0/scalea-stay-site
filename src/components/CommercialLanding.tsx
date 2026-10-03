@@ -6,6 +6,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { getLongStayCopy } from '../content/longStay';
+import { getCommercialFaqItems } from '../content/faq';
+import { APARTMENT_COPY } from '../content/apartment';
 import LongStay from './LongStay';
 
 type LandingFact = {
@@ -29,7 +31,6 @@ type LandingCopy = {
   directText: string;
   directPoints: [string, string, string];
   faqTitle: string;
-  faq: Array<{ q: string; a: string }>;
   seoTitle: string;
   seoDescription: string;
   canonicalPath: string;
@@ -57,12 +58,6 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directText: 'Per conoscere disponibilità e condizioni del soggiorno puoi scrivere direttamente su WhatsApp. Ricevi una risposta sulle date senza dover cercare il contatto su altre piattaforme.',
     directPoints: ['Controllo rapido delle date', 'Contatto diretto', 'Informazioni pratiche prima dell’arrivo'],
     faqTitle: 'Domande frequenti su ScaleaStay',
-    faq: [
-      { q: 'Quanto dista la spiaggia?', a: 'La spiaggia più vicina è a circa 600 m, normalmente 5–8 minuti a piedi.' },
-      { q: 'C’è un supermercato vicino?', a: 'Sì. Interspar si trova a circa 230 m, circa 3 minuti a piedi.' },
-      { q: 'Si può arrivare in treno?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 500 m, circa 8 minuti a piedi.' },
-      { q: 'È disponibile il parcheggio?', a: 'Sì, per gli ospiti di ScaleaStay è disponibile il parcheggio.' },
-    ],
     seoTitle: 'Appartamento a Scalea vicino al mare | ScaleaStay',
     seoDescription: 'Appartamento a Scalea in Calabria con spiaggia a circa 600 m, Interspar a 230 m, stazione a 500 m, aria condizionata, cucina, terrazza e parcheggio. Verifica le date su WhatsApp.',
     canonicalPath: '/it/appartamento-scalea-vicino-mare/',
@@ -88,12 +83,6 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directText: 'Dostępność i warunki pobytu możesz szybko sprawdzić przez WhatsApp. Otrzymasz informację o terminach bez szukania kontaktu na innych platformach.',
     directPoints: ['Szybkie sprawdzenie terminów', 'Bezpośredni kontakt', 'Praktyczne informacje przed przyjazdem'],
     faqTitle: 'Najczęstsze pytania o ScaleaStay',
-    faq: [
-      { q: 'Jak daleko jest do plaży?', a: 'Najbliższa plaża znajduje się około 600 m od apartamentu — zwykle 5–8 minut pieszo.' },
-      { q: 'Czy w pobliżu jest supermarket?', a: 'Tak. Interspar znajduje się około 230 m od ScaleaStay, czyli około 3 minuty pieszo.' },
-      { q: 'Czy można przyjechać pociągiem?', a: 'Tak. Dworzec Scalea–Santa Domenica Talao jest około 500 m od apartamentu, mniej więcej 8 minut pieszo.' },
-      { q: 'Czy jest parking?', a: 'Tak, dla gości ScaleaStay dostępny jest parking.' },
-    ],
     seoTitle: 'Apartament w Scalei blisko morza | ScaleaStay',
     seoDescription: 'Apartament w Scalei w Kalabrii: plaża około 600 m, Interspar 230 m, dworzec 500 m, klimatyzacja, kuchnia, taras i parking. Sprawdź wolne terminy przez WhatsApp.',
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
@@ -122,6 +111,10 @@ const CommercialLanding: React.FC = () => {
   const baseCopy = supportedLanguage ? COPY[supportedLanguage] : COPY.it;
   const stayCopy = getLongStayCopy(language);
   const copy = useMemo(() => ({ ...baseCopy, seoDescription: stayCopy.seo }), [baseCopy, stayCopy]);
+
+  useEffect(() => {
+    document.getElementById('prerender-faq-schema')?.remove();
+  }, []);
 
   useEffect(() => {
     if (!supportedLanguage) {
@@ -160,9 +153,17 @@ const CommercialLanding: React.FC = () => {
   const apartment = data.apartments[0];
   const images = apartment?.images?.filter(Boolean).slice(0, 3) || [];
   const whatsappUrl = CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry);
+  const faqItems = getCommercialFaqItems(supportedLanguage);
+  const faqSchema = {
+    '@context': 'https://schema.org', '@type': 'FAQPage',
+    '@id': `https://scaleastay.com${copy.canonicalPath}#faq`,
+    url: `https://scaleastay.com${copy.canonicalPath}#faq`, inLanguage: supportedLanguage,
+    mainEntity: faqItems.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
 
   return (
     <div className="min-h-[100dvh] bg-white text-slate-900">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replaceAll('<', '\\u003c') }} />
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
           <a href={`/${language}/`} className="font-black text-xl tracking-tight text-slate-950" aria-label="ScaleaStay">
@@ -241,7 +242,9 @@ const CommercialLanding: React.FC = () => {
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.apartmentTitle}</h2>
+              <p className="font-bold text-indigo-600 mb-3">{APARTMENT_COPY[supportedLanguage].facts[0]}</p>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
+              <p className="text-sm text-slate-500 leading-relaxed mt-4">Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[...copy.amenities, stayCopy.wifi, stayCopy.heating].map((item, index) => {
@@ -311,11 +314,11 @@ const CommercialLanding: React.FC = () => {
           </div>
         </section>
 
-        <section className="px-4 py-16">
+        <section id="faq" className="px-4 py-16">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-black tracking-tighter text-center mb-8">{copy.faqTitle}</h2>
             <div className="space-y-3">
-              {[...stayCopy.faq, ...copy.faq].map((item) => (
+              {faqItems.map((item) => (
                 <div key={item.q} className="rounded-2xl border border-slate-100 p-5 sm:p-6">
                   <h3 className="font-black text-slate-950 mb-2">{item.q}</h3>
                   <p className="text-slate-600 leading-relaxed">{item.a}</p>
