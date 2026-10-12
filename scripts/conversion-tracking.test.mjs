@@ -16,6 +16,7 @@ function harness(existingTag = true) {
     head: { appendChild: s => scripts.push(s) },
     createElement: () => ({}),
     querySelectorAll: () => [],
+    querySelector: () => null,
     addEventListener: (type, fn) => { if (type === 'click') listeners.push(fn); },
   };
   const context = vm.createContext({ window, document, URL, setTimeout() {} });
@@ -42,7 +43,7 @@ test('existing tag: one WhatsApp event per click, even after repeated initializa
   assert.equal(h.calls.length, 1);
   assert.equal(h.calls[0][1], 'whatsapp_click');
   assert.equal(h.calls[0][2].source, 'hero');
-  assert.equal(h.calls[0][2].tracking_version, '2');
+  assert.equal(h.calls[0][2].tracking_version, '3');
   assert.ok(!JSON.stringify(h.calls).includes('private-message'));
   h.click('https://wa.me/420774620060');
   assert.equal(h.calls.length, 2, 'separate intentional clicks must remain measurable');
