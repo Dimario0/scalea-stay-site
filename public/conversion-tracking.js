@@ -15,6 +15,25 @@
     document.head.appendChild(tag);
   }
 
+  function parameters(source, destination) {
+    return {
+      source: source,
+      page_path: window.location.pathname.replace(/\/+$/, '') + '/',
+      language: document.documentElement.lang,
+      destination: destination,
+      tracking_version: '3',
+      transport_type: 'beacon'
+    };
+  }
+  var formReadyReported = false;
+  function reportFormReady() {
+    if (formReadyReported || !document.querySelector('form[data-stay-inquiry][data-stay-inquiry-tracking="1"]')) return;
+    formReadyReported = true;
+    window.gtag('event', 'guide_stay_inquiry_ready', parameters('guide_stay_inquiry', 'form'));
+  }
+  document.addEventListener('scaleastay:stay-inquiry-ready', reportFormReady);
+  reportFormReady();
+
   document.addEventListener('click', function (event) {
     var link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
@@ -29,13 +48,12 @@
     var section = link.closest('section[id], header, nav, footer');
     var source = link.getAttribute('data-analytics-source') || link.getAttribute('data-source') ||
       (section && (section.id || section.tagName.toLowerCase())) || 'page';
-    window.gtag('event', whatsapp ? 'whatsapp_click' : 'apartment_link_click', {
-      source: source,
-      page_path: window.location.pathname.replace(/\/+$/, '') + '/',
-      language: document.documentElement.lang,
-      destination: whatsapp ? 'whatsapp' : url.pathname + url.hash,
-      tracking_version: '2',
-      transport_type: 'beacon'
-    });
+    var params = parameters(source, whatsapp ? 'whatsapp' : url.pathname + url.hash);
+    window.gtag('event', whatsapp ? 'whatsapp_click' : 'apartment_link_click', params);
+    // Only the validated form creates this link. Direct-write links share source but not this marker.
+    if (whatsapp && source === 'guide_stay_inquiry' &&
+        link.getAttribute('data-stay-inquiry-submit') === 'true' && link.closest('form[data-stay-inquiry]')) {
+      window.gtag('event', 'guide_stay_inquiry_whatsapp_click', params);
+    }
   }, true);
 })();

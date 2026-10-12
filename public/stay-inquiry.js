@@ -3,6 +3,7 @@
   const today = new Date();
   const localDate = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
   for (const form of forms) {
+    if (form.dataset.stayInquiryTracking === '1') continue;
     const arrival = form.elements.arrival;
     const departure = form.elements.departure;
     const language = form.dataset.language;
@@ -27,10 +28,14 @@
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.setAttribute('data-analytics-source', 'guide_stay_inquiry');
+      link.setAttribute('data-stay-inquiry-submit', 'true');
       link.hidden = true;
       form.appendChild(link);
       link.click();
       link.remove();
     });
+    // The updated handler is installed; this is not a visible-form or contact event.
+    form.dataset.stayInquiryTracking = '1';
+    document.dispatchEvent(new CustomEvent('scaleastay:stay-inquiry-ready'));
   }
 })();

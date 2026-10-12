@@ -17,4 +17,7 @@ verify('dist');
 if (readFileSync('public/conversion-tracking.js', 'utf8') !== readFileSync('dist/conversion-tracking.js', 'utf8')) {
   throw new Error('Built conversion tracker differs from source');
 }
+if (readFileSync('public/stay-inquiry.js', 'utf8') !== readFileSync('dist/stay-inquiry.js', 'utf8')) {
+  throw new Error('Built stay inquiry handler differs from source');
+}
 console.log(`CONVERSION TRACKING VERIFY PASS: ${pages} HTML pages`);
