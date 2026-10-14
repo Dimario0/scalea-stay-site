@@ -244,7 +244,7 @@ const CommercialLanding: React.FC = () => {
         <section id="apartments" className="px-4 py-16">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.apartmentTitle}</h2>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5 hyphens-none">{copy.apartmentTitle}</h2>
               <p className="font-bold text-indigo-600 mb-3">{APARTMENT_COPY[supportedLanguage].facts[0]}</p>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
               <p className="text-sm text-slate-500 leading-relaxed mt-4">Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
