@@ -3,6 +3,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import StayInquiry from './src/components/StayInquiry';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
@@ -23,7 +26,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-09-18';
-const APARTMENT_LASTMOD = '2026-10-03';
+const APARTMENT_LASTMOD = '2026-10-14';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -412,7 +415,7 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
 });
 
 // Read the same copy as the interactive page so crawlers and guests see the same facts.
-const buildApartmentShell = (language: LanguageCode) => {
+const buildApartmentShell = (language: LanguageCode, includeTerrace = false) => {
   const copy = getLongStayCopy(language);
   const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
@@ -421,6 +424,7 @@ const buildApartmentShell = (language: LanguageCode) => {
     <p>Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
     <ul>${facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul>
     <img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />
+    ${includeTerrace ? `<img src="/images/scaleastay-terrace-seating.jpg" alt="${language === 'it' ? 'Terrazza privata di ScaleaStay con tavolo e sedie' : 'Prywatny taras ScaleaStay ze stołem i krzesłami'}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />` : ''}
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
   </div></section>`;
 };
@@ -472,10 +476,11 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
             <h1 style="margin:0 auto 28px;max-width:920px;color:#fff;font:900 clamp(2.5rem,7vw,5.5rem)/.96 system-ui,sans-serif;letter-spacing:-.045em;text-wrap:balance;">${escapeHtml(page.heroTitle)}</h1>
             <p style="max-width:760px;margin:0 auto 34px;color:#cbd5e1;font:500 clamp(1rem,2vw,1.3rem)/1.6 system-ui,sans-serif;">${escapeHtml(page.heroSubtitle)}</p>
             <p style="margin:0 auto 32px;color:#fff;font:800 1rem/1.6 system-ui,sans-serif;">${escapeHtml(getLongStayCopy(page.language).location)}</p>
-            <a href="https://wa.me/420774620060?text=${encodeURIComponent(getLongStayCopy(page.language).inquiry)}" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(getLongStayCopy(page.language).availabilityCta)}</a>
+            <a href="#apartment-stay-inquiry" style="display:inline-block;padding:16px 26px;border-radius:18px;background:#4f46e5;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${page.language === 'it' ? 'Indica le tue date' : 'Podaj swój termin'}</a>
           </div>
         </section>
-        ${buildApartmentShell(page.language)}
+        ${buildApartmentShell(page.language, true)}
+        ${renderToStaticMarkup(createElement(StayInquiry, { language: page.language, whatsappUrl: CONTACT_INFO.whatsappLink(getLongStayCopy(page.language).inquiry) }))}
         ${buildLongStayShell(page.language, false)}
         ${buildFaqShell(page.language, getCommercialFaqItems(page.language))}
       </main>

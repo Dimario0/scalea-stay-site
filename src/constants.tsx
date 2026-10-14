@@ -1,5 +1,5 @@
 
-import { Apartment, Review } from './types';
+import { Apartment } from './types';
 
 // --- ВЕРСИЯ ДАННЫХ ---
 export const SITE_DATA_VERSION = 10;
@@ -61,12 +61,6 @@ export const APARTMENTS: Apartment[] = [
       'apt1Feature3'
     ]
   }
-];
-
-export const REVIEWS: Review[] = [
-  { name: 'Елена', nameKey: 'rev1Name', text: 'Отличное место для отдыха. Чисто, уютно, мебель и техника новые. Расположение топовое — до набережной рукой подать, вокруг полно магазинов и ресторанов. Остались очень довольны выбором!', textKey: 'rev1Text', rating: 5 },
-  { name: 'Марк', nameKey: 'rev2Name', text: 'Чисто, уютно и очень близко к пляжу. Вернемся обязательно в следующем году.', textKey: 'rev2Text', rating: 5 },
-  { name: 'Ольга', nameKey: 'rev3Name', text: 'Лучшее расположение в Скалее. Старый город в пяти минутах ходьбы.', textKey: 'rev3Text', rating: 5 }
 ];
 
 export const LANGUAGES = [
@@ -188,12 +182,6 @@ export const TRANSLATIONS: Record<string, any> = {
     apt1Feature1: 'Кондиционер',
     apt1Feature2: 'Терраса',
     apt1Feature3: 'Парковка',
-    rev1Name: 'Елена',
-    rev1Text: 'Отличное место для отдыха. Чисто, уютно, мебель и техника новые. Расположение топовое — до набережной рукой подать, вокруг полно магазинов и ресторанов. Остались очень довольны выбором!',
-    rev2Name: 'Марк',
-    rev2Text: 'Чисто, уютно и очень близко к пляжу. Вернемся обязательно в следующем году.',
-    rev3Name: 'Ольга',
-    rev3Text: 'Лучшее расположение в Скалее. Старый город в пяти минутах ходьбы.',
     directBookTitle: "Договоритесь о поездке напрямую",
     directBookItem1: "Обсудите даты и пожелания с владельцем",
     directBookItem2: "Узнайте стоимость и условия до бронирования",
@@ -310,12 +298,6 @@ export const TRANSLATIONS: Record<string, any> = {
     apt1Feature1: 'Air Conditioning',
     apt1Feature2: 'Terrace',
     apt1Feature3: 'Parking',
-    rev1Name: 'Elena',
-    rev1Text: 'Great place to stay. Clean, cozy, new furniture and appliances. Top location — just a stone\'s throw from the promenade, surrounded by shops and restaurants. Very happy with our choice!',
-    rev2Name: 'Mark',
-    rev2Text: 'Clean, cozy and very close to the beach. We will definitely come back next year.',
-    rev3Name: 'Olga',
-    rev3Text: 'Best location in Scalea. Old town is a five-minute walk away.',
     directBookTitle: "Plan your stay directly with the owner",
     directBookItem1: "Discuss your dates and preferences with the owner",
     directBookItem2: "Check the price and terms before booking",
@@ -432,12 +414,6 @@ export const TRANSLATIONS: Record<string, any> = {
     apt1Feature1: 'Aria Condizionata',
     apt1Feature2: 'Terrazza',
     apt1Feature3: 'Parcheggio',
-    rev1Name: 'Elena',
-    rev1Text: 'Ottimo posto dove stare. Pulito, accogliente, mobili ed elettrodomestici nuovi. Posizione eccellente — a due passi dal lungomare, circondato da negozi e ristoranti. Molto soddisfatti della scelta!',
-    rev2Name: 'Mark',
-    rev2Text: 'Pulito, accogliente e molto vicino alla spiaggia. Torneremo sicuramente l\'anno prossimo.',
-    rev3Name: 'Olga',
-    rev3Text: 'La migliore posizione a Scalea. Il centro storico è a cinque minuti a piedi.',
     directBookTitle: "Organizza il soggiorno con il proprietario",
     directBookItem1: "Parla delle date e delle tue esigenze con il proprietario",
     directBookItem2: "Conosci prezzo e condizioni prima di prenotare",
@@ -554,12 +530,6 @@ export const TRANSLATIONS: Record<string, any> = {
     apt1Feature1: 'Klimaanlage',
     apt1Feature2: 'Terrasse',
     apt1Feature3: 'Parkplatz',
-    rev1Name: 'Elena',
-    rev1Text: 'Toller Ort zum Übernachten. Sauber, gemütlich, neue Möbel und Geräte. Top-Lage — nur einen Katzensprung von der Promenade entfernt, umgeben von Geschäften und Restaurants. Sehr zufrieden mit unserer Wahl!',
-    rev2Name: 'Mark',
-    rev2Text: 'Sauber, gemütlich und sehr nah am Strand. Wir kommen nächstes Jahr auf jeden Fall wieder.',
-    rev3Name: 'Olga',
-    rev3Text: 'Beste Lage in Scalea. Die Altstadt ist in fünf Minuten zu Fuß erreichbar.',
     directBookTitle: "Planen Sie direkt mit dem Eigentümer",
     directBookItem1: "Besprechen Sie Reisedaten und Wünsche mit dem Eigentümer",
     directBookItem2: "Klären Sie Preis und Bedingungen vor der Buchung",
@@ -676,12 +646,6 @@ export const TRANSLATIONS: Record<string, any> = {
     apt1Feature1: 'Klimatizace',
     apt1Feature2: 'Terasa',
     apt1Feature3: 'Parkování',
-    rev1Name: 'Elena',
-    rev1Text: 'Skvělé místo k pobytu. Čisté, útulné, nový nábytek a spotřebiče. Skvělá lokalita — jen kousek od promenády, obklopené obchody a restauracemi. Velmi spokojeni s naší volbou!',
-    rev2Name: 'Mark',
-    rev2Text: 'Čisté, útulné a velmi blízko pláže. Příští rok se určitě vrátíme.',
-    rev3Name: 'Olga',
-    rev3Text: 'Nejlepší lokalita ve Scalee. Staré město je pět minut chůze odtud.',
     directBookTitle: "Domluvte si pobyt přímo s majitelem",
     directBookItem1: "Proberte termín a svá přání přímo s majitelem",
     directBookItem2: "Zjistěte cenu a podmínky před rezervací",

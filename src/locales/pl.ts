@@ -123,12 +123,6 @@ export const PL_TRANSLATIONS: Record<string, string> = {
   apt1Feature2: 'Taras',
   apt1Feature3: 'Parking',
 
-  rev1Name: 'Elena',
-  rev1Text: 'Świetne miejsce na wypoczynek. Czysto, przytulnie, meble i sprzęty są nowe. Lokalizacja jest świetna — promenada jest bardzo blisko, a wokół jest mnóstwo sklepów i restauracji. Jesteśmy bardzo zadowoleni z wyboru!',
-  rev2Name: 'Mark',
-  rev2Text: 'Czysto, przytulnie i bardzo blisko plaży. Na pewno wrócimy w przyszłym roku.',
-  rev3Name: 'Olga',
-  rev3Text: 'Najlepsza lokalizacja w Scalei. Stare miasto jest pięć minut spacerem.',
 
   directBookTitle: "Ustal pobyt bezpośrednio z właścicielem",
   directBookItem1: "Omów termin i swoje potrzeby z właścicielem",

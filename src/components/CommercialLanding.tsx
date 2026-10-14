@@ -9,6 +9,7 @@ import { getLongStayCopy } from '../content/longStay';
 import { getCommercialFaqItems } from '../content/faq';
 import { APARTMENT_COPY } from '../content/apartment';
 import LongStay from './LongStay';
+import StayInquiry from './StayInquiry';
 
 type LandingFact = {
   label: string;
@@ -41,7 +42,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     eyebrow: 'Scalea • Calabria • Riviera dei Cedri',
     title: 'Appartamento a Scalea vicino al mare',
     subtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
-    cta: 'Verifica le date su WhatsApp',
+    cta: 'Indica le tue date',
     homeLabel: 'Appartamenti a Scalea',
     apartmentTitle: 'Una base comoda per la vacanza in Calabria',
     apartmentText: 'L’appartamento è luminoso e accogliente, con aria condizionata, cucina attrezzata, terrazza e parcheggio. Ospita fino a 4 persone ed è adatto sia a soggiorni brevi sia a vacanze più lunghe.',
@@ -66,7 +67,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     eyebrow: 'Scalea • Kalabria • Riviera dei Cedri',
     title: 'Apartament w Scalei blisko morza',
     subtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
-    cta: 'Sprawdź terminy na WhatsApp',
+    cta: 'Podaj swój termin',
     homeLabel: 'Apartamenty w Scalei',
     apartmentTitle: 'Wygodna baza na wakacje w Kalabrii',
     apartmentText: 'Jasny i przytulny apartament z klimatyzacją, wyposażoną kuchnią, tarasem i parkingiem. Może pomieścić do 4 gości i sprawdzi się zarówno na krótki wyjazd, jak i dłuższy urlop.',
@@ -150,7 +151,11 @@ const CommercialLanding: React.FC = () => {
   if (!supportedLanguage) return null;
 
   const apartment = data.apartments[0];
-  const images = apartment?.images?.filter(Boolean).slice(0, 3) || [];
+  const images = [
+    { src: apartment?.images?.[0], alt: supportedLanguage === 'it' ? 'Soggiorno con cucina di ScaleaStay' : 'Salon z kuchnią w ScaleaStay' },
+    { src: '/images/scaleastay-bedroom-ready.jpg', alt: supportedLanguage === 'it' ? 'Camera da letto di ScaleaStay' : 'Sypialnia w ScaleaStay' },
+    { src: '/images/scaleastay-terrace-seating.jpg', alt: supportedLanguage === 'it' ? 'Terrazza privata di ScaleaStay con tavolo e sedie' : 'Prywatny taras ScaleaStay ze stołem i krzesłami' },
+  ].filter(image => image.src);
   const whatsappUrl = CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry);
   const faqItems = getCommercialFaqItems(supportedLanguage);
   const faqSchema = {
@@ -196,25 +201,24 @@ const CommercialLanding: React.FC = () => {
           <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-10 items-center">
             <div>
               <p className="text-indigo-300 text-xs font-black uppercase tracking-[0.28em] mb-5">{copy.eyebrow}</p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.98] mb-6">{copy.title}</h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.98] mb-6 hyphens-none">{copy.title}</h1>
               <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mb-8">{copy.subtitle}</p>
               <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#apartment-stay-inquiry"
                 data-analytics-source="commercial_landing_hero"
                 className="inline-flex items-center gap-3 rounded-2xl bg-indigo-600 px-6 py-4 font-black text-white shadow-xl active:scale-95"
               >
-                <MessageCircle className="w-5 h-5" /> {stayCopy.availabilityCta}
+                <MessageCircle className="w-5 h-5" /> {copy.cta}
               </a>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               {images.map((image, index) => (
                 <img
-                  key={image}
-                  src={image}
-                  alt={`ScaleaStay ${supportedLanguage === 'it' ? 'appartamento' : 'apartament'} ${index + 1}`}
+                  key={image.src}
+                  src={image.src}
+                  alt={image.alt}
+                  loading={index === 0 ? 'eager' : 'lazy'}
                   className={`w-full object-cover rounded-3xl ${index === 0 ? 'col-span-2 h-64 sm:h-80' : 'h-40 sm:h-48'}`}
                 />
               ))}
@@ -240,7 +244,7 @@ const CommercialLanding: React.FC = () => {
         <section id="apartments" className="px-4 py-16">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5">{copy.apartmentTitle}</h2>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5 hyphens-none">{copy.apartmentTitle}</h2>
               <p className="font-bold text-indigo-600 mb-3">{APARTMENT_COPY[supportedLanguage].facts[0]}</p>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
               <p className="text-sm text-slate-500 leading-relaxed mt-4">Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
@@ -258,6 +262,8 @@ const CommercialLanding: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <StayInquiry key={supportedLanguage} language={supportedLanguage} whatsappUrl={whatsappUrl} />
 
         <section className="px-4 py-16 bg-sky-50/70">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-10 items-start">
