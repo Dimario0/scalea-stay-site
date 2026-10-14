@@ -56,14 +56,23 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
       <div className="relative lg:w-3/5 aspect-video lg:aspect-auto overflow-hidden bg-slate-100 max-w-full" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
         <div className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]" style={{ transform: `translateX(-${currentImg * 100}%)` }}>
           {displayImages.map((img, idx) => (
-            <img key={idx} src={img} className="w-full h-full object-cover flex-shrink-0" alt={`ScaleaStay - Scalea, Italy - ${t('navApartments')} photo ${idx + 1}`} loading="lazy" referrerPolicy="no-referrer" />
+            <img
+              key={idx}
+              src={img}
+              className="w-full h-full object-cover flex-shrink-0"
+              alt={`ScaleaStay - Scalea, Italy - ${t('navApartments')} photo ${idx + 1}`}
+              loading={idx === currentImg || idx === (currentImg + 1) % displayImages.length || idx === (currentImg + displayImages.length - 1) % displayImages.length ? 'eager' : 'lazy'}
+              decoding="async"
+              referrerPolicy="no-referrer"
+            />
           ))}
         </div>
 
-        <div className="absolute top-6 left-6 right-6 flex justify-between items-start pointer-events-none">
+        <div className="absolute top-6 left-6 right-6 flex justify-between items-start gap-2 pointer-events-none">
           <button type="button" onClick={openBeachRoute} className="pointer-events-auto bg-indigo-600/90 backdrop-blur-md px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest text-white shadow-lg hover:bg-indigo-500 transition-colors active:scale-95">
             {t('beachRouteLabel')} <span aria-hidden="true">→</span>
           </button>
+          <output aria-live="polite" className="shrink-0 rounded-xl bg-slate-950/75 px-3 py-2 text-xs font-bold text-white backdrop-blur-md">{currentImg + 1} / {displayImages.length}</output>
         </div>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5 pointer-events-none">

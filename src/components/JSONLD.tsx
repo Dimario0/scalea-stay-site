@@ -1,4 +1,5 @@
 import { getFaqItems } from '../content/faq';
+import { APARTMENT_IMAGES } from '../content/apartmentImages.mjs';
 import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from '../content/longStay';
@@ -149,8 +150,7 @@ const JSONLD: React.FC = () => {
         telephone: '+420774620060',
         image: [
           'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',
-          'https://i.postimg.cc/rmgf10N5/IMG_0338.jpg',
-          'https://i.postimg.cc/vBX0rgth/IMG_0349.jpg',
+          ...APARTMENT_IMAGES.slice(0, 2).map(path => `https://scaleastay.com${path}`),
         ],
         address: {
           '@type': 'PostalAddress',
