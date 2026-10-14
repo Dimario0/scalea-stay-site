@@ -6,11 +6,15 @@ function install(dir) {
     const file = path.join(dir, entry.name);
     if (entry.isDirectory()) install(file);
     else if (file.endsWith('.html')) {
-      const html = readFileSync(file, 'utf8');
+      let html = readFileSync(file, 'utf8');
+      if (!html.includes('</head>')) throw new Error(`Missing head: ${file}`);
       if (!html.includes('src="/conversion-tracking.js"')) {
-        if (!html.includes('</head>')) throw new Error(`Missing head: ${file}`);
-        writeFileSync(file, html.replace('</head>', `${script}</head>`));
+        html = html.replace('</head>', `${script}</head>`);
       }
+      if (html.includes('data-stay-inquiry') && !html.includes('src="/stay-inquiry.js"')) {
+        html = html.replace('</head>', '<script defer src="/stay-inquiry.js"></script></head>');
+      }
+      writeFileSync(file, html);
     }
   }
 }

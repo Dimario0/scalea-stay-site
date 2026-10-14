@@ -91,3 +91,15 @@ test('React components cannot reintroduce manual WhatsApp or overlapping booking
     assert.doesNotMatch(readFileSync(file, 'utf8'), /trackEvent\(['"](?:whatsapp_click|booking_button_click)['"]/, file);
   }
 });
+
+
+test('an anchor on the commercial page is not an apartment transition, while an incoming guide link is', () => {
+  const h = harness();
+  const destination = 'https://scaleastay.com/it/appartamento-scalea-vicino-mare/#apartment-stay-inquiry';
+  h.window.location.pathname = '/it/appartamento-scalea-vicino-mare';
+  h.click(destination);
+  assert.equal(h.calls.filter(c => c[1] === 'apartment_link_click').length, 0);
+  h.window.location.pathname = '/it/dove-mangiare-scalea/';
+  h.click(destination);
+  assert.equal(h.calls.filter(c => c[1] === 'apartment_link_click').length, 1);
+});

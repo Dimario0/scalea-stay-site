@@ -25,11 +25,13 @@
       transport_type: 'beacon'
     };
   }
-  var formReadyReported = false;
+  var formReadyPages = new Set();
   function reportFormReady() {
-    if (formReadyReported || !document.querySelector('form[data-stay-inquiry][data-stay-inquiry-tracking="1"]')) return;
-    formReadyReported = true;
-    window.gtag('event', 'guide_stay_inquiry_ready', parameters('guide_stay_inquiry', 'form'));
+    var page = window.location.pathname.replace(/\/+$/, '') + '/';
+    var form = document.querySelector('form[data-stay-inquiry][data-stay-inquiry-tracking="1"]');
+    if (formReadyPages.has(page) || !form) return;
+    formReadyPages.add(page);
+    window.gtag('event', 'guide_stay_inquiry_ready', parameters(form.getAttribute('data-analytics-source') || 'guide_stay_inquiry', 'form'));
   }
   document.addEventListener('scaleastay:stay-inquiry-ready', reportFormReady);
   reportFormReady();
@@ -41,7 +43,8 @@
     try { url = new URL(link.href, window.location.href); } catch (_) { return; }
     var whatsapp = ['wa.me', 'api.whatsapp.com', 'web.whatsapp.com'].includes(url.hostname);
     var apartment = url.origin === window.location.origin && (
-      /^\/(it\/appartamento-scalea-vicino-mare|pl\/apartament-scalea-blisko-morza)\/?$/.test(url.pathname) ||
+      (/^\/(it\/appartamento-scalea-vicino-mare|pl\/apartament-scalea-blisko-morza)\/?$/.test(url.pathname) &&
+        url.pathname.replace(/\/+$/, '') !== window.location.pathname.replace(/\/+$/, '')) ||
       (/^\/(ru|en|it|de|cs|pl)\/?$/.test(url.pathname) && url.hash === '#apartments')
     );
     if (!whatsapp && !apartment) return;
@@ -51,7 +54,7 @@
     var params = parameters(source, whatsapp ? 'whatsapp' : url.pathname + url.hash);
     window.gtag('event', whatsapp ? 'whatsapp_click' : 'apartment_link_click', params);
     // Only the validated form creates this link. Direct-write links share source but not this marker.
-    if (whatsapp && source === 'guide_stay_inquiry' &&
+    if (whatsapp && ['guide_stay_inquiry', 'apartment_stay_inquiry'].includes(source) &&
         link.getAttribute('data-stay-inquiry-submit') === 'true' && link.closest('form[data-stay-inquiry]')) {
       window.gtag('event', 'guide_stay_inquiry_whatsapp_click', params);
     }

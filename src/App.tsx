@@ -8,7 +8,7 @@ import ApartmentCard from './components/ApartmentCard';
 import WeatherForecast from './components/WeatherForecast';
 import AIConcierge from './components/AIConcierge';
 import BackToTop from './components/BackToTop';
-import { REVIEWS, CONTACT_INFO } from './constants';
+import { CONTACT_INFO } from './constants';
 import { useSiteData } from './context/SiteContext';
 import { useLanguage } from './context/LanguageContext';
 import AdminPanel from './components/AdminPanel';
@@ -122,23 +122,6 @@ const App: React.FC = () => {
         <Advantages />
 
         <LocalFacts />
-
-        <section className="py-10 px-4 bg-white border-y border-slate-50 w-full overflow-hidden">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter break-words hyphens-none">{t('reviews')}</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              {REVIEWS.map((rev, i) => (
-                <div key={i} className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-xl transition-all duration-500 group max-w-full">
-                  <div className="text-amber-400 text-sm mb-3 transition-transform group-hover:scale-110">★★★★★</div>
-                  <p className="text-slate-600 text-xs font-medium leading-relaxed mb-4 italic break-words hyphens-none">"{t(rev.textKey)}"</p>
-                  <p className="text-slate-900 font-black uppercase text-[9px] tracking-widest break-words hyphens-none">— {t(rev.nameKey)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <DirectBookingBenefits />
 
