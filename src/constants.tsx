@@ -1,5 +1,6 @@
 
 import { Apartment } from './types';
+import { APARTMENT_IMAGES } from './content/apartmentImages.mjs';
 
 // --- ВЕРСИЯ ДАННЫХ ---
 export const SITE_DATA_VERSION = 10;
@@ -41,15 +42,7 @@ export const APARTMENTS: Apartment[] = [
     price: 'от 50€',
     beds: 4,
     distanceToSea: '600m',
-    images: [
-      'https://i.postimg.cc/rmgf10N5/IMG_0338.jpg',
-      'https://i.postimg.cc/vBX0rgth/IMG_0349.jpg',
-      '/images/scaleastay-bedroom-ready.jpg',
-      'https://i.postimg.cc/tTDB3ZNM/IMG_0355.jpg',
-      '/images/scaleastay-terrace-seating.jpg',
-      'https://i.postimg.cc/j5vMHw4P/IMG_0357.jpg',
-      'https://i.postimg.cc/ZRjw8Bx7/IMG_0358.jpg'
-    ],
+    images: APARTMENT_IMAGES,
     features: [
       'Кондиционер',
       'Терраса',
