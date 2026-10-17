@@ -1,5 +1,6 @@
 import { translate } from './translations';
 import { getLongStayCopy } from './longStay';
+import { APARTMENT_PAGE_COPY } from './apartmentPage';
 
 const FAQ_COPY: Record<string, {
   amenitiesSuffix: string;
@@ -104,5 +105,10 @@ const COMMERCIAL_TRAVEL_FAQ = {
 
 export const getCommercialFaqItems = (language: 'it' | 'pl') => {
   const [beach, train] = COMMERCIAL_TRAVEL_FAQ[language];
-  return [...getFaqItems(language).map(item => item.q === translate(language, 'faqQ1') ? beach : item), train];
+  const sleeping = APARTMENT_PAGE_COPY[language];
+  return [...getFaqItems(language).map(item => {
+    if (item.q === translate(language, 'faqQ1')) return beach;
+    if (item.q === translate(language, 'faqQ7')) return { ...item, a: `${item.a} ${sleeping.bedroom} ${sleeping.livingRoom}` };
+    return item;
+  }), train];
 };
