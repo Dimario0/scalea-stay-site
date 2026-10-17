@@ -10,6 +10,9 @@ import { getCommercialFaqItems } from '../content/faq';
 import { APARTMENT_COPY } from '../content/apartment';
 import LongStay from './LongStay';
 import StayInquiry from './StayInquiry';
+import ApartmentGallery from './ApartmentGallery';
+import MobileStayInquiry from './MobileStayInquiry';
+import { APARTMENT_PAGE_COPY } from '../content/apartmentPage';
 
 type LandingFact = {
   label: string;
@@ -151,11 +154,7 @@ const CommercialLanding: React.FC = () => {
   if (!supportedLanguage) return null;
 
   const apartment = data.apartments[0];
-  const images = [
-    { src: apartment?.images?.[0], alt: supportedLanguage === 'it' ? 'Soggiorno con cucina di ScaleaStay' : 'Salon z kuchnią w ScaleaStay' },
-    { src: '/images/scaleastay-bedroom-ready.jpg', alt: supportedLanguage === 'it' ? 'Camera da letto di ScaleaStay' : 'Sypialnia w ScaleaStay' },
-    { src: '/images/scaleastay-terrace-seating.jpg', alt: supportedLanguage === 'it' ? 'Terrazza privata di ScaleaStay con tavolo e sedie' : 'Prywatny taras ScaleaStay ze stołem i krzesłami' },
-  ].filter(image => image.src);
+  const apartmentPageCopy = APARTMENT_PAGE_COPY[supportedLanguage];
   const whatsappUrl = CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry);
   const faqItems = getCommercialFaqItems(supportedLanguage);
   const faqSchema = {
@@ -166,7 +165,7 @@ const CommercialLanding: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[100dvh] bg-white text-slate-900">
+    <div className="min-h-[100dvh] bg-white pb-24 text-slate-900 md:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replaceAll('<', '\\u003c') }} />
       <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
@@ -212,17 +211,7 @@ const CommercialLanding: React.FC = () => {
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {images.map((image, index) => (
-                <img
-                  key={image.src}
-                  src={image.src}
-                  alt={image.alt}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  className={`w-full object-cover rounded-3xl ${index === 0 ? 'col-span-2 h-64 sm:h-80' : 'h-40 sm:h-48'}`}
-                />
-              ))}
-            </div>
+            <ApartmentGallery key={supportedLanguage} images={apartment?.images || []} language={supportedLanguage} />
           </div>
         </section>
 
@@ -247,6 +236,11 @@ const CommercialLanding: React.FC = () => {
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5 hyphens-none">{copy.apartmentTitle}</h2>
               <p className="font-bold text-indigo-600 mb-3">{APARTMENT_COPY[supportedLanguage].facts[0]}</p>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
+              <div className="mt-6 rounded-2xl bg-slate-50 p-5" data-sleeping-arrangement>
+                <h3 className="mb-3 text-lg text-slate-950">{apartmentPageCopy.sleepingTitle}</h3>
+                <p className="text-sm leading-relaxed text-slate-700">{apartmentPageCopy.bedroom}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">{apartmentPageCopy.livingRoom}</p>
+              </div>
               <p className="text-sm text-slate-500 leading-relaxed mt-4">Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
             </div>
             <div className="grid grid-cols-2 gap-3">
@@ -337,6 +331,7 @@ const CommercialLanding: React.FC = () => {
       <footer className="px-4 py-8 border-t border-slate-100 text-center text-xs font-bold text-slate-500">
         <a href={`/${language}/`} className="hover:text-indigo-600">ScaleaStay</a> · Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia
       </footer>
+      <MobileStayInquiry key={supportedLanguage} language={supportedLanguage} />
     </div>
   );
 };

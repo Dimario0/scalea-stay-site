@@ -6,6 +6,9 @@ import react from '@vitejs/plugin-react';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import StayInquiry from './src/components/StayInquiry';
+import ApartmentGallery from './src/components/ApartmentGallery';
+import MobileStayInquiry from './src/components/MobileStayInquiry';
+import { APARTMENT_PAGE_COPY } from './src/content/apartmentPage';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
@@ -26,7 +29,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-09-18';
-const APARTMENT_LASTMOD = '2026-10-14';
+const APARTMENT_LASTMOD = '2026-10-16';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -415,7 +418,7 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
 });
 
 // Read the same copy as the interactive page so crawlers and guests see the same facts.
-const buildApartmentShell = (language: LanguageCode, includeTerrace = false) => {
+const buildApartmentShell = (language: LanguageCode, includeGallery = false) => {
   const copy = getLongStayCopy(language);
   const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
@@ -423,8 +426,10 @@ const buildApartmentShell = (language: LanguageCode, includeTerrace = false) => 
     <h3>ScaleaStay</h3><p>${escapeHtml(copy.apartmentSummary)}</p>
     <p>Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
     <ul>${facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul>
-    <img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />
-    ${includeTerrace ? `<img src="/images/scaleastay-terrace-seating.jpg" alt="${language === 'it' ? 'Terrazza privata di ScaleaStay con tavolo e sedie' : 'Prywatny taras ScaleaStay ze stołem i krzesłami'}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />` : ''}
+    ${includeGallery && (language === 'it' || language === 'pl') ? `
+      <div data-sleeping-arrangement><h3>${escapeHtml(APARTMENT_PAGE_COPY[language].sleepingTitle)}</h3><p>${escapeHtml(APARTMENT_PAGE_COPY[language].bedroom)}</p><p>${escapeHtml(APARTMENT_PAGE_COPY[language].livingRoom)}</p></div>
+      <div style="background:#020617;padding:24px;border-radius:20px">${renderToStaticMarkup(createElement(ApartmentGallery, { images: APARTMENTS[0].images, language }))}</div>
+    ` : `<img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />`}
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
   </div></section>`;
 };
@@ -484,6 +489,7 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
         ${buildLongStayShell(page.language, false)}
         ${buildFaqShell(page.language, getCommercialFaqItems(page.language))}
       </main>
+      ${renderToStaticMarkup(createElement(MobileStayInquiry, { language: page.language }))}
     </div>`;
 
 const buildGuidePrerenderShell = (page: GuidePage) => `    <div id="root" data-prerender-guide="${page.topic}-${page.language}">
