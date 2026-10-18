@@ -43,11 +43,11 @@ type LandingCopy = {
 const COPY: Record<'it' | 'pl', LandingCopy> = {
   it: {
     eyebrow: 'Scalea • Calabria • Riviera dei Cedri',
-    title: 'Appartamento a Scalea vicino al mare',
-    subtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
+    title: APARTMENT_PAGE_COPY.it.heroTitle,
+    subtitle: APARTMENT_PAGE_COPY.it.heroSubtitle,
     cta: 'Indica le tue date',
     homeLabel: 'Appartamenti a Scalea',
-    apartmentTitle: 'Una base comoda per la vacanza in Calabria',
+    apartmentTitle: APARTMENT_PAGE_COPY.it.apartmentTitle,
     apartmentText: 'L’appartamento è luminoso e accogliente, con aria condizionata, cucina attrezzata, terrazza e parcheggio. Ospita fino a 4 persone ed è adatto sia a soggiorni brevi sia a vacanze più lunghe.',
     amenities: ['Aria condizionata', 'Cucina attrezzata', 'Terrazza', 'Parcheggio'],
     facts: [
@@ -62,17 +62,17 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directText: 'Per conoscere disponibilità e condizioni del soggiorno puoi scrivere direttamente su WhatsApp. Ricevi una risposta sulle date senza dover cercare il contatto su altre piattaforme.',
     directPoints: ['Controllo rapido delle date', 'Contatto diretto', 'Informazioni pratiche prima dell’arrivo'],
     faqTitle: 'Domande frequenti su ScaleaStay',
-    seoTitle: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
+    seoTitle: APARTMENT_PAGE_COPY.it.seoTitle,
+    seoDescription: APARTMENT_PAGE_COPY.it.seoDescription,
     canonicalPath: '/it/appartamento-scalea-vicino-mare/',
   },
   pl: {
     eyebrow: 'Scalea • Kalabria • Riviera dei Cedri',
-    title: 'Apartament w Scalei blisko morza',
-    subtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
+    title: APARTMENT_PAGE_COPY.pl.heroTitle,
+    subtitle: APARTMENT_PAGE_COPY.pl.heroSubtitle,
     cta: 'Podaj swój termin',
     homeLabel: 'Apartamenty w Scalei',
-    apartmentTitle: 'Wygodna baza na wakacje w Kalabrii',
+    apartmentTitle: APARTMENT_PAGE_COPY.pl.apartmentTitle,
     apartmentText: 'Jasny i przytulny apartament z klimatyzacją, wyposażoną kuchnią, tarasem i parkingiem. Może pomieścić do 4 gości i sprawdzi się zarówno na krótki wyjazd, jak i dłuższy urlop.',
     amenities: ['Klimatyzacja', 'Wyposażona kuchnia', 'Taras', 'Parking'],
     facts: [
@@ -87,8 +87,8 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directText: 'Dostępność i warunki pobytu możesz szybko sprawdzić przez WhatsApp. Otrzymasz informację o terminach bez szukania kontaktu na innych platformach.',
     directPoints: ['Szybkie sprawdzenie terminów', 'Bezpośredni kontakt', 'Praktyczne informacje przed przyjazdem'],
     faqTitle: 'Najczęstsze pytania o ScaleaStay',
-    seoTitle: 'Apartament w Scalei blisko morza | ScaleaStay',
-    seoDescription: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
+    seoTitle: APARTMENT_PAGE_COPY.pl.seoTitle,
+    seoDescription: APARTMENT_PAGE_COPY.pl.seoDescription,
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
   },
 };

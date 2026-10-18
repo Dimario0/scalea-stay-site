@@ -4,6 +4,11 @@ export type ApartmentPageLanguage = 'it' | 'pl';
 
 export const APARTMENT_PAGE_COPY = {
   it: {
+    seoTitle: 'Appartamento vacanze a Scalea vicino al mare | ScaleaStay',
+    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza privata e parcheggio. Chiedi date e prezzo su WhatsApp.',
+    heroTitle: 'Appartamento vacanze a Scalea vicino al mare',
+    heroSubtitle: 'Una casa per le tue vacanze in Calabria, con camera matrimoniale, divano letto per due e terrazza privata. Da ScaleaStay puoi raggiungere a piedi la spiaggia, Interspar, la stazione e il centro.',
+    apartmentTitle: 'Fino a 4 ospiti e una terrazza privata',
     sleepingTitle: 'Come sono organizzati i posti letto',
     bedroom: 'Camera da letto separata con un grande letto matrimoniale.',
     livingRoom: 'Soggiorno con un divano letto per due persone.',
@@ -18,6 +23,11 @@ export const APARTMENT_PAGE_COPY = {
     datesCta: 'Chiedi disponibilità e prezzo',
   },
   pl: {
+    seoTitle: 'Apartament w Scalei blisko morza dla 4 osób | ScaleaStay',
+    seoDescription: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, prywatny taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
+    heroTitle: 'Apartament w Scalei blisko morza',
+    heroSubtitle: 'Miejsce na wakacje w Kalabrii z oddzielną sypialnią, rozkładaną sofą dla dwóch osób i prywatnym tarasem. Ze ScaleaStay dojdziesz pieszo na plażę, do Intersparu, dworca i centrum.',
+    apartmentTitle: 'Do 4 osób i prywatny taras',
     sleepingTitle: 'Jak rozmieszczone są miejsca do spania',
     bedroom: 'Oddzielna sypialnia z dużym łóżkiem dwuosobowym.',
     livingRoom: 'Salon z rozkładaną sofą dla dwóch osób.',

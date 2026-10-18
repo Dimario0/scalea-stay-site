@@ -280,7 +280,7 @@ ${guideStayInquiryStyles}${foodGuideReferenceStyles}<script defer src="/stay-inq
         <h1>${esc(page.h1)}</h1>
         <p class="lead">${esc(page.intro)}</p>
         <div class="cta-row">
-          <a class="cta primary" href="/it/appartamento-scalea-vicino-mare/">Scopri ScaleaStay</a>
+          <a class="cta primary" href="/it/appartamento-scalea-vicino-mare/">Scopri l’appartamento a Scalea vicino al mare</a>
           <a class="cta secondary" href="${whatsapp}" rel="noopener">Verifica le date su WhatsApp</a>
         </div>
         <div class="trust">${chips}</div>

@@ -29,7 +29,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-09-18';
-const APARTMENT_LASTMOD = '2026-10-16';
+const APARTMENT_LASTMOD = '2026-10-18';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -145,19 +145,19 @@ const COMMERCIAL_PAGES: CommercialPage[] = [
   {
     language: 'it',
     path: '/it/appartamento-scalea-vicino-mare/',
-    title: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    description: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
-    heroTitle: 'Appartamento a Scalea vicino al mare',
-    heroSubtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
+    title: APARTMENT_PAGE_COPY.it.seoTitle,
+    description: APARTMENT_PAGE_COPY.it.seoDescription,
+    heroTitle: APARTMENT_PAGE_COPY.it.heroTitle,
+    heroSubtitle: APARTMENT_PAGE_COPY.it.heroSubtitle,
     cta: 'Verifica le date su WhatsApp',
   },
   {
     language: 'pl',
     path: '/pl/apartament-scalea-blisko-morza/',
-    title: 'Apartament w Scalei blisko morza | ScaleaStay',
-    description: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
-    heroTitle: 'Apartament w Scalei blisko morza',
-    heroSubtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
+    title: APARTMENT_PAGE_COPY.pl.seoTitle,
+    description: APARTMENT_PAGE_COPY.pl.seoDescription,
+    heroTitle: APARTMENT_PAGE_COPY.pl.heroTitle,
+    heroSubtitle: APARTMENT_PAGE_COPY.pl.heroSubtitle,
     cta: 'Sprawdź terminy na WhatsApp',
   },
 ];
@@ -422,7 +422,7 @@ const buildApartmentShell = (language: LanguageCode, includeGallery = false) => 
   const copy = getLongStayCopy(language);
   const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
-    <h2>${escapeHtml(translate(language, 'ourApartments'))}</h2>
+    <h2>${escapeHtml(includeGallery && (language === 'it' || language === 'pl') ? APARTMENT_PAGE_COPY[language].apartmentTitle : translate(language, 'ourApartments'))}</h2>
     <h3>ScaleaStay</h3><p>${escapeHtml(copy.apartmentSummary)}</p>
     <p>Via Giuseppe Saragat 11 · 87029 Scalea (CS), Italia · CIN: IT078138C2VN4E3MCD</p>
     <ul>${facts.map(fact => `<li>${escapeHtml(fact)}</li>`).join('')}</ul>
