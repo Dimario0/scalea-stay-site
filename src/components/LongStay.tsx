@@ -38,7 +38,7 @@ const LongStay: React.FC = () => {
             {copy.cta}<ArrowRight aria-hidden="true" className="w-5 h-5 shrink-0" />
           </a>
           <a href={getLongStayRoute(language).path} className="inline-block mt-5 text-sm font-bold text-indigo-700 underline underline-offset-4">
-            {getLongStayRoute(language).label} →
+            {getLongStayRoute(language).rentalLink} →
           </a>
         </div>
       </div>

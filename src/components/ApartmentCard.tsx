@@ -5,6 +5,7 @@ import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 import { getLongStayCopy } from '../content/longStay';
+import { getLongStayRoute } from '../content/longStayRoutes';
 
 interface Props {
   apartment: Apartment;
@@ -107,6 +108,10 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           className="w-full py-5 bg-slate-900 text-white rounded-[24px] font-black text-center transition-all hover:bg-indigo-600 shadow-xl hover:-translate-y-1 active:scale-95"
         >
           {getLongStayCopy(language).availabilityCta}
+        </a>
+        <a href={getLongStayRoute(language).path}
+          className="mt-4 rounded-xl bg-indigo-50 px-4 py-3 text-sm font-bold leading-relaxed text-indigo-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+          {getLongStayRoute(language).rentalLink} →
         </a>
       </div>
     </div>

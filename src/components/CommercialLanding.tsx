@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { getLongStayCopy } from '../content/longStay';
+import { getLongStayRoute } from '../content/longStayRoutes';
 import { getCommercialFaqItems } from '../content/faq';
 import { APARTMENT_COPY } from '../content/apartment';
 import LongStay from './LongStay';
@@ -236,6 +237,10 @@ const CommercialLanding: React.FC = () => {
               <h2 className="text-3xl sm:text-4xl font-black tracking-tighter mb-5 hyphens-none">{copy.apartmentTitle}</h2>
               <p className="font-bold text-indigo-600 mb-3">{APARTMENT_COPY[supportedLanguage].facts[0]}</p>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">{stayCopy.apartmentSummary}</p>
+              <a href={getLongStayRoute(language).path}
+                className="mt-5 inline-block rounded-xl bg-indigo-50 px-4 py-3 text-sm font-bold leading-relaxed text-indigo-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                {getLongStayRoute(language).rentalLink} →
+              </a>
               <div className="mt-6 rounded-2xl bg-slate-50 p-5" data-sleeping-arrangement>
                 <h3 className="mb-3 text-lg text-slate-950">{apartmentPageCopy.sleepingTitle}</h3>
                 <p className="text-sm leading-relaxed text-slate-700">{apartmentPageCopy.bedroom}</p>

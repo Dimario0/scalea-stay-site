@@ -3,11 +3,11 @@ import { getLongStayCopy } from './longStay';
 const stay = getLongStayCopy('it');
 
 export const LONG_STAY_LANDING = {
-  title: 'Soggiorni invernali e lunghi a Scalea con Wi-Fi e riscaldamento | ScaleaStay',
+  title: 'Affitto invernale a Scalea: 450 €/mese + utenze | ScaleaStay',
   description: 'Appartamento a Scalea a 450 € al mese da novembre a marzo, minimo un mese. Utenze a consumo escluse, anticipo una tantum di 100 € con conguaglio.',
-  h1: 'Il tuo inverno a Scalea, con il comfort di casa',
+  h1: 'Appartamento a Scalea in affitto mensile per l’inverno',
   eyebrow: 'Calabria · Inverno e fuori stagione',
-  intro: 'Una camera da letto separata, interni moderni e una cucina attrezzata. Scegli ScaleaStay per un mese o più vicino al mare, con i tuoi spazi e le comodità di casa.',
+  intro: 'Da novembre a marzo, affitta l’appartamento ScaleaStay per almeno un mese a 450 € al mese, più utenze a consumo. Una camera da letto separata, Wi‑Fi, riscaldamento a gas e cucina attrezzata per la tua vita quotidiana vicino al mare.',
   offer: {
     price: '450 € al mese per l’appartamento',
     period: 'Da novembre a marzo · soggiorno minimo di un mese',
