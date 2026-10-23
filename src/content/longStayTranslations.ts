@@ -11,11 +11,11 @@ type Details = {
 };
 const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
   ru: {
-    title: 'Зимнее и длительное проживание в Скалее — Wi-Fi и отопление | ScaleaStay',
+    title: 'Зимняя аренда в Скалее: €450/мес. + коммунальные | ScaleaStay',
     description: 'Апартаменты в Скалее за €450 в месяц с ноября по март, минимум месяц. Коммунальные отдельно по счётчикам, разовый аванс €100 с перерасчётом.',
-    h1: 'Останьтесь в Скалее на зиму — с домашним комфортом',
+    h1: 'Апартаменты в Скалее на месяц зимой',
     eyebrow: 'Калабрия · Зима и несезон',
-    intro: 'Месяц или больше у моря в своём ритме. Апартаменты с одной спальней и современным интерьером. Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни вдали от дома.',
+    intro: 'С ноября по март снимайте апартаменты ScaleaStay на срок от одного месяца за €450 в месяц плюс коммунальные по счётчикам. Отдельная спальня, Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни рядом с морем.',
     offer: {
       price: '€450 в месяц за апартаменты',
       period: 'С ноября по март · минимум один месяц',
@@ -35,11 +35,11 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     ],
   },
   en: {
-    title: 'Winter and longer stays in Scalea with Wi-Fi and heating | ScaleaStay',
+    title: 'Scalea winter monthly rental: €450 + utilities | ScaleaStay',
     description: 'Scalea apartment for €450 per month from November to March, minimum one month. Metered utilities are extra, with a one-off €100 advance and reconciliation.',
-    h1: 'Make yourself at home in Scalea this winter',
+    h1: 'Rent an apartment in Scalea for a month or more this winter',
     eyebrow: 'Calabria · Winter and off-season stays',
-    intro: 'Spend a month or longer by the sea at your own pace. Enjoy a one-bedroom apartment with modern interiors, Wi‑Fi, gas heating and an equipped kitchen.',
+    intro: 'Rent the ScaleaStay apartment from November to March for €450 per month, with a minimum stay of one month and metered utilities charged separately. Enjoy a separate bedroom, Wi‑Fi, gas heating and an equipped kitchen near the sea.',
     offer: {
       price: '€450 per month for the apartment',
       period: 'November to March · minimum stay of one month',
@@ -59,11 +59,11 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     ],
   },
   de: {
-    title: 'Überwintern in Scalea: Ferienwohnung mit WLAN und Heizung | ScaleaStay',
+    title: 'Überwintern in Scalea: 450 €/Monat + Nebenkosten | ScaleaStay',
     description: 'Ferienwohnung in Scalea für 450 € pro Monat von November bis März, mindestens ein Monat. Verbrauchskosten extra; einmalig 100 € Vorschuss mit Abrechnung.',
-    h1: 'Den Winter in Scalea verbringen und sich zu Hause fühlen',
+    h1: 'Ferienwohnung in Scalea zum Überwintern mieten',
     eyebrow: 'Kalabrien · Winter und Nebensaison',
-    intro: 'Einen Monat oder länger am Meer, ganz in Ihrem eigenen Rhythmus. Die modern eingerichtete Ferienwohnung bietet ein separates Schlafzimmer, WLAN, Gasheizung und eine ausgestattete Küche.',
+    intro: 'Mieten Sie die Ferienwohnung ScaleaStay von November bis März für 450 € pro Monat, bei einem Mindestaufenthalt von einem Monat. Verbrauchskosten werden separat nach Zählerständen abgerechnet. Ein separates Schlafzimmer, WLAN, Gasheizung und eine ausgestattete Küche machen den Alltag am Meer bequem.',
     offer: {
       price: '450 € pro Monat für die Ferienwohnung',
       period: 'November bis März · Mindestaufenthalt ein Monat',
@@ -83,11 +83,11 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     ],
   },
   cs: {
-    title: 'Zimní a delší pobyty ve Scalee — Wi-Fi a topení | ScaleaStay',
+    title: 'Zimní pronájem ve Scalee: 450 €/měsíc + energie a služby | ScaleaStay',
     description: 'Apartmán ve Scalee za 450 € měsíčně od listopadu do března, minimálně měsíc. Energie a služby dle měřidel zvlášť; jednorázová záloha 100 € s vyúčtováním.',
-    h1: 'Prožijte zimu ve Scalee s pohodlím domova',
+    h1: 'Pronájem apartmánu ve Scalee na měsíc v zimě',
     eyebrow: 'Kalábrie · Zima a pobyty mimo sezónu',
-    intro: 'Měsíc nebo déle u moře ve vlastním rytmu. Moderně zařízený apartmán nabízí samostatnou ložnici, Wi‑Fi, plynové topení a vybavenou kuchyň.',
+    intro: 'Od listopadu do března si pronajměte apartmán ScaleaStay za 450 € měsíčně, minimálně na jeden měsíc. Energie a služby se platí zvlášť podle měřidel. Samostatná ložnice, Wi‑Fi, plynové topení a vybavená kuchyň pro každodenní život u moře.',
     offer: {
       price: '450 € měsíčně za apartmán',
       period: 'Od listopadu do března · minimální pobyt jeden měsíc',
@@ -107,11 +107,11 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
     ],
   },
   pl: {
-    title: 'Zimowe i dłuższe pobyty w Scalei — Wi-Fi i ogrzewanie | ScaleaStay',
+    title: 'Wynajem zimą w Scalei: 450 €/mies. + media | ScaleaStay',
     description: 'Apartament w Scalei za 450 € miesięcznie od listopada do marca, minimum miesiąc. Media osobno według liczników; jednorazowa zaliczka 100 € z rozliczeniem.',
-    h1: 'Spędź zimę w Scalei z wygodą własnego mieszkania',
+    h1: 'Wynajem apartamentu w Scalei na miesiąc zimą',
     eyebrow: 'Kalabria · Zima i pobyty poza sezonem',
-    intro: 'Miesiąc lub dłużej nad morzem, we własnym rytmie. Nowocześnie urządzony apartament z oddzielną sypialnią, Wi‑Fi, ogrzewaniem gazowym i wyposażoną kuchnią.',
+    intro: 'Od listopada do marca wynajmij apartament ScaleaStay za 450 € miesięcznie, na co najmniej jeden miesiąc. Media są płatne osobno według liczników. Oddzielna sypialnia, Wi‑Fi, ogrzewanie gazowe i wyposażona kuchnia ułatwiają codzienne życie blisko morza.',
     offer: {
       price: '450 € miesięcznie za apartament',
       period: 'Od listopada do marca · minimalny pobyt jeden miesiąc',

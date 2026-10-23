@@ -29,7 +29,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-10-23';
-const APARTMENT_LASTMOD = '2026-10-16';
+const APARTMENT_LASTMOD = '2026-10-23';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -396,7 +396,7 @@ const buildLongStayShell = (language: LanguageCode, includeFaq = true) => {
     <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
     <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.layout)}</p><p>${escapeHtml(copy.location)}</p>
     <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
-    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).label)} →</a></p>
+    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
     ${includeFaq ? copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('') : ''}
   </div></section>`;
 };
@@ -431,6 +431,7 @@ const buildApartmentShell = (language: LanguageCode, includeGallery = false) => 
       <div style="background:#020617;padding:24px;border-radius:20px">${renderToStaticMarkup(createElement(ApartmentGallery, { images: APARTMENTS[0].images, language }))}</div>
     ` : `<img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />`}
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
+    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
   </div></section>`;
 };
 
