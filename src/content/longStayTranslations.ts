@@ -5,87 +5,128 @@ import { LONG_STAY_ROUTES, type StayLanguage } from './longStayRoutes';
 type Landing = typeof LONG_STAY_LANDING;
 type Details = {
   title: string; description: string; h1: string; eyebrow: string; intro: string;
+  offer: Landing['offer']; minimumStayFaq: [string, string];
   features: [string, string][]; nearby: [string, string][];
   extraFaq: [string, string][];
 };
 const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
   ru: {
     title: 'Зимнее и длительное проживание в Скалее — Wi-Fi и отопление | ScaleaStay',
-    description: 'Проведите несколько недель или месяц зимой в Скалее: апартаменты с одной спальней, Wi-Fi, газовым отоплением, кухней и террасой. Стоимость по запросу.',
+    description: 'Апартаменты в Скалее за €450 в месяц с ноября по март, минимум месяц. Коммунальные отдельно по счётчикам, разовый аванс €100 с перерасчётом.',
     h1: 'Останьтесь в Скалее на зиму — с домашним комфортом',
     eyebrow: 'Калабрия · Зима и несезон',
-    intro: 'Несколько недель или месяц у моря в своём ритме. Апартаменты с одной спальней и современным интерьером. Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни вдали от дома.',
+    intro: 'Месяц или больше у моря в своём ритме. Апартаменты с одной спальней и современным интерьером. Wi‑Fi, газовое отопление и оборудованная кухня — для привычной жизни вдали от дома.',
+    offer: {
+      price: '€450 в месяц за апартаменты',
+      period: 'С ноября по март · минимум один месяц',
+      utilities: 'Коммунальные услуги оплачиваются отдельно по фактическим показаниям счётчиков.',
+      advance: 'При заселении вносится разовый аванс €100 за коммунальные услуги. После перерасчёта неиспользованный остаток возвращается, превышение оплачивается дополнительно.',
+      availability: 'Свободные даты необходимо подтвердить у владельца.',
+    },
+    minimumStayFaq: ['Какой минимальный срок по зимнему предложению?', 'Предложение действует с ноября по март при проживании от одного месяца. Свободные даты необходимо подтвердить у владельца.'],
     features: [
       ['Комфорт в прохладные месяцы', 'В апартаментах есть газовое отопление и Wi‑Fi. Также доступны кондиционер и парковка для гостей.'],
       ['Живите в своём ритме', 'Готовьте на оборудованной кухне и отдыхайте в отдельной спальне. Устраивайте день так, как удобно вам.'],
     ],
     nearby: [['Ближайший пляж', 'Примерно 5–8 минут пешком до прогулки у моря.'], ['Interspar', 'Около 3 минут пешком за повседневными покупками.'], ['Железнодорожный вокзал', 'Около 8 минут пешком до станции Scalea–Santa Domenica Talao.']],
     extraFaq: [
-      ['Сколько стоит проживание на месяц?', 'Стоимость по запросу: она зависит от дат, срока проживания и числа гостей. Цену согласуем до подтверждения бронирования.'],
+      ['Сколько стоит проживание на месяц?', 'С ноября по март — €450 в месяц за апартаменты, минимальный срок — один месяц. Коммунальные услуги оплачиваются отдельно по счётчикам. При заселении вносится разовый аванс €100 за коммунальные услуги: после перерасчёта остаток возвращается, превышение оплачивается дополнительно.'],
       ['Можно ли приехать без автомобиля?', 'До моря, Interspar и вокзала можно дойти пешком. Для экскурсий и дальних поездок проверьте транспортное расписание на ваши даты.'],
     ],
   },
   en: {
     title: 'Winter and longer stays in Scalea with Wi-Fi and heating | ScaleaStay',
-    description: 'Spend a few weeks or a month in Scalea this winter. A one-bedroom apartment with Wi-Fi, gas heating, a kitchen and a private terrace. Price on request.',
+    description: 'Scalea apartment for €450 per month from November to March, minimum one month. Metered utilities are extra, with a one-off €100 advance and reconciliation.',
     h1: 'Make yourself at home in Scalea this winter',
     eyebrow: 'Calabria · Winter and off-season stays',
-    intro: 'Spend a few weeks or a month by the sea at your own pace. Enjoy a one-bedroom apartment with modern interiors, Wi‑Fi, gas heating and an equipped kitchen.',
+    intro: 'Spend a month or longer by the sea at your own pace. Enjoy a one-bedroom apartment with modern interiors, Wi‑Fi, gas heating and an equipped kitchen.',
+    offer: {
+      price: '€450 per month for the apartment',
+      period: 'November to March · minimum stay of one month',
+      utilities: 'Utilities are charged separately according to actual meter readings.',
+      advance: 'A one-off €100 advance towards utilities is paid on arrival. After reconciliation, any unused balance is refunded and any excess is payable separately.',
+      availability: 'Available dates must be confirmed by the owner.',
+    },
+    minimumStayFaq: ['What is the minimum stay for the winter offer?', 'The offer applies from November to March for stays of at least one month, subject to confirmation of available dates.'],
     features: [
       ['Comfort in the cooler months', 'Gas heating and Wi‑Fi are available in the apartment. Air conditioning and guest parking complete the amenities.'],
       ['Room for your everyday routine', 'Prepare meals in the equipped kitchen and enjoy the privacy of a separate bedroom. Plan each day around what suits you.'],
     ],
     nearby: [['Nearest beach', 'About a 5–8 minute walk for some time by the sea.'], ['Interspar', 'About a 3-minute walk for everyday groceries.'], ['Railway station', 'About an 8-minute walk to Scalea–Santa Domenica Talao station.']],
     extraFaq: [
-      ['How much does a month-long stay cost?', 'Prices are available on request and depend on your dates, length of stay and number of guests. We agree the price before confirming your booking.'],
+      ['How much does a month-long stay cost?', 'From November to March, the apartment costs €450 per month, with a minimum stay of one month. Utilities are extra and calculated from meter readings. A one-off €100 advance towards utilities is paid on arrival; any unused balance is refunded after reconciliation and any excess is payable separately.'],
       ['Can I stay without a car?', 'You can walk to the sea, Interspar and the railway station. For excursions and longer journeys, check transport timetables for your travel dates.'],
     ],
   },
   de: {
     title: 'Überwintern in Scalea: Ferienwohnung mit WLAN und Heizung | ScaleaStay',
-    description: 'Einige Wochen oder einen Monat im Winter in Scalea verbringen: Ferienwohnung mit einem Schlafzimmer, WLAN, Gasheizung, Küche und Terrasse. Preis auf Anfrage.',
+    description: 'Ferienwohnung in Scalea für 450 € pro Monat von November bis März, mindestens ein Monat. Verbrauchskosten extra; einmalig 100 € Vorschuss mit Abrechnung.',
     h1: 'Den Winter in Scalea verbringen und sich zu Hause fühlen',
     eyebrow: 'Kalabrien · Winter und Nebensaison',
-    intro: 'Einige Wochen oder einen Monat am Meer, ganz in Ihrem eigenen Rhythmus. Die modern eingerichtete Ferienwohnung bietet ein separates Schlafzimmer, WLAN, Gasheizung und eine ausgestattete Küche.',
+    intro: 'Einen Monat oder länger am Meer, ganz in Ihrem eigenen Rhythmus. Die modern eingerichtete Ferienwohnung bietet ein separates Schlafzimmer, WLAN, Gasheizung und eine ausgestattete Küche.',
+    offer: {
+      price: '450 € pro Monat für die Ferienwohnung',
+      period: 'November bis März · Mindestaufenthalt ein Monat',
+      utilities: 'Die Verbrauchskosten werden separat nach den tatsächlichen Zählerständen abgerechnet.',
+      advance: 'Bei der Anreise wird ein einmaliger Vorschuss von 100 € für die Verbrauchskosten gezahlt. Nach der Abrechnung wird ein Guthaben erstattet; ein Mehrverbrauch ist zusätzlich zu bezahlen.',
+      availability: 'Verfügbare Reisedaten müssen vom Eigentümer bestätigt werden.',
+    },
+    minimumStayFaq: ['Wie lang ist der Mindestaufenthalt für das Winterangebot?', 'Das Angebot gilt von November bis März für Aufenthalte ab einem Monat. Verfügbare Reisedaten müssen bestätigt werden.'],
     features: [
       ['Komfort auch an kühleren Tagen', 'Die Ferienwohnung verfügt über Gasheizung und WLAN. Klimaanlage und ein Parkplatz für Gäste ergänzen die Ausstattung.'],
       ['Freiraum für Ihren Alltag', 'Bereiten Sie Ihre Mahlzeiten in der ausgestatteten Küche zu und genießen Sie die Privatsphäre eines separaten Schlafzimmers. Sie bestimmen Ihren Tagesablauf.'],
     ],
     nearby: [['Nächster Strand', 'Etwa 5–8 Minuten zu Fuß für einen Spaziergang am Meer.'], ['Interspar', 'Etwa 3 Minuten zu Fuß für den täglichen Einkauf.'], ['Bahnhof', 'Etwa 8 Minuten zu Fuß zum Bahnhof Scalea–Santa Domenica Talao.']],
     extraFaq: [
-      ['Was kostet ein Aufenthalt von einem Monat?', 'Den Preis erhalten Sie auf Anfrage. Er richtet sich nach Reisedaten, Aufenthaltsdauer und Gästezahl und wird vor der Buchungsbestätigung vereinbart.'],
+      ['Was kostet ein Aufenthalt von einem Monat?', 'Von November bis März kostet die Ferienwohnung 450 € pro Monat, bei einem Mindestaufenthalt von einem Monat. Verbrauchskosten werden separat nach Zählerständen abgerechnet. Bei der Anreise wird ein einmaliger Vorschuss von 100 € gezahlt; nach der Abrechnung wird ein Guthaben erstattet oder die Differenz nachgezahlt.'],
       ['Ist ein Aufenthalt ohne Auto möglich?', 'Das Meer, Interspar und der Bahnhof sind zu Fuß erreichbar. Prüfen Sie für Ausflüge und längere Strecken die Verbindungen für Ihre Reisedaten.'],
     ],
   },
   cs: {
     title: 'Zimní a delší pobyty ve Scalee — Wi-Fi a topení | ScaleaStay',
-    description: 'Několik týdnů nebo měsíc v zimní Scalee. Apartmán s jednou ložnicí, Wi-Fi, plynovým topením, kuchyní a vlastní terasou. Cena na vyžádání.',
+    description: 'Apartmán ve Scalee za 450 € měsíčně od listopadu do března, minimálně měsíc. Energie a služby dle měřidel zvlášť; jednorázová záloha 100 € s vyúčtováním.',
     h1: 'Prožijte zimu ve Scalee s pohodlím domova',
     eyebrow: 'Kalábrie · Zima a pobyty mimo sezónu',
-    intro: 'Několik týdnů nebo měsíc u moře ve vlastním rytmu. Moderně zařízený apartmán nabízí samostatnou ložnici, Wi‑Fi, plynové topení a vybavenou kuchyň.',
+    intro: 'Měsíc nebo déle u moře ve vlastním rytmu. Moderně zařízený apartmán nabízí samostatnou ložnici, Wi‑Fi, plynové topení a vybavenou kuchyň.',
+    offer: {
+      price: '450 € měsíčně za apartmán',
+      period: 'Od listopadu do března · minimální pobyt jeden měsíc',
+      utilities: 'Energie a služby se platí zvlášť podle skutečných odečtů měřidel.',
+      advance: 'Při příjezdu se platí jednorázová záloha 100 € na energie a služby. Po vyúčtování se nevyužitý zůstatek vrací a případný nedoplatek se doplácí.',
+      availability: 'Volný termín musí potvrdit majitel.',
+    },
+    minimumStayFaq: ['Jaká je minimální délka pobytu pro zimní nabídku?', 'Nabídka platí od listopadu do března pro pobyty alespoň na jeden měsíc, po potvrzení volného termínu.'],
     features: [
       ['Pohodlí i v chladnějších měsících', 'V apartmánu je plynové topení a Wi‑Fi. K vybavení patří také klimatizace a parkování pro hosty.'],
       ['Každý den podle vás', 'Připravte si jídlo ve vybavené kuchyni a užijte si soukromí samostatné ložnice. Denní program si určujete sami.'],
     ],
     nearby: [['Nejbližší pláž', 'Přibližně 5–8 minut pěšky na procházku k moři.'], ['Interspar', 'Přibližně 3 minuty pěšky na běžný nákup.'], ['Vlakové nádraží', 'Přibližně 8 minut pěšky na nádraží Scalea–Santa Domenica Talao.']],
     extraFaq: [
-      ['Kolik stojí měsíční pobyt?', 'Cena je na vyžádání a závisí na termínu, délce pobytu a počtu hostů. Dohodneme ji před potvrzením rezervace.'],
+      ['Kolik stojí měsíční pobyt?', 'Od listopadu do března stojí apartmán 450 € měsíčně, minimální pobyt je jeden měsíc. Energie a služby se platí zvlášť podle měřidel. Při příjezdu se platí jednorázová záloha 100 €; po vyúčtování se nevyužitý zůstatek vrací nebo se doplácí rozdíl.'],
       ['Mohu přijet bez auta?', 'K moři, do Intersparu i na nádraží dojdete pěšky. Pro výlety a delší cesty si ověřte dopravní spojení na svůj termín.'],
     ],
   },
   pl: {
     title: 'Zimowe i dłuższe pobyty w Scalei — Wi-Fi i ogrzewanie | ScaleaStay',
-    description: 'Spędź kilka tygodni lub miesiąc zimą w Scalei. Apartament z jedną sypialnią, Wi-Fi, ogrzewaniem gazowym, kuchnią i tarasem. Cena na zapytanie.',
+    description: 'Apartament w Scalei za 450 € miesięcznie od listopada do marca, minimum miesiąc. Media osobno według liczników; jednorazowa zaliczka 100 € z rozliczeniem.',
     h1: 'Spędź zimę w Scalei z wygodą własnego mieszkania',
     eyebrow: 'Kalabria · Zima i pobyty poza sezonem',
-    intro: 'Kilka tygodni lub miesiąc nad morzem, we własnym rytmie. Nowocześnie urządzony apartament z oddzielną sypialnią, Wi‑Fi, ogrzewaniem gazowym i wyposażoną kuchnią.',
+    intro: 'Miesiąc lub dłużej nad morzem, we własnym rytmie. Nowocześnie urządzony apartament z oddzielną sypialnią, Wi‑Fi, ogrzewaniem gazowym i wyposażoną kuchnią.',
+    offer: {
+      price: '450 € miesięcznie za apartament',
+      period: 'Od listopada do marca · minimalny pobyt jeden miesiąc',
+      utilities: 'Media są płatne osobno według rzeczywistych odczytów liczników.',
+      advance: 'Przy przyjeździe wpłacana jest jednorazowa zaliczka 100 € na media. Po rozliczeniu niewykorzystana kwota jest zwracana, a ewentualną niedopłatę należy dopłacić.',
+      availability: 'Wolny termin musi zostać potwierdzony przez właściciela.',
+    },
+    minimumStayFaq: ['Jaki jest minimalny pobyt w ofercie zimowej?', 'Oferta obowiązuje od listopada do marca przy pobycie przez co najmniej jeden miesiąc, po potwierdzeniu wolnego terminu.'],
     features: [
       ['Wygodnie również w chłodniejsze miesiące', 'Apartament ma ogrzewanie gazowe i Wi‑Fi. Do dyspozycji gości są również klimatyzacja i parking.'],
       ['Codzienność po swojemu', 'Przygotuj posiłek w wyposażonej kuchni i odpocznij w oddzielnej sypialni. Zaplanuj dzień tak, jak lubisz.'],
     ],
     nearby: [['Najbliższa plaża', 'Około 5–8 minut pieszo na spacer nad morzem.'], ['Interspar', 'Około 3 minuty pieszo po codzienne zakupy.'], ['Dworzec kolejowy', 'Około 8 minut pieszo do stacji Scalea–Santa Domenica Talao.']],
     extraFaq: [
-      ['Ile kosztuje pobyt na miesiąc?', 'Cena jest dostępna na zapytanie i zależy od terminu, długości pobytu oraz liczby gości. Ustalamy ją przed potwierdzeniem rezerwacji.'],
+      ['Ile kosztuje pobyt na miesiąc?', 'Od listopada do marca apartament kosztuje 450 € miesięcznie, minimalny pobyt to jeden miesiąc. Media są płatne osobno według liczników. Przy przyjeździe wpłacana jest jednorazowa zaliczka 100 €; po rozliczeniu niewykorzystana kwota jest zwracana lub dopłacana jest różnica.'],
       ['Czy można przyjechać bez samochodu?', 'Do morza, Intersparu i dworca można dojść pieszo. Planując wycieczki i dalsze przejazdy, sprawdź połączenia na termin swojego pobytu.'],
     ],
   },
@@ -97,7 +138,7 @@ export function getLongStayLanding(language: StayLanguage): Landing {
   return { ...d, cta: home.availabilityCta, message: home.message,
     features: d.features.map(([title, text]) => ({ title, text })),
     nearby: d.nearby.map(([name, text], i) => ({ name, text, distance: ['600 m', '230 m', '500 m'][i] })),
-    faq: [...home.faq, ...d.extraFaq.map(([q, a]) => ({ q, a }))],
+    faq: [...home.faq.slice(0, 2), { q: d.minimumStayFaq[0], a: d.minimumStayFaq[1] }, ...d.extraFaq.map(([q, a]) => ({ q, a }))],
   };
 }
 
