@@ -28,7 +28,7 @@ const __dirname = path.dirname(__filename);
 
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
-const STAY_LASTMOD = '2026-10-23';
+const STAY_LASTMOD = '2026-10-24';
 const APARTMENT_LASTMOD = '2026-10-23';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];

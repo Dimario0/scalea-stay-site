@@ -10,12 +10,30 @@
       const arrival = form.elements.arrival;
       const departure = form.elements.departure;
       const language = form.dataset.language;
+      const monthly = form.dataset.minimumStay === 'month';
       arrival.min = localDate;
       departure.min = localDate;
       const invalidDates = language === 'pl' ? 'Wyjazd musi być po przyjeździe.' : 'La partenza deve essere successiva all’arrivo.';
+      function monthAfter(value) {
+        const [year, month, day] = value.split('-').map(Number);
+        // Clamp the day at month end (31 January → 28/29 February), without DST shifts.
+        const lastDay = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+        const date = new Date(Date.UTC(year, month, Math.min(day, lastDay)));
+        return date.toISOString().slice(0, 10);
+      }
       function validateDates() {
-        departure.min = arrival.value || localDate;
-        departure.setCustomValidity(departure.value && arrival.value && departure.value <= arrival.value ? invalidDates : '');
+        departure.min = monthly && arrival.value ? monthAfter(arrival.value) : arrival.value || localDate;
+        let error = departure.value && arrival.value && departure.value <= arrival.value ? invalidDates : '';
+        if (monthly && arrival.value && departure.value) {
+          const [year, month] = arrival.value.split('-').map(Number);
+          const winterYear = month >= 11 ? year : year - 1;
+          if ((month > 3 && month < 11) || departure.value > `${winterYear + 1}-04-01`) {
+            error = form.dataset.invalidSeason;
+          } else if (departure.value < monthAfter(arrival.value)) {
+            error = form.dataset.invalidMinimum;
+          }
+        }
+        departure.setCustomValidity(error);
       }
       arrival.addEventListener('input', validateDates);
       departure.addEventListener('input', validateDates);
@@ -23,7 +41,9 @@
         event.preventDefault();
         validateDates();
         if (!form.reportValidity()) return;
-        const message = language === 'pl'
+        const message = monthly
+          ? form.dataset.inquiryMessage.replaceAll('{arrival}', arrival.value).replaceAll('{departure}', departure.value).replaceAll('{guests}', form.elements.guests.value)
+          : language === 'pl'
           ? `Dzień dobry! Znalazłem apartament na scaleastay.com. Interesuje mnie ScaleaStay. Przyjazd: ${arrival.value}. Wyjazd: ${departure.value}. Liczba gości: ${form.elements.guests.value}. Czy termin jest wolny i jaka jest całkowita cena?`
           : `Buongiorno! Ho trovato l’appartamento su scaleastay.com. Mi interessa ScaleaStay. Arrivo: ${arrival.value}. Partenza: ${departure.value}. Ospiti: ${form.elements.guests.value}. Le date sono disponibili e qual è il prezzo totale?`;
         const link = document.createElement('a');

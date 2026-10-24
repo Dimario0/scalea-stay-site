@@ -7,14 +7,14 @@ const tracker = readFileSync('public/conversion-tracking.js', 'utf8');
 const inquiry = readFileSync('public/stay-inquiry.js', 'utf8');
 const FORM_CLICK = 'guide_stay_inquiry_whatsapp_click';
 
-function harness(language = 'it', formFirst = true, { source = 'guide_stay_inquiry', path = '/it/spiagge-scalea/', mounted = true } = {}) {
+function harness(language = 'it', formFirst = true, { source = 'guide_stay_inquiry', path = '/it/spiagge-scalea/', mounted = true, monthly = false } = {}) {
   const calls = [], handlers = new Map(), submitted = [];
   const field = value => ({ value, validationMessage: '', addEventListener() {},
     setCustomValidity(message) { this.validationMessage = message; } });
   let active = mounted;
   const links = [];
   const form = {
-    dataset: { language }, elements: { arrival: field('2026-10-20'), departure: field('2026-10-27'), guests: field('4') },
+    dataset: { language, ...(monthly ? { minimumStay: 'month', invalidMinimum: 'minimum-month', invalidSeason: 'winter-season', inquiryMessage: 'Winter {arrival} to {departure}, {guests} guests' } : {}) }, elements: { arrival: field('2026-10-20'), departure: field('2026-10-27'), guests: field('4') },
     getAttribute(name) { return name === 'data-analytics-source' ? source : null; },
     addEventListener(type, fn) { if (type === 'submit') submitted.push(fn); },
     reportValidity() { return !!this.elements.arrival.value && !!this.elements.departure.value && !this.elements.departure.validationMessage; },
@@ -54,6 +54,40 @@ test('valid Italian and Polish forms emit one total and one subset, without date
     assert.equal(h.calls.filter(c => c[1] === FORM_CLICK).length, 1);
     assert.equal(h.calls.find(c => c[1] === FORM_CLICK)[2].source, 'guide_stay_inquiry');
     assert.doesNotMatch(JSON.stringify(h.calls), /2026-10-20|2026-10-27|Arrivo|Przyjazd|420774620060|text=/);
+  }
+});
+
+test('winter forms accept a calendar month across year, month-end and leap-year boundaries', () => {
+  for (const language of ['it', 'pl', 'ru', 'en', 'de', 'cs']) {
+    for (const [arrival, departure] of [['2027-11-01','2027-12-01'], ['2027-12-15','2028-01-15'], ['2027-01-31','2027-02-28'], ['2028-01-31','2028-02-29'], ['2028-02-29','2028-03-29'], ['2028-03-01','2028-04-01']]) {
+      const h = harness(language, true, { source: 'winter_stay_inquiry', monthly: true });
+      h.form.elements.arrival.value = arrival; h.form.elements.departure.value = departure; h.submit();
+      assert.equal(h.calls.filter(c => c[1] === FORM_CLICK).length, 1, `${language}: ${arrival} – ${departure}`);
+      assert.equal(h.calls.filter(c => c[1] === 'whatsapp_click').length, 1);
+      assert.equal(h.calls.find(c => c[1] === FORM_CLICK)[2].source, 'winter_stay_inquiry');
+      assert.equal(new URL(h.links[0].href).searchParams.get('text'), `Winter ${arrival} to ${departure}, 4 guests`);
+      assert.doesNotMatch(JSON.stringify(h.calls), new RegExp(arrival + '|' + departure));
+      h.direct({ 'data-analytics-source': 'winter_stay_inquiry' }, true);
+      assert.equal(h.calls.filter(c => c[1] === FORM_CLICK).length, 1);
+    }
+  }
+});
+
+test('winter forms reject short stays and dates outside one November–March season', () => {
+  for (const [arrival, departure, error] of [
+    ['2027-11-01','2027-11-30','minimum-month'], ['2028-01-31','2028-02-28','minimum-month'],
+    ['2027-12-10','2027-12-10','minimum-month'], ['2027-12-10','2027-12-01','minimum-month'],
+    ['2027-10-01','2027-11-01','winter-season'], ['2028-04-01','2028-05-01','winter-season'],
+    ['2028-03-02','2028-04-02','winter-season'], ['2027-11-01','2028-11-01','winter-season'],
+  ]) {
+    const h = harness('it', true, { source: 'winter_stay_inquiry', monthly: true });
+    h.form.elements.arrival.value = arrival; h.form.elements.departure.value = departure; h.submit();
+    assert.equal(h.form.elements.departure.validationMessage, error, `${arrival} – ${departure}`);
+    assert.equal(h.links.length, 0);
+    assert.equal(h.calls.filter(c => c[1] === FORM_CLICK || c[1] === 'whatsapp_click').length, 0);
+    h.form.elements.arrival.value = '2028-02-01'; h.form.elements.departure.value = '2028-03-01'; h.submit();
+    assert.equal(h.form.elements.departure.validationMessage, '');
+    assert.equal(h.links.length, 1, 'correcting dates clears the error');
   }
 });
 test('empty, equal and reversed dates do not count a form transition', () => {
