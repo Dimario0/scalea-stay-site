@@ -54,7 +54,7 @@
     var params = parameters(source, whatsapp ? 'whatsapp' : url.pathname + url.hash);
     window.gtag('event', whatsapp ? 'whatsapp_click' : 'apartment_link_click', params);
     // Only the validated form creates this link. Direct-write links share source but not this marker.
-    if (whatsapp && ['guide_stay_inquiry', 'apartment_stay_inquiry'].includes(source) &&
+    if (whatsapp && ['guide_stay_inquiry', 'apartment_stay_inquiry', 'winter_stay_inquiry'].includes(source) &&
         link.getAttribute('data-stay-inquiry-submit') === 'true' && link.closest('form[data-stay-inquiry]')) {
       window.gtag('event', 'guide_stay_inquiry_whatsapp_click', params);
     }

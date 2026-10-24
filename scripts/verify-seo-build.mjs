@@ -119,6 +119,14 @@ for (const p of pages) {
     } catch { fail(`${p.file}: invalid accommodation JSON`); }
   }
   if (p.canonical === SITE_ORIGIN + stayRoutes[p.lang]) {
+    const winterForm = html.match(/<form\s[^>]*data-analytics-source="winter_stay_inquiry"[^>]*>([\s\S]*?)<\/form>/g) || [];
+    if (winterForm.length !== 1 || !winterForm[0].includes('data-minimum-stay="month"') || !winterForm[0].includes(`data-language="${p.lang}"`) || !winterForm[0].includes('data-inquiry-message=') || !winterForm[0].includes('data-invalid-minimum=') || !winterForm[0].includes('data-invalid-season=')) fail(`${p.file}: missing localized monthly winter inquiry`);
+    for (const field of ['arrival', 'departure', 'guests']) {
+      if (!winterForm[0]?.includes(`name="${field}"`)) fail(`${p.file}: missing winter form field ${field}`);
+    }
+    const excursions = html.indexOf('id="nearby');
+    if (excursions < 0 || !['id="daily-essentials"', 'id="faq"', 'id="winter-stay-inquiry"'].every(marker => html.indexOf(marker) >= 0 && html.indexOf(marker) < excursions)) fail(`${p.file}: practical information and form must precede excursions`);
+    if ((html.match(/href="#winter-stay-inquiry"/g) || []).length !== 2) fail(`${p.file}: primary winter CTAs must reach the form`);
     if (/<script[^>]*type="module"/i.test(html)) fail('long-stay page must not be replaced by the home SPA');
     if ((html.match(/<details>/g) || []).length !== 5) fail('long-stay page must expose all five FAQ answers');
     for (const [lang, url] of Object.entries(stayRoutes)) {
