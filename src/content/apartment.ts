@@ -3,6 +3,18 @@ type ApartmentCopy = {
   facts: [string, string, string, string, string];
 };
 
+export const getApartmentPageLink = (language: string) => {
+  if (language === 'it') return {
+    path: '/it/appartamento-scalea-vicino-mare/',
+    label: 'Foto e richiesta date',
+  };
+  if (language === 'pl') return {
+    path: '/pl/apartament-scalea-blisko-morza/',
+    label: 'Zdjęcia i zapytanie o termin',
+  };
+  return null;
+};
+
 export const APARTMENT_COPY: Record<string, ApartmentCopy> = {
   ru: {
     eyebrow: 'Апартаменты в Скалее',

@@ -3,6 +3,7 @@ import { CONTACT_INFO } from '../constants';
 import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getLongStayCopy } from '../content/longStay';
+import { getApartmentPageLink } from '../content/apartment';
 
 type HeroCopy = {
   badge: string;
@@ -54,6 +55,7 @@ const Hero: React.FC = () => {
   const { t, language } = useLanguage();
   const { data } = useSiteData();
   const copy = COPY[language] || COPY.ru;
+  const apartmentPageLink = getApartmentPageLink(language);
   const userMainImage = data.siteImages.heroBackground;
   const localFallbacks = ['/web_ready_bg.jpg', '/bg-sea.jpg'];
   
@@ -131,11 +133,12 @@ const Hero: React.FC = () => {
         <div className="flex flex-col items-center animate-fade-in w-full mx-auto" style={{ animationDelay: '0.4s' }}>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 [@media(orientation:landscape)_and_(max-height:700px)]:gap-4 justify-center items-center w-full max-w-md sm:max-w-none">
             <a 
-              href="#apartments" 
-              onClick={scrollToApartments}
-              className="w-full sm:w-auto bg-white text-slate-950 px-8 sm:px-12 py-4 sm:py-5 xl:py-6 [@media(orientation:landscape)_and_(max-height:850px)]:py-4 rounded-[28px] font-black text-base sm:text-lg [@media(orientation:landscape)_and_(max-height:700px)]:text-base transition-all hover:bg-indigo-50 hover:-translate-y-1 shadow-[0_20px_50px_rgba(255,255,255,0.2)] active:scale-95 text-center"
+              href={apartmentPageLink?.path || '#apartments'}
+              onClick={apartmentPageLink ? undefined : scrollToApartments}
+              data-analytics-source={apartmentPageLink ? 'hero_apartment_details' : undefined}
+              className="w-full sm:w-auto bg-white text-slate-950 px-8 sm:px-12 py-4 sm:py-5 xl:py-6 [@media(orientation:landscape)_and_(max-height:850px)]:py-4 rounded-[28px] font-black text-base sm:text-lg [@media(orientation:landscape)_and_(max-height:700px)]:text-base transition-all hover:bg-indigo-50 hover:-translate-y-1 shadow-[0_20px_50px_rgba(255,255,255,0.2)] active:scale-95 text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
-              {copy.primaryCta}
+              {apartmentPageLink?.label || copy.primaryCta}
             </a>
             <a 
               href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}

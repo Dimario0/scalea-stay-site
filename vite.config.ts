@@ -12,7 +12,7 @@ import { APARTMENT_PAGE_COPY } from './src/content/apartmentPage';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
-import { APARTMENT_COPY } from './src/content/apartment';
+import { APARTMENT_COPY, getApartmentPageLink } from './src/content/apartment';
 import { getFaqItems, getCommercialFaqItems } from './src/content/faq';
 import { translate } from './src/content/translations';
 import { APARTMENTS, CONTACT_INFO } from './src/constants';
@@ -420,6 +420,7 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
 // Read the same copy as the interactive page so crawlers and guests see the same facts.
 const buildApartmentShell = (language: LanguageCode, includeGallery = false) => {
   const copy = getLongStayCopy(language);
+  const apartmentPageLink = includeGallery ? null : getApartmentPageLink(language);
   const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <h2>${escapeHtml(translate(language, 'ourApartments'))}</h2>
@@ -430,6 +431,7 @@ const buildApartmentShell = (language: LanguageCode, includeGallery = false) => 
       <div data-sleeping-arrangement><h3>${escapeHtml(APARTMENT_PAGE_COPY[language].sleepingTitle)}</h3><p>${escapeHtml(APARTMENT_PAGE_COPY[language].bedroom)}</p><p>${escapeHtml(APARTMENT_PAGE_COPY[language].livingRoom)}</p></div>
       <div style="background:#020617;padding:24px;border-radius:20px">${renderToStaticMarkup(createElement(ApartmentGallery, { images: APARTMENTS[0].images, language }))}</div>
     ` : `<img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />`}
+    ${apartmentPageLink ? `<p><a href="${apartmentPageLink.path}" data-analytics-source="apartment_card_details" style="display:inline-block;padding:16px 24px;border-radius:20px;background:#4f46e5;color:#fff;font-weight:800;text-decoration:none;">${escapeHtml(apartmentPageLink.label)} <span aria-hidden="true">→</span></a></p>` : ''}
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
     <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
   </div></section>`;
@@ -451,6 +453,7 @@ const buildFaqSchema = (language: LanguageCode, pagePath = `/${language}/`, item
 
 const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
   const content = PRERENDER_CONTENT[language];
+  const apartmentPageLink = getApartmentPageLink(language);
   return `    <div id="root" data-prerender-language="${language}">
       <main aria-label="ScaleaStay" style="min-height:100vh;background:#020617;color:#fff;">
         <section id="home" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:96px 24px 48px;text-align:center;background:linear-gradient(180deg,rgba(2,6,23,.78),rgba(2,6,23,.38) 48%,rgba(2,6,23,.94)),url('https://i.postimg.cc/Dz0dHGzW/Scalea.webp') center/cover no-repeat;">
@@ -459,7 +462,7 @@ const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
             <h1 style="margin:0 auto 32px;max-width:1000px;color:#fff;font:900 clamp(2.5rem,8vw,7.5rem)/.92 system-ui,sans-serif;letter-spacing:-.055em;text-transform:uppercase;text-wrap:balance;">${escapeHtml(content.heroTitle)}</h1>
             <p style="max-width:760px;margin:0 auto 40px;color:rgba(255,255,255,.9);font:500 clamp(1rem,2.2vw,1.4rem)/1.55 system-ui,sans-serif;">${escapeHtml(getLongStayCopy(language).hero)}</p>
             <nav aria-label="Primary" style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;">
-              <a href="#apartments" style="display:inline-block;padding:16px 28px;border-radius:22px;background:#fff;color:#0f172a;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(content.apartmentsLabel)}</a>
+              <a href="${apartmentPageLink?.path || '#apartments'}"${apartmentPageLink ? ' data-analytics-source="hero_apartment_details"' : ''} style="display:inline-block;padding:16px 28px;border-radius:22px;background:#fff;color:#0f172a;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;">${escapeHtml(apartmentPageLink?.label || content.apartmentsLabel)}</a>
               <a href="#routes" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(content.routesLabel)}</a>
               <a href="${getLongStayRoute(language).path}" style="display:inline-block;padding:16px 28px;border:2px solid rgba(255,255,255,.45);border-radius:22px;color:#fff;font:800 1rem/1.2 system-ui,sans-serif;text-decoration:none;background:rgba(15,23,42,.28);">${escapeHtml(getLongStayRoute(language).nav)}</a>
             </nav>

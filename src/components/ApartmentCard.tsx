@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Apartment } from '../types';
-import { APARTMENT_COPY } from '../content/apartment';
+import { APARTMENT_COPY, getApartmentPageLink } from '../content/apartment';
 import { CONTACT_INFO } from '../constants';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
@@ -14,6 +14,7 @@ interface Props {
 const ApartmentCard: React.FC<Props> = ({ apartment }) => {
   const { t, language } = useLanguage();
   const copy = APARTMENT_COPY[language] || APARTMENT_COPY.ru;
+  const apartmentPageLink = getApartmentPageLink(language);
   const [currentImg, setCurrentImg] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -100,6 +101,15 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
           ))}
         </div>
 
+        {apartmentPageLink && (
+          <a
+            href={apartmentPageLink.path}
+            data-analytics-source="apartment_card_details"
+            className="mb-3 flex min-h-14 w-full items-center justify-center gap-3 rounded-[24px] bg-indigo-600 px-5 py-4 text-center font-bold leading-relaxed text-white transition-colors hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600"
+          >
+            {apartmentPageLink.label} <span aria-hidden="true">→</span>
+          </a>
+        )}
         <a
           href={CONTACT_INFO.whatsappLink(getLongStayCopy(language).inquiry)}
           target="_blank"
