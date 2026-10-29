@@ -29,7 +29,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-10-24';
-const APARTMENT_LASTMOD = '2026-10-23';
+const APARTMENT_LASTMOD = '2026-10-29';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -391,12 +391,16 @@ const buildPairHeadAlternates = <T extends { language: LanguageCode; path: strin
 
 const buildLongStayShell = (language: LanguageCode, includeFaq = true) => {
   const copy = getLongStayCopy(language);
-  const whatsapp = `https://wa.me/420774620060?text=${encodeURIComponent(copy.message)}`;
+  const winter = getLongStayLanding(language);
+  const winterPath = getLongStayRoute(language).path;
   return `<section id="long-stay" style="padding:48px 24px;background:#eef2ff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <p>${escapeHtml(copy.eyebrow)}</p><h2>${escapeHtml(copy.title)}</h2>
     <p>${escapeHtml(copy.intro)}</p><p>${escapeHtml(copy.layout)}</p><p>${escapeHtml(copy.location)}</p>
-    <p>${escapeHtml(copy.terms)}</p><a href="${escapeHtml(whatsapp)}">${escapeHtml(copy.cta)}</a>
-    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
+    <p style="font-size:2rem;font-weight:900;color:#4338ca">${escapeHtml(winter.offer.price)}</p>
+    <p><strong>${escapeHtml(winter.offer.period)}</strong></p><p>${escapeHtml(winter.offer.utilities)}</p>
+    <p>${escapeHtml(winter.offer.advance)}</p><p>${escapeHtml(winter.offer.availability)}</p>
+    <a href="${winterPath}#winter-stay-inquiry">${escapeHtml(winter.cta)}</a>
+    <p><a href="${winterPath}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
     ${includeFaq ? copy.faq.map(({q,a}) => `<details><summary>${escapeHtml(q)}</summary><p>${escapeHtml(a)}</p></details>`).join('') : ''}
   </div></section>`;
 };
