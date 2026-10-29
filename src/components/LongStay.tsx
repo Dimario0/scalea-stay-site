@@ -1,13 +1,15 @@
 import React from 'react';
 import { Wifi, Flame, House, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { CONTACT_INFO } from '../constants';
 import { getLongStayRoute } from '../content/longStayRoutes';
 import { getLongStayCopy } from '../content/longStay';
+import { getLongStayLanding } from '../content/longStayTranslations';
 
 const LongStay: React.FC = () => {
   const { language } = useLanguage();
   const copy = getLongStayCopy(language);
+  const winter = getLongStayLanding(language);
+  const winterPath = getLongStayRoute(language).path;
   const facts = [
     { Icon: Wifi, label: copy.wifi },
     { Icon: Flame, label: copy.heating },
@@ -24,6 +26,9 @@ const LongStay: React.FC = () => {
           <p className="text-slate-600 text-sm leading-relaxed">{copy.location}</p>
         </div>
         <div className="bg-white border border-indigo-100 rounded-3xl p-5 sm:p-8 shadow-sm">
+          <p className="text-3xl sm:text-4xl font-black tracking-tight text-indigo-700 mb-3">{winter.offer.price}</p>
+          <p className="font-bold text-slate-800 mb-3">{winter.offer.period}</p>
+          <p className="text-slate-700 text-sm leading-relaxed mb-5">{winter.offer.utilities}</p>
           <ul className="space-y-4 mb-5">
             {facts.map(({ Icon, label }) => (
               <li key={label} className="flex gap-3 items-center font-bold">
@@ -31,13 +36,13 @@ const LongStay: React.FC = () => {
               </li>
             ))}
           </ul>
-          <p className="text-slate-700 text-sm leading-relaxed mb-6">{copy.terms}</p>
-          <a href={CONTACT_INFO.whatsappLink(copy.message)} target="_blank" rel="noopener noreferrer"
-            data-analytics-source="long_stay"
+          <p className="text-slate-600 text-sm leading-relaxed mb-3">{winter.offer.advance}</p>
+          <p className="text-slate-700 text-sm leading-relaxed mb-6">{winter.offer.availability}</p>
+          <a href={`${winterPath}#winter-stay-inquiry`}
             className="flex items-center justify-center gap-3 w-full rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-4 text-sm font-bold text-center transition-colors">
-            {copy.cta}<ArrowRight aria-hidden="true" className="w-5 h-5 shrink-0" />
+            {winter.cta}<ArrowRight aria-hidden="true" className="w-5 h-5 shrink-0" />
           </a>
-          <a href={getLongStayRoute(language).path} className="inline-block mt-5 text-sm font-bold text-indigo-700 underline underline-offset-4">
+          <a href={winterPath} className="inline-block mt-5 text-sm font-bold text-indigo-700 underline underline-offset-4">
             {getLongStayRoute(language).rentalLink} →
           </a>
         </div>

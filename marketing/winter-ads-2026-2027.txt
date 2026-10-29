@@ -1,0 +1,156 @@
+ScaleaStay — зимние объявления 2026/27
+Подготовлено 29 октября 2026 года. Тексты для проверки перед размещением.
+
+КАК ИСПОЛЬЗОВАТЬ
+В каждом тексте ниже стоит ссылка для Facebook на соответствующем языке.
+Для Telegram, Subito или Idealista замените только последнюю ссылку на вариант
+из списка в конце файла. Все ссылки ведут на основной сайт, на зимнюю страницу
+нужного языка. Их можно использовать с уже опубликованной зимней страницей.
+Чтобы различать несколько групп одной площадки, добавляйте к utm_content
+отдельный суффикс: например, ru_winter_month_g1 и ru_winter_month_g2.
+Если площадка не разрешает внешние ссылки, используйте разрешённый ею способ
+связи; переходы без сохранённых меток нельзя приписать конкретному объявлению.
+
+Метки позволяют различать источники посещений в GA4 при регистрации визита.
+Переход из формы в WhatsApp учитывается существующим событием
+guide_stay_inquiry_whatsapp_click с source=winter_stay_inquiry.
+Объявление само по себе не добавляет новые строки в ежедневный отчёт.
+Клик не подтверждает отправку сообщения или бронирование. Фактические обращения
+и бронирования нужно отдельно подтверждать у человека, ведущего переписку.
+Даты свободного проживания подтверждает владелец; свободные месяцы не заявлены.
+
+1. РУССКИЙ — сообщества о зимовке и жизни в Италии
+
+Зима у моря в Скалее — €450 в месяц за апартаменты + коммунальные
+
+ScaleaStay, Калабрия. Предложение действует с ноября по март при проживании
+от одного месяца. Цена €450 в месяц — за апартаменты целиком.
+
+Отдельная спальня с большой двуспальной кроватью, раскладной диван для двоих
+в гостиной — всего до четырёх гостей. Есть кухня, собственная терраса,
+газовое отопление и Wi‑Fi. До ближайшего пляжа 600 м, около 5–8 минут пешком.
+
+Коммунальные услуги оплачиваются отдельно по счётчикам. При заселении
+вносится разовый аванс €100 за коммунальные: после перерасчёта остаток
+возвращается, превышение оплачивается дополнительно.
+
+Посмотрите фотографии и отправьте желаемые даты через форму на сайте.
+Владелец подтвердит доступность и согласует условия до бронирования.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/ru/zimnee-prozhivanie-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=ru_winter_month
+
+2. POLSKI — grupy o zimowaniu i pobytach we Włoszech
+
+Zima nad morzem w Scalei — 450 € miesięcznie za apartament + media
+
+ScaleaStay, Kalabria. Od listopada do marca, pobyty od jednego miesiąca.
+Cena 450 € miesięcznie dotyczy całego apartamentu.
+
+Oddzielna sypialnia z dużym łóżkiem dwuosobowym i rozkładana sofa dla dwóch
+osób w salonie — łącznie do czterech gości. Wyposażona kuchnia, prywatny
+taras, ogrzewanie gazowe i Wi‑Fi. Najbliższa plaża: 600 m, około 5–8 minut pieszo.
+
+Media są płatne osobno według liczników. Przy przyjeździe jednorazowa
+zaliczka 100 € na media; po rozliczeniu niewykorzystana kwota jest zwracana,
+a ewentualną niedopłatę należy dopłacić.
+
+Zobacz zdjęcia i wyślij wybrany termin przez formularz na stronie.
+Właściciel potwierdzi dostępność i uzgodni warunki przed rezerwacją.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/pl/zimowe-dluzsze-pobyty-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=pl_winter_month
+
+3. ITALIANO — affitto mensile invernale
+
+Scalea: appartamento per l’inverno a 450 € al mese + utenze
+
+ScaleaStay, Calabria. Da novembre a marzo, soggiorno minimo di un mese.
+450 € al mese per l’intero appartamento.
+
+Una camera con un grande letto matrimoniale e un divano letto per due persone
+in soggiorno, fino a quattro ospiti. Cucina attrezzata, terrazza privata,
+riscaldamento a gas e Wi‑Fi. Spiaggia più vicina a 600 m, circa 5–8 minuti a piedi.
+
+Utenze escluse, calcolate secondo i consumi rilevati dai contatori.
+All’arrivo si versa un anticipo una tantum di 100 € per le utenze:
+al conguaglio, l’importo non utilizzato viene restituito e gli eventuali
+consumi eccedenti si pagano a parte.
+
+Guarda le foto e invia le date desiderate tramite il modulo sul sito.
+Il proprietario confermerà la disponibilità e le condizioni prima della prenotazione.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/it/soggiorni-lunghi-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=it_winter_month
+
+4. DEUTSCH — Überwintern in Kalabrien
+
+Überwintern in Scalea — 450 € pro Monat für die Ferienwohnung + Verbrauchskosten
+
+ScaleaStay, Kalabrien. November bis März, Mindestaufenthalt ein Monat.
+Der Monatspreis von 450 € gilt für die gesamte Ferienwohnung.
+
+Ein separates Schlafzimmer mit großem Doppelbett und ein Schlafsofa für zwei
+Personen im Wohnzimmer, insgesamt bis zu vier Gäste. Ausgestattete Küche,
+eigene Terrasse, Gasheizung und WLAN. Nächster Strand: 600 m, etwa 5–8 Minuten zu Fuß.
+
+Verbrauchskosten werden separat nach Zählerständen abgerechnet.
+Bei der Anreise wird einmalig ein Vorschuss von 100 € dafür gezahlt.
+Nach der Abrechnung wird ein Guthaben erstattet; ein Mehrverbrauch ist
+zusätzlich zu bezahlen.
+
+Fotos ansehen und die gewünschten Reisedaten über das Formular senden.
+Der Eigentümer bestätigt Verfügbarkeit und Bedingungen vor der Buchung.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/de/ueberwintern-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=de_winter_month
+
+5. ENGLISH — monthly winter stays in Calabria
+
+Winter by the sea in Scalea — €450 per month for the apartment + utilities
+
+ScaleaStay, Calabria. November to March, minimum stay of one month.
+The €450 monthly rent is for the whole apartment.
+
+A separate bedroom with a large double bed and a double sofa bed in the
+living room, for up to four guests. Equipped kitchen, private terrace,
+gas heating and Wi‑Fi. The nearest beach is 600 m away, about a 5–8 minute walk.
+
+Utilities are extra, calculated from actual meter readings. A one-off €100
+advance towards utilities is paid on arrival. After reconciliation, any
+unused balance is refunded and any excess is payable separately.
+
+View the photos and send your preferred dates through the website form.
+The owner confirms availability and agrees the terms before booking.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/en/winter-long-stays-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=en_winter_month
+
+6. ČEŠTINA — zimní pobyt v Kalábrii
+
+Zima u moře ve Scalee — 450 € měsíčně za apartmán + energie a služby
+
+ScaleaStay, Kalábrie. Od listopadu do března, pobyty od jednoho měsíce.
+Cena 450 € měsíčně platí za celý apartmán.
+
+Samostatná ložnice s velkou manželskou postelí a rozkládací pohovka pro dvě
+osoby v obývacím pokoji, celkem až čtyři hosté. Vybavená kuchyň, vlastní
+terasa, plynové topení a Wi‑Fi. Nejbližší pláž: 600 m, přibližně 5–8 minut pěšky.
+
+Energie a služby se platí zvlášť podle skutečných odečtů měřidel.
+Při příjezdu se hradí jednorázová záloha 100 €. Po vyúčtování se
+nevyužitý zůstatek vrací a případný nedoplatek se doplácí.
+
+Prohlédněte si fotografie a pošlete požadovaný termín formulářem na webu.
+Majitel před rezervací potvrdí dostupnost a dohodne podmínky.
+CIN: IT078138C2VN4E3MCD
+https://scaleastay.com/cs/zimni-dlouhodobe-pobyty-scalea/?utm_source=facebook&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=cs_winter_month
+
+ДОПОЛНИТЕЛЬНЫЕ ССЫЛКИ ДЛЯ ДРУГИХ ПЛОЩАДОК
+
+Русское объявление — Telegram:
+https://scaleastay.com/ru/zimnee-prozhivanie-scalea/?utm_source=telegram&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=ru_winter_month
+
+Польское объявление — Telegram:
+https://scaleastay.com/pl/zimowe-dluzsze-pobyty-scalea/?utm_source=telegram&utm_medium=social&utm_campaign=winter_2026_2027&utm_content=pl_winter_month
+
+Итальянское объявление — Subito:
+https://scaleastay.com/it/soggiorni-lunghi-scalea/?utm_source=subito&utm_medium=referral&utm_campaign=winter_2026_2027&utm_content=it_winter_month
+
+Итальянское объявление — Idealista:
+https://scaleastay.com/it/soggiorni-lunghi-scalea/?utm_source=idealista&utm_medium=referral&utm_campaign=winter_2026_2027&utm_content=it_winter_month
