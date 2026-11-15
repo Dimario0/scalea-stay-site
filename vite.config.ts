@@ -8,6 +8,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import StayInquiry from './src/components/StayInquiry';
 import ApartmentGallery from './src/components/ApartmentGallery';
 import MobileStayInquiry from './src/components/MobileStayInquiry';
+import SeasonalRates from './src/components/SeasonalRates';
 import { APARTMENT_PAGE_COPY } from './src/content/apartmentPage';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
@@ -29,7 +30,7 @@ const __dirname = path.dirname(__filename);
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
 const STAY_LASTMOD = '2026-10-24';
-const APARTMENT_LASTMOD = '2026-10-29';
+const APARTMENT_LASTMOD = '2026-11-15';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -473,6 +474,7 @@ const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
           </div>
         </section>
         ${buildApartmentShell(language)}
+        ${renderToStaticMarkup(createElement(SeasonalRates, { language }))}
         ${buildLongStayShell(language, false)}
         ${eventsPreview && language === 'it' ? renderEventsTeaser() : ''}
         <div id="about">${renderNearby(language)}</div>
@@ -493,6 +495,7 @@ const buildCommercialPrerenderShell = (page: CommercialPage) => `    <div id="ro
           </div>
         </section>
         ${buildApartmentShell(page.language, true)}
+        ${renderToStaticMarkup(createElement(SeasonalRates, { language: page.language }))}
         ${renderToStaticMarkup(createElement(StayInquiry, { language: page.language, whatsappUrl: CONTACT_INFO.whatsappLink(getLongStayCopy(page.language).inquiry) }))}
         ${buildLongStayShell(page.language, false)}
         ${buildFaqShell(page.language, getCommercialFaqItems(page.language))}

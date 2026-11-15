@@ -20,6 +20,7 @@ import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
 import CommercialLanding from './components/CommercialLanding';
+import SeasonalRates from './components/SeasonalRates';
 import { trackEvent } from './analytics';
 
 const ROUTE_NAMES = ['beach', 'station', 'airport'] as const;
@@ -114,6 +115,8 @@ const App: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <SeasonalRates language={language} />
 
         <LongStay />
 

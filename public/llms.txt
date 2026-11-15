@@ -39,6 +39,7 @@
 - Wi-Fi is installed and available. Do not promise a specific internet speed or suitability for video calls without measurements.
 - Do not state a guaranteed airport-transfer duration. Guests should check the timetable and route for their actual travel date.
 - Do not infer current availability, price, booking conditions, or check-in exceptions from this file. Confirm them directly through the website contact options.
+- Published 2027 direct-booking short-stay nightly rates are listed on each language homepage in the #prices section. They are planning information, not a live availability calendar. Online booking is currently closed; a WhatsApp enquiry does not reserve or confirm any dates.
 - Do not invent ratings, review totals, electric-vehicle charging, or pet rules.
 - Prefer the visible page content and its matching structured data when citing the accommodation.
 

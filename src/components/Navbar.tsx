@@ -1,6 +1,7 @@
 import { getNearbyCopy } from '../content/nearby';
 import { getLongStayCopy } from '../content/longStay';
 import { getLongStayRoute } from '../content/longStayRoutes';
+import { getRatesCopy } from '../content/seasonalRates';
 
 import React, { useState, useEffect } from 'react';
 import { CONTACT_INFO } from '../constants';
@@ -27,7 +28,7 @@ const Navbar: React.FC = () => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
 
-    const sections = ['home', 'apartments', 'weather', 'about', 'faq', 'routes', 'contact'];
+    const sections = ['home', 'apartments', 'prices', 'weather', 'about', 'faq', 'routes', 'contact'];
     
     const handleActiveSection = () => {
       const scrollPosition = window.scrollY + 200;
@@ -69,6 +70,7 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: t('navHome'), id: 'home' },
     { name: t('navApartments'), id: 'apartments' },
+    { name: getRatesCopy(language).nav, id: 'prices' },
     { name: getLongStayRoute(language).nav, id: 'long-stay', href: getLongStayRoute(language).path },
     { name: t('navWeather'), id: 'weather' },
     { name: getNearbyCopy(language).nav, id: 'about' },
