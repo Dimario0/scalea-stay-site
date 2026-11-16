@@ -39,7 +39,7 @@ export const APARTMENTS: Apartment[] = [
     nameKey: 'apt1Name',
     description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — 600 м, около 5–8 минут пешком.',
     descriptionKey: 'apt1Desc',
-    price: 'от 50€',
+    price: 'от 60€',
     beds: 4,
     distanceToSea: '600m',
     images: APARTMENT_IMAGES,

@@ -13,6 +13,7 @@ import LongStay from './LongStay';
 import StayInquiry from './StayInquiry';
 import ApartmentGallery from './ApartmentGallery';
 import MobileStayInquiry from './MobileStayInquiry';
+import SeasonalRates from './SeasonalRates';
 import { APARTMENT_PAGE_COPY } from '../content/apartmentPage';
 
 type LandingFact = {
@@ -261,6 +262,8 @@ const CommercialLanding: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <SeasonalRates language={supportedLanguage} />
 
         <StayInquiry key={supportedLanguage} language={supportedLanguage} whatsappUrl={whatsappUrl} />
 
