@@ -36,6 +36,18 @@
   document.addEventListener('scaleastay:stay-inquiry-ready', reportFormReady);
   reportFormReady();
 
+  // Only the validated submit handler emits this event. No message, dates,
+  // guest count or WhatsApp URL is attached to it or passed to Google.
+  document.addEventListener('scaleastay:stay-inquiry-whatsapp', function (event) {
+    var form = event.target;
+    if (!form || !form.matches || !form.matches('form[data-stay-inquiry][data-stay-inquiry-tracking="1"]')) return;
+    var source = form.getAttribute('data-analytics-source') || 'guide_stay_inquiry';
+    if (!['guide_stay_inquiry', 'apartment_stay_inquiry', 'winter_stay_inquiry'].includes(source)) return;
+    var params = parameters(source, 'whatsapp');
+    window.gtag('event', 'whatsapp_click', params);
+    window.gtag('event', 'guide_stay_inquiry_whatsapp_click', params);
+  });
+
   document.addEventListener('click', function (event) {
     var link = event.target.closest && event.target.closest('a[href]');
     if (!link) return;
@@ -53,10 +65,5 @@
       (section && (section.id || section.tagName.toLowerCase())) || 'page';
     var params = parameters(source, whatsapp ? 'whatsapp' : url.pathname + url.hash);
     window.gtag('event', whatsapp ? 'whatsapp_click' : 'apartment_link_click', params);
-    // Only the validated form creates this link. Direct-write links share source but not this marker.
-    if (whatsapp && ['guide_stay_inquiry', 'apartment_stay_inquiry', 'winter_stay_inquiry'].includes(source) &&
-        link.getAttribute('data-stay-inquiry-submit') === 'true' && link.closest('form[data-stay-inquiry]')) {
-      window.gtag('event', 'guide_stay_inquiry_whatsapp_click', params);
-    }
   }, true);
 })();

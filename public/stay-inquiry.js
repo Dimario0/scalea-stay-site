@@ -46,16 +46,11 @@
           : language === 'pl'
           ? `Dzień dobry! Znalazłem apartament na scaleastay.com. Interesuje mnie ScaleaStay. Przyjazd: ${arrival.value}. Wyjazd: ${departure.value}. Liczba gości: ${form.elements.guests.value}. Czy termin jest wolny i jaka jest całkowita cena?`
           : `Buongiorno! Ho trovato l’appartamento su scaleastay.com. Mi interessa ScaleaStay. Arrivo: ${arrival.value}. Partenza: ${departure.value}. Ospiti: ${form.elements.guests.value}. Le date sono disponibili e qual è il prezzo totale?`;
-        const link = document.createElement('a');
-        link.href = 'https://wa.me/420774620060?text=' + encodeURIComponent(message);
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.setAttribute('data-analytics-source', form.getAttribute('data-analytics-source') || 'guide_stay_inquiry');
-        link.setAttribute('data-stay-inquiry-submit', 'true');
-        link.hidden = true;
-        form.appendChild(link);
-        link.click();
-        link.remove();
+        // A DOM link click exposes the full prepared message to Google's automatic
+        // outbound-link measurement. Open synchronously from the user's submit
+        // instead; analytics receives only a payload-free notification from the form.
+        window.open('https://wa.me/420774620060?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+        form.dispatchEvent(new CustomEvent('scaleastay:stay-inquiry-whatsapp', { bubbles: true }));
       });
       // The updated handler is installed; this is not a visible-form or contact event.
       form.dataset.stayInquiryTracking = '1';
