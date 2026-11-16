@@ -19,7 +19,7 @@ const COPY: Record<string, RatesCopy> = {
   ru: {
     nav: 'Цены 2027',
     title: 'Прямые тарифы на 2027 год',
-    intro: 'При обращении напрямую к владельцу. За весь апартамент, до 4 гостей, за одну ночь при краткосрочном проживании.',
+    intro: 'При бронировании напрямую у владельца, без посредников. За весь апартамент, до 4 гостей, за одну ночь при краткосрочном проживании.',
     month: 'Месяц',
     night: 'За ночь',
     includes: 'Уборка и электричество включены в стоимость.',
@@ -31,7 +31,7 @@ const COPY: Record<string, RatesCopy> = {
   en: {
     nav: '2027 rates',
     title: '2027 direct-booking rates',
-    intro: 'When contacting the owner directly. Per night for the whole apartment, up to 4 guests, for short stays.',
+    intro: 'For bookings made directly with the owner, without intermediaries. Per night for the whole apartment, up to 4 guests, for short stays.',
     month: 'Month',
     night: 'Per night',
     includes: 'Cleaning and electricity are included.',
@@ -43,7 +43,7 @@ const COPY: Record<string, RatesCopy> = {
   it: {
     nav: 'Tariffe 2027',
     title: 'Tariffe dirette per il 2027',
-    intro: 'Contattando direttamente il proprietario. Prezzi a notte per l’intero appartamento, fino a 4 ospiti, per soggiorni brevi.',
+    intro: 'Prenotando direttamente con il proprietario, senza intermediari. Prezzi a notte per l’intero appartamento, fino a 4 ospiti, per soggiorni brevi.',
     month: 'Mese',
     night: 'A notte',
     includes: 'Pulizia ed elettricità sono incluse.',
@@ -55,7 +55,7 @@ const COPY: Record<string, RatesCopy> = {
   de: {
     nav: 'Preise 2027',
     title: 'Preise bei Direktbuchung 2027',
-    intro: 'Bei direktem Kontakt mit dem Eigentümer. Die Preise gelten pro Nacht für die gesamte Ferienwohnung, bis zu 4 Gäste, bei kurzen Aufenthalten.',
+    intro: 'Bei Direktbuchung beim Eigentümer, ohne Vermittler. Die Preise gelten pro Nacht für die gesamte Ferienwohnung, bis zu 4 Gäste, bei kurzen Aufenthalten.',
     month: 'Monat',
     night: 'Pro Nacht',
     includes: 'Reinigung und Strom sind im Preis enthalten.',
@@ -67,7 +67,7 @@ const COPY: Record<string, RatesCopy> = {
   cs: {
     nav: 'Ceny 2027',
     title: 'Ceny při přímé rezervaci v roce 2027',
-    intro: 'Při přímém kontaktu s majitelem. Ceny za jednu noc za celý apartmán, až pro 4 hosty, při krátkodobém pobytu.',
+    intro: 'Při rezervaci přímo u majitele, bez zprostředkovatelů. Ceny za jednu noc za celý apartmán, až pro 4 hosty, při krátkodobém pobytu.',
     month: 'Měsíc',
     night: 'Za noc',
     includes: 'Úklid a elektřina jsou zahrnuty v ceně.',
@@ -79,7 +79,7 @@ const COPY: Record<string, RatesCopy> = {
   pl: {
     nav: 'Ceny 2027',
     title: 'Ceny przy rezerwacji bezpośredniej na 2027 rok',
-    intro: 'Przy bezpośrednim kontakcie z właścicielem. Ceny za jedną noc za cały apartament, do 4 gości, przy krótkich pobytach.',
+    intro: 'Przy rezerwacji bezpośrednio u właściciela, bez pośredników. Ceny za jedną noc za cały apartament, do 4 gości, przy krótkich pobytach.',
     month: 'Miesiąc',
     night: 'Za noc',
     includes: 'Sprzątanie i prąd są wliczone w cenę.',
