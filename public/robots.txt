@@ -1,6 +1,11 @@
 User-agent: OAI-SearchBot
 Allow: /
 
+# Owner-authorized exception for Gemini grounding and Google model training.
+User-agent: Google-Extended
+Allow: /
+Content-Signal: ai-input=yes, ai-train=yes
+
 User-agent: *
 Allow: /
 
