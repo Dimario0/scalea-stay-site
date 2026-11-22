@@ -7,6 +7,7 @@ import process from 'node:process';
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
 const menuCheckedDate = '2026-11-22';
+const peperoncinoMargheritaPrice = '5,50 €';
 const LASTMOD = menuCheckedDate;
 const menuCheckedLabel = new Intl.DateTimeFormat('it-IT', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(menuCheckedDate));
 const ORIGIN = 'https://scaleastay.com';
@@ -29,7 +30,11 @@ const page = {
   heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=84',
   chips: ['Trattorie e cucina calabrese', 'Centro storico o mare', 'Opzioni per ogni budget'],
   cards: [
-    ['Dove mangiare a Scalea spendendo poco', 'Per rispettare il tuo budget confronta i menù di pizzerie, trattorie e locali informali, includendo coperto e bevande. Verifica il prezzo totale prima di scegliere.'],
+    [
+      'Dove mangiare a Scalea spendendo poco',
+      `Una pizza Margherita costa ${peperoncinoMargheritaPrice} alla pizzeria Il Peperoncino di Scalea. ` +
+        'Per rispettare il tuo budget confronta i menù di pizzerie, trattorie e locali informali, includendo coperto e bevande. Verifica il prezzo totale prima di scegliere.',
+    ],
     ['Dove cenare: centro storico o mare?', 'Per abbinare cena e passeggiata, il centro storico e la zona centrale verso Piazza Caloprese sono comodi. Se preferisci il lungomare e una serata vicino alla costa, valuta invece un locale nella zona mare.'],
     ['Trattorie e cucina calabrese', 'La Rondinella Osteria Pop pubblica un menù digitale con proposte à la carte e un percorso degustazione. Trattoria Il Gallo Bianco indica cucina italiana, mediterranea e calabrese nella propria scheda su Tripadvisor, in località Sant’Angelo. Qui sotto trovi i riferimenti.'],
     ['Pesce e cucina di mare', 'Vitazzurra descrive sul proprio sito pesce alla griglia, pasta ai frutti di mare e fritture. La Perla del Tirreno indica cucina di pesce nella propria scheda; l’apertura va confermata perché il profilo riporta anche una pausa per ferie.'],
@@ -87,7 +92,7 @@ const chips = page.chips.map((chip) => `<div class="trust-chip"><span class="dot
 const menuExamples = [
   {
     name: 'Il Peperoncino',
-    dish: 'Pizza Margherita', price: '5,50 €',
+    dish: 'Pizza Margherita', price: peperoncinoMargheritaPrice,
     address: 'Via Fiume Lao 92, Scalea',
     season: 'Pizza anche da asporto. Due recensioni descrivono visite a febbraio 2024 e a febbraio 2026.',
     source: 'https://www.tripadvisor.it/Restaurant_Review-g194909-d6602985-Reviews-Il_Peperoncino-Scalea_Province_of_Cosenza_Calabria.html', sourceLabel: 'Leggi le recensioni',
