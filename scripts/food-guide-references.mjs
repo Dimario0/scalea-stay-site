@@ -1,11 +1,12 @@
 // Checked online on this date. Cuisine/location evidence does not confirm today's opening or offers.
 export const foodGuideCheckedDate = '2026-10-03';
+export const rondinellaMenuUrl = 'https://larondinellaosteria.it/menu/';
 
 const references = [
   {
     name: 'La Rondinella Osteria Pop',
     url: 'https://www.la-rondinella.it/osteria-pop/',
-    menu: 'https://larondinella.1menu.it/', // Linked by the restaurant's own site.
+    menu: { it: rondinellaMenuUrl, pl: 'https://larondinella.1menu.it/' },
     it: 'Il sito indica Piazza Spinelli, ai piedi del centro storico. Il menù digitale pubblica proposte à la carte e un percorso degustazione: verifica con il locale cosa è disponibile per la tua serata.',
     pl: 'Strona lokalu wskazuje Piazza Spinelli u podnóża starego miasta. Menu online zawiera dania à la carte i menu degustacyjne; potwierdź z lokalem dostępność na wybrany wieczór.',
     type: 'official',
@@ -45,7 +46,7 @@ export function renderFoodGuideReferences(lang) {
     <h3 id="food-references-title">${title}</h3><p>${intro}</p>
     <ul>${references.map((item) => `<li><strong>${esc(item.name)}</strong><p>${esc(item[lang])}</p>
       <a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${item.type === 'official' ? (pl ? 'Strona lokalu' : 'Sito del locale') : (pl ? 'Profil na Tripadvisor' : 'Profilo su Tripadvisor')} <span aria-hidden="true">↗</span></a>
-      ${item.menu ? `<a href="${item.menu}" target="_blank" rel="noopener noreferrer">${pl ? 'Menu online' : 'Menù digitale'} <span aria-hidden="true">↗</span></a>` : ''}</li>`).join('')}
+      ${item.menu ? `<a href="${esc(item.menu[lang])}" target="_blank" rel="noopener noreferrer">${pl ? 'Menu online' : 'Menù digitale'} <span aria-hidden="true">↗</span></a>` : ''}</li>`).join('')}
     </ul></aside>`;
 }
 

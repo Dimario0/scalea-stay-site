@@ -1,5 +1,5 @@
 import { renderGuideStayInquiry, guideStayInquiryStyles } from './guide-stay-inquiry.mjs';
-import { renderFoodGuideReferences, foodGuideReferenceStyles } from './food-guide-references.mjs';
+import { renderFoodGuideReferences, foodGuideReferenceStyles, rondinellaMenuUrl } from './food-guide-references.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
@@ -89,19 +89,24 @@ const menuExamples = [
     name: 'Il Peperoncino',
     dish: 'Pizza Margherita', price: '5,50 €',
     address: 'Via Fiume Lao 92, Scalea',
+    season: 'Pizza anche da asporto. Due recensioni descrivono visite a febbraio 2024 e a febbraio 2026.',
+    source: 'https://www.tripadvisor.it/Restaurant_Review-g194909-d6602985-Reviews-Il_Peperoncino-Scalea_Province_of_Cosenza_Calabria.html', sourceLabel: 'Leggi le recensioni',
     menu: 'https://www.menudigitale.io/aknbx', linkText: 'Menù della pizzeria',
   },
   {
     name: 'Golden Beef',
     dish: 'Tagliata alla brace (300 g)', price: '15,00 €',
     address: 'Via T. Minniti 25, Scalea',
+    season: 'Macelleria con cucina alla brace. Il sito del locale non indica in quali sere d’inverno è aperta la cucina.',
     menu: 'https://goldenbeefscalea.it/', linkText: 'Menù di Golden Beef',
   },
   {
     name: 'La Rondinella Osteria Pop',
-    dish: 'Spaghetti cacio e pip cruschi', price: '16,00 €',
+    dish: 'Spaghetti aglio e olio «a modo nostro»', price: '16,00 €',
     address: 'Piazza Spinelli, Scalea',
-    menu: 'https://larondinella.1menu.it/', linkText: 'Menù dell’osteria',
+    season: 'Il 22 novembre 2026 l’osteria risultava temporaneamente chiusa su Google Maps.',
+    source: 'https://www.google.com/maps?cid=3479763097786428622', sourceLabel: 'Controlla se ha riaperto',
+    menu: rondinellaMenuUrl, linkText: 'Menù dell’osteria',
   },
 ];
 
@@ -117,6 +122,7 @@ const priceSection = `
             <h3>${esc(entry.name)}</h3>
             <p class="menu-dish"><span>${esc(entry.dish)}</span><strong>${esc(entry.price)}</strong></p>
             <p class="menu-address">${esc(entry.address)}</p>
+            <p class="menu-season">${esc(entry.season)}${entry.source ? ` <a href="${esc(entry.source)}" target="_blank" rel="noopener noreferrer">${esc(entry.sourceLabel)}</a>` : ''}</p>
             <a href="${esc(entry.menu)}" target="_blank" rel="noopener noreferrer">${esc(entry.linkText)} <span aria-hidden="true">↗</span></a>
           </li>`).join('')}
         </ul>
@@ -257,7 +263,9 @@ const html = `<!doctype html>
     .menu-dish{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0;color:#0f172a;font-size:17px;line-height:1.45}
     .menu-dish strong{color:#3730a3;white-space:nowrap}
     .menu-address{margin:10px 0 4px;color:#475569;font-size:15px;line-height:1.6}
+    .menu-season{margin:4px 0 12px;color:#334155;font-size:16px;line-height:1.55}
     .menu-examples a{display:inline-flex;align-items:center;gap:6px;align-self:start;min-height:44px;margin-top:auto;color:#3730a3;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+    .menu-season a{display:inline;min-height:0}
     .menu-examples a:focus-visible{outline:3px solid #4338ca;outline-offset:3px}
     @media(max-width:760px){.menu-prices{padding:52px 0}.menu-examples{grid-template-columns:1fr}.menu-examples li{padding:20px}}
     .dinner-planner{padding:72px 0;background:#fff8ef;scroll-margin-top:24px}
