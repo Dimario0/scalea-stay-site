@@ -1,6 +1,7 @@
 
 import { Apartment } from './types';
 import { APARTMENT_IMAGES } from './content/apartmentImages.mjs';
+import { ITALIAN_HOME } from './content/italianHome';
 
 // --- ВЕРСИЯ ДАННЫХ ---
 export const SITE_DATA_VERSION = 10;
@@ -306,7 +307,7 @@ export const TRANSLATIONS: Record<string, any> = {
     taItem3: 'Viaggiatori che vogliono soggiornare nel centro di Scalea, vicino a negozi e zone per passeggiare.',
     taItem4: 'Ospiti che vogliono fare la spesa facilmente ogni giorno — un grande supermercato Interspar è nelle vicinanze.',
     taItem5: 'Ospiti che preferiscono verificare la disponibilità direttamente su WhatsApp.',
-    heroTitle: 'Appartamento moderno vicino al mare a Scalea',
+    heroTitle: ITALIAN_HOME.heading,
     navHome: 'Home',
     navApartments: "Appartamento",
     navWeather: 'Meteo',
@@ -328,7 +329,7 @@ export const TRANSLATIONS: Record<string, any> = {
     routeDetailsDesc: 'Siamo nel cuore di Scalea. Se arrivi in treno, possiamo organizzare un trasferimento. Se in auto, segui il GPS; parcheggio gratuito disponibile.',
     designCreditTitle: 'Ti piace il design del sito?',
     designCreditBtn: 'Scrivi su Telegram',
-    heroSubtitle: "Al mare, con il comfort di casa: Wi‑Fi, riscaldamento a gas e una terrazza tutta per te.",
+    heroSubtitle: ITALIAN_HOME.description,
     advantagesTitle: 'I nostri vantaggi',
     advLocation: 'Posizione centrale',
     advLocationDesc: 'In pieno centro città, vicino a un grande supermercato e a un parco divertimenti per bambini.',

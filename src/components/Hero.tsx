@@ -4,6 +4,7 @@ import { useSiteData } from '../context/SiteContext';
 import { useLanguage } from '../context/LanguageContext';
 import { getLongStayCopy } from '../content/longStay';
 import { getApartmentPageLink } from '../content/apartment';
+import { ITALIAN_HOME } from '../content/italianHome';
 
 type HeroCopy = {
   badge: string;
@@ -27,7 +28,7 @@ const COPY: Record<string, HeroCopy> = {
   },
   it: {
     badge: 'Scalea • Calabria • Italia',
-    title: 'Appartamento moderno vicino al mare a Scalea',
+    title: ITALIAN_HOME.heading,
     primaryCta: 'Scopri l’appartamento',
     facts: ['Spiaggia · 5–8 min', 'Interspar · 3 min', 'Stazione · 8 min'],
   },

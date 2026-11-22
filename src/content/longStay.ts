@@ -1,3 +1,5 @@
+import { ITALIAN_HOME } from './italianHome';
+
 // Confirmed apartment amenities. Winter offer terms live in longStayLanding/longStayTranslations.
 export const LONG_STAY_COPY = {
   ru: {
@@ -44,14 +46,14 @@ export const LONG_STAY_COPY = {
   },
   it: {
     wifi: 'Wi‑Fi', heating: 'Riscaldamento a gas', layout: "Appartamento con una camera da letto e terrazza",
-    hero: "Al mare, con il comfort di casa: Wi‑Fi, riscaldamento a gas e una terrazza tutta per te.",
+    hero: ITALIAN_HOME.description,
     title: 'Fermati più a lungo a Scalea', eyebrow: 'Inverno e fuori stagione · soggiorni prolungati',
     intro: "Cucina in appartamento, rilassati sulla tua terrazza e scopri Scalea a piedi. Wi‑Fi e riscaldamento a gas ti aiutano a mantenere le tue abitudini anche in inverno, vicino al mare.",
     location: 'Interspar a circa 230 m, la stazione a 500 m e la spiaggia più vicina a 600 m. Puoi fare la spesa e passeggiare al mare a piedi.',
     terms: "Scrivici le date e il numero di ospiti: ti confermeremo disponibilità, prezzo e costi delle utenze prima della prenotazione.",
     cta: "Chiedi un preventivo per le tue date",
     message: 'Buongiorno! Mi interessa un soggiorno prolungato a ScaleaStay. Date: __. Durata: __. Numero di ospiti: __. Vorrei conoscere il prezzo e le condizioni delle utenze.',
-    seo: 'Appartamento a Scalea con Wi‑Fi, riscaldamento a gas, cucina e terrazza. Una camera da letto, spiaggia a 600 m. Soggiorni lunghi fuori stagione su richiesta.',
+    seo: ITALIAN_HOME.description,
     availabilityCta: "Chiedi disponibilità e prezzo",
     shortCta: "Chiedi un preventivo",
     inquiry: "Buongiorno! Ho trovato l’appartamento su scaleastay.com. Mi interessa l’appartamento ScaleaStay. Date: __. Numero di ospiti: __. È disponibile e qual è il costo del soggiorno?",
