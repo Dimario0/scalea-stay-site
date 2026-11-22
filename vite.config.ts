@@ -13,6 +13,7 @@ import { APARTMENT_PAGE_COPY } from './src/content/apartmentPage';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
 import { getLongStayCopy, CONFIRMED_AMENITIES } from './src/content/longStay';
+import { ITALIAN_HOME } from './src/content/italianHome';
 import { APARTMENT_COPY, getApartmentPageLink } from './src/content/apartment';
 import { getFaqItems, getCommercialFaqItems } from './src/content/faq';
 import { translate } from './src/content/translations';
@@ -82,8 +83,8 @@ const LOCALIZED_SEO: Record<LanguageCode, LocalizedSeo> = {
     locale: 'en_GB',
   },
   it: {
-    title: 'Appartamento Vacanze a Scalea, Calabria | ScaleaStay',
-    description: 'ScaleaStay a Scalea, Calabria: appartamento moderno con aria condizionata, parcheggio e cucina attrezzata. La spiaggia dista 600 m, circa 5–8 minuti a piedi. Verifica le date direttamente.',
+    title: ITALIAN_HOME.title,
+    description: ITALIAN_HOME.description,
     locale: 'it_IT',
   },
   de: {
@@ -117,8 +118,8 @@ const PRERENDER_CONTENT: Record<LanguageCode, PrerenderContent> = {
     routesLabel: 'View routes',
   },
   it: {
-    heroTitle: 'Appartamento moderno vicino al mare a Scalea',
-    heroSubtitle: 'ScaleaStay è un appartamento con interni moderni, ideale per una vacanza al mare. Spiaggia, Interspar, stazione e centro di Scalea sono comodamente raggiungibili a piedi.',
+    heroTitle: ITALIAN_HOME.heading,
+    heroSubtitle: ITALIAN_HOME.description,
     apartmentsLabel: 'Scopri l’appartamento',
     routesLabel: 'Scopri i percorsi',
   },
@@ -249,7 +250,7 @@ const rootSitemapEntries = LANGUAGES
     <loc>${SITE_ORIGIN}/${language}/</loc>
 ${rootAlternateLinks}
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/ru/"/>
-    <lastmod>${APARTMENT_LASTMOD}</lastmod>
+    <lastmod>${language === 'it' ? ITALIAN_HOME.lastModified : APARTMENT_LASTMOD}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>`)
@@ -431,6 +432,7 @@ const buildConfirmedStaySchema = (language: LanguageCode) => JSON.stringify({
 const buildApartmentShell = (language: LanguageCode, includeGallery = false) => {
   const copy = getLongStayCopy(language);
   const apartmentPageLink = includeGallery ? null : getApartmentPageLink(language);
+  const winterLabel = !includeGallery && language === 'it' ? ITALIAN_HOME.winterLink : getLongStayRoute(language).rentalLink;
   const facts = [...APARTMENT_COPY[language].facts, copy.wifi, copy.heating];
   return `<section id="apartments" style="padding:48px 24px;background:#fff;color:#0f172a"><div style="max-width:960px;margin:auto">
     <h2>${escapeHtml(translate(language, 'ourApartments'))}</h2>
@@ -443,7 +445,7 @@ const buildApartmentShell = (language: LanguageCode, includeGallery = false) => 
     ` : `<img src="${escapeHtml(APARTMENTS[0].images[0])}" alt="${escapeHtml(`ScaleaStay — ${copy.layout}`)}" loading="lazy" style="max-width:100%;height:auto;border-radius:20px" />`}
     ${apartmentPageLink ? `<p><a href="${apartmentPageLink.path}" data-analytics-source="apartment_card_details" style="display:inline-block;padding:16px 24px;border-radius:20px;background:#4f46e5;color:#fff;font-weight:800;text-decoration:none;">${escapeHtml(apartmentPageLink.label)} <span aria-hidden="true">→</span></a></p>` : ''}
     <p><a href="${escapeHtml(CONTACT_INFO.whatsappLink(copy.inquiry))}" target="_blank" rel="noopener noreferrer">${escapeHtml(copy.availabilityCta)}</a></p>
-    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(getLongStayRoute(language).rentalLink)} →</a></p>
+    <p><a href="${getLongStayRoute(language).path}">${escapeHtml(winterLabel)} →</a></p>
   </div></section>`;
 };
 

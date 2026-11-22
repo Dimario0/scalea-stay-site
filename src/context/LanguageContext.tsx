@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ALL_TRANSLATIONS, translate } from '../content/translations';
 import { LANGUAGES, SiteLanguage } from '../languages';
 import { getLongStayCopy } from '../content/longStay';
+import { ITALIAN_HOME } from '../content/italianHome';
 
 interface LanguageContextType {
   language: string;
@@ -30,8 +31,8 @@ const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
     locale: 'en_GB',
   },
   it: {
-    title: 'Appartamento Vacanze a Scalea, Calabria | ScaleaStay',
-    description: 'ScaleaStay a Scalea, Calabria: appartamento moderno con aria condizionata, parcheggio e cucina attrezzata. La spiaggia dista 600 m, circa 5–8 minuti a piedi. Verifica le date direttamente.',
+    title: ITALIAN_HOME.title,
+    description: ITALIAN_HOME.description,
     locale: 'it_IT',
   },
   de: {

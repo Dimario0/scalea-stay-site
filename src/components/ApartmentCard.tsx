@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 import { getLongStayCopy } from '../content/longStay';
 import { getLongStayRoute } from '../content/longStayRoutes';
+import { ITALIAN_HOME } from '../content/italianHome';
 
 interface Props {
   apartment: Apartment;
@@ -121,7 +122,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
         </a>
         <a href={getLongStayRoute(language).path}
           className="mt-4 rounded-xl bg-indigo-50 px-4 py-3 text-sm font-bold leading-relaxed text-indigo-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
-          {getLongStayRoute(language).rentalLink} →
+          {language === 'it' ? ITALIAN_HOME.winterLink : getLongStayRoute(language).rentalLink} →
         </a>
       </div>
     </div>

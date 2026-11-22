@@ -1,12 +1,14 @@
 import { renderGuideStayInquiry, guideStayInquiryStyles } from './guide-stay-inquiry.mjs';
-import { foodGuideCheckedDate, renderFoodGuideReferences, foodGuideReferenceStyles } from './food-guide-references.mjs';
+import { renderFoodGuideReferences, foodGuideReferenceStyles } from './food-guide-references.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 
 const ROOT = process.cwd();
 const DIST = path.join(ROOT, 'dist');
-const LASTMOD = foodGuideCheckedDate;
+const menuCheckedDate = '2026-11-22';
+const LASTMOD = menuCheckedDate;
+const menuCheckedLabel = new Intl.DateTimeFormat('it-IT', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(menuCheckedDate));
 const ORIGIN = 'https://scaleastay.com';
 const canonical = `${ORIGIN}/it/dove-mangiare-scalea/`;
 const sibling = `${ORIGIN}/pl/gdzie-zjesc-scalea/`;
@@ -23,7 +25,7 @@ const page = {
   description: 'Dove mangiare a Scalea: idee per cena, trattorie e ristoranti, anche economici, tra centro storico e mare, con consigli pratici per scegliere.',
   eyebrow: 'Scalea • Calabria • Sapori locali',
   h1: 'Dove mangiare a Scalea: ristoranti, trattorie e idee per ogni budget',
-  intro: 'Cerchi dove mangiare o dove cenare a Scalea? Qui trovi una guida pratica per scegliere tra trattorie, cucina calabrese, pesce, pizza e locali informali, con attenzione anche alle opzioni più economiche e alle zone migliori per continuare la serata a piedi.',
+  intro: 'Una Margherita, una tagliata alla brace o un piatto di pasta in piazza? Confronta i prezzi di tre locali di Scalea e apri i loro menù. Più sotto trovi anche idee per una passeggiata dopo cena.',
   heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=84',
   chips: ['Trattorie e cucina calabrese', 'Centro storico o mare', 'Opzioni per ogni budget'],
   cards: [
@@ -51,6 +53,7 @@ const articleJson = {
   headline: page.h1,
   description: page.description,
   inLanguage: 'it',
+  dateModified: LASTMOD,
   author: { '@type': 'Organization', name: 'ScaleaStay' },
   about: { '@type': 'City', name: 'Scalea' },
   mainEntityOfPage: canonical,
@@ -80,6 +83,45 @@ const faqs = page.faq.map(([q, a]) => `
   </details>`).join('');
 
 const chips = page.chips.map((chip) => `<div class="trust-chip"><span class="dot"></span>${esc(chip)}</div>`).join('');
+
+const menuExamples = [
+  {
+    name: 'Il Peperoncino',
+    dish: 'Pizza Margherita', price: '5,50 €',
+    address: 'Via Fiume Lao 92, Scalea',
+    menu: 'https://www.menudigitale.io/aknbx', linkText: 'Menù della pizzeria',
+  },
+  {
+    name: 'Golden Beef',
+    dish: 'Tagliata alla brace (300 g)', price: '15,00 €',
+    address: 'Via T. Minniti 25, Scalea',
+    menu: 'https://goldenbeefscalea.it/', linkText: 'Menù di Golden Beef',
+  },
+  {
+    name: 'La Rondinella Osteria Pop',
+    dish: 'Spaghetti cacio e pip cruschi', price: '16,00 €',
+    address: 'Piazza Spinelli, Scalea',
+    menu: 'https://larondinella.1menu.it/', linkText: 'Menù dell’osteria',
+  },
+];
+
+const priceSection = `
+    <section class="menu-prices" id="piatti-e-prezzi" aria-labelledby="menu-prices-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="menu-prices-title">Tre locali a Scalea con piatti e prezzi</h2>
+          <p>Abbiamo controllato i menù dei locali il <time datetime="${menuCheckedDate}">${menuCheckedLabel}</time>. I prezzi si riferiscono ai singoli piatti. Bevande ed eventuale coperto si aggiungono al conto.</p>
+        </div>
+        <ul class="menu-examples">${menuExamples.map((entry) => `
+          <li>
+            <h3>${esc(entry.name)}</h3>
+            <p class="menu-dish"><span>${esc(entry.dish)}</span><strong>${esc(entry.price)}</strong></p>
+            <p class="menu-address">${esc(entry.address)}</p>
+            <a href="${esc(entry.menu)}" target="_blank" rel="noopener noreferrer">${esc(entry.linkText)} <span aria-hidden="true">↗</span></a>
+          </li>`).join('')}
+        </ul>
+      </div>
+    </section>`;
 
 // Native disclosures keep the complete plans in the initial HTML and work without JavaScript.
 const dinnerPlans = [
@@ -205,6 +247,19 @@ const html = `<!doctype html>
     .card p{margin:0;color:#64748b;font-size:15px;line-height:1.72;font-weight:500}
     .note{margin-top:22px;padding:23px 26px;border-radius:24px;background:#eef2ff;border:1px solid #c7d2fe;color:#3730a3;font-size:14px;line-height:1.7;font-weight:700}
     .hero-guide-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;margin-top:18px;color:white;font-size:15px;font-weight:800;text-decoration:underline;text-underline-offset:5px}
+    .guide-index{display:flex;justify-content:center;gap:0 28px;flex-wrap:wrap}
+    .menu-prices{padding:72px 0;background:#fff;scroll-margin-top:24px}
+    .menu-prices .section-head h2{text-transform:none;line-height:1.1}
+    .menu-prices .section-head p{max-width:640px;margin:16px auto 0;color:#475569;line-height:1.65}
+    .menu-examples{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .menu-examples li{display:flex;flex-direction:column;padding:25px;border:1px solid #e2e8f0;border-radius:22px;background:#f8fafc}
+    .menu-examples h3{margin:0 0 16px;color:#0f172a;font-size:23px;line-height:1.2}
+    .menu-dish{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin:0;color:#0f172a;font-size:17px;line-height:1.45}
+    .menu-dish strong{color:#3730a3;white-space:nowrap}
+    .menu-address{margin:10px 0 4px;color:#475569;font-size:15px;line-height:1.6}
+    .menu-examples a{display:inline-flex;align-items:center;gap:6px;align-self:start;min-height:44px;margin-top:auto;color:#3730a3;text-decoration:underline;text-underline-offset:4px;font-weight:700}
+    .menu-examples a:focus-visible{outline:3px solid #4338ca;outline-offset:3px}
+    @media(max-width:760px){.menu-prices{padding:52px 0}.menu-examples{grid-template-columns:1fr}.menu-examples li{padding:20px}}
     .dinner-planner{padding:72px 0;background:#fff8ef;scroll-margin-top:24px}
     .dinner-planner .section-head{max-width:760px;margin-bottom:32px}
     .dinner-planner .section-head h2{text-transform:none;line-height:1.08}
@@ -284,10 +339,14 @@ ${guideStayInquiryStyles}${foodGuideReferenceStyles}<script defer src="/stay-inq
           <a class="cta secondary" href="${whatsapp}" rel="noopener">Verifica le date su WhatsApp</a>
         </div>
         <div class="trust">${chips}</div>
-        <a class="hero-guide-link" href="#scegli-la-serata">Scegli la tua serata <span aria-hidden="true">↓</span></a>
+        <nav class="guide-index" aria-label="Indice della guida">
+          <a class="hero-guide-link" href="#piatti-e-prezzi">Piatti, prezzi e indirizzi <span aria-hidden="true">↓</span></a>
+          <a class="hero-guide-link" href="#scegli-la-serata">Scegli la tua serata <span aria-hidden="true">↓</span></a>
+        </nav>
       </div>
     </section>
 
+    ${priceSection}
     ${dinnerPlanner}
     <section class="content">
       <div class="wrap">
