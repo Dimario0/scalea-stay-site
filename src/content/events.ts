@@ -19,6 +19,15 @@ export const LOCAL_EVENTS: LocalEvent[] = [
     sourceName: 'Annuncio su FAItango', checked: EVENTS_CHECKED,
   },
   {
+    id: 'trofeo-arcomagno-2026', title: 'Trofeo Arcomagno · IV edizione', category: 'Scacchi',
+    city: 'San Nicola Arcella', venue: 'Hotel San Giorgio',
+    start: '2026-09-25', end: '2026-09-27',
+    description: 'Tre giorni dedicati agli scacchi sulla Riviera dei Cedri. Il torneo prevede tre Open suddivisi per fascia Elo: un appuntamento per i giocatori che cercano un fine settimana di competizione.',
+    admission: 'Per iscrizioni, quote e requisiti di partecipazione, consulta il bando nel calendario della Federazione Scacchistica Italiana. L’accesso degli accompagnatori va verificato con gli organizzatori.',
+    source: 'https://www.federscacchi.com/fsi/index.php/calendario/calendario?den=&dtfinric=2027-12-31&dtiniric=&ord=1&pro=&reg=3&ric=1&senso=Asc&tipo_evento=',
+    sourceName: 'Calendario ufficiale FSI e bando', checked: EVENTS_CHECKED,
+  },
+  {
     id: 'peperoncino-festival-2026', title: 'Peperoncino Festival 2026', category: 'Gastronomia e spettacoli',
     city: 'Diamante', venue: 'Piazze, lungomare e lungofiume di Diamante',
     start: '2026-09-09', end: '2026-09-13',
