@@ -9,6 +9,7 @@ import StayInquiry from './src/components/StayInquiry';
 import ApartmentGallery from './src/components/ApartmentGallery';
 import MobileStayInquiry from './src/components/MobileStayInquiry';
 import SeasonalRates from './src/components/SeasonalRates';
+import { LocalFactsContent } from './src/components/LocalFacts';
 import { APARTMENT_PAGE_COPY } from './src/content/apartmentPage';
 import tailwindcss from '@tailwindcss/vite';
 import { renderNearby } from './src/content/nearbyMarkup';
@@ -484,6 +485,7 @@ const buildPrerenderShell = (language: LanguageCode, eventsPreview = false) => {
         ${renderToStaticMarkup(createElement(SeasonalRates, { language }))}
         ${buildLongStayShell(language, false)}
         ${eventsPreview && language === 'it' ? renderEventsTeaser() : ''}
+        ${renderToStaticMarkup(createElement(LocalFactsContent, { language }))}
         <div id="about">${renderNearby(language)}</div>
         ${buildFaqShell(language)}
       </main>

@@ -12,5 +12,5 @@ export const ITALIAN_HOME = {
   title: `${heading.replace('\u00a0', ' ')} | ScaleaStay`,
   description: `Terrazza privata, Wi-Fi e spiaggia a 5–8 minuti a piedi. ${springPrice} Verifica le date direttamente su WhatsApp.`,
   winterLink: `Verifica le date per gennaio o febbraio ${RATE_YEAR} · 450 € al mese più utenze a consumo`,
-  lastModified: '2026-11-22',
+  lastModified: '2026-11-27',
 };
