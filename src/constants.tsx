@@ -25,7 +25,7 @@ export const SITE_IMAGES = {
     'https://i.postimg.cc/qv9Pq6cY/Obr%C3%A1zek_PNG_4.png'
   ], // Фото в разделе "О Скалее"
   logo: '', // Если понадобится логотип
-  aboutSection: 'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',
+  aboutSection: '/images/nearby/scalea.jpg',
   guideImages: [
     'https://i.postimg.cc/XY3vV4DY/IMG-0056.png',
     'https://i.postimg.cc/rsKbh0p3/Scalea_Torre_Talao_am_Morgen.jpg',

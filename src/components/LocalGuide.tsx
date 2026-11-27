@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderNearby } from '../content/nearbyMarkup';
+import { NEARBY_PHOTOS } from '../content/nearbyPhotos';
 import { useLanguage } from '../context/LanguageContext';
 import { useSiteData } from '../context/SiteContext';
 import { ArrowRight, Footprints, Home, Landmark, Plane, Utensils, Waves } from 'lucide-react';
@@ -15,7 +16,7 @@ const LocalGuide: React.FC = () => {
       {href:'/it/appartamento-scalea-vicino-mare/',icon:<Home className="w-5 h-5" />,tag:'ScaleaStay',title:'Appartamento vicino al mare',text:'Servizi, posizione, distanze verificate e contatto diretto.',image:apartmentImage,event:'commercial_landing_open'},
       {href:'/it/come-arrivare-da-lamezia-terme-a-scalea/',icon:<Plane className="w-5 h-5" />,tag:'Arrivo',title:'Da Lamezia Terme a Scalea',text:'Airlink, stazione centrale, treno e ultimo tratto.',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',event:'seo_guide_open'},
       {href:'/it/scalea-senza-auto/',icon:<Footprints className="w-5 h-5" />,tag:'A piedi',title:'Scalea senza auto',text:'Mare, Interspar, stazione e centro storico a piedi.',image:'',event:'seo_guide_open'},
-      {href:'/it/spiagge-scalea/',icon:<Waves className="w-5 h-5" />,tag:'Mare',title:'Spiagge di Scalea',text:'Spiaggia più vicina, Ajnella e Torre Talao.',image:'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',event:'seo_guide_open'},
+      {href:'/it/spiagge-scalea/',icon:<Waves className="w-5 h-5" />,tag:'Mare',title:'Spiagge di Scalea',text:'Spiaggia più vicina, Ajnella e Torre Talao.',image:NEARBY_PHOTOS.scalea.src,event:'seo_guide_open'},
       {href:'/it/centro-storico-scalea-sera/',icon:<Landmark className="w-5 h-5" />,tag:'Borgo',title:'Centro storico e sera',text:'Piazza De Palma, vicoli, panorami e passeggiata serale.',image:'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',event:'seo_guide_open'},
       {href:'/it/dove-mangiare-scalea/',icon:<Utensils className="w-5 h-5" />,tag:'Sapori',title:'Dove mangiare a Scalea',text:'Pesce, cucina calabrese, trattorie e cena informale.',image:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',event:'seo_guide_open'}
     ]
@@ -24,7 +25,7 @@ const LocalGuide: React.FC = () => {
       {href:'/pl/apartament-scalea-blisko-morza/',icon:<Home className="w-5 h-5" />,tag:'ScaleaStay',title:'Apartament blisko morza',text:'Wyposażenie, położenie, sprawdzone odległości i kontakt bezpośredni.',image:apartmentImage,event:'commercial_landing_open'},
       {href:'/pl/jak-dojechac-z-lamezia-terme-do-scalei/',icon:<Plane className="w-5 h-5" />,tag:'Dojazd',title:'Z Lamezia Terme do Scalei',text:'Airlink, stacja centralna, pociąg i ostatni odcinek.',image:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80',event:'seo_guide_open'},
       {href:'/pl/scalea-bez-samochodu/',icon:<Footprints className="w-5 h-5" />,tag:'Pieszo',title:'Scalea bez samochodu',text:'Morze, Interspar, dworzec i stare miasto pieszo.',image:'',event:'seo_guide_open'},
-      {href:'/pl/plaze-scalea/',icon:<Waves className="w-5 h-5" />,tag:'Morze',title:'Plaże w Scalei',text:'Najbliższa plaża, Ajnella i Torre Talao.',image:'https://i.postimg.cc/bY72f4g5/italy-scalea-beach-pebble-sand-orig.jpg',event:'seo_guide_open'},
+      {href:'/pl/plaze-scalea/',icon:<Waves className="w-5 h-5" />,tag:'Morze',title:'Plaże w Scalei',text:'Najbliższa plaża, Ajnella i Torre Talao.',image:NEARBY_PHOTOS.scalea.src,event:'seo_guide_open'},
       {href:'/pl/stare-miasto-scalea-wieczorem/',icon:<Landmark className="w-5 h-5" />,tag:'Miasto',title:'Stare miasto wieczorem',text:'Piazza De Palma, uliczki, widoki i wieczorny spacer.',image:'https://i.postimg.cc/Dz0dHGzW/Scalea.webp',event:'seo_guide_open'},
       {href:'/pl/gdzie-zjesc-scalea/',icon:<Utensils className="w-5 h-5" />,tag:'Smaki',title:'Gdzie zjeść w Scalei',text:'Ryby, kuchnia kalabryjska, trattorie i luźna kolacja.',image:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',event:'seo_guide_open'}
     ]

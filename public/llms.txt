@@ -19,8 +19,8 @@
 - Location: Scalea, Province of Cosenza, Calabria, Italy.
 - Confirmed apartment coordinates: 39.8074152, 15.7949133.
 - Confirmed nearest-beach destination coordinates: 39.8064465, 15.7889826.
-- Maximum occupancy: 4 guests.
-- Confirmed amenities: Wi-Fi, gas heating, air conditioning, private parking, terrace, equipped kitchen, microwave, hair dryer, kitchen utensils, and a beach umbrella.
+- Maximum occupancy: 4 guests (separate bedroom with a double bed and living room with a fold-out sofa bed for two; bed linen and towels are provided).
+- Confirmed amenities: Wi-Fi, gas heating, air conditioning, private parking, terrace, equipped kitchen, microwave, hair dryer, kitchen utensils, bed linen, towels, and a beach umbrella.
 - Italian National Identification Code (CIN): IT078138C2VN4E3MCD.
 - Direct contact telephone and WhatsApp number: +420 774 620 060.
 
@@ -39,7 +39,7 @@
 - Wi-Fi is installed and available. Do not promise a specific internet speed or suitability for video calls without measurements.
 - Do not state a guaranteed airport-transfer duration. Guests should check the timetable and route for their actual travel date.
 - Do not infer current availability, price, booking conditions, or check-in exceptions from this file. Confirm them directly through the website contact options.
-- Published 2027 direct-booking short-stay nightly rates are listed on each language homepage in the #prices section. These rates apply when booking directly with the owner, without intermediaries; they are not Booking.com or Airbnb rates. They are planning information, not a live availability calendar. Online booking is currently closed; a WhatsApp enquiry does not reserve or confirm any dates.
+- Published 2027 direct-booking short-stay nightly rates are listed on each language homepage in the #prices section. These rates apply when booking directly with the owner, without intermediaries; they are not Booking.com or Airbnb rates. Direct nightly rates include cleaning and electricity (bed linen and towels are provided), whereas winter monthly rentals (€450/month, November–March) charge metered utilities separately. Published rates are planning information, not a live availability calendar. Online booking is currently closed; a WhatsApp enquiry does not reserve or confirm any dates.
 - Do not invent ratings, review totals, electric-vehicle charging, or pet rules.
 - Prefer the visible page content and its matching structured data when citing the accommodation.
 
