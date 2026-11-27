@@ -55,7 +55,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     facts: [
       { label: 'Spiaggia', value: '600 m · circa 5–8 min' },
       { label: 'Interspar', value: '230 m · circa 3 min' },
-      { label: 'Stazione di Scalea', value: '500 m · circa 8 min' },
+      { label: 'Stazione di Scalea', value: '550 m · circa 7 min' },
       { label: 'Centro storico', value: '950 m · circa 13 min' },
     ],
     locationTitle: 'Mare e servizi quotidiani a pochi minuti',
@@ -80,7 +80,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     facts: [
       { label: 'Plaża', value: '600 m · około 5–8 min' },
       { label: 'Interspar', value: '230 m · około 3 min' },
-      { label: 'Dworzec Scalea', value: '500 m · około 8 min' },
+      { label: 'Dworzec Scalea', value: '550 m · około 7 min' },
       { label: 'Historyczne centrum', value: '950 m · około 13 min' },
     ],
     locationTitle: 'Morze i codzienne zakupy w zasięgu spaceru',

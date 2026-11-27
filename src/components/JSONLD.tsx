@@ -1,4 +1,5 @@
 import { getFaqItems } from '../content/faq';
+import { ENTRANCE_ADDRESS } from '../content/arrival';
 import { APARTMENT_IMAGES } from '../content/apartmentImages.mjs';
 import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
@@ -77,7 +78,7 @@ const JSONLD: React.FC = () => {
   const faqId = `${pageUrl}#faq`;
   const airportRouteId = `${pageUrl}#airport-route`;
 
-  const homeMapUrl = 'https://www.google.com/maps/search/?api=1&query=39.8074152%2C15.7949133';
+  const homeMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ENTRANCE_ADDRESS)}`;
   const beachMapUrl = 'https://www.google.com/maps/search/?api=1&query=39.8064465%2C15.7889826';
   const stationMapUrl = 'https://www.google.com/maps/search/?api=1&query=Scalea-Santa%20Domenica%20Talao%20railway%20station';
   const airportMapUrl = 'https://www.google.com/maps/search/?api=1&query=Lamezia%20Terme%20International%20Airport';
@@ -193,7 +194,7 @@ const JSONLD: React.FC = () => {
           {
             '@type': 'PropertyValue',
             name: 'Nearest railway station',
-            value: 'Scalea–Santa Domenica Talao; approximately 500 m / 8 minutes on foot',
+            value: 'Scalea–Santa Domenica Talao; approximately 550 m / 7 minutes on foot',
           },
           {
             '@type': 'PropertyValue',

@@ -28,7 +28,7 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
       ['Комфорт в прохладные месяцы', 'В апартаментах есть газовое отопление и Wi‑Fi. Также доступны кондиционер и парковка для гостей.'],
       ['Живите в своём ритме', 'Готовьте на оборудованной кухне и отдыхайте в отдельной спальне. Устраивайте день так, как удобно вам.'],
     ],
-    nearby: [['Ближайший пляж', 'Примерно 5–8 минут пешком до прогулки у моря.'], ['Interspar', 'Около 3 минут пешком за повседневными покупками.'], ['Железнодорожный вокзал', 'Около 8 минут пешком до станции Scalea–Santa Domenica Talao.']],
+    nearby: [['Ближайший пляж', 'Примерно 5–8 минут пешком до прогулки у моря.'], ['Interspar', 'Около 3 минут пешком за повседневными покупками.'], ['Железнодорожный вокзал', 'Около 7 минут пешком до станции Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Сколько стоит проживание на месяц?', 'С ноября по март — €450 в месяц за апартаменты, минимальный срок — один месяц. Коммунальные услуги оплачиваются отдельно по счётчикам. При заселении вносится разовый аванс €100 за коммунальные услуги: после перерасчёта остаток возвращается, превышение оплачивается дополнительно.'],
       ['Можно ли приехать без автомобиля?', 'До моря, Interspar и вокзала можно дойти пешком. Для экскурсий и дальних поездок проверьте транспортное расписание на ваши даты.'],
@@ -52,7 +52,7 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
       ['Comfort in the cooler months', 'Gas heating and Wi‑Fi are available in the apartment. Air conditioning and guest parking complete the amenities.'],
       ['Room for your everyday routine', 'Prepare meals in the equipped kitchen and enjoy the privacy of a separate bedroom. Plan each day around what suits you.'],
     ],
-    nearby: [['Nearest beach', 'About a 5–8 minute walk for some time by the sea.'], ['Interspar', 'About a 3-minute walk for everyday groceries.'], ['Railway station', 'About an 8-minute walk to Scalea–Santa Domenica Talao station.']],
+    nearby: [['Nearest beach', 'About a 5–8 minute walk for some time by the sea.'], ['Interspar', 'About a 3-minute walk for everyday groceries.'], ['Railway station', 'About a 7-minute walk to Scalea–Santa Domenica Talao station.']],
     extraFaq: [
       ['How much does a month-long stay cost?', 'From November to March, the apartment costs €450 per month, with a minimum stay of one month. Utilities are extra and calculated from meter readings. A one-off €100 advance towards utilities is paid on arrival; any unused balance is refunded after reconciliation and any excess is payable separately.'],
       ['Can I stay without a car?', 'You can walk to the sea, Interspar and the railway station. For excursions and longer journeys, check transport timetables for your travel dates.'],
@@ -76,7 +76,7 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
       ['Komfort auch an kühleren Tagen', 'Die Ferienwohnung verfügt über Gasheizung und WLAN. Klimaanlage und ein Parkplatz für Gäste ergänzen die Ausstattung.'],
       ['Freiraum für Ihren Alltag', 'Bereiten Sie Ihre Mahlzeiten in der ausgestatteten Küche zu und genießen Sie die Privatsphäre eines separaten Schlafzimmers. Sie bestimmen Ihren Tagesablauf.'],
     ],
-    nearby: [['Nächster Strand', 'Etwa 5–8 Minuten zu Fuß für einen Spaziergang am Meer.'], ['Interspar', 'Etwa 3 Minuten zu Fuß für den täglichen Einkauf.'], ['Bahnhof', 'Etwa 8 Minuten zu Fuß zum Bahnhof Scalea–Santa Domenica Talao.']],
+    nearby: [['Nächster Strand', 'Etwa 5–8 Minuten zu Fuß für einen Spaziergang am Meer.'], ['Interspar', 'Etwa 3 Minuten zu Fuß für den täglichen Einkauf.'], ['Bahnhof', 'Etwa 7 Minuten zu Fuß zum Bahnhof Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Was kostet ein Aufenthalt von einem Monat?', 'Von November bis März kostet die Ferienwohnung 450 € pro Monat, bei einem Mindestaufenthalt von einem Monat. Verbrauchskosten werden separat nach Zählerständen abgerechnet. Bei der Anreise wird ein einmaliger Vorschuss von 100 € gezahlt; nach der Abrechnung wird ein Guthaben erstattet oder die Differenz nachgezahlt.'],
       ['Ist ein Aufenthalt ohne Auto möglich?', 'Das Meer, Interspar und der Bahnhof sind zu Fuß erreichbar. Prüfen Sie für Ausflüge und längere Strecken die Verbindungen für Ihre Reisedaten.'],
@@ -100,7 +100,7 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
       ['Pohodlí i v chladnějších měsících', 'V apartmánu je plynové topení a Wi‑Fi. K vybavení patří také klimatizace a parkování pro hosty.'],
       ['Každý den podle vás', 'Připravte si jídlo ve vybavené kuchyni a užijte si soukromí samostatné ložnice. Denní program si určujete sami.'],
     ],
-    nearby: [['Nejbližší pláž', 'Přibližně 5–8 minut pěšky na procházku k moři.'], ['Interspar', 'Přibližně 3 minuty pěšky na běžný nákup.'], ['Vlakové nádraží', 'Přibližně 8 minut pěšky na nádraží Scalea–Santa Domenica Talao.']],
+    nearby: [['Nejbližší pláž', 'Přibližně 5–8 minut pěšky na procházku k moři.'], ['Interspar', 'Přibližně 3 minuty pěšky na běžný nákup.'], ['Vlakové nádraží', 'Přibližně 7 minut pěšky na nádraží Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Kolik stojí měsíční pobyt?', 'Od listopadu do března stojí apartmán 450 € měsíčně, minimální pobyt je jeden měsíc. Energie a služby se platí zvlášť podle měřidel. Při příjezdu se platí jednorázová záloha 100 €; po vyúčtování se nevyužitý zůstatek vrací nebo se doplácí rozdíl.'],
       ['Mohu přijet bez auta?', 'K moři, do Intersparu i na nádraží dojdete pěšky. Pro výlety a delší cesty si ověřte dopravní spojení na svůj termín.'],
@@ -124,7 +124,7 @@ const DETAILS: Record<Exclude<StayLanguage, 'it'>, Details> = {
       ['Wygodnie również w chłodniejsze miesiące', 'Apartament ma ogrzewanie gazowe i Wi‑Fi. Do dyspozycji gości są również klimatyzacja i parking.'],
       ['Codzienność po swojemu', 'Przygotuj posiłek w wyposażonej kuchni i odpocznij w oddzielnej sypialni. Zaplanuj dzień tak, jak lubisz.'],
     ],
-    nearby: [['Najbliższa plaża', 'Około 5–8 minut pieszo na spacer nad morzem.'], ['Interspar', 'Około 3 minuty pieszo po codzienne zakupy.'], ['Dworzec kolejowy', 'Około 8 minut pieszo do stacji Scalea–Santa Domenica Talao.']],
+    nearby: [['Najbliższa plaża', 'Około 5–8 minut pieszo na spacer nad morzem.'], ['Interspar', 'Około 3 minuty pieszo po codzienne zakupy.'], ['Dworzec kolejowy', 'Około 7 minut pieszo do stacji Scalea–Santa Domenica Talao.']],
     extraFaq: [
       ['Ile kosztuje pobyt na miesiąc?', 'Od listopada do marca apartament kosztuje 450 € miesięcznie, minimalny pobyt to jeden miesiąc. Media są płatne osobno według liczników. Przy przyjeździe wpłacana jest jednorazowa zaliczka 100 €; po rozliczeniu niewykorzystana kwota jest zwracana lub dopłacana jest różnica.'],
       ['Czy można przyjechać bez samochodu?', 'Do morza, Intersparu i dworca można dojść pieszo. Planując wycieczki i dalsze przejazdy, sprawdź połączenia na termin swojego pobytu.'],
@@ -137,7 +137,7 @@ export function getLongStayLanding(language: StayLanguage): Landing {
   const d = DETAILS[language], home = getLongStayCopy(language);
   return { ...d, cta: home.availabilityCta, message: home.message,
     features: d.features.map(([title, text]) => ({ title, text })),
-    nearby: d.nearby.map(([name, text], i) => ({ name, text, distance: ['600 m', '230 m', '500 m'][i] })),
+    nearby: d.nearby.map(([name, text], i) => ({ name, text, distance: ['600 m', '230 m', '550 m'][i] })),
     faq: [...home.faq.slice(0, 2), { q: d.minimumStayFaq[0], a: d.minimumStayFaq[1] }, ...d.extraFaq.map(([q, a]) => ({ q, a }))],
   };
 }

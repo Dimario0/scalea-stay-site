@@ -174,7 +174,7 @@ const GUIDE_PAGES: GuidePage[] = [
     description: 'Come raggiungere Scalea dall’aeroporto di Lamezia Terme: Airlink fino a Lamezia Terme Centrale, treno per Scalea e ultimo tratto verso ScaleaStay.',
     heroTitle: 'Come arrivare dall’aeroporto di Lamezia Terme a Scalea',
     heroSubtitle: 'Un percorso pratico con i mezzi pubblici: Lamezia Airlink fino alla stazione centrale, treno per Scalea–Santa Domenica Talao e ultimo tratto fino a ScaleaStay.',
-    summary: 'Lamezia Airlink → Lamezia Terme Centrale → treno per Scalea–Santa Domenica Talao → circa 500 m / 8 min a piedi fino a ScaleaStay.',
+    summary: 'Lamezia Airlink → Lamezia Terme Centrale → treno per Scalea–Santa Domenica Talao → circa 550 m / 7 min a piedi fino a ScaleaStay.',
   },
   {
     language: 'pl',
@@ -184,27 +184,27 @@ const GUIDE_PAGES: GuidePage[] = [
     description: 'Jak dojechać z lotniska Lamezia Terme do Scalei: Airlink do Lamezia Terme Centrale, pociąg do Scalea i ostatni odcinek do ScaleaStay.',
     heroTitle: 'Jak dojechać z lotniska Lamezia Terme do Scalei',
     heroSubtitle: 'Praktyczna trasa transportem publicznym: Lamezia Airlink do stacji Lamezia Terme Centrale, dalej pociąg do Scalea–Santa Domenica Talao i ostatni odcinek do ScaleaStay.',
-    summary: 'Lamezia Airlink → Lamezia Terme Centrale → pociąg do Scalea–Santa Domenica Talao → około 500 m / 8 min pieszo do ScaleaStay.',
+    summary: 'Lamezia Airlink → Lamezia Terme Centrale → pociąg do Scalea–Santa Domenica Talao → około 550 m / 7 min pieszo do ScaleaStay.',
   },
   {
     language: 'it',
     topic: 'no-car',
     path: '/it/scalea-senza-auto/',
     title: 'Scalea senza auto: cosa raggiungere a piedi | ScaleaStay',
-    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 500 m e centro storico 950 m.',
+    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 550 m e centro storico 950 m.',
     heroTitle: 'Vacanza a Scalea senza auto: cosa puoi raggiungere a piedi',
     heroSubtitle: 'Da ScaleaStay molte cose utili per la vacanza sono raggiungibili a piedi: mare, supermercato, stazione, centro storico e luoghi per una passeggiata serale.',
-    summary: 'Spiaggia 600 m / 5–8 min · Interspar 230 m / ~3 min · stazione 500 m / ~8 min · centro storico 950 m / ~13 min.',
+    summary: 'Spiaggia 600 m / 5–8 min · Interspar 230 m / ~3 min · stazione 550 m / ~7 min · centro storico 950 m / ~13 min.',
   },
   {
     language: 'pl',
     topic: 'no-car',
     path: '/pl/scalea-bez-samochodu/',
     title: 'Scalea bez samochodu: co jest blisko pieszo | ScaleaStay',
-    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 500 m i stare miasto 950 m.',
+    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
     heroTitle: 'Scalea bez samochodu: co jest w zasięgu spaceru',
     heroSubtitle: 'Od ScaleaStay wiele rzeczy potrzebnych podczas urlopu jest dostępnych pieszo: morze, supermarket, dworzec, stare miasto i miejsca na wieczorny spacer.',
-    summary: 'Plaża 600 m / 5–8 min · Interspar 230 m / ~3 min · dworzec 500 m / ~8 min · stare miasto 950 m / ~13 min.',
+    summary: 'Plaża 600 m / 5–8 min · Interspar 230 m / ~3 min · dworzec 550 m / ~7 min · stare miasto 950 m / ~13 min.',
   },
 ];
 
@@ -377,8 +377,8 @@ const buildGuideSchema = (page: GuidePage) => {
           position: 3,
           name: 'Scalea station → ScaleaStay',
           text: page.language === 'it'
-            ? 'Dalla stazione il percorso verificato fino a ScaleaStay è di circa 500 m, normalmente circa 8 minuti a piedi.'
-            : 'Ze stacji sprawdzona trasa do ScaleaStay ma około 500 m, zwykle około 8 minut pieszo.',
+            ? 'Dalla stazione il percorso verificato fino a ScaleaStay è di circa 550 m, normalmente circa 7 minuti a piedi.'
+            : 'Ze stacji sprawdzona trasa do ScaleaStay ma około 550 m, zwykle około 7 minut pieszo.',
         },
       ],
     });

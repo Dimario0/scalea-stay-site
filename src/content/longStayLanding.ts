@@ -24,7 +24,7 @@ export const LONG_STAY_LANDING = {
   nearby: [
     { name: 'Spiaggia più vicina', distance: '600 m', text: 'Circa 5–8 minuti a piedi per una passeggiata al mare.' },
     { name: 'Interspar', distance: '230 m', text: 'Circa 3 minuti a piedi per la spesa quotidiana.' },
-    { name: 'Stazione ferroviaria', distance: '500 m', text: 'Circa 8 minuti a piedi dalla stazione di Scalea–Santa Domenica Talao.' },
+    { name: 'Stazione ferroviaria', distance: '550 m', text: 'Circa 7 minuti a piedi dalla stazione di Scalea–Santa Domenica Talao.' },
   ],
   faq: [
     { q: 'Qual è il soggiorno minimo per l’offerta invernale?', a: 'L’offerta è valida da novembre a marzo per soggiorni di almeno un mese, previa conferma delle date disponibili.' },

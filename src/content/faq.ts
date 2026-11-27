@@ -95,11 +95,11 @@ export const getFaqItems = (language: string) => {
 const COMMERCIAL_TRAVEL_FAQ = {
   it: [
     { q: 'Quanto dista la spiaggia?', a: 'La spiaggia più vicina è a circa 600 m, normalmente 5–8 minuti a piedi. ScaleaStay si trova in Via Giuseppe Saragat 11, Scalea.' },
-    { q: 'Si può arrivare in treno?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 500 m, circa 8 minuti a piedi.' },
+    { q: 'Si può arrivare in treno?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 550 m, circa 7 minuti a piedi.' },
   ],
   pl: [
     { q: 'Jak daleko jest do plaży?', a: 'Najbliższa plaża znajduje się około 600 m od apartamentu — zwykle 5–8 minut pieszo. ScaleaStay mieści się przy Via Giuseppe Saragat 11 w Scalei.' },
-    { q: 'Czy można przyjechać pociągiem?', a: 'Tak. Dworzec Scalea–Santa Domenica Talao jest około 500 m od apartamentu, mniej więcej 8 minut pieszo.' },
+    { q: 'Czy można przyjechać pociągiem?', a: 'Tak. Dworzec Scalea–Santa Domenica Talao jest około 550 m od apartamentu, mniej więcej 7 minut pieszo.' },
   ],
 };
 

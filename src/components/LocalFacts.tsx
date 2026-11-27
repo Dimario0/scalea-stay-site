@@ -16,6 +16,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO } from '../constants';
 import { getLongStayCopy } from '../content/longStay';
 import { trackEvent } from '../analytics';
+import { STATION_TO_HOME_WALKING_URL, STATION_WALK } from '../content/arrival';
 
 type LocalFact = {
   title: string;
@@ -53,13 +54,6 @@ type LocalFactsCopy = {
   guestChoice?: GuestChoiceCopy;
 };
 
-const STATION_TO_HOME_WALKING_URL =
-  'https://www.google.com/maps/dir/?api=1&origin=' +
-  encodeURIComponent('Scalea-Santa Domenica Talao railway station, Scalea CS, Italy') +
-  '&destination=' +
-  encodeURIComponent('39.8074152,15.7949133') +
-  '&travelmode=walking';
-
 const COPY: Record<string, LocalFactsCopy> = {
   ru: {
     eyebrow: 'До 4 гостей · Всё рядом пешком',
@@ -71,7 +65,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
       { title: 'Interspar', metric: '230 м · около 3 мин пешком' },
-      { title: 'Вокзал Scalea', metric: '500 м · около 8 мин пешком' },
+      { title: 'Вокзал Scalea', metric: STATION_WALK.ru.metric },
       {
         title: 'Исторический центр',
         metric: '950 м · около 13 мин пешком',
@@ -92,7 +86,11 @@ const COPY: Record<string, LocalFactsCopy> = {
       distancesTitle: 'Расстояния пешком',
       primaryDistances: [
         { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
-        { title: 'Вокзал Scalea–Santa Domenica Talao', metric: '500 м · около 8 мин пешком' },
+        {
+          title: 'Вокзал Scalea–Santa Domenica Talao',
+          metric: STATION_WALK.ru.metric,
+          description: STATION_WALK.ru.entrance,
+        },
         { title: 'Супермаркет Interspar', metric: '230 м · около 3 мин пешком' },
       ],
       termsTitle: 'Что включено в стоимость',
@@ -118,7 +116,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Beach', metric: '600 m · about 5–8 min walk' },
       { title: 'Interspar', metric: '230 m · about 3 min walk' },
-      { title: 'Scalea station', metric: '500 m · about 8 min walk' },
+      { title: 'Scalea station', metric: STATION_WALK.en.metric },
       {
         title: 'Historic centre',
         metric: '950 m · about 13 min walk',
@@ -140,7 +138,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
       { title: 'Interspar', metric: '230 m · circa 3 min a piedi' },
-      { title: 'Stazione di Scalea', metric: '500 m · circa 8 min a piedi' },
+      { title: 'Stazione di Scalea', metric: STATION_WALK.it.metric },
       {
         title: 'Centro storico',
         metric: '950 m · circa 13 min a piedi',
@@ -161,7 +159,11 @@ const COPY: Record<string, LocalFactsCopy> = {
       distancesTitle: 'Distanze a piedi',
       primaryDistances: [
         { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
-        { title: 'Stazione Scalea–Santa Domenica Talao', metric: '500 m · circa 8 min a piedi' },
+        {
+          title: 'Stazione Scalea–Santa Domenica Talao',
+          metric: STATION_WALK.it.metric,
+          description: STATION_WALK.it.entrance,
+        },
         { title: 'Supermercato Interspar', metric: '230 m · circa 3 min a piedi' },
       ],
       termsTitle: 'Cosa è incluso',
@@ -187,7 +189,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Strand', metric: '600 m · ca. 5–8 Min. zu Fuß' },
       { title: 'Interspar', metric: '230 m · ca. 3 Min. zu Fuß' },
-      { title: 'Bahnhof Scalea', metric: '500 m · ca. 8 Min. zu Fuß' },
+      { title: 'Bahnhof Scalea', metric: STATION_WALK.de.metric },
       {
         title: 'Historisches Zentrum',
         metric: '950 m · ca. 13 Min. zu Fuß',
@@ -208,7 +210,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Pláž', metric: '600 m · přibližně 5–8 min pěšky' },
       { title: 'Interspar', metric: '230 m · přibližně 3 min pěšky' },
-      { title: 'Nádraží Scalea', metric: '500 m · přibližně 8 min pěšky' },
+      { title: 'Nádraží Scalea', metric: STATION_WALK.cs.metric },
       {
         title: 'Historické centrum',
         metric: '950 m · přibližně 13 min pěšky',
@@ -229,7 +231,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     facts: [
       { title: 'Plaża', metric: '600 m · około 5–8 min pieszo' },
       { title: 'Interspar', metric: '230 m · około 3 min pieszo' },
-      { title: 'Dworzec Scalea', metric: '500 m · około 8 min pieszo' },
+      { title: 'Dworzec Scalea', metric: STATION_WALK.pl.metric },
       {
         title: 'Historyczne centrum',
         metric: '950 m · około 13 min pieszo',
@@ -357,6 +359,11 @@ export const LocalFactsContent: React.FC<{ language: string }> = ({ language }) 
                           <dd className="mt-0.5 text-sm font-black text-indigo-600 leading-snug">
                             {item.metric}
                           </dd>
+                          {item.description && (
+                            <dd className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                              {item.description}
+                            </dd>
+                          )}
                         </div>
                       </div>
                     );

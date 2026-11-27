@@ -62,7 +62,7 @@ const GUIDE_PAGES: GuidePage[] = [
     faq: [
       { q: 'L’aeroporto di Lamezia Terme è collegato alla stazione ferroviaria?', a: 'Sì. Lamezia Airlink collega l’aeroporto con la stazione Lamezia Terme Centrale; Trenitalia consente anche di cercare la soluzione treno+bus selezionando Lamezia Terme Aeroporto.' },
       { q: 'Da Lamezia Terme Centrale si può raggiungere Scalea in treno?', a: 'Sì. Scalea–Santa Domenica Talao si trova sulla linea tirrenica servita da collegamenti ferroviari. Gli orari e gli eventuali cambi vanno controllati per la data del viaggio.' },
-      { q: 'Quanto dista ScaleaStay dalla stazione di Scalea?', a: 'Il percorso verificato dalla stazione Scalea–Santa Domenica Talao a ScaleaStay è di circa 500 m, normalmente circa 8 minuti a piedi.' },
+      { q: 'Quanto dista ScaleaStay dalla stazione di Scalea?', a: 'Il percorso verificato dalla stazione Scalea–Santa Domenica Talao a ScaleaStay è di circa 550 m, normalmente circa 7 minuti a piedi.' },
       { q: 'Serve prenotare un’auto per arrivare a ScaleaStay?', a: 'Non necessariamente. È possibile arrivare con Airlink e treno e poi raggiungere l’appartamento a piedi dalla stazione. Un’auto può essere utile soprattutto per escursioni fuori Scalea.' },
     ],
     relatedLabel: 'Dopo l’arrivo',
@@ -89,7 +89,7 @@ const GUIDE_PAGES: GuidePage[] = [
     faq: [
       { q: 'Czy lotnisko Lamezia Terme ma połączenie ze stacją kolejową?', a: 'Tak. Lamezia Airlink łączy lotnisko ze stacją Lamezia Terme Centrale. W Trenitalii można wyszukać wspólną trasę pociąg+autobus, wybierając Lamezia Terme Aeroporto.' },
       { q: 'Czy z Lamezia Terme Centrale można dojechać pociągiem do Scalei?', a: 'Tak. Stacja Scalea–Santa Domenica Talao leży na nadmorskiej linii kolejowej. Aktualne godziny i ewentualne przesiadki należy sprawdzić dla konkretnego dnia podróży.' },
-      { q: 'Jak daleko jest ze stacji w Scalei do ScaleaStay?', a: 'Sprawdzona trasa ze stacji Scalea–Santa Domenica Talao do ScaleaStay ma około 500 m, czyli zwykle około 8 minut pieszo.' },
+      { q: 'Jak daleko jest ze stacji w Scalei do ScaleaStay?', a: 'Sprawdzona trasa ze stacji Scalea–Santa Domenica Talao do ScaleaStay ma około 550 m, czyli zwykle około 7 minut pieszo.' },
       { q: 'Czy trzeba wynajmować samochód, żeby dotrzeć do ScaleaStay?', a: 'Nie jest to konieczne. Można dojechać Airlinkiem i pociągiem, a ze stacji dojść do apartamentu pieszo. Samochód przydaje się głównie na dalsze wycieczki poza Scaleę.' },
     ],
     relatedLabel: 'Po przyjeździe',
@@ -105,7 +105,7 @@ const GUIDE_PAGES: GuidePage[] = [
     topic: 'no-car',
     path: '/it/scalea-senza-auto/',
     title: 'Scalea senza auto: cosa raggiungere a piedi | ScaleaStay',
-    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 500 m e centro storico 950 m.',
+    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 550 m e centro storico 950 m.',
     eyebrow: 'Scalea a piedi • Guida pratica',
     heroTitle: 'Vacanza a Scalea senza auto: cosa puoi raggiungere a piedi',
     heroSubtitle: 'Da ScaleaStay molte cose utili per la vacanza sono raggiungibili a piedi: mare, supermercato, stazione, centro storico e luoghi per una passeggiata serale.',
@@ -116,7 +116,7 @@ const GUIDE_PAGES: GuidePage[] = [
     faq: [
       { q: 'Quanto dista il mare da ScaleaStay?', a: 'La spiaggia più vicina è a circa 600 m. La percorrenza reale può variare con il passo; come riferimento usiamo circa 5–8 minuti a piedi.' },
       { q: 'Si può fare la spesa a piedi?', a: 'Sì. Interspar si trova a circa 230 m, circa 3 minuti a piedi dal punto di partenza verificato.' },
-      { q: 'La stazione ferroviaria è raggiungibile a piedi?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 500 m, normalmente circa 8 minuti a piedi.' },
+      { q: 'La stazione ferroviaria è raggiungibile a piedi?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 550 m, normalmente circa 7 minuti a piedi.' },
       { q: 'Quando conviene avere un’auto?', a: 'L’auto è utile soprattutto per escursioni fuori Scalea, spiagge più lontane e località dell’entroterra. Per mare, spesa, stazione e centro molti spostamenti possono essere fatti a piedi.' },
     ],
     relatedLabel: 'Come arrivare',
@@ -132,7 +132,7 @@ const GUIDE_PAGES: GuidePage[] = [
     topic: 'no-car',
     path: '/pl/scalea-bez-samochodu/',
     title: 'Scalea bez samochodu: co jest blisko pieszo | ScaleaStay',
-    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 500 m i stare miasto 950 m.',
+    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
     eyebrow: 'Scalea pieszo • Praktyczny przewodnik',
     heroTitle: 'Scalea bez samochodu: co jest w zasięgu spaceru',
     heroSubtitle: 'Od ScaleaStay wiele rzeczy potrzebnych podczas urlopu jest dostępnych pieszo: morze, supermarket, dworzec, stare miasto i miejsca na wieczorny spacer.',
@@ -143,7 +143,7 @@ const GUIDE_PAGES: GuidePage[] = [
     faq: [
       { q: 'Jak daleko jest z ScaleaStay do morza?', a: 'Najbliższa plaża znajduje się około 600 m od apartamentu. Rzeczywisty czas zależy od tempa; jako praktyczny zakres podajemy około 5–8 minut pieszo.' },
       { q: 'Czy na zakupy można dojść pieszo?', a: 'Tak. Interspar znajduje się około 230 m od sprawdzonego punktu startowego, czyli około 3 minuty pieszo.' },
-      { q: 'Czy dworzec kolejowy jest blisko?', a: 'Tak. Stacja Scalea–Santa Domenica Talao znajduje się około 500 m od ScaleaStay, zwykle około 8 minut pieszo.' },
+      { q: 'Czy dworzec kolejowy jest blisko?', a: 'Tak. Stacja Scalea–Santa Domenica Talao znajduje się około 550 m od ScaleaStay, zwykle około 7 minut pieszo.' },
       { q: 'Kiedy samochód jest przydatny?', a: 'Przede wszystkim podczas dalszych wycieczek poza Scaleę, na bardziej oddalone plaże i do miejscowości w głębi Kalabrii. Morze, zakupy, dworzec i centrum są dostępne pieszo.' },
     ],
     relatedLabel: 'Jak dojechać',
@@ -259,7 +259,7 @@ const GuideLanding: React.FC = () => {
         step: [
           { '@type': 'HowToStep', position: 1, name: 'Lamezia Terme Airport → Lamezia Terme Centrale', text: expected.language === 'it' ? 'Usa il collegamento Lamezia Airlink tra l’aeroporto e la stazione Lamezia Terme Centrale.' : 'Skorzystaj z Lamezia Airlink między lotniskiem a stacją Lamezia Terme Centrale.' },
           { '@type': 'HowToStep', position: 2, name: 'Lamezia Terme Centrale → Scalea', text: expected.language === 'it' ? 'Prosegui in treno fino alla stazione Scalea–Santa Domenica Talao, verificando l’orario per la data del viaggio.' : 'Jedź pociągiem do stacji Scalea–Santa Domenica Talao, sprawdzając rozkład dla dnia podróży.' },
-          { '@type': 'HowToStep', position: 3, name: 'Scalea station → ScaleaStay', text: expected.language === 'it' ? 'Dalla stazione il percorso verificato fino a ScaleaStay è di circa 500 m, normalmente circa 8 minuti a piedi.' : 'Ze stacji sprawdzona trasa do ScaleaStay ma około 500 m, zwykle około 8 minut pieszo.' },
+          { '@type': 'HowToStep', position: 3, name: 'Scalea station → ScaleaStay', text: expected.language === 'it' ? 'Dalla stazione il percorso verificato fino a ScaleaStay è di circa 550 m, normalmente circa 7 minuti a piedi.' : 'Ze stacji sprawdzona trasa do ScaleaStay ma około 550 m, zwykle około 7 minut pieszo.' },
         ],
       });
     }
@@ -276,7 +276,7 @@ const GuideLanding: React.FC = () => {
   const facts = useMemo(() => [
     { icon: Waves, label: supportedLanguage === 'it' ? 'Spiaggia' : 'Plaża', value: '600 m · 5–8 min' },
     { icon: ShoppingBasket, label: 'Interspar', value: '230 m · ~3 min' },
-    { icon: TrainFront, label: supportedLanguage === 'it' ? 'Stazione' : 'Dworzec', value: '500 m · ~8 min' },
+    { icon: TrainFront, label: supportedLanguage === 'it' ? 'Stazione' : 'Dworzec', value: '550 m · ~7 min' },
     { icon: Landmark, label: supportedLanguage === 'it' ? 'Centro storico' : 'Stare miasto', value: '950 m · ~13 min' },
   ], [supportedLanguage]);
 
@@ -347,8 +347,8 @@ const GuideLanding: React.FC = () => {
                     step: '03',
                     title: supportedLanguage === 'it' ? 'Stazione Scalea → ScaleaStay' : 'Dworzec Scalea → ScaleaStay',
                     text: supportedLanguage === 'it'
-                      ? 'Il percorso verificato dalla stazione all’appartamento è di circa 500 m, normalmente circa 8 minuti a piedi.'
-                      : 'Sprawdzona trasa z dworca do apartamentu ma około 500 m, czyli zwykle około 8 minut pieszo.',
+                      ? 'Il percorso verificato dalla stazione all’appartamento è di circa 550 m, normalmente circa 7 minuti a piedi.'
+                      : 'Sprawdzona trasa z dworca do apartamentu ma około 550 m, czyli zwykle około 7 minut pieszo.',
                   },
                 ].map(({ icon: Icon, step, title, text }) => (
                   <article key={step} className="rounded-3xl border border-slate-100 bg-slate-50 p-6">
