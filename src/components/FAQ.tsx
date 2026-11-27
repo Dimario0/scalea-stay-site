@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../analytics';
 import { getFaqItems } from '../content/faq';
+import { directionsUrl, ENTRANCE_ADDRESS, STATION_TO_HOME_WALKING_URL, STATION_WALK } from '../content/arrival';
 import {
   Bus,
   Car,
@@ -16,7 +17,6 @@ import {
 } from 'lucide-react';
 
 type RouteKey = 'beach' | 'station' | 'airport';
-type TravelMode = 'walking' | 'transit' | 'driving';
 
 type LocalCopy = {
   routesTitle: string;
@@ -25,7 +25,7 @@ type LocalCopy = {
   stationTab: string;
   airportTab: string;
   beachMetric: string;
-  stationMetric: string;
+  stationWalk: { metric: string; entrance: string };
   airportMetric: string;
   homeLabel: string;
   beachLabel: string;
@@ -51,7 +51,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'От станции',
     airportTab: 'Из аэропорта',
     beachMetric: '600 м · около 5–8 мин пешком',
-    stationMetric: 'Маршрут от ж/д станции',
+    stationWalk: STATION_WALK.ru,
     airportMetric: 'Lamezia Terme (SUF) — ближайший аэропорт',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Выход к пляжу',
@@ -75,7 +75,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'From station',
     airportTab: 'From airport',
     beachMetric: '600 m · about 5–8 min walk',
-    stationMetric: 'Route from the railway station',
+    stationWalk: STATION_WALK.en,
     airportMetric: 'Lamezia Terme (SUF) — nearest airport',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Beach access',
@@ -99,7 +99,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'Dalla stazione',
     airportTab: 'Dall’aeroporto',
     beachMetric: '600 m · circa 5–8 min a piedi',
-    stationMetric: 'Percorso dalla stazione',
+    stationWalk: STATION_WALK.it,
     airportMetric: 'Lamezia Terme (SUF) — aeroporto più vicino',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Accesso alla spiaggia',
@@ -123,7 +123,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'Vom Bahnhof',
     airportTab: 'Vom Flughafen',
     beachMetric: '600 m · ca. 5–8 Min. zu Fuß',
-    stationMetric: 'Route vom Bahnhof',
+    stationWalk: STATION_WALK.de,
     airportMetric: 'Lamezia Terme (SUF) — nächster Flughafen',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Strandzugang',
@@ -147,7 +147,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'Z nádraží',
     airportTab: 'Z letiště',
     beachMetric: '600 m · přibližně 5–8 min pěšky',
-    stationMetric: 'Trasa z vlakového nádraží',
+    stationWalk: STATION_WALK.cs,
     airportMetric: 'Lamezia Terme (SUF) — nejbližší letiště',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Vstup na pláž',
@@ -171,7 +171,7 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
     stationTab: 'Ze stacji',
     airportTab: 'Z lotniska',
     beachMetric: '600 m · około 5–8 min pieszo',
-    stationMetric: 'Trasa z dworca kolejowego',
+    stationWalk: STATION_WALK.pl,
     airportMetric: 'Lamezia Terme (SUF) — najbliższe lotnisko',
     homeLabel: 'ScaleaStay',
     beachLabel: 'Wejście na plażę',
@@ -192,12 +192,8 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
 
 const HOME_LOCATION = '39.8074152,15.7949133';
 const BEACH_LOCATION = '39.8064465,15.7889826';
-const STATION_LOCATION = 'Scalea-Santa Domenica Talao railway station, Scalea CS, Italy';
 const AIRPORT_LOCATION = 'Lamezia Terme International Airport (SUF), 88046 Lamezia Terme CZ, Italy';
 const AIRLINK_URL = 'https://www.trenitalia.com/en/connections/lamezia-airlink.html';
-
-const directionsUrl = (origin: string, destination: string, travelMode: TravelMode) =>
-  `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${travelMode}`;
 
 const FAQ: React.FC = () => {
   const { t, language } = useLanguage();
@@ -218,13 +214,13 @@ const FAQ: React.FC = () => {
       : 'M82 165 C170 65 260 58 338 120 S500 176 620 64';
 
   const routeLabel = isBeach ? copy.beachTab : isStation ? copy.stationTab : copy.airportTab;
-  const routeMetric = isBeach ? copy.beachMetric : isStation ? copy.stationMetric : copy.airportMetric;
+  const routeMetric = isBeach ? copy.beachMetric : isStation ? copy.stationWalk.metric : copy.airportMetric;
   const routeUrl = isBeach
     ? directionsUrl(HOME_LOCATION, BEACH_LOCATION, 'walking')
     : isStation
-      ? directionsUrl(STATION_LOCATION, HOME_LOCATION, 'walking')
-      : directionsUrl(AIRPORT_LOCATION, HOME_LOCATION, 'transit');
-  const airportDrivingUrl = directionsUrl(AIRPORT_LOCATION, HOME_LOCATION, 'driving');
+      ? STATION_TO_HOME_WALKING_URL
+      : directionsUrl(AIRPORT_LOCATION, ENTRANCE_ADDRESS, 'transit');
+  const airportDrivingUrl = directionsUrl(AIRPORT_LOCATION, ENTRANCE_ADDRESS, 'driving');
 
   const setRoute = (route: RouteKey) => {
     setActiveRoute(route);
@@ -395,7 +391,9 @@ const FAQ: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    <p className="text-xs text-slate-500 leading-relaxed mb-4">{copy.schematicNote}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed mb-4">
+                      {isStation ? copy.stationWalk.entrance : copy.schematicNote}
+                    </p>
                     <a
                       href={routeUrl}
                       target="_blank"

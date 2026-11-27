@@ -17,7 +17,7 @@
 - Website and brand: ScaleaStay.
 - Accommodation type: holiday apartment.
 - Location: Scalea, Province of Cosenza, Calabria, Italy.
-- Confirmed apartment coordinates: 39.8074152, 15.7949133.
+- Building coordinates: 39.8074152, 15.7949133. For guest directions, use Via Giuseppe Saragat 11, 87029 Scalea CS, Italy. Facing the building from the street, take the stairs on the left to entrance No. 11.
 - Confirmed nearest-beach destination coordinates: 39.8064465, 15.7889826.
 - Maximum occupancy: 4 guests (separate bedroom with a double bed and living room with a fold-out sofa bed for two; bed linen and towels are provided).
 - Confirmed amenities: Wi-Fi, gas heating, air conditioning, private parking, terrace, equipped kitchen, microwave, hair dryer, kitchen utensils, bed linen, towels, and a beach umbrella.
@@ -28,10 +28,10 @@
 
 - The nearest beach is 600 m away, about a 5–8 minute walk.
 - The exact walking route to the nearest beach is available in the “Routes” section of every language page.
-- The local railway station is Scalea–Santa Domenica Talao.
+- From Scalea–Santa Domenica Talao railway station, the walk to entrance No. 11 is about 550 m and takes around 7 minutes.
 - The nearest major international airport used in the arrival guide is Lamezia Terme International Airport (SUF).
 - A public-transport arrival can combine Lamezia Airlink to Lamezia Terme Centrale, a train to Scalea–Santa Domenica Talao, and a final local transfer to the apartment.
-- A separate driving route from Lamezia Terme Airport to the confirmed apartment coordinates is available on the website.
+- A separate driving route from Lamezia Terme Airport to Via Giuseppe Saragat 11 is available on the website.
 
 ## Accuracy rules
 
