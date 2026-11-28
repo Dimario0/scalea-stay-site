@@ -10,7 +10,7 @@ type HeroCopy = {
   badge: string;
   title: string;
   primaryCta: string;
-  facts: [string, string, string];
+  facts: [string, string];
 };
 
 const COPY: Record<string, HeroCopy> = {
@@ -18,37 +18,37 @@ const COPY: Record<string, HeroCopy> = {
     badge: 'Scalea • Calabria • Italia',
     title: 'Современные апартаменты у моря в Скалее',
     primaryCta: 'Посмотреть апартаменты',
-    facts: ['Пляж · 5–8 мин', 'Interspar · 3 мин', 'Вокзал · 7 мин'],
+    facts: ['Interspar · 3 мин', 'Вокзал · 7 мин'],
   },
   en: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Modern holiday apartment by the sea in Scalea',
     primaryCta: 'View the apartment',
-    facts: ['Beach · 5–8 min', 'Interspar · 3 min', 'Station · 7 min'],
+    facts: ['Interspar · 3 min', 'Station · 7 min'],
   },
   it: {
     badge: 'Scalea • Calabria • Italia',
     title: ITALIAN_HOME.heading,
     primaryCta: 'Scopri l’appartamento',
-    facts: ['Spiaggia · 5–8 min', 'Interspar · 3 min', 'Stazione · 7 min'],
+    facts: ['Interspar · 3 min', 'Stazione · 7 min'],
   },
   de: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderne Ferienwohnung am Meer in Scalea',
     primaryCta: 'Ferienwohnung ansehen',
-    facts: ['Strand · 5–8 Min.', 'Interspar · 3 Min.', 'Bahnhof · 7 Min.'],
+    facts: ['Interspar · 3 Min.', 'Bahnhof · 7 Min.'],
   },
   cs: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Moderní apartmán u moře ve Scalee',
     primaryCta: 'Prohlédnout apartmán',
-    facts: ['Pláž · 5–8 min', 'Interspar · 3 min', 'Nádraží · 7 min'],
+    facts: ['Interspar · 3 min', 'Nádraží · 7 min'],
   },
   pl: {
     badge: 'Scalea • Calabria • Italia',
     title: 'Nowoczesny apartament blisko morza w Scalei',
     primaryCta: 'Zobacz apartament',
-    facts: ['Plaża · 5–8 min', 'Interspar · 3 min', 'Dworzec · 7 min'],
+    facts: ['Interspar · 3 min', 'Dworzec · 7 min'],
   },
 };
 
@@ -98,9 +98,9 @@ const Hero: React.FC = () => {
   };
 
   const trustItems = [
-    { icon: '🏖️', label: copy.facts[0] },
-    { icon: '🛒', label: copy.facts[1] },
-    { icon: '🚆', label: copy.facts[2] }
+    { icon: '🏖️', label: t('beachDistance') },
+    { icon: '🛒', label: copy.facts[0] },
+    { icon: '🚆', label: copy.facts[1] }
   ];
 
   return (

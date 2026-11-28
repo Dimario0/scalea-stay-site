@@ -1,14 +1,14 @@
 const copy = {
   it: {
     title: 'Cerchi un appartamento a Scalea?',
-    text: 'ScaleaStay: una camera da letto, terrazza, cucina e Wi-Fi. Fino a 4 ospiti; spiaggia a circa 500 m, circa 5–8 minuti a piedi.',
+    text: 'ScaleaStay: una camera da letto, terrazza, cucina e Wi-Fi. Fino a 4 ospiti; spiaggia a circa 500 m, 5–8 minuti a piedi.',
     terms: 'Indica le tue date: il proprietario confermerà disponibilità e prezzo totale su WhatsApp prima della prenotazione.',
     cta: 'Chiedi disponibilità e prezzo', details: 'Foto e dettagli dell’appartamento',
     arrival: 'Arrivo', departure: 'Partenza', guests: 'Ospiti', fallback: 'Preferisci scrivere direttamente? Apri WhatsApp',
   },
   pl: {
     title: 'Szukasz apartamentu w Scalei?',
-    text: 'ScaleaStay: jedna sypialnia, taras, kuchnia i Wi-Fi. Do 4 gości; plaża około 500 m, około 5–8 minut pieszo.',
+    text: 'ScaleaStay: jedna sypialnia, taras, kuchnia i Wi-Fi. Do 4 gości; plaża około 500 m, 5–8 minut pieszo.',
     terms: 'Podaj daty: właściciel potwierdzi dostępność i całkowitą cenę na WhatsApp przed rezerwacją.',
     cta: 'Zapytaj o dostępność i cenę', details: 'Zdjęcia i szczegóły apartamentu',
     arrival: 'Przyjazd', departure: 'Wyjazd', guests: 'Goście', fallback: 'Wolisz napisać bezpośrednio? Otwórz WhatsApp',

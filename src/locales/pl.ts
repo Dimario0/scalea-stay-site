@@ -1,3 +1,5 @@
+import { BEACH_WALK_COPY } from '../content/beachWalk';
+
 export const PL_TRANSLATIONS: Record<string, string> = {
   taTitle: 'Dla kogo jest ten apartament',
   taItem1: 'Dla rodzin, które chcą wypoczywać blisko morza i mieć wygodny apartament w Scalei.',
@@ -66,7 +68,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
   whatsappBookingMsg: 'Dzień dobry! Chcę zapytać o pobyt w ScaleaStay. Czy wybrane terminy są dostępne?',
   apartmentBookingMsg: 'Dzień dobry! Chcę zapytać o pobyt w ScaleaStay. Czy wybrane terminy są dostępne?',
 
-  beachDistance: 'Plaża 5–8 min',
+  beachDistance: `Plaża · ${BEACH_WALK_COPY.pl.metric}`,
   beachRouteLabel: 'Trasa na plażę',
   acReady: 'Klimatyzacja',
   parkingInc: 'Parking',

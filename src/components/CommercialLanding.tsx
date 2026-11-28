@@ -65,7 +65,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Controllo rapido delle date', 'Contatto diretto', 'Informazioni pratiche prima dell’arrivo'],
     faqTitle: 'Domande frequenti su ScaleaStay',
     seoTitle: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a circa 500 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
+    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a circa 500 m, 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
     canonicalPath: '/it/appartamento-scalea-vicino-mare/',
   },
   pl: {
@@ -90,7 +90,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Szybkie sprawdzenie terminów', 'Bezpośredni kontakt', 'Praktyczne informacje przed przyjazdem'],
     faqTitle: 'Najczęstsze pytania o ScaleaStay',
     seoTitle: 'Apartament w Scalei blisko morza | ScaleaStay',
-    seoDescription: 'Apartament w Scalei do 4 gości: plaża około 500 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
+    seoDescription: 'Apartament w Scalei do 4 gości: plaża około 500 m, 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
   },
 };

@@ -30,6 +30,8 @@ const pages = [
 ].map(([file,lang,url]) => ({file,lang,canonical:`${SITE_ORIGIN}${url}`}));
 
 const stalePatterns = [/Casa Marittima/i,/400\s*(?:m|metri|meters?|meter|metrů|метр)/i,/(?:Beach|Strand|Spiaggia|Pláž|Пляж)\s*6\s*(?:min|мин)/i,/>faqQ(?:6|8)</i,/>faqA(?:6|8)</i];
+// Match the old beach claim without applying it to other local landmarks.
+stalePatterns.push(/(?:пляж[а-яё]*|beach|spiaggia|mare|strand|pláž[íe]?|plaż[ayę])[^<.\n]{0,50}?\b600\s*(?:[mм]\b|м(?=[^а-яё]|$)|metr|метр)/iu);
 const fail = (m) => { console.error(`SEO BUILD VERIFY FAILED: ${m}`); process.exitCode = 1; };
 
 // Check both the published discovery guide and its source, including stale builds.
@@ -74,6 +76,15 @@ for (const p of pages) {
   const h1 = html.match(/<h1(?:\s|>)/gi)?.length ?? 0;
   if (h1 !== 1) fail(`${p.file}: expected one H1, found ${h1}`);
   const commercial = /\/(?:appartamento-scalea-vicino-mare|apartament-scalea-blisko-morza)\//.test(p.canonical);
+  const home = /^[a-z]{2}\/index\.html$/.test(p.file);
+  if (home) {
+    for (const key of ['name="description"', 'property="og:description"', 'property="twitter:description"']) {
+      const content = html.match(new RegExp(`<meta ${key} content="([^"]*)"`, 'i'))?.[1] || '';
+      if (!/500\s*[mм]/u.test(content) || !content.includes('5–8')) {
+        fail(`${p.file}: ${key} must include the beach distance and walking time`);
+      }
+    }
+  }
   if (commercial) {
     const description = html.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
     if (!description.includes('4 ') || !description.includes('500 m') || !description.includes('5–8') || !description.includes('Wi-Fi') || !description.includes('WhatsApp') || /fuori stagione|soggiorni lunghi|dłuższe pobyty/i.test(description)) {
@@ -83,7 +94,7 @@ for (const p of pages) {
       if (!html.includes(`property="${name}" content="${description}"`)) fail(`${p.file}: ${name} differs from commercial description`);
     }
   }
-  if (/^[a-z]{2}\/index\.html$/.test(p.file) || commercial) {
+  if (home || commercial) {
     const body = html.split('<body')[1] || '';
     if (!body.includes('id="apartments"')) fail(`${p.file}: apartment content missing from initial HTML`);
     if (!body.includes('id="faq"')) fail(`${p.file}: FAQ content missing from initial HTML`);
