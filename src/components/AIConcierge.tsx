@@ -46,13 +46,13 @@ const getLocalResponse = async (input: string, lang: string): Promise<string> =>
 
   if (isSea) {
     switch (lang) {
-      case 'ru': return "Ближайший пляж — около 600 м от ScaleaStay, обычно 5–8 минут пешком.";
-      case 'en': return "The nearest beach is about 600 m from ScaleaStay, usually a 5–8 minute walk.";
-      case 'it': return "La spiaggia più vicina dista circa 600 m da ScaleaStay, normalmente 5–8 minuti a piedi.";
-      case 'de': return "Der nächste Strand ist etwa 600 m von ScaleaStay entfernt, normalerweise 5–8 Gehminuten.";
-      case 'cs': return "Nejbližší pláž je přibližně 600 m od ScaleaStay, obvykle 5–8 minut pěšky.";
-      case 'pl': return "Najbliższa plaża znajduje się około 600 m od ScaleaStay — zwykle 5–8 minut pieszo.";
-      default: return "The nearest beach is about 600 m from ScaleaStay, usually a 5–8 minute walk.";
+      case 'ru': return "Ближайший пляж — около 500 м от ScaleaStay, обычно 5–8 минут пешком.";
+      case 'en': return "The nearest beach is about 500 m from ScaleaStay, usually a 5–8 minute walk.";
+      case 'it': return "La spiaggia più vicina dista circa 500 m da ScaleaStay, normalmente 5–8 minuti a piedi.";
+      case 'de': return "Der nächste Strand ist etwa 500 m von ScaleaStay entfernt, normalerweise 5–8 Gehminuten.";
+      case 'cs': return "Nejbližší pláž je přibližně 500 m od ScaleaStay, obvykle 5–8 minut pěšky.";
+      case 'pl': return "Najbliższa plaża znajduje się około 500 m od ScaleaStay — zwykle 5–8 minut pieszo.";
+      default: return "The nearest beach is about 500 m from ScaleaStay, usually a 5–8 minute walk.";
     }
   }
 

@@ -22,7 +22,7 @@ export const LONG_STAY_LANDING = {
     { title: 'La libertà di sentirti a casa', text: 'Prepara i pasti nella cucina attrezzata e ritrova la privacy di una camera da letto separata. Puoi seguire i tuoi orari e organizzare ogni giornata come preferisci.' },
   ],
   nearby: [
-    { name: 'Spiaggia più vicina', distance: '600 m', text: 'Circa 5–8 minuti a piedi per una passeggiata al mare.' },
+    { name: 'Spiaggia più vicina', distance: 'Circa 500 m', text: 'Circa 5–8 minuti a piedi per una passeggiata al mare.' },
     { name: 'Interspar', distance: '230 m', text: 'Circa 3 minuti a piedi per la spesa quotidiana.' },
     { name: 'Stazione ferroviaria', distance: '550 m', text: 'Circa 7 minuti a piedi dalla stazione di Scalea–Santa Domenica Talao.' },
   ],

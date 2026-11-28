@@ -16,6 +16,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO } from '../constants';
 import { getLongStayCopy } from '../content/longStay';
 import { trackEvent } from '../analytics';
+import { BEACH_WALK_COPY } from '../content/beachWalk';
 import { STATION_TO_HOME_WALKING_URL, STATION_WALK } from '../content/arrival';
 
 type LocalFact = {
@@ -63,7 +64,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Посмотреть все маршруты',
     extraLabel: 'Ещё рядом для прогулок',
     facts: [
-      { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
+      { title: 'Пляж', metric: BEACH_WALK_COPY.ru.metric },
       { title: 'Interspar', metric: '230 м · около 3 мин пешком' },
       { title: 'Вокзал Scalea', metric: STATION_WALK.ru.metric },
       {
@@ -85,7 +86,7 @@ const COPY: Record<string, LocalFactsCopy> = {
       linenText: 'Постельное бельё и полотенца предоставляем.',
       distancesTitle: 'Расстояния пешком',
       primaryDistances: [
-        { title: 'Пляж', metric: '600 м · около 5–8 мин пешком' },
+        { title: 'Пляж', metric: BEACH_WALK_COPY.ru.metric },
         {
           title: 'Вокзал Scalea–Santa Domenica Talao',
           metric: STATION_WALK.ru.metric,
@@ -114,7 +115,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'View routes',
     extraLabel: 'Also nearby',
     facts: [
-      { title: 'Beach', metric: '600 m · about 5–8 min walk' },
+      { title: 'Beach', metric: BEACH_WALK_COPY.en.metric },
       { title: 'Interspar', metric: '230 m · about 3 min walk' },
       { title: 'Scalea station', metric: STATION_WALK.en.metric },
       {
@@ -136,7 +137,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Scopri tutti i percorsi',
     extraLabel: 'Anche nelle vicinanze',
     facts: [
-      { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
+      { title: 'Spiaggia', metric: BEACH_WALK_COPY.it.metric },
       { title: 'Interspar', metric: '230 m · circa 3 min a piedi' },
       { title: 'Stazione di Scalea', metric: STATION_WALK.it.metric },
       {
@@ -158,7 +159,7 @@ const COPY: Record<string, LocalFactsCopy> = {
       linenText: 'Biancheria da letto e asciugamani sono forniti.',
       distancesTitle: 'Distanze a piedi',
       primaryDistances: [
-        { title: 'Spiaggia', metric: '600 m · circa 5–8 min a piedi' },
+        { title: 'Spiaggia', metric: BEACH_WALK_COPY.it.metric },
         {
           title: 'Stazione Scalea–Santa Domenica Talao',
           metric: STATION_WALK.it.metric,
@@ -187,7 +188,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Wege ansehen',
     extraLabel: 'Auch in der Nähe',
     facts: [
-      { title: 'Strand', metric: '600 m · ca. 5–8 Min. zu Fuß' },
+      { title: 'Strand', metric: BEACH_WALK_COPY.de.metric },
       { title: 'Interspar', metric: '230 m · ca. 3 Min. zu Fuß' },
       { title: 'Bahnhof Scalea', metric: STATION_WALK.de.metric },
       {
@@ -208,7 +209,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Prohlédnout trasy',
     extraLabel: 'Také v okolí',
     facts: [
-      { title: 'Pláž', metric: '600 m · přibližně 5–8 min pěšky' },
+      { title: 'Pláž', metric: BEACH_WALK_COPY.cs.metric },
       { title: 'Interspar', metric: '230 m · přibližně 3 min pěšky' },
       { title: 'Nádraží Scalea', metric: STATION_WALK.cs.metric },
       {
@@ -229,7 +230,7 @@ const COPY: Record<string, LocalFactsCopy> = {
     cta: 'Zobacz trasy',
     extraLabel: 'Także w pobliżu',
     facts: [
-      { title: 'Plaża', metric: '600 m · około 5–8 min pieszo' },
+      { title: 'Plaża', metric: BEACH_WALK_COPY.pl.metric },
       { title: 'Interspar', metric: '230 m · około 3 min pieszo' },
       { title: 'Dworzec Scalea', metric: STATION_WALK.pl.metric },
       {

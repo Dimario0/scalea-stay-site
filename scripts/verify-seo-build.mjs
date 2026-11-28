@@ -43,7 +43,7 @@ const llmsStalePatterns = [
 ];
 const llmsRequiredFacts = [
   ['current brand', /^# ScaleaStay$/m],
-  ['confirmed beach distance and approximate walking time', /nearest beach is 600 m away, about a 5[–-]8 minute walk/i],
+  ['confirmed beach distance and approximate walking time', /beach is about 500 m away, a 5[–-]8 minute walk/i],
   ['installed Wi-Fi', /Wi[-\u2010-\u2015 ]?Fi is installed and available\./i],
 ];
 const llmsContents = [];
@@ -76,7 +76,7 @@ for (const p of pages) {
   const commercial = /\/(?:appartamento-scalea-vicino-mare|apartament-scalea-blisko-morza)\//.test(p.canonical);
   if (commercial) {
     const description = html.match(/<meta name="description" content="([^"]*)"/i)?.[1] || '';
-    if (!description.includes('4 ') || !description.includes('600 m') || !description.includes('5–8') || !description.includes('Wi-Fi') || !description.includes('WhatsApp') || /fuori stagione|soggiorni lunghi|dłuższe pobyty/i.test(description)) {
+    if (!description.includes('4 ') || !description.includes('500 m') || !description.includes('5–8') || !description.includes('Wi-Fi') || !description.includes('WhatsApp') || /fuori stagione|soggiorni lunghi|dłuższe pobyty/i.test(description)) {
       fail(`${p.file}: commercial description must describe the apartment, capacity and direct date enquiry`);
     }
     for (const name of ['og:description', 'twitter:description']) {
@@ -107,7 +107,7 @@ for (const p of pages) {
       if (apartment?.numberOfBedrooms !== 1 || apartment?.occupancy?.value !== 4 || apartment?.identifier !== 'IT078138C2VN4E3MCD' || apartment?.address?.streetAddress !== 'Via Giuseppe Saragat 11') {
         fail(`${p.file}: incomplete confirmed accommodation schema`);
       }
-      if (!body.includes('CIN: IT078138C2VN4E3MCD') || !body.includes('Via Giuseppe Saragat 11') || !/600\s*[mм]/.test(body) || !body.includes('5–8')) {
+      if (!body.includes('CIN: IT078138C2VN4E3MCD') || !body.includes('Via Giuseppe Saragat 11') || !/500\s*[mм]/.test(body) || !body.includes('5–8')) {
         fail(`${p.file}: confirmed location/identifier missing from initial visible HTML`);
       }
       if (commercial && !graphs.some(j => j['@type'] === 'WebPage' && j.about?.['@id'] === apartment?.['@id'])) {

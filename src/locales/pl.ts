@@ -41,7 +41,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
   advLocation: 'Wygodna lokalizacja',
   advLocationDesc: 'Plaża, sklepy, dworzec i centrum Scalei są dostępne pieszo.',
   advSea: 'Blisko morza',
-  advSeaDesc: 'Najbliższa plaża znajduje się około 600 m od apartamentu — zwykle 5–8 minut pieszo.',
+  advSeaDesc: 'Najbliższa plaża znajduje się około 500 m od apartamentu — zwykle 5–8 minut pieszo.',
   advRenovation: 'Nowoczesne wnętrze',
   advRenovationDesc: 'Jasne, zadbane wnętrze i nowoczesne wyposażenie dla komfortowego pobytu.',
   advFamily: 'Dla rodzin',
@@ -89,7 +89,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
 
   faqTitle: 'Najczęstsze pytania',
   faqQ1: 'Gdzie dokładnie znajduje się apartament i jak daleko jest do plaży?',
-  faqA1: 'ScaleaStay znajduje się przy Via Giuseppe Saragat 11 w Scalei. Najbliższa plaża jest około 600 m dalej — zwykle 5–8 minut pieszo. Dokładną trasę można otworzyć w sekcji „Trasy”.',
+  faqA1: 'ScaleaStay znajduje się przy Via Giuseppe Saragat 11 w Scalei. Najbliższa plaża jest około 500 m dalej — zwykle 5–8 minut pieszo. Dokładną trasę można otworzyć w sekcji „Trasy”.',
   faqQ2: 'Jakie udogodnienia są w apartamencie?',
   faqA2: "Apartament ma oddzielną sypialnię, taras, wyposażoną kuchnię, klimatyzację, ogrzewanie gazowe i Wi‑Fi.",
   faqQ3: 'Czy jest parking dla gości?',

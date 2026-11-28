@@ -22,12 +22,12 @@ type SeoEntry = {
 const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
   ru: {
     title: 'Апартаменты в Скалее у моря | ScaleaStay',
-    description: 'ScaleaStay в Скалее, Калабрия: апартаменты с современным ремонтом, кондиционером, парковкой и кухней. Пляж — 600 м, около 5–8 минут пешком. Проверяйте даты напрямую.',
+    description: 'ScaleaStay в Скалее, Калабрия: апартаменты с современным ремонтом, кондиционером, парковкой и кухней. Пляж — около 500 м, около 5–8 минут пешком. Проверяйте даты напрямую.',
     locale: 'ru_RU',
   },
   en: {
     title: 'Holiday Apartment in Scalea, Calabria | ScaleaStay',
-    description: 'ScaleaStay in Scalea, Calabria: a modern holiday apartment with air conditioning, parking and an equipped kitchen. The beach is 600 m away, about a 5–8 minute walk. Check dates directly.',
+    description: 'ScaleaStay in Scalea, Calabria: a modern holiday apartment with air conditioning, parking and an equipped kitchen. The beach is about 500 m away, about a 5–8 minute walk. Check dates directly.',
     locale: 'en_GB',
   },
   it: {
@@ -37,17 +37,17 @@ const SEO_BY_LANGUAGE: Record<string, SeoEntry> = {
   },
   de: {
     title: 'Ferienwohnung in Scalea, Kalabrien | ScaleaStay',
-    description: 'ScaleaStay in Scalea, Kalabrien: moderne Ferienwohnung mit Klimaanlage, Parkplatz und ausgestatteter Küche. Der Strand ist 600 m entfernt, etwa 5–8 Gehminuten. Verfügbarkeit direkt prüfen.',
+    description: 'ScaleaStay in Scalea, Kalabrien: moderne Ferienwohnung mit Klimaanlage, Parkplatz und ausgestatteter Küche. Der Strand ist etwa 500 m entfernt, etwa 5–8 Gehminuten. Verfügbarkeit direkt prüfen.',
     locale: 'de_DE',
   },
   cs: {
     title: 'Apartmán ve Scalee, Kalábrie | ScaleaStay',
-    description: 'ScaleaStay ve Scalee v Kalábrii: moderní apartmán s klimatizací, parkováním a vybavenou kuchyní. Pláž je 600 m daleko, přibližně 5–8 minut pěšky. Ověřte termíny přímo.',
+    description: 'ScaleaStay ve Scalee v Kalábrii: moderní apartmán s klimatizací, parkováním a vybavenou kuchyní. Pláž je přibližně 500 m daleko, přibližně 5–8 minut pěšky. Ověřte termíny přímo.',
     locale: 'cs_CZ',
   },
   pl: {
     title: 'Apartament w Scalei blisko morza | ScaleaStay',
-    description: 'ScaleaStay w Scalei w Kalabrii: nowoczesny apartament z klimatyzacją, parkingiem i wyposażoną kuchnią. Plaża jest około 600 m dalej, zwykle 5–8 minut pieszo. Sprawdź wolne terminy bezpośrednio.',
+    description: 'ScaleaStay w Scalei w Kalabrii: nowoczesny apartament z klimatyzacją, parkingiem i wyposażoną kuchnią. Plaża jest około 500 m dalej, zwykle 5–8 minut pieszo. Sprawdź wolne terminy bezpośrednio.',
     locale: 'pl_PL',
   },
 };

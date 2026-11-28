@@ -137,7 +137,7 @@ export function getLongStayLanding(language: StayLanguage): Landing {
   const d = DETAILS[language], home = getLongStayCopy(language);
   return { ...d, cta: home.availabilityCta, message: home.message,
     features: d.features.map(([title, text]) => ({ title, text })),
-    nearby: d.nearby.map(([name, text], i) => ({ name, text, distance: ['600 m', '230 m', '550 m'][i] })),
+    nearby: d.nearby.map(([name, text], i) => ({ name, text, distance: [language === 'ru' ? '≈500 м' : '≈500 m', '230 m', '550 m'][i] })),
     faq: [...home.faq.slice(0, 2), { q: d.minimumStayFaq[0], a: d.minimumStayFaq[1] }, ...d.extraFaq.map(([q, a]) => ({ q, a }))],
   };
 }

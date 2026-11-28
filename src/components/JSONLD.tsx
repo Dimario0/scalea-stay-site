@@ -1,5 +1,6 @@
 import { getFaqItems } from '../content/faq';
 import { ENTRANCE_ADDRESS } from '../content/arrival';
+import { BEACH_ACCESS } from '../content/beachWalk';
 import { APARTMENT_IMAGES } from '../content/apartmentImages.mjs';
 import React, { useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
@@ -79,7 +80,7 @@ const JSONLD: React.FC = () => {
   const airportRouteId = `${pageUrl}#airport-route`;
 
   const homeMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ENTRANCE_ADDRESS)}`;
-  const beachMapUrl = 'https://www.google.com/maps/search/?api=1&query=39.8064465%2C15.7889826';
+  const beachMapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BEACH_ACCESS.join(','))}`;
   const stationMapUrl = 'https://www.google.com/maps/search/?api=1&query=Scalea-Santa%20Domenica%20Talao%20railway%20station';
   const airportMapUrl = 'https://www.google.com/maps/search/?api=1&query=Lamezia%20Terme%20International%20Airport';
 
@@ -179,12 +180,12 @@ const JSONLD: React.FC = () => {
           {
             '@type': 'PropertyValue',
             name: 'Nearest beach walking distance',
-            value: '600 m; approximately 5–8 minutes on foot',
+            value: 'About 500 m, a 5–8 minute walk past the town hall',
           },
           {
             '@type': 'PropertyValue',
             name: 'Nearest beach access coordinates',
-            value: '39.8064465, 15.7889826',
+            value: BEACH_ACCESS.join(', '),
           },
           {
             '@type': 'PropertyValue',
@@ -240,8 +241,8 @@ const JSONLD: React.FC = () => {
         containedInPlace: { '@id': scaleaId },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: 39.8064465,
-          longitude: 15.7889826,
+          latitude: BEACH_ACCESS[0],
+          longitude: BEACH_ACCESS[1],
         },
         address: {
           '@type': 'PostalAddress',

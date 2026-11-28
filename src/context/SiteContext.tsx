@@ -29,8 +29,8 @@ const normalizeApartments = (apartments: Apartment[]): Apartment[] =>
       ...apartment,
       images: migrateApartmentImages(apartment.images),
       name: 'ScaleaStay',
-      description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — 600 м, около 5–8 минут пешком.',
-      distanceToSea: '600m',
+      description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — около 500 м, около 5–8 минут пешком.',
+      distanceToSea: '500m',
     };
   });
 
