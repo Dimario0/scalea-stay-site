@@ -7,8 +7,8 @@ to the actual commercial canonical URL, and the WebPage refers to the declared
 Accommodation entity.
 
 Confirmed facts: up to four guests, one bedroom, equipped kitchen, private terrace,
-Wi-Fi, gas heating, air conditioning and parking. The beach is 600 m away, about
-5–8 minutes on foot; Interspar is about 230 m away and the station about 500 m.
+Wi-Fi, gas heating, air conditioning and parking. The walk from entrance 11 to the beach is about 500 m and takes
+5–8 minutes. Interspar is about 230 m away and the station about 500 m.
 The address is Via Giuseppe Saragat 11, 87029 Scalea, Italy; the CIN is
 IT078138C2VN4E3MCD. Floor, lift, apartment area, bed configuration and measured
 Wi-Fi speed are not newly claimed without owner confirmation.

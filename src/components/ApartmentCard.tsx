@@ -10,9 +10,10 @@ import { ITALIAN_HOME } from '../content/italianHome';
 
 interface Props {
   apartment: Apartment;
+  onSelectBeach: () => void;
 }
 
-const ApartmentCard: React.FC<Props> = ({ apartment }) => {
+const ApartmentCard: React.FC<Props> = ({ apartment, onSelectBeach }) => {
   const { t, language } = useLanguage();
   const copy = APARTMENT_COPY[language] || APARTMENT_COPY.ru;
   const apartmentPageLink = getApartmentPageLink(language);
@@ -47,6 +48,7 @@ const ApartmentCard: React.FC<Props> = ({ apartment }) => {
   };
 
   const openBeachRoute = () => {
+    onSelectBeach();
     trackEvent('route_section_open', {
       source: 'apartment_card',
       route: 'beach',

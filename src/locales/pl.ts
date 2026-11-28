@@ -1,3 +1,5 @@
+import { BEACH_WALK_COPY } from '../content/beachWalk';
+
 export const PL_TRANSLATIONS: Record<string, string> = {
   taTitle: 'Dla kogo jest ten apartament',
   taItem1: 'Dla rodzin, które chcą wypoczywać blisko morza i mieć wygodny apartament w Scalei.',
@@ -41,7 +43,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
   advLocation: 'Wygodna lokalizacja',
   advLocationDesc: 'Plaża, sklepy, dworzec i centrum Scalei są dostępne pieszo.',
   advSea: 'Blisko morza',
-  advSeaDesc: 'Najbliższa plaża znajduje się około 600 m od apartamentu — zwykle 5–8 minut pieszo.',
+  advSeaDesc: 'Najbliższa plaża znajduje się około 500 m od apartamentu — zwykle 5–8 minut pieszo.',
   advRenovation: 'Nowoczesne wnętrze',
   advRenovationDesc: 'Jasne, zadbane wnętrze i nowoczesne wyposażenie dla komfortowego pobytu.',
   advFamily: 'Dla rodzin',
@@ -66,7 +68,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
   whatsappBookingMsg: 'Dzień dobry! Chcę zapytać o pobyt w ScaleaStay. Czy wybrane terminy są dostępne?',
   apartmentBookingMsg: 'Dzień dobry! Chcę zapytać o pobyt w ScaleaStay. Czy wybrane terminy są dostępne?',
 
-  beachDistance: 'Plaża 5–8 min',
+  beachDistance: `Plaża · ${BEACH_WALK_COPY.pl.metric}`,
   beachRouteLabel: 'Trasa na plażę',
   acReady: 'Klimatyzacja',
   parkingInc: 'Parking',
@@ -89,7 +91,7 @@ export const PL_TRANSLATIONS: Record<string, string> = {
 
   faqTitle: 'Najczęstsze pytania',
   faqQ1: 'Gdzie dokładnie znajduje się apartament i jak daleko jest do plaży?',
-  faqA1: 'ScaleaStay znajduje się przy Via Giuseppe Saragat 11 w Scalei. Najbliższa plaża jest około 600 m dalej — zwykle 5–8 minut pieszo. Dokładną trasę można otworzyć w sekcji „Trasy”.',
+  faqA1: 'ScaleaStay znajduje się przy Via Giuseppe Saragat 11 w Scalei. Najbliższa plaża jest około 500 m dalej — zwykle 5–8 minut pieszo. Dokładną trasę można otworzyć w sekcji „Trasy”.',
   faqQ2: 'Jakie udogodnienia są w apartamencie?',
   faqA2: "Apartament ma oddzielną sypialnię, taras, wyposażoną kuchnię, klimatyzację, ogrzewanie gazowe i Wi‑Fi.",
   faqQ3: 'Czy jest parking dla gości?',

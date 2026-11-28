@@ -53,7 +53,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     apartmentText: 'L’appartamento è luminoso e accogliente, con aria condizionata, cucina attrezzata, terrazza e parcheggio. Ospita fino a 4 persone ed è adatto sia a soggiorni brevi sia a vacanze più lunghe.',
     amenities: ['Aria condizionata', 'Cucina attrezzata', 'Terrazza', 'Parcheggio'],
     facts: [
-      { label: 'Spiaggia', value: '600 m · circa 5–8 min' },
+      { label: 'Spiaggia', value: 'Circa 500 m · 5–8 min' },
       { label: 'Interspar', value: '230 m · circa 3 min' },
       { label: 'Stazione di Scalea', value: '550 m · circa 7 min' },
       { label: 'Centro storico', value: '950 m · circa 13 min' },
@@ -65,7 +65,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Controllo rapido delle date', 'Contatto diretto', 'Informazioni pratiche prima dell’arrivo'],
     faqTitle: 'Domande frequenti su ScaleaStay',
     seoTitle: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
+    seoDescription: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a circa 500 m, 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
     canonicalPath: '/it/appartamento-scalea-vicino-mare/',
   },
   pl: {
@@ -78,7 +78,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     apartmentText: 'Jasny i przytulny apartament z klimatyzacją, wyposażoną kuchnią, tarasem i parkingiem. Może pomieścić do 4 gości i sprawdzi się zarówno na krótki wyjazd, jak i dłuższy urlop.',
     amenities: ['Klimatyzacja', 'Wyposażona kuchnia', 'Taras', 'Parking'],
     facts: [
-      { label: 'Plaża', value: '600 m · około 5–8 min' },
+      { label: 'Plaża', value: 'Około 500 m · 5–8 min' },
       { label: 'Interspar', value: '230 m · około 3 min' },
       { label: 'Dworzec Scalea', value: '550 m · około 7 min' },
       { label: 'Historyczne centrum', value: '950 m · około 13 min' },
@@ -90,7 +90,7 @@ const COPY: Record<'it' | 'pl', LandingCopy> = {
     directPoints: ['Szybkie sprawdzenie terminów', 'Bezpośredni kontakt', 'Praktyczne informacje przed przyjazdem'],
     faqTitle: 'Najczęstsze pytania o ScaleaStay',
     seoTitle: 'Apartament w Scalei blisko morza | ScaleaStay',
-    seoDescription: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
+    seoDescription: 'Apartament w Scalei do 4 gości: plaża około 500 m, 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
     canonicalPath: '/pl/apartament-scalea-blisko-morza/',
   },
 };

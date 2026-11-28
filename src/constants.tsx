@@ -2,6 +2,7 @@
 import { Apartment } from './types';
 import { APARTMENT_IMAGES } from './content/apartmentImages.mjs';
 import { ITALIAN_HOME } from './content/italianHome';
+import { BEACH_WALK_COPY } from './content/beachWalk';
 
 // --- ВЕРСИЯ ДАННЫХ ---
 export const SITE_DATA_VERSION = 10;
@@ -38,11 +39,11 @@ export const APARTMENTS: Apartment[] = [
     id: '1',
     name: 'ScaleaStay',
     nameKey: 'apt1Name',
-    description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — 600 м, около 5–8 минут пешком.',
+    description: 'Светлые и уютные апартаменты с современным ремонтом для отдыха у моря. Ближайший пляж — около 500 м, 5–8 минут пешком.',
     descriptionKey: 'apt1Desc',
     price: 'от 60€',
     beds: 4,
-    distanceToSea: '600m',
+    distanceToSea: '500m',
     images: APARTMENT_IMAGES,
     features: [
       'Кондиционер',
@@ -100,7 +101,7 @@ export const TRANSLATIONS: Record<string, any> = {
     advLocation: 'Центральное расположение',
     advLocationDesc: 'Самый центр города, рядом находится большой продуктовый супермаркет и детский парк развлечений.',
     advSea: 'Близость к морю',
-    advSeaDesc: 'Ближайший пляж — 600 м, около 5–8 минут пешком.',
+    advSeaDesc: 'Ближайший пляж — около 500 м, 5–8 минут пешком.',
     advRenovation: 'Современный ремонт',
     advRenovationDesc: 'Элегантный интерьер и новая мебель для вашего максимального комфорта.',
     advFamily: 'Семейный уют',
@@ -122,7 +123,7 @@ export const TRANSLATIONS: Record<string, any> = {
     directBooking: 'Доступно прямое бронирование',
     waitsForYou: 'Ждет вас',
     whatsappBookingMsg: 'Здравствуйте! Я хочу забронировать ваши апартаменты в Скалее. Подскажите, пожалуйста, свободны ли даты...',
-    beachDistance: 'Пляж 5–8 мин',
+    beachDistance: `Пляж · ${BEACH_WALK_COPY.ru.metric}`,
     acReady: 'Кондиционер',
     parkingInc: 'Парковка вкл.',
     footerCopyright: 'ScaleaStay © 2026 • Калабрийское гостеприимство',
@@ -145,7 +146,7 @@ export const TRANSLATIONS: Record<string, any> = {
     aiGreeting: "Здравствуйте! Помогу узнать о квартире, Wi‑Fi, отоплении, пляже и магазинах рядом. Даты и стоимость подскажет владелец в WhatsApp.",
     faqTitle: 'Частые вопросы',
     faqQ1: 'Где именно находятся апартаменты и как далеко идти до моря?',
-    faqA1: 'Мы находимся по адресу Via Giuseppe Saragat 11 в центральной части Скалеи. До ближайшего пляжа — 600 м, обычно около 5–8 минут пешком.',
+    faqA1: 'Мы находимся по адресу Via Giuseppe Saragat 11 в центральной части Скалеи. До ближайшего пляжа — около 500 м, 5–8 минут пешком.',
     faqQ2: 'Какие удобства есть в квартире?',
     faqA2: "В апартаментах есть отдельная спальня, терраса, оборудованная кухня, кондиционер, газовое отопление и Wi‑Fi.",
     faqQ3: 'Есть ли у вас парковка для гостей?',
@@ -218,7 +219,7 @@ export const TRANSLATIONS: Record<string, any> = {
     advLocation: 'Central Location',
     advLocationDesc: 'Right in the city center, close to a large grocery supermarket and a children\'s amusement park.',
     advSea: 'Near the Sea',
-    advSeaDesc: 'The nearest beach is 600 m away, about a 5–8 minute walk.',
+    advSeaDesc: 'The nearest beach is about 500 m away, a 5–8 minute walk.',
     advRenovation: 'Modern Renovation',
     advRenovationDesc: 'Elegant interior and new furniture for your maximum comfort.',
     advFamily: 'Family Comfort',
@@ -240,7 +241,7 @@ export const TRANSLATIONS: Record<string, any> = {
     directBooking: 'Direct Booking Available',
     waitsForYou: 'Waits for you',
     whatsappBookingMsg: 'Hello! I would like to book your apartment in Scalea. Please let me know if the dates are available...',
-    beachDistance: 'Beach 5–8 min',
+    beachDistance: `Beach · ${BEACH_WALK_COPY.en.metric}`,
     acReady: 'Air Conditioning',
     parkingInc: 'Parking Included',
     footerCopyright: 'ScaleaStay © 2026 • Calabrian Hospitality',
@@ -263,7 +264,7 @@ export const TRANSLATIONS: Record<string, any> = {
     aiGreeting: "Hello! I can help with the apartment, Wi‑Fi, heating, beach and nearby shops. For dates and prices, I can direct you to the owner on WhatsApp.",
     faqTitle: 'FAQ',
     faqQ1: 'Where exactly are the apartments located and how far is the sea?',
-    faqA1: 'We are located at Via Giuseppe Saragat 11 in central Scalea. The nearest beach is 600 m away, usually about a 5–8 minute walk.',
+    faqA1: 'We are located at Via Giuseppe Saragat 11 in central Scalea. The nearest beach is about 500 m away, a 5–8 minute walk.',
     faqQ2: 'What amenities are available in the apartment?',
     faqA2: "The apartment has a separate bedroom, terrace, equipped kitchen, air conditioning, gas heating and Wi‑Fi.",
     faqQ3: 'Do you have a parking space for guests?',
@@ -334,7 +335,7 @@ export const TRANSLATIONS: Record<string, any> = {
     advLocation: 'Posizione centrale',
     advLocationDesc: 'In pieno centro città, vicino a un grande supermercato e a un parco divertimenti per bambini.',
     advSea: 'Vicino al mare',
-    advSeaDesc: 'La spiaggia più vicina dista 600 m, circa 5–8 minuti a piedi.',
+    advSeaDesc: 'La spiaggia più vicina dista circa 500 m, 5–8 minuti a piedi.',
     advRenovation: 'Ristrutturazione moderna',
     advRenovationDesc: 'Interni eleganti e mobili nuovi per il massimo comfort.',
     advFamily: 'Comfort familiare',
@@ -356,7 +357,7 @@ export const TRANSLATIONS: Record<string, any> = {
     directBooking: 'Prenotazione diretta disponibile',
     waitsForYou: 'Ti aspetta',
     whatsappBookingMsg: 'Buongiorno! Vorrei prenotare il vostro appartamento a Scalea. Sono libere le date...',
-    beachDistance: 'Spiaggia 5–8 min',
+    beachDistance: `Spiaggia · ${BEACH_WALK_COPY.it.metric}`,
     acReady: 'Aria Condizionata',
     parkingInc: 'Parcheggio incluso',
     footerCopyright: 'ScaleaStay © 2026 • Ospitalità Calabrese',
@@ -379,7 +380,7 @@ export const TRANSLATIONS: Record<string, any> = {
     aiGreeting: "Ciao! Posso aiutarti con informazioni su appartamento, Wi‑Fi, riscaldamento, spiaggia e negozi vicini. Per date e prezzi, ti indirizzo al proprietario su WhatsApp.",
     faqTitle: 'Domande Frequenti',
     faqQ1: 'Dove si trovano esattamente gli appartamenti e quanto dista il mare?',
-    faqA1: 'Ci troviamo in Via Giuseppe Saragat 11, nella zona centrale di Scalea. La spiaggia più vicina dista 600 m, normalmente circa 5–8 minuti a piedi.',
+    faqA1: 'Ci troviamo in Via Giuseppe Saragat 11, nella zona centrale di Scalea. La spiaggia più vicina dista circa 500 m, 5–8 minuti a piedi.',
     faqQ2: 'Quali servizi ci sono nell\'appartamento?',
     faqA2: "L’appartamento dispone di una camera da letto separata, terrazza, cucina attrezzata, aria condizionata, riscaldamento a gas e Wi‑Fi.",
     faqQ3: 'Avete un parcheggio per gli ospiti?',
@@ -450,7 +451,7 @@ export const TRANSLATIONS: Record<string, any> = {
     advLocation: 'Zentrale Lage',
     advLocationDesc: 'Direkt im Stadtzentrum, in der Nähe eines großen Supermarkts und eines Vergnügungsparks für Kinder.',
     advSea: 'Meeresnähe',
-    advSeaDesc: 'Der nächste Strand ist 600 m entfernt, etwa 5–8 Gehminuten.',
+    advSeaDesc: 'Der nächste Strand ist etwa 500 m entfernt, 5–8 Gehminuten.',
     advRenovation: 'Moderne Renovierung',
     advRenovationDesc: 'Elegantes Interieur und neue Möbel für Ihren maximalen Komfort.',
     advFamily: 'Familienkomfort',
@@ -472,7 +473,7 @@ export const TRANSLATIONS: Record<string, any> = {
     directBooking: 'Direktbuchung verfügbar',
     waitsForYou: 'Wartet auf Sie',
     whatsappBookingMsg: 'Hallo! Ich würde gerne Ihr Apartment in Scalea buchen. Sind die Termine frei...',
-    beachDistance: 'Strand 5–8 Min.',
+    beachDistance: `Strand · ${BEACH_WALK_COPY.de.metric}`,
     acReady: 'Klimaanlage',
     parkingInc: 'Inkl. Parkplatz',
     footerCopyright: 'ScaleaStay © 2026 • Kalabrische Gastfreundschaft',
@@ -495,7 +496,7 @@ export const TRANSLATIONS: Record<string, any> = {
     aiGreeting: "Hallo! Ich helfe bei Fragen zur Wohnung, WLAN, Heizung, Strand und Geschäften in der Nähe. Für Termine und Preise leite ich Sie zum Eigentümer auf WhatsApp weiter.",
     faqTitle: 'Häufig gestellte Fragen',
     faqQ1: 'Wo genau befinden sich die Apartments und wie weit ist das Meer entfernt?',
-    faqA1: 'Wir befinden uns in der Via Giuseppe Saragat 11 im zentralen Teil von Scalea. Der nächste Strand ist 600 m entfernt, normalerweise etwa 5–8 Gehminuten.',
+    faqA1: 'Wir befinden uns in der Via Giuseppe Saragat 11 im zentralen Teil von Scalea. Der nächste Strand ist etwa 500 m entfernt, 5–8 Gehminuten.',
     faqQ2: 'Welche Ausstattung gibt es in der Wohnung?',
     faqA2: "Die Ferienwohnung bietet ein separates Schlafzimmer, Terrasse, ausgestattete Küche, Klimaanlage, Gasheizung und WLAN.",
     faqQ3: 'Gibt es einen Parkplatz für Gäste?',
@@ -566,7 +567,7 @@ export const TRANSLATIONS: Record<string, any> = {
     advLocation: 'Centrální poloha',
     advLocationDesc: 'Přímo v centru města, v blízkosti velkého supermarketu a dětského zábavního parku.',
     advSea: 'Blízkost moře',
-    advSeaDesc: 'Nejbližší pláž je 600 m daleko, přibližně 5–8 minut pěšky.',
+    advSeaDesc: 'Nejbližší pláž je přibližně 500 m daleko, 5–8 minut pěšky.',
     advRenovation: 'Moderní rekonstrukce',
     advRenovationDesc: 'Elegantní interiér a nový nábytek pro váš maximální komfort.',
     advFamily: 'Rodinné pohodlí',
@@ -588,7 +589,7 @@ export const TRANSLATIONS: Record<string, any> = {
     directBooking: 'Možnost přímé rezervace',
     waitsForYou: 'Čeká na vás',
     whatsappBookingMsg: 'Dobrý den! Rád bych si rezervoval váš apartmán ve Scalea. Jsou termíny volné...',
-    beachDistance: 'Pláž 5–8 min',
+    beachDistance: `Pláž · ${BEACH_WALK_COPY.cs.metric}`,
     acReady: 'Klimatizace',
     parkingInc: 'Parkování v ceně',
     footerCopyright: 'ScaleaStay © 2026 • Kalábrijská pohostinnost',
@@ -611,7 +612,7 @@ export const TRANSLATIONS: Record<string, any> = {
     aiGreeting: "Dobrý den! Pomohu s dotazy na apartmán, Wi‑Fi, topení, pláž a blízké obchody. Pro termíny a ceny vás odkážu na majitele přes WhatsApp.",
     faqTitle: 'Časté dotazy',
     faqQ1: 'Kde přesně se apartmány nacházejí a jak daleko je to k moři?',
-    faqA1: 'Nacházíme se na adrese Via Giuseppe Saragat 11 v centrální části města Scalea. Nejbližší pláž je 600 m daleko, obvykle přibližně 5–8 minut pěšky.',
+    faqA1: 'Nacházíme se na adrese Via Giuseppe Saragat 11 v centrální části města Scalea. Nejbližší pláž je přibližně 500 m daleko, 5–8 minut pěšky.',
     faqQ2: 'Jaké je vybavení v apartmánu?',
     faqA2: "Apartmán má samostatnou ložnici, terasu, vybavenou kuchyň, klimatizaci, plynové topení a Wi‑Fi.",
     faqQ3: 'Máte pro hosty parkování?',
@@ -655,7 +656,7 @@ export const SYSTEM_INSTRUCTION = `Вы — профессиональный в�
 ФАКТЫ ОБ АПАРТАМЕНТАХ:
 - Локация: Scalea, Calabria, Italy. Центральная часть города.
 - Адрес: Via Giuseppe Saragat 11, Scalea. Если смотреть на дом с улицы, к подъезду №11 ведёт левая лестница.
-- До ближайшего пляжа: примерно 600 м, обычно около 5–8 минут пешком.
+- До ближайшего пляжа: около 500 м, 5–8 минут пешком.
 - Супермаркет Interspar: примерно 230 м, около 3 минут пешком.
 - Железнодорожная станция Scalea–Santa Domenica Talao: примерно 550 м, около 7 минут пешком.
 - Удобства: парковка, кондиционер, терраса, оборудованная кухня, Wi‑Fi и газовое отопление.

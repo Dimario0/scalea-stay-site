@@ -1,7 +1,13 @@
 export const ENTRANCE_ADDRESS = 'Via Giuseppe Saragat 11, 87029 Scalea CS, Italia';
 
-export function directionsUrl(origin: string, destination: string, mode: 'walking' | 'transit' | 'driving') {
+export function directionsUrl(
+  origin: string,
+  destination: string,
+  mode: 'walking' | 'transit' | 'driving',
+  waypoints: readonly string[] = [],
+) {
   const params = new URLSearchParams({ api: '1', origin, destination, travelmode: mode });
+  if (waypoints.length) params.set('waypoints', waypoints.join('|'));
   return `https://www.google.com/maps/dir/?${params}`;
 }
 

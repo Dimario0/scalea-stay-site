@@ -31,8 +31,8 @@ const __dirname = path.dirname(__filename);
 
 const SITE_ORIGIN = 'https://scaleastay.com';
 const SEO_LASTMOD = '2026-08-17';
-const STAY_LASTMOD = '2026-10-24';
-const APARTMENT_LASTMOD = '2026-11-15';
+const STAY_LASTMOD = '2026-11-28';
+const APARTMENT_LASTMOD = '2026-11-28';
 const LANGUAGES = ['ru', 'en', 'it', 'de', 'cs', 'pl'] as const;
 type LanguageCode = (typeof LANGUAGES)[number];
 type PriorityLanguage = 'it' | 'pl';
@@ -75,12 +75,12 @@ type GuidePage = {
 const LOCALIZED_SEO: Record<LanguageCode, LocalizedSeo> = {
   ru: {
     title: 'Апартаменты в Скалее у моря | ScaleaStay',
-    description: 'ScaleaStay в Скалее, Калабрия: апартаменты с современным ремонтом, кондиционером, парковкой и кухней. Пляж — 600 м, около 5–8 минут пешком. Проверяйте даты напрямую.',
+    description: 'ScaleaStay в Скалее, Калабрия: апартаменты с современным ремонтом, кондиционером, парковкой и кухней. Пляж — около 500 м, 5–8 минут пешком. Проверяйте даты напрямую.',
     locale: 'ru_RU',
   },
   en: {
     title: 'Holiday Apartment in Scalea, Calabria | ScaleaStay',
-    description: 'ScaleaStay in Scalea, Calabria: a modern holiday apartment with air conditioning, parking and an equipped kitchen. The beach is 600 m away, about a 5–8 minute walk. Check dates directly.',
+    description: 'ScaleaStay in Scalea, Calabria: a modern holiday apartment with air conditioning, parking and an equipped kitchen. The beach is about 500 m away, a 5–8 minute walk. Check dates directly.',
     locale: 'en_GB',
   },
   it: {
@@ -90,17 +90,17 @@ const LOCALIZED_SEO: Record<LanguageCode, LocalizedSeo> = {
   },
   de: {
     title: 'Ferienwohnung in Scalea, Kalabrien | ScaleaStay',
-    description: 'ScaleaStay in Scalea, Kalabrien: moderne Ferienwohnung mit Klimaanlage, Parkplatz und ausgestatteter Küche. Der Strand ist 600 m entfernt, etwa 5–8 Gehminuten. Verfügbarkeit direkt prüfen.',
+    description: 'ScaleaStay in Scalea, Kalabrien: moderne Ferienwohnung mit Klimaanlage, Parkplatz und ausgestatteter Küche. Der Strand ist etwa 500 m entfernt, 5–8 Gehminuten. Verfügbarkeit direkt prüfen.',
     locale: 'de_DE',
   },
   cs: {
     title: 'Apartmán ve Scalee, Kalábrie | ScaleaStay',
-    description: 'ScaleaStay ve Scalee v Kalábrii: moderní apartmán s klimatizací, parkováním a vybavenou kuchyní. Pláž je 600 m daleko, přibližně 5–8 minut pěšky. Ověřte termíny přímo.',
+    description: 'ScaleaStay ve Scalee v Kalábrii: moderní apartmán s klimatizací, parkováním a vybavenou kuchyní. Pláž je přibližně 500 m daleko, 5–8 minut pěšky. Ověřte termíny přímo.',
     locale: 'cs_CZ',
   },
   pl: {
     title: 'Apartament w Scalei blisko morza | ScaleaStay',
-    description: 'ScaleaStay w Scalei w Kalabrii: nowoczesny apartament z klimatyzacją, parkingiem i wyposażoną kuchnią. Plaża jest około 600 m dalej, zwykle 5–8 minut pieszo. Sprawdź wolne terminy bezpośrednio.',
+    description: 'ScaleaStay w Scalei w Kalabrii: nowoczesny apartament z klimatyzacją, parkingiem i wyposażoną kuchnią. Plaża jest około 500 m dalej, zwykle 5–8 minut pieszo. Sprawdź wolne terminy bezpośrednio.',
     locale: 'pl_PL',
   },
 };
@@ -149,7 +149,7 @@ const COMMERCIAL_PAGES: CommercialPage[] = [
     language: 'it',
     path: '/it/appartamento-scalea-vicino-mare/',
     title: 'Appartamento a Scalea vicino al mare | ScaleaStay',
-    description: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a 600 m, circa 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
+    description: 'Appartamento a Scalea fino a 4 ospiti: spiaggia a circa 500 m, 5–8 minuti a piedi, Wi-Fi, cucina, terrazza e parcheggio. Chiedi disponibilità e prezzo su WhatsApp.',
     heroTitle: 'Appartamento a Scalea vicino al mare',
     heroSubtitle: 'ScaleaStay è un appartamento moderno in una zona comoda di Scalea: spiaggia, Interspar, stazione e centro sono raggiungibili a piedi.',
     cta: 'Verifica le date su WhatsApp',
@@ -158,7 +158,7 @@ const COMMERCIAL_PAGES: CommercialPage[] = [
     language: 'pl',
     path: '/pl/apartament-scalea-blisko-morza/',
     title: 'Apartament w Scalei blisko morza | ScaleaStay',
-    description: 'Apartament w Scalei do 4 gości: plaża 600 m, około 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
+    description: 'Apartament w Scalei do 4 gości: plaża około 500 m, 5–8 minut pieszo, Wi-Fi, kuchnia, taras i parking. Zapytaj o wolny termin i cenę przez WhatsApp.',
     heroTitle: 'Apartament w Scalei blisko morza',
     heroSubtitle: 'ScaleaStay to nowoczesny apartament w wygodnej części Scalei. Plaża, Interspar, dworzec i centrum są dostępne pieszo.',
     cta: 'Sprawdź terminy na WhatsApp',
@@ -191,20 +191,20 @@ const GUIDE_PAGES: GuidePage[] = [
     topic: 'no-car',
     path: '/it/scalea-senza-auto/',
     title: 'Scalea senza auto: cosa raggiungere a piedi | ScaleaStay',
-    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 550 m e centro storico 950 m.',
+    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia a circa 500 m (5–8 minuti a piedi), Interspar 230 m, stazione 550 m e centro storico 950 m.',
     heroTitle: 'Vacanza a Scalea senza auto: cosa puoi raggiungere a piedi',
     heroSubtitle: 'Da ScaleaStay molte cose utili per la vacanza sono raggiungibili a piedi: mare, supermercato, stazione, centro storico e luoghi per una passeggiata serale.',
-    summary: 'Spiaggia 600 m / 5–8 min · Interspar 230 m / ~3 min · stazione 550 m / ~7 min · centro storico 950 m / ~13 min.',
+    summary: 'Spiaggia circa 500 m / 5–8 min · Interspar 230 m / ~3 min · stazione 550 m / ~7 min · centro storico 950 m / ~13 min.',
   },
   {
     language: 'pl',
     topic: 'no-car',
     path: '/pl/scalea-bez-samochodu/',
     title: 'Scalea bez samochodu: co jest blisko pieszo | ScaleaStay',
-    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
+    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża około 500 m (5–8 minut pieszo), Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
     heroTitle: 'Scalea bez samochodu: co jest w zasięgu spaceru',
     heroSubtitle: 'Od ScaleaStay wiele rzeczy potrzebnych podczas urlopu jest dostępnych pieszo: morze, supermarket, dworzec, stare miasto i miejsca na wieczorny spacer.',
-    summary: 'Plaża 600 m / 5–8 min · Interspar 230 m / ~3 min · dworzec 550 m / ~7 min · stare miasto 950 m / ~13 min.',
+    summary: 'Plaża około 500 m / 5–8 min · Interspar 230 m / ~3 min · dworzec 550 m / ~7 min · stare miasto 950 m / ~13 min.',
   },
 ];
 
@@ -276,7 +276,7 @@ ${alternates}
 
 const commercialSitemapEntries = buildPairedSitemapEntries(COMMERCIAL_PAGES, '0.9', APARTMENT_LASTMOD);
 const guideSitemapEntries = (['airport', 'no-car'] as GuideTopic[])
-  .map((topic) => buildPairedSitemapEntries(GUIDE_PAGES.filter((page) => page.topic === topic), '0.8'))
+  .map((topic) => buildPairedSitemapEntries(GUIDE_PAGES.filter((page) => page.topic === topic), '0.8', topic === 'no-car' ? APARTMENT_LASTMOD : SEO_LASTMOD))
   .join('\n');
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>

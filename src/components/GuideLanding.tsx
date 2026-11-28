@@ -105,7 +105,7 @@ const GUIDE_PAGES: GuidePage[] = [
     topic: 'no-car',
     path: '/it/scalea-senza-auto/',
     title: 'Scalea senza auto: cosa raggiungere a piedi | ScaleaStay',
-    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia 600 m, Interspar 230 m, stazione 550 m e centro storico 950 m.',
+    description: 'Vacanza a Scalea senza usare sempre l’auto: da ScaleaStay spiaggia a circa 500 m (5–8 minuti a piedi), Interspar 230 m, stazione 550 m e centro storico 950 m.',
     eyebrow: 'Scalea a piedi • Guida pratica',
     heroTitle: 'Vacanza a Scalea senza auto: cosa puoi raggiungere a piedi',
     heroSubtitle: 'Da ScaleaStay molte cose utili per la vacanza sono raggiungibili a piedi: mare, supermercato, stazione, centro storico e luoghi per una passeggiata serale.',
@@ -114,7 +114,7 @@ const GUIDE_PAGES: GuidePage[] = [
     note: '“Senza auto” non significa che l’auto non serva mai: per spiagge lontane, borghi dell’entroterra o escursioni in altre località della Calabria può essere molto utile.',
     faqTitle: 'Domande frequenti su Scalea senza auto',
     faq: [
-      { q: 'Quanto dista il mare da ScaleaStay?', a: 'La spiaggia più vicina è a circa 600 m. La percorrenza reale può variare con il passo; come riferimento usiamo circa 5–8 minuti a piedi.' },
+      { q: 'Quanto dista il mare da ScaleaStay?', a: 'La spiaggia più vicina è a circa 500 m. La percorrenza reale può variare con il passo; come riferimento usiamo circa 5–8 minuti a piedi.' },
       { q: 'Si può fare la spesa a piedi?', a: 'Sì. Interspar si trova a circa 230 m, circa 3 minuti a piedi dal punto di partenza verificato.' },
       { q: 'La stazione ferroviaria è raggiungibile a piedi?', a: 'Sì. La stazione Scalea–Santa Domenica Talao è a circa 550 m, normalmente circa 7 minuti a piedi.' },
       { q: 'Quando conviene avere un’auto?', a: 'L’auto è utile soprattutto per escursioni fuori Scalea, spiagge più lontane e località dell’entroterra. Per mare, spesa, stazione e centro molti spostamenti possono essere fatti a piedi.' },
@@ -132,7 +132,7 @@ const GUIDE_PAGES: GuidePage[] = [
     topic: 'no-car',
     path: '/pl/scalea-bez-samochodu/',
     title: 'Scalea bez samochodu: co jest blisko pieszo | ScaleaStay',
-    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża 600 m, Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
+    description: 'Wakacje w Scalei bez ciągłego korzystania z auta: od ScaleaStay plaża około 500 m (5–8 minut pieszo), Interspar 230 m, dworzec 550 m i stare miasto 950 m.',
     eyebrow: 'Scalea pieszo • Praktyczny przewodnik',
     heroTitle: 'Scalea bez samochodu: co jest w zasięgu spaceru',
     heroSubtitle: 'Od ScaleaStay wiele rzeczy potrzebnych podczas urlopu jest dostępnych pieszo: morze, supermarket, dworzec, stare miasto i miejsca na wieczorny spacer.',
@@ -141,7 +141,7 @@ const GUIDE_PAGES: GuidePage[] = [
     note: '„Bez samochodu” nie oznacza, że auto nigdy się nie przyda. Na dalsze plaże, wycieczki do miasteczek w głębi lądu i zwiedzanie innych części Kalabrii samochód może być bardzo wygodny.',
     faqTitle: 'Najczęstsze pytania o pobyt bez samochodu',
     faq: [
-      { q: 'Jak daleko jest z ScaleaStay do morza?', a: 'Najbliższa plaża znajduje się około 600 m od apartamentu. Rzeczywisty czas zależy od tempa; jako praktyczny zakres podajemy około 5–8 minut pieszo.' },
+      { q: 'Jak daleko jest z ScaleaStay do morza?', a: 'Najbliższa plaża znajduje się około 500 m od apartamentu. Rzeczywisty czas zależy od tempa; jako praktyczny zakres podajemy około 5–8 minut pieszo.' },
       { q: 'Czy na zakupy można dojść pieszo?', a: 'Tak. Interspar znajduje się około 230 m od sprawdzonego punktu startowego, czyli około 3 minuty pieszo.' },
       { q: 'Czy dworzec kolejowy jest blisko?', a: 'Tak. Stacja Scalea–Santa Domenica Talao znajduje się około 550 m od ScaleaStay, zwykle około 7 minut pieszo.' },
       { q: 'Kiedy samochód jest przydatny?', a: 'Przede wszystkim podczas dalszych wycieczek poza Scaleę, na bardziej oddalone plaże i do miejscowości w głębi Kalabrii. Morze, zakupy, dworzec i centrum są dostępne pieszo.' },
@@ -274,7 +274,7 @@ const GuideLanding: React.FC = () => {
   }, [language, navigate, supportedLanguage, topic]);
 
   const facts = useMemo(() => [
-    { icon: Waves, label: supportedLanguage === 'it' ? 'Spiaggia' : 'Plaża', value: '600 m · 5–8 min' },
+    { icon: Waves, label: supportedLanguage === 'it' ? 'Spiaggia' : 'Plaża', value: '≈500 m · 5–8 min' },
     { icon: ShoppingBasket, label: 'Interspar', value: '230 m · ~3 min' },
     { icon: TrainFront, label: supportedLanguage === 'it' ? 'Stazione' : 'Dworzec', value: '550 m · ~7 min' },
     { icon: Landmark, label: supportedLanguage === 'it' ? 'Centro storico' : 'Stare miasto', value: '950 m · ~13 min' },
