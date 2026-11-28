@@ -1,5 +1,5 @@
 import { getLongStayCopy } from './content/longStay';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LongStay from './components/LongStay';
@@ -15,7 +15,7 @@ import AdminPanel from './components/AdminPanel';
 import Advantages from './components/Advantages';
 import LocalGuide from './components/LocalGuide';
 import LocalFacts from './components/LocalFacts';
-import FAQ from './components/FAQ';
+import FAQ, { type RouteKey } from './components/FAQ';
 import DirectBookingBenefits from './components/DirectBookingBenefits';
 import JSONLD from './components/JSONLD';
 import FloatingCallButton from './components/FloatingCallButton';
@@ -29,6 +29,7 @@ const COMMERCIAL_SLUGS = ['appartamento-scalea-vicino-mare', 'apartament-scalea-
 const App: React.FC = () => {
   const { data } = useSiteData();
   const { t, language } = useLanguage();
+  const [activeRoute, setActiveRoute] = useState<RouteKey>('beach');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -110,7 +111,7 @@ const App: React.FC = () => {
 
             <div className="max-w-5xl mx-auto">
               {data.apartments.map(apt => (
-                <ApartmentCard key={apt.id} apartment={apt} />
+                <ApartmentCard key={apt.id} apartment={apt} onSelectBeach={() => setActiveRoute('beach')} />
               ))}
             </div>
           </div>
@@ -134,7 +135,7 @@ const App: React.FC = () => {
 
         <WeatherForecast />
 
-        <FAQ />
+        <FAQ activeRoute={activeRoute} onRouteChange={setActiveRoute} />
 
         <JSONLD />
 

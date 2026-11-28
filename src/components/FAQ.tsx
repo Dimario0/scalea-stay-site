@@ -18,7 +18,11 @@ import {
   Waves,
 } from 'lucide-react';
 
-type RouteKey = 'beach' | 'station' | 'airport';
+export type RouteKey = 'beach' | 'station' | 'airport';
+type RouteProps = {
+  activeRoute: RouteKey;
+  onRouteChange: (route: RouteKey) => void;
+};
 
 type LocalCopy = {
   routesTitle: string;
@@ -181,10 +185,9 @@ const LOCAL_COPY: Record<string, LocalCopy> = {
 const AIRPORT_LOCATION = 'Lamezia Terme International Airport (SUF), 88046 Lamezia Terme CZ, Italy';
 const AIRLINK_URL = 'https://www.trenitalia.com/en/connections/lamezia-airlink.html';
 
-const FAQ: React.FC = () => {
+const FAQ: React.FC<RouteProps> = ({ activeRoute, onRouteChange }) => {
   const { t, language } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [activeRoute, setActiveRoute] = useState<RouteKey>('beach');
   const copy = LOCAL_COPY[language] || LOCAL_COPY.ru;
   const beachWalk = BEACH_WALK_COPY[language] || BEACH_WALK_COPY.ru;
 
@@ -208,7 +211,7 @@ const FAQ: React.FC = () => {
   const airportDrivingUrl = directionsUrl(AIRPORT_LOCATION, ENTRANCE_ADDRESS, 'driving');
 
   const setRoute = (route: RouteKey) => {
-    setActiveRoute(route);
+    onRouteChange(route);
     trackEvent('route_tab_select', { route });
   };
 
